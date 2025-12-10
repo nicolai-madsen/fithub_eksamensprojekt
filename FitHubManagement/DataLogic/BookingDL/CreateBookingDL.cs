@@ -9,8 +9,8 @@ namespace FitHubManagement.DataLogic.BookingDL
 {
     internal class CreateBookingDL
     {
-        public static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-                                                "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
         public static void CreateBooking(int activityId, int customerId, string personalNote)
         {
             using SqlConnection connection = new SqlConnection(connectionString);

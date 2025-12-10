@@ -14,8 +14,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
     {
         // Forbindelsesstreng til databasen
         public static string connectionString =
-            "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-            "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+            "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         // Metode der henter alle aktiviteter fra databasen
         public static List<ActivityModel> GetAllActivities()

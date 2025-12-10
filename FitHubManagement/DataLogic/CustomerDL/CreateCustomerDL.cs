@@ -10,8 +10,8 @@ namespace FitHubManagement.DataLogic.CustomerDL
     internal class CreateCustomerDL
     {
 
-        public static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         public static void CreateCustomer(int membershipId, string firstName, string lastName, string email, string phone, DateTime birthday, string personalNote)
         {

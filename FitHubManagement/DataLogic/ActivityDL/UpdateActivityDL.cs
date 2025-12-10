@@ -9,8 +9,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
 {
     internal class UpdateActivityDL
     {
-        public static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         // Alle metoder gør det samme, bare for forskellige kolonner. 
         public static void UpdateActivityType(int activityId, int newValue)

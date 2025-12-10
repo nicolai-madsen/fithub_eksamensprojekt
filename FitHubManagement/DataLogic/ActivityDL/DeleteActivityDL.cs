@@ -9,8 +9,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
 {
     internal class DeleteActivityDL
     {
-        public static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;"; // Vores "connection nøgle", not actually. Aldrig kald det en nøgle, men man kan se det sådan.
+        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;"; // Vores "connection nøgle", not actually. Aldrig kald det en nøgle, men man kan se det sådan.
 
         public static void DeleteActivity(int activityId)
         {

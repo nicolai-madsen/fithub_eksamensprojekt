@@ -14,11 +14,11 @@ namespace FitHubManagement.DataLogic.BookingDL
     {
             // Forbindelsesstreng til databasen
             public static string connectionString =
-                "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;" +
-                "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+                "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
-            // Henter alle bookinger fra databasen
-            public static List<BookingModel> GetAllBookings()
+        // Henter alle bookinger fra databasen
+        public static List<BookingModel> GetAllBookings()
             {
                 // Liste hvor vi samler alle booking-objekter
                 List<BookingModel> bookings = new List<BookingModel>();

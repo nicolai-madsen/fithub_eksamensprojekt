@@ -10,8 +10,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
 {
     internal class SelectLocation
     {
-        public static string connectionString = "data source=DESKTOP-0KH1DON;initial catalog = FitHubDB; trusted_connection=true" +
-                                               ";Encrypt=False;TrustServerCertificate=True";
+        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
         internal static List<string> GetAllLocations()
         {
             using SqlConnection connection = new SqlConnection(connectionString); // "Using" giver adgang til alle de metoder som klassen SqlConnection. 
