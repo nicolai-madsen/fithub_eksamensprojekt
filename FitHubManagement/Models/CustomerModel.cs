@@ -17,9 +17,8 @@ namespace FitHubManagement.Models
         public string PersonalNote { get; set; }
         public DateTime Birthday { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool Active { get; set; } // true = bruger er aktiv, false betyder at bruger inaktiv.
-
-
+        public bool Inactive { get; set; } // true = bruger er aktiv, false betyder at bruger inaktiv.
+        // Ændret fra Active til Inactive - svarer til databasen
     }
 
 }
