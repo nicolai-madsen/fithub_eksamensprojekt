@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FitHubManagement.UI.Instructor;
 
 namespace FitHubManagement.UI
 {
@@ -26,12 +27,6 @@ namespace FitHubManagement.UI
         }
         private void FrontPage_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Add("Anders Andersen");
-            comboBox1.Items.Add("Birgitte Jensen");
-            comboBox1.Items.Add("Carl Nielsen");
-            comboBox1.Items.Add("Dorte Hansen");
-            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         }
 
@@ -44,20 +39,15 @@ namespace FitHubManagement.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ActivityForm activityForm = new ActivityForm();
-            activityForm.ShowDialog();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            CreateActivityForm createActivityForm = new CreateActivityForm(); //Vi er enige om, at denne button bare åbner en ny form?
+            createActivityForm.ShowDialog();
         }
 
 
         private void button2_Click(object sender, EventArgs e) // "medlemmer" knapp
         {
             // loop som gjemmer alt som er på denne side, frontpage, siden "panel" kommer helt på toppen, så tror ikke den er helt borte, men bare usynlig.
-            foreach (Control ctrl in this.Controls.OfType<Control>().ToList()) 
+            foreach (Control ctrl in this.Controls.OfType<Control>().ToList())
             {
                 ctrl.Visible = false;
             }
@@ -66,21 +56,32 @@ namespace FitHubManagement.UI
             customerPage.Dock = DockStyle.Fill;      // den fylder hele skermen
             this.Controls.Add(customerPage); //Legger til alle kontroller (knapper osv)
             customerPage.BringToFront();  //Kommer til fronten
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             panel1.BackColor = Color.Transparent; //Gjøre panel gjennomsiktig slik at den ikke dekker FitHub sitt logo
         }
-        
-        
-            /*CreateBookingForm createBookingform = new CreateBookingForm();
-            createBookingform.ShowDialog();*/
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           CreateInstructorForm createInstructorForm = new CreateInstructorForm();
+            createInstructorForm.ShowDialog();
+        }
+
+
+        /*CreateBookingForm createBookingform = new CreateBookingForm();
+        createBookingform.ShowDialog();*/
 
 
 
-        
+
     }
 }
 

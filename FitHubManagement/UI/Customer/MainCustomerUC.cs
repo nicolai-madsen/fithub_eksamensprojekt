@@ -15,10 +15,10 @@ using System.Windows.Forms;
 
 namespace FitHubManagement.UI.Customer
 {
-   
+
     public partial class MainCustomerUC : UserControl
     {
-      
+
         public MainCustomerUC()
         {
             InitializeComponent();
@@ -54,6 +54,11 @@ namespace FitHubManagement.UI.Customer
         }
 
         private void button1_Click(object sender, EventArgs e) //Ny medlem knapp
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

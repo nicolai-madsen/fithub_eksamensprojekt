@@ -152,6 +152,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(768, 500);
             panel1.TabIndex = 11;
+            panel1.Paint += panel1_Paint;
             // 
             // MainCustomerUC
             // 
