@@ -10,9 +10,6 @@
     <Compile Update="UI\Booking\CreateBookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Customer\MainCustomerUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="UI\FrontPageForm.cs">
       <SubType>Form</SubType>
     </Compile>

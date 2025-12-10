@@ -30,12 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontPageForm));
             button1 = new Button();
-            button2 = new Button();
-            panel1 = new Panel();
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
             pictureBox1 = new PictureBox();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -49,24 +48,6 @@
             button1.Text = "Hold";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(41, 97);
-            button2.Name = "button2";
-            button2.Size = new Size(131, 29);
-            button2.TabIndex = 4;
-            button2.Text = "Medlemmer";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(41, 30);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(384, 460);
-            panel1.TabIndex = 5;
-            panel1.Paint += panel1_Paint;
             // 
             // button3
             // 
@@ -106,18 +87,27 @@
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
+            // button2
+            // 
+            button2.Location = new Point(41, 110);
+            button2.Name = "button2";
+            button2.Size = new Size(131, 29);
+            button2.TabIndex = 10;
+            button2.Text = "Medlemmer";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // FrontPageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(869, 540);
+            Controls.Add(button2);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
-            Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(panel1);
             Controls.Add(pictureBox1);
             DoubleBuffered = true;
             MaximumSize = new Size(887, 587);
@@ -130,11 +120,10 @@
 
         #endregion
         private Button button1;
-        private Button button2;
-        private Panel panel1;
         private Button button3;
         private Button button4;
         private Button button5;
         private PictureBox pictureBox1;
+        private Button button2;
     }
 }

@@ -1,6 +1,5 @@
 ﻿using FitHubManagement.UI.Activity;
 using FitHubManagement.UI.Booking;
-using FitHubManagement.UI.Customer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,8 +20,6 @@ namespace FitHubManagement.UI
         public FrontPageForm()
         {
             InitializeComponent();
-            Load += new EventHandler(FrontPage_Load);
-            panel1.Visible = false; //Gjemmer UC, måske det findes bedre måde at gøre det på
 
         }
         private void FrontPage_Load(object sender, EventArgs e)
@@ -44,26 +41,6 @@ namespace FitHubManagement.UI
         }
 
 
-        private void button2_Click(object sender, EventArgs e) // "medlemmer" knapp
-        {
-            // loop som gjemmer alt som er på denne side, frontpage, siden "panel" kommer helt på toppen, så tror ikke den er helt borte, men bare usynlig.
-            foreach (Control ctrl in this.Controls.OfType<Control>().ToList())
-            {
-                ctrl.Visible = false;
-            }
-
-            MainCustomerUC customerPage = new MainCustomerUC();  // Panel
-            customerPage.Dock = DockStyle.Fill;      // den fylder hele skermen
-            this.Controls.Add(customerPage); //Legger til alle kontroller (knapper osv)
-            customerPage.BringToFront();  //Kommer til fronten
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            panel1.BackColor = Color.Transparent; //Gjøre panel gjennomsiktig slik at den ikke dekker FitHub sitt logo
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
 
@@ -71,8 +48,13 @@ namespace FitHubManagement.UI
 
         private void button5_Click(object sender, EventArgs e)
         {
-           CreateInstructorForm createInstructorForm = new CreateInstructorForm();
+            CreateInstructorForm createInstructorForm = new CreateInstructorForm();
             createInstructorForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
 
 
