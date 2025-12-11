@@ -11,7 +11,7 @@ namespace FitHubManagement.DataLogic.ActivityDL
 {
     internal class CreateActivityDL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+        public static string connectionString = "Server=.;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;"; // string bruges til at oprette forbindelse til selve databasen
         public static int CreateActivity(ActivityModel activity) // Metoden der laver en Activity tager et helt Activity objekt, som har properties med vores data
 
