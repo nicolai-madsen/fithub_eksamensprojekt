@@ -9,9 +9,9 @@ using FitHubManagement.Models;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class ActivityService
+    public class ActivityService
     {
-        internal ActivityModel CreateActivity(
+        public ActivityModel CreateActivity(
 
             int activityTypeId,
             int instructorId,

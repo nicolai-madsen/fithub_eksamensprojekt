@@ -13,18 +13,14 @@ namespace FitHubManagement.DataLogic.CustomerDL
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
-        public static void CreateCustomer(int membershipId, string firstName, string lastName, string email, string phone, DateTime birthday, string personalNote)
+        public void CreateCustomer(int membershipId, string firstName, string lastName, string email, string phone, DateTime birthday, string personalNote)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            Console.WriteLine("Connection to database established.\n");
-
-
+            SqlConnection connection = this.connection();
             string insertSql = $"INSERT INTO Customer (MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote) VALUES (@MembershipID, @FirstName, @LastName, @Email, @Phone, @Birthday, @PersonalNote)";
             Console.WriteLine($"SQL Command: {insertSql}");
             using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
             {
-                insertCmd.Parameters.AddWithValue("@MembershipID", membershipId);
+                insertCmd.Parameters.AddWithValue("@MembershipID",membershipId);
                 insertCmd.Parameters.AddWithValue("@FirstName", firstName);
                 insertCmd.Parameters.AddWithValue("@LastName", lastName);
                 insertCmd.Parameters.AddWithValue("@Email", email);
@@ -36,6 +32,15 @@ namespace FitHubManagement.DataLogic.CustomerDL
                 Console.WriteLine($"Created {changed} new Customer.");
             }
         }
-        
+
+        #region helpers
+        private SqlConnection connection()
+        {
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            Console.WriteLine("Connection to database established.\n");
+            return connection;
+        }
+        #endregion
     }
 }

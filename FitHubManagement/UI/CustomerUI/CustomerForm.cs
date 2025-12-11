@@ -20,10 +20,6 @@ namespace FitHubManagement.UI.CustomerUI
             panel2.Visible = true;
             panel3.Visible = true;
             panel1.BringToFront();
-
-
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -33,29 +29,22 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void button6_Click(object sender, EventArgs e) //"vis liste"
         {
+            panel1.Show();
             panel1.BringToFront();
         }
 
         private void button1_Click(object sender, EventArgs e) //"Ny medlem"
         {
+            panel2.Show();
             panel2.BringToFront();
         }
 
         private void button2_Click(object sender, EventArgs e) //Rediger
         {
+            panel3.Show();
             panel3.BringToFront();
-
         }
 
-        private void button3_Click(object sender, EventArgs e) //Slet
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -65,6 +54,7 @@ namespace FitHubManagement.UI.CustomerUI
         private void button8_Click(object sender, EventArgs e)
         {
             //anuller for rediger kunde
+            this.clear();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -81,6 +71,27 @@ namespace FitHubManagement.UI.CustomerUI
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             //slette denne !!!
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #region helpers
+
+        private void clear()
+        {
+            panel1.Show();
+            panel2.Hide();
+            panel3.Hide();
+        }
+
+        #endregion
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
