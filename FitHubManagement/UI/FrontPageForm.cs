@@ -1,5 +1,4 @@
 ﻿using FitHubManagement.UI.Activity;
-using FitHubManagement.UI.Booking;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

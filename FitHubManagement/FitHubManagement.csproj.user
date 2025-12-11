@@ -4,12 +4,6 @@
     <Compile Update="UI\Activity\CreateActivityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Booking\BookingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\Booking\CreateBookingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UI\FrontPageForm.cs">
       <SubType>Form</SubType>
     </Compile>
