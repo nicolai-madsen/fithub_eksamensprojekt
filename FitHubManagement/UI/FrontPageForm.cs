@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitHubManagement.UI.Instructor;
+using FitHubManagement.UI.CustomerUI;
 
 namespace FitHubManagement.UI
 {
@@ -54,7 +55,9 @@ namespace FitHubManagement.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            CustomerForm customerForm = new CustomerForm();
+            customerForm.Owner = this;
+            customerForm.ShowDialog();
         }
 
 
