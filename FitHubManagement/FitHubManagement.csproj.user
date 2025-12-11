@@ -13,17 +13,3 @@
     <Compile Update="UI\CustomerUI\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\FrontPageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\InstructorUI\CreateInstructorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\InstructorUI\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\InstructorUI\InstructorUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-  </ItemGroup>
-</Project>

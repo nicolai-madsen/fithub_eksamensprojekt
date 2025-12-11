@@ -15,6 +15,9 @@ namespace FitHubManagement.UI.Instructor
         public CreateInstructorForm()
         {
             InitializeComponent();
+            panel1.Visible = true;
+            GetAll.Visible = false;
+
         }
 
         private void FirstNameTxt_TextChanged(object sender, EventArgs e)
@@ -38,13 +41,30 @@ namespace FitHubManagement.UI.Instructor
             panel1.Visible = true;
             GetAll.Visible = false;
         }
+
+        private void GetAll_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void LastNameTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackToFront_Click(object sender, EventArgs e) //Tilbageknap fra Instruktør-form til frontpage
+        {
+
+
+            this.Owner.Show();  // vis forsideform igen
+            this.Close();       // luk instruktør-formentPage.Show();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-/*            foreach (Control ctrl in this.Controls.OfType<Control>().ToList())
-            {
-                ctrl.Visible = false;
-            }
 
-            CreateInstructorForm instructorPage = new CreateInstructorForm();  // Panel
-            this.Controls.Add(instructorPage); //Legger til alle kontroller (knapper osv)
-            instructorPage.BringToFront();  //Kommer til fronten*/

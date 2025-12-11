@@ -29,69 +29,76 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontPageForm));
-            button1 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            btnActivityFront = new Button();
+            btnRapportFront = new Button();
+            btnBookingFront = new Button();
+            btnInsFront = new Button();
             pictureBox1 = new PictureBox();
             button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // btnActivityFront
             // 
-            button1.Location = new Point(41, 245);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(131, 31);
-            button1.TabIndex = 3;
-            button1.Text = "Hold";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnActivityFront.Location = new Point(87, 502);
+            btnActivityFront.Margin = new Padding(6, 8, 6, 8);
+            btnActivityFront.Name = "btnActivityFront";
+            btnActivityFront.Size = new Size(278, 64);
+            btnActivityFront.TabIndex = 3;
+            btnActivityFront.Text = "Hold";
+            btnActivityFront.UseVisualStyleBackColor = true;
+            btnActivityFront.Click += button1_Click;
             // 
-            // button3
+            // btnRapportFront
             // 
-            button3.Location = new Point(41, 388);
-            button3.Name = "button3";
-            button3.Size = new Size(131, 29);
-            button3.TabIndex = 6;
-            button3.Text = "Rapport";
-            button3.UseVisualStyleBackColor = true;
+            btnRapportFront.Location = new Point(87, 795);
+            btnRapportFront.Margin = new Padding(6);
+            btnRapportFront.Name = "btnRapportFront";
+            btnRapportFront.Size = new Size(278, 59);
+            btnRapportFront.TabIndex = 6;
+            btnRapportFront.Text = "Rapport";
+            btnRapportFront.UseVisualStyleBackColor = true;
+            btnRapportFront.Click += button3_Click;
             // 
-            // button4
+            // btnBookingFront
             // 
-            button4.Location = new Point(41, 174);
-            button4.Name = "button4";
-            button4.Size = new Size(131, 29);
-            button4.TabIndex = 7;
-            button4.Text = "Booking";
-            button4.UseVisualStyleBackColor = true;
+            btnBookingFront.Location = new Point(87, 357);
+            btnBookingFront.Margin = new Padding(6);
+            btnBookingFront.Name = "btnBookingFront";
+            btnBookingFront.Size = new Size(278, 59);
+            btnBookingFront.TabIndex = 7;
+            btnBookingFront.Text = "Booking";
+            btnBookingFront.UseVisualStyleBackColor = true;
+            btnBookingFront.Click += btnBookingFront_Click;
             // 
-            // button5
+            // btnInsFront
             // 
-            button5.Location = new Point(41, 313);
-            button5.Name = "button5";
-            button5.Size = new Size(131, 33);
-            button5.TabIndex = 8;
-            button5.Text = "Personale";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            btnInsFront.Location = new Point(87, 642);
+            btnInsFront.Margin = new Padding(6);
+            btnInsFront.Name = "btnInsFront";
+            btnInsFront.Size = new Size(278, 68);
+            btnInsFront.TabIndex = 8;
+            btnInsFront.Text = "Personale";
+            btnInsFront.UseVisualStyleBackColor = true;
+            btnInsFront.Click += button5_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(137, -38);
+            pictureBox1.Location = new Point(291, -78);
+            pictureBox1.Margin = new Padding(6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(693, 650);
+            pictureBox1.Size = new Size(1473, 1332);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
             // button2
             // 
-            button2.Location = new Point(41, 110);
+            button2.Location = new Point(87, 226);
+            button2.Margin = new Padding(6);
             button2.Name = "button2";
-            button2.Size = new Size(131, 29);
+            button2.Size = new Size(278, 59);
             button2.TabIndex = 10;
             button2.Text = "Medlemmer";
             button2.UseVisualStyleBackColor = true;
@@ -99,19 +106,20 @@
             // 
             // FrontPageForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(869, 540);
+            ClientSize = new Size(1817, 1023);
             Controls.Add(button2);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button1);
+            Controls.Add(btnInsFront);
+            Controls.Add(btnBookingFront);
+            Controls.Add(btnRapportFront);
+            Controls.Add(btnActivityFront);
             Controls.Add(pictureBox1);
             DoubleBuffered = true;
-            MaximumSize = new Size(887, 587);
-            MinimumSize = new Size(887, 587);
+            Margin = new Padding(6);
+            MaximumSize = new Size(1849, 1111);
+            MinimumSize = new Size(1849, 1111);
             Name = "FrontPageForm";
             Text = "FrontPage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -119,10 +127,10 @@
         }
 
         #endregion
-        private Button button1;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button btnActivityFront;
+        private Button btnRapportFront;
+        private Button btnBookingFront;
+        private Button btnInsFront;
         private PictureBox pictureBox1;
         private Button button2;
     }
