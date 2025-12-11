@@ -14,7 +14,7 @@ namespace FitHubManagement.Models
     /// 3. Samme for ActivityName -og Desciption
     /// 4. Filen placeret i namespace (mappe): Models
     /// </summary>
-    internal class ActivityTypeModel
+    public class ActivityTypeModel
     {
         public int ActivityTypeId { get; set; }
         public int InstructorId { get; set; }
