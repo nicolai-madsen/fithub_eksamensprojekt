@@ -11,6 +11,7 @@ namespace FitHubManagement.Models
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
         public string Email { get; set; }
         public string Phone { get; set; }
         public string MembershipType { get; set; }

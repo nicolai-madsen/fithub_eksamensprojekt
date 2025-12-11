@@ -20,36 +20,23 @@ namespace FitHubManagement.UI
         public FrontPageForm()
         {
             InitializeComponent();
-
-        }
-        private void FrontPage_Load(object sender, EventArgs e)
-        {
-
         }
 
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Hold
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            CreateActivityForm createActivityForm = new CreateActivityForm(); //Vi er enige om, at denne button bare åbner en ny form?
+            CreateActivityForm createActivityForm = new CreateActivityForm(); //ilbageknap på frontpage
+            createActivityForm.Owner = this;
             createActivityForm.ShowDialog();
         }
 
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) //Personale
         {
             CreateInstructorForm createInstructorForm = new CreateInstructorForm();
+            createInstructorForm.Owner = this; // Bruges til tilbage-knap
             createInstructorForm.ShowDialog();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -57,13 +44,15 @@ namespace FitHubManagement.UI
 
         }
 
+        private void button3_Click(object sender, EventArgs e) //Rapport
+        {
 
-        /*CreateBookingForm createBookingform = new CreateBookingForm();
-        createBookingform.ShowDialog();*/
+        }
 
-
-
-
+        private void btnBookingFront_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
 
