@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitHubManagement.UI.Instructor;
 using FitHubManagement.UI.CustomerUI;
+using FitHubManagement.UI.BookingUI;
 
 namespace FitHubManagement.UI
 {
@@ -53,7 +54,9 @@ namespace FitHubManagement.UI
 
         private void btnBookingFront_Click(object sender, EventArgs e)
         {
-           
+            BookingForm bookingForm = new BookingForm();
+            bookingForm.Owner = this;
+            bookingForm.ShowDialog();
         }
     }
 }
