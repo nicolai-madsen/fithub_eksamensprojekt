@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FitHubManagement.Models;
 
 namespace FitHubManagement.DataLogic.CustomerDL
 {
@@ -25,24 +26,26 @@ namespace FitHubManagement.DataLogic.CustomerDL
 
             using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataReader reader = command.ExecuteReader())
+
             {
                 // Flyttes op i BLL, mayhaps?
                 List<CustomerModel> customerList = new List<CustomerModel>(); // CHANGE THIS TO List<Customer> instead of string, when classes are in place
+
                 while (reader.Read())
                 {
                     CustomerModel customer = new CustomerModel();
-                    int customerId = Convert.ToInt32(reader["CustomerID"]); // Convert.ToString/Int32 crasher hvis feltet er null, potentiel point of optimization
-                    int membershipId = Convert.ToInt32(reader["MembershipID"]);
-                    string firstName = Convert.ToString(reader["FirstName"]);
-                    string lastName = Convert.ToString(reader["LastName"]);
-                    string email = Convert.ToString(reader["Email"]);
-                    string? phone = Convert.ToString(reader["Phone"]);
-                    string? birthday = Convert.ToString(reader["Birthday"]); // This one probably shouldn't be converted to string, keep as DateTime type instead. Just dunno how, lol
-                    string? personalNote = Convert.ToString(reader["PersonalNote"]);
-                    bool inActive = Convert.ToBoolean(reader["Inactive"]);
-                    string? createdDate = Convert.ToString(reader["CreatedDate"]);
+                    customer.CustomerId = Convert.ToInt32(reader["CustomerID"]); // Convert.ToString/Int32 crasher hvis feltet er null, potentiel point of optimization
+                    customer.MembershipId = Convert.ToInt32(reader["MembershipID"]);
+                    customer.FirstName = Convert.ToString(reader["FirstName"]);
+                    customer.LastName = Convert.ToString(reader["LastName"]);
+                    customer.Email = Convert.ToString(reader["Email"]);
+                    customer.Phone = Convert.ToString(reader["Phone"]);
+                    customer.Birthday = Convert.ToDateTime(reader["Birthday"]); // This one probably shouldn't be converted to string, keep as DateTime type instead. Just dunno how, lol
+                    customer.PersonalNote = Convert.ToString(reader["PersonalNote"]);
+                    customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
+                    customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
 
-                    string line = $"Medlems ID: {customerId}, Medlem Navn: {firstName} {lastName} Medlems-Type: {membershipId}, Email:{email}, Telefon: {phone}, Fødselsdag: {birthday} Personlig Note: [{personalNote}] Inaktiv: {inActive} CreatedDate: {createdDate}";
+                    string line = $"Medlems ID: {customer.CustomerId}, Medlem Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId}, Email:{customer.Email}, Telefon: {customer.Phone}, Fødselsdag: {customer.Birthday} Personlig Note: [{customer.PersonalNote}] Inaktiv: {customer.Inactive} CreatedDate: {customer.CreatedDate}";
 
                     customerList.Add(customer);
                 }
