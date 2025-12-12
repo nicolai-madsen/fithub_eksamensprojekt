@@ -47,6 +47,7 @@
             btnGetAllIns = new Button();
             btnBackToFront = new Button();
             label1 = new Label();
+            button1 = new Button();
             panel1.SuspendLayout();
             GetAll.SuspendLayout();
             SuspendLayout();
@@ -140,7 +141,7 @@
             txtCert.Location = new Point(107, 266);
             txtCert.Margin = new Padding(2);
             txtCert.Name = "txtCert";
-            txtCert.Size = new Size(278, 27);
+            txtCert.Size = new Size(344, 27);
             txtCert.TabIndex = 13;
             // 
             // btnSaveIns
@@ -152,10 +153,11 @@
             btnSaveIns.TabIndex = 14;
             btnSaveIns.Text = "Gem";
             btnSaveIns.UseVisualStyleBackColor = true;
+            btnSaveIns.Click += btnSaveIns_Click;
             // 
             // btnCancelCreateIns
             // 
-            btnCancelCreateIns.Location = new Point(245, 326);
+            btnCancelCreateIns.Location = new Point(226, 326);
             btnCancelCreateIns.Margin = new Padding(2);
             btnCancelCreateIns.Name = "btnCancelCreateIns";
             btnCancelCreateIns.Size = new Size(226, 34);
@@ -177,16 +179,16 @@
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(lblCert);
             panel1.Controls.Add(txtFirstName);
-            panel1.Location = new Point(7, 7);
+            panel1.Location = new Point(10, 25);
             panel1.Name = "panel1";
-            panel1.Size = new Size(483, 527);
+            panel1.Size = new Size(483, 584);
             panel1.TabIndex = 16;
             panel1.Paint += panel1_Paint;
             // 
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
-            GetAll.Location = new Point(0, 0);
+            GetAll.Location = new Point(10, 4);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
             GetAll.Size = new Size(478, 512);
@@ -195,10 +197,10 @@
             // lstbxGetAllIns
             // 
             lstbxGetAllIns.FormattingEnabled = true;
-            lstbxGetAllIns.Location = new Point(15, 63);
+            lstbxGetAllIns.Location = new Point(1, 41);
             lstbxGetAllIns.Margin = new Padding(1);
             lstbxGetAllIns.Name = "lstbxGetAllIns";
-            lstbxGetAllIns.Size = new Size(450, 424);
+            lstbxGetAllIns.Size = new Size(450, 444);
             lstbxGetAllIns.TabIndex = 0;
             lstbxGetAllIns.SelectedIndexChanged += lstbxGetAllIns_SelectedIndexChanged;
             // 
@@ -245,17 +247,28 @@
             label1.Text = "Personaleadministration";
             label1.Click += label1_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(544, 207);
+            button1.Name = "button1";
+            button1.Size = new Size(127, 29);
+            button1.TabIndex = 23;
+            button1.Text = "Rediger";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // CreateInstructorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(905, 515);
             Controls.Add(label1);
+            Controls.Add(panel1);
+            Controls.Add(button1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
             Controls.Add(GetAll);
-            Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "CreateInstructorForm";
             Text = "Form1";
@@ -287,5 +300,6 @@
         private Panel GetAll;
         private Label label1;
         private ListBox lstbxGetAllIns;
+        private Button button1;
     }
 }
