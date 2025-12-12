@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class InstructorBLL
+    public class InstructorService
     {
         private UpdateInstructorDL _dal;
 
