@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FitHubManagement.DataLogic.InstructorDL;
+using FitHubManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +36,7 @@ namespace FitHubManagement.UI.Instructor
         {
             GetAll.Visible = true;
             panel1.Visible = false;
+            LoadInstructors();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -62,6 +65,29 @@ namespace FitHubManagement.UI.Instructor
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadInstructors()
+        {
+            List<InstructorModel> instructors = GetAllInstructorDL.ReadAllInstructors();
+
+            lstbxGetAllIns.DataSource = instructors;
+            lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
+            lstbxGetAllIns.ValueMember = "InstructorID";
+        }
+        private void lstbxGetAllIns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CreateInstructorForm_Load(object sender, EventArgs e)
         {
 
         }
