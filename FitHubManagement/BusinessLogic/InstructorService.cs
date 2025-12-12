@@ -12,7 +12,7 @@ namespace FitHubManagement.BusinessLogic
     {
         private UpdateInstructorDL _dal;
 
-        public InstructorBLL()
+        public InstructorService()
         {
             _dal = new UpdateInstructorDL();
         }
