@@ -24,9 +24,9 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-      
 
-       
+
+
 
 
         //Panel create activity
@@ -37,8 +37,8 @@ namespace FitHubManagement.UI.Activity
             cmbLocationActivity.SelectedIndex = -1; //Feltet er tomt fra start
 
             var locationSearch = activityService.GetAllLocations(); //Søg lokation
-            cmbSearchLocation.DataSource = locationSearch; 
-            cmbSearchLocation.SelectedIndex = -1; 
+            cmbSearchLocation.DataSource = locationSearch;
+            cmbSearchLocation.SelectedIndex = -1;
 
             var activityTypeNameSearch = activityService.GetAllActivityTypes(); //Holdtype
             cmbSearchActivity.DataSource = activityTypeNameSearch;
@@ -139,6 +139,16 @@ namespace FitHubManagement.UI.Activity
         }
 
         private void cmbLocationActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) //Viser tilknyttet instruktør
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -133,7 +133,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             nmrUpDwnMaxPartisipant = new NumericUpDown();
@@ -149,6 +148,7 @@
             dateTimePicker2 = new DateTimePicker();
             lblTimeActivity = new Label();
             pnlCreateActivity = new Panel();
+            textBox1 = new TextBox();
             button3 = new Button();
             pnlSearchActivity = new Panel();
             btnSearchGet = new Button();
@@ -164,19 +164,11 @@
             label3 = new Label();
             btnSearchActivity = new Button();
             button4 = new Button();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
             pnlCreateActivity.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
             SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(198, 305);
-            comboBox1.Margin = new Padding(6, 8, 6, 8);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(327, 49);
-            comboBox1.TabIndex = 0;
             // 
             // comboBox2
             // 
@@ -190,10 +182,12 @@
             // 
             // dateTimePicker1
             // 
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.Location = new Point(784, 201);
             dateTimePicker1.Margin = new Padding(6, 8, 6, 8);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(397, 47);
+            dateTimePicker1.Size = new Size(246, 47);
             dateTimePicker1.TabIndex = 2;
             // 
             // nmrUpDwnMaxPartisipant
@@ -309,6 +303,8 @@
             // 
             // pnlCreateActivity
             // 
+            pnlCreateActivity.Controls.Add(comboBox1);
+            pnlCreateActivity.Controls.Add(textBox1);
             pnlCreateActivity.Controls.Add(button3);
             pnlCreateActivity.Controls.Add(dateTimePicker1);
             pnlCreateActivity.Controls.Add(cmbLocationActivity);
@@ -321,7 +317,6 @@
             pnlCreateActivity.Controls.Add(nmrUpDwnMaxPartisipant);
             pnlCreateActivity.Controls.Add(dateTimePicker2);
             pnlCreateActivity.Controls.Add(comboBox2);
-            pnlCreateActivity.Controls.Add(comboBox1);
             pnlCreateActivity.Controls.Add(label2);
             pnlCreateActivity.Controls.Add(label1);
             pnlCreateActivity.Location = new Point(0, 0);
@@ -329,6 +324,14 @@
             pnlCreateActivity.Name = "pnlCreateActivity";
             pnlCreateActivity.Size = new Size(1235, 1095);
             pnlCreateActivity.TabIndex = 16;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(198, 324);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(327, 47);
+            textBox1.TabIndex = 19;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button3
             // 
@@ -495,6 +498,16 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(198, 527);
+            comboBox1.Margin = new Padding(2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(327, 49);
+            comboBox1.TabIndex = 20;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // CreateActivityForm
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
@@ -522,7 +535,6 @@
         }
 
         #endregion
-        private ComboBox comboBox1;
         private ComboBox comboBox2;
         private DateTimePicker dateTimePicker1;
         private NumericUpDown nmrUpDwnMaxPartisipant;
@@ -562,6 +574,8 @@
         private Label lblSearchDate;
         private Label lblSearchActivity;
         private Label lblSearchCriteria;
+        private TextBox textBox1;
+        private ComboBox comboBox1;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 
