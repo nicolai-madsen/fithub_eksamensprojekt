@@ -146,7 +146,7 @@ namespace FitHubManagement.UI.Instructor
                 selectedInstructor.PhoneNumber = txtPhone.Text;
 
                 // Kald BLL
-                InstructorBLL instructorBLL = new InstructorBLL();
+                InstructorService instructorBLL = new InstructorService();
                 instructorBLL.SaveInstructor(selectedInstructor);
 
                 MessageBox.Show("Instruktør opdateret!");
