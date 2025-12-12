@@ -50,13 +50,18 @@ namespace FitHubManagement.BusinessLogic
 
 
 
-        internal List<string> GetAllLocations()
+        public List<string> GetAllLocations()
         {
             return SelectLocation.GetAllLocations(); // Vis alle locations
         }
 
+        public List<string> GetAllActivityTypes()
+        {
+            return SelectLocation.GetAllActivityTypes(); //Vis alle typer af holdnavne
 
-
-   
         }
+
+
+
+    }
 }
