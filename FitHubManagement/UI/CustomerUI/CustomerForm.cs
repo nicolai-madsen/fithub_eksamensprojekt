@@ -16,10 +16,10 @@ namespace FitHubManagement.UI.CustomerUI
         public CustomerForm()  //Panel 1 = CUstomerliste, Panel 2 = ny medlem, Panel 3 = Rediger medlem
         {
             InitializeComponent();
-            panel1.Visible = true;
+            ListPanel.Visible = true;
             panel2.Visible = true;
             panel3.Visible = true;
-            panel1.BringToFront();
+            ListPanel.BringToFront();
 
 
 
@@ -33,7 +33,7 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void button6_Click(object sender, EventArgs e) //"vis liste"
         {
-            panel1.BringToFront();
+            ListPanel.BringToFront();
         }
 
         private void button1_Click(object sender, EventArgs e) //"Ny medlem"
