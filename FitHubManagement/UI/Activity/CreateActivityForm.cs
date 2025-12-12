@@ -28,7 +28,7 @@ namespace FitHubManagement.UI.Activity
         }
 
         //Panel create activity
-
+        //---------------------------------------------MONA--------------------------------
         private List<string> locations;
         private List<string> activityType;
 
