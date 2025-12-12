@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using FitHubManagement.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace FitHubManagement.DataLogic.InstructorDL
 {
     public class UpdateInstructorDL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+        public static string connectionString = "Server=.;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         public static void UpdateFirstName(int instructorId, string newValue)
@@ -85,6 +86,28 @@ namespace FitHubManagement.DataLogic.InstructorDL
 
                 int updated = updateCmd.ExecuteNonQuery();
                 Console.WriteLine($"{updated} rows updated.");
+            }
+        }
+        public static void UpdateInstructor(InstructorModel instructor)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Instructor
+                         SET FirstName = @FirstName,
+                             LastName = @LastName,
+                             Email = @Email,
+                             Phone = @PhoneNumber
+                         WHERE InstructorID = @InstructorID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@FirstName", instructor.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", instructor.LastName);
+                cmd.Parameters.AddWithValue("@Email", instructor.Email);
+                cmd.Parameters.AddWithValue("@PhoneNumber", instructor.PhoneNumber);
+                cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }
