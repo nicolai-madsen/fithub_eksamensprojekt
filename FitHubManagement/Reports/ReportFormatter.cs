@@ -24,7 +24,7 @@ namespace FitHubManagement.Reports
             var lines = new List<string>();
             foreach (var activity in popularActivities)
             {
-                lines.Add($"{activity.ActivityName}, {activity.ActivityDate} {activity.StartTime:hh\\:mm} - {activity.EndTime:hh\\:mm}, Tilmeldte: {activity.BookingCount}");
+                lines.Add($"{activity.ActivityName}, afholdes: {activity.StartDateTime: dd/MM/ hh/mm}, antal tilmeldte: {activity.BookingCount}");
             }
             return string.Join("\n", lines);
         }

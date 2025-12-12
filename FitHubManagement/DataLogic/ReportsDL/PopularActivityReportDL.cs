@@ -31,15 +31,13 @@ namespace FitHubManagement.DataLogic.ReportsDL
             string query = @"
                 SELECT 
                     at.ActivityTypeName AS ActivityName,
-                    a.ActivityDate,
-                    a.StartTime,
-                    a.EndTime,
+                    a.StartDateTime,
                     COUNT(b.CustomerID) AS BookingCount
                 FROM Activity a
                 JOIN ActivityType at ON a.ActivityTypeID = at.ActivityTypeID
                 LEFT JOIN Booking b ON b.ActivityID = a.ActivityID
                 LEFT JOIN Customer c ON c.CustomerID = b.CustomerID AND c.Inactive = 0
-                GROUP BY a.ActivityID, at.ActivityTypeName, a.ActivityDate, a.StartTime, a.EndTime
+                GROUP BY a.ActivityID, at.ActivityTypeName, a.StartDateTime
                 ORDER BY BookingCount DESC;";
 
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -52,9 +50,7 @@ namespace FitHubManagement.DataLogic.ReportsDL
                     var popularActivityModel = new PopularActivityReportModel
                     {
                         ActivityName = reader["ActivityName"].ToString(),
-                        ActivityDate = DateOnly.FromDateTime((DateTime)reader["ActivityDate"]),
-                        StartTime = TimeOnly.FromTimeSpan((TimeSpan)reader["StartTime"]),
-                        EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]),
+                        StartDateTime = (DateTime)reader["StartDateTime"],
                         BookingCount = Convert.ToInt32(reader["BookingCount"])
                     };
                     popularActivityList.Add(popularActivityModel);
