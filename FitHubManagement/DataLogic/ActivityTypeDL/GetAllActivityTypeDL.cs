@@ -70,30 +70,41 @@ namespace FitHubManagement.DataLogic.ActivityTypeDL
             return activityTypeList;
         }
 
-        public static ActivityTypeModel ReadActivityByInstructorID(int instructorID)
+       
+        
+        
+        
+        // Metode der henter en aktivitet baseret på InstructorID
+        public class ActivityTypeDL
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            public ActivityTypeModel ReadActivityByInstructorID(int instructorID)
             {
-                string query = "SELECT * FROM ActivityType WHERE InstructorID = @InstructorID";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@InstructorID", instructorID);
-
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
+                using SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
                 {
-                    return new ActivityTypeModel
-                    {
-                        ActivityTypeId = (int)reader["ActivityTypeID"],
-                        ActivityTypeName = reader["ActivityTypeName"].ToString(),
-                        InstructorId = (int)reader["InstructorID"]
-                    };
-                }
+                    string query = @"SELECT ActivityTypeId, ActivityTypeName, InstructorID
+                                 FROM ActivityType
+                                 WHERE InstructorID = @InstructorID";
 
-                return null;
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@InstructorID", instructorID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        ActivityTypeModel activity = new ActivityTypeModel();
+                        activity.ActivityTypeId = (int)reader["ActivityTypeId"];
+                        activity.ActivityTypeName = reader["ActivityTypeName"].ToString();
+                        activity.InstructorId = (int)reader["InstructorID"];
+                        return activity;
+                    }
+
+                    return null;
+                }
             }
         }
+
     }
 }
 

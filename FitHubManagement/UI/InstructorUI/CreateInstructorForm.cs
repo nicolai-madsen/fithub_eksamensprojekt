@@ -98,37 +98,38 @@ namespace FitHubManagement.UI.Instructor
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // Hent den valgte instruktør fra listen
-            var selectedInstructor = lstbxGetAllIns.SelectedItem as InstructorModel;
+            int index = lstbxGetAllIns.SelectedIndex;
 
-            if (selectedInstructor != null)
+            if (index >= 0)
             {
-                // Vis panel og skjul liste
+                InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
+
                 panel1.Visible = true;
                 GetAll.Visible = false;
 
-                // Sæt navn i tekstboksen
                 txtFirstName.Text = selectedInstructor.FirstName;
                 txtLastName.Text = selectedInstructor.LastName;
                 txtEmail.Text = selectedInstructor.Email;
                 txtPhone.Text = selectedInstructor.PhoneNumber;
 
-                InstructorModel instructor = new InstructorModel();
-
-                // Hent aktivitetstype baseret på InstructorID
-                var activity = GetAllActivityTypeDL.ReadActivityByInstructorID(selectedInstructor.InstructorID);
+                // Hent aktivitetstype via BLL
+                ActivityTypeBLL activityBLL = new ActivityTypeBLL();
+                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorID);
 
                 if (activity != null)
                 {
-                    // Fx vis certifikat i en label eller textbox
-                    txtCert.Text = selectedInstructor.FirstName + " Har certifikat til at undervise: " + activity.ActivityTypeName;
+                    txtCert.Text = selectedInstructor.FirstName + " har certifikat til at undervise: " + activity.ActivityTypeName;
+                }
+                else
+                {
+                    txtCert.Text = "";
+                    MessageBox.Show("Ingen aktivitetstype fundet for denne instruktør.");
                 }
             }
             else
             {
                 MessageBox.Show("Vælg en instruktør først.");
             }
-
         }
 
         private void btnSaveIns_Click(object sender, EventArgs e)
