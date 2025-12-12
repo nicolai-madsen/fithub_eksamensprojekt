@@ -116,13 +116,8 @@ namespace FitHubManagement.UI.Instructor
                 if (activity != null)
                 {
                     // Fx vis certifikat i en label eller textbox
-                    txtCert.Text = selectedInstructor.FirstName + "Er godkendt til at undervise: " + activity.ActivityTypeName;
+                    txtCert.Text = selectedInstructor.FirstName + " Har certifikat til at undervise: " + activity.ActivityTypeName;
                 }
-                else
-                {
-                    MessageBox.Show("Ingen aktivitetstype fundet for denne instruktør.");
-                }
-
             }
             else
             {
