@@ -95,18 +95,16 @@
             panel3.Controls.Add(label15);
             panel3.Controls.Add(label16);
             panel3.Controls.Add(label10);
-            panel3.Location = new Point(10, 9);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(11, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(536, 338);
+            panel3.Size = new Size(613, 451);
             panel3.TabIndex = 12;
             // 
             // button8
             // 
-            button8.Location = new Point(314, 283);
-            button8.Margin = new Padding(3, 2, 3, 2);
+            button8.Location = new Point(359, 377);
             button8.Name = "button8";
-            button8.Size = new Size(82, 22);
+            button8.Size = new Size(94, 29);
             button8.TabIndex = 32;
             button8.Text = "Annuler";
             button8.UseVisualStyleBackColor = true;
@@ -115,9 +113,9 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(326, 73);
+            label17.Location = new Point(373, 97);
             label17.Name = "label17";
-            label17.Size = new Size(39, 15);
+            label17.Size = new Size(49, 20);
             label17.TabIndex = 31;
             label17.Text = "Status";
             // 
@@ -126,59 +124,52 @@
             comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Aktiv", "Inaktiv" });
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(374, 68);
-            comboBox2.Margin = new Padding(3, 2, 3, 2);
+            comboBox2.Location = new Point(427, 91);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(83, 23);
+            comboBox2.Size = new Size(94, 28);
             comboBox2.TabIndex = 30;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(173, 232);
-            textBox7.Margin = new Padding(3, 2, 3, 2);
+            textBox7.Location = new Point(198, 309);
             textBox7.Multiline = true;
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(322, 41);
+            textBox7.Size = new Size(367, 53);
             textBox7.TabIndex = 29;
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(173, 200);
-            textBox8.Margin = new Padding(3, 2, 3, 2);
+            textBox8.Location = new Point(198, 267);
             textBox8.Name = "textBox8";
-            textBox8.Size = new Size(110, 23);
+            textBox8.Size = new Size(125, 27);
             textBox8.TabIndex = 28;
             // 
             // textBox9
             // 
-            textBox9.Location = new Point(173, 171);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
+            textBox9.Location = new Point(198, 228);
             textBox9.Name = "textBox9";
-            textBox9.Size = new Size(110, 23);
+            textBox9.Size = new Size(125, 27);
             textBox9.TabIndex = 27;
             // 
             // textBox10
             // 
-            textBox10.Location = new Point(173, 138);
-            textBox10.Margin = new Padding(3, 2, 3, 2);
+            textBox10.Location = new Point(198, 184);
             textBox10.Name = "textBox10";
-            textBox10.Size = new Size(110, 23);
+            textBox10.Size = new Size(125, 27);
             textBox10.TabIndex = 26;
             // 
             // textBox11
             // 
-            textBox11.Location = new Point(173, 106);
-            textBox11.Margin = new Padding(3, 2, 3, 2);
+            textBox11.Location = new Point(198, 141);
             textBox11.Name = "textBox11";
-            textBox11.Size = new Size(110, 23);
+            textBox11.Size = new Size(125, 27);
             textBox11.TabIndex = 25;
             // 
             // button7
             // 
-            button7.Location = new Point(413, 283);
-            button7.Margin = new Padding(3, 2, 3, 2);
+            button7.Location = new Point(472, 377);
             button7.Name = "button7";
-            button7.Size = new Size(82, 22);
+            button7.Size = new Size(94, 29);
             button7.TabIndex = 24;
             button7.Text = "Gem";
             button7.UseVisualStyleBackColor = true;
@@ -187,62 +178,61 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(52, 232);
+            label11.Location = new Point(59, 309);
             label11.Name = "label11";
-            label11.Size = new Size(37, 15);
+            label11.Size = new Size(47, 20);
             label11.TabIndex = 23;
             label11.Text = "Notat";
             // 
             // textBox12
             // 
-            textBox12.Location = new Point(173, 68);
-            textBox12.Margin = new Padding(3, 2, 3, 2);
+            textBox12.Location = new Point(198, 91);
             textBox12.Name = "textBox12";
-            textBox12.Size = new Size(110, 23);
+            textBox12.Size = new Size(125, 27);
             textBox12.TabIndex = 22;
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(52, 173);
+            label12.Location = new Point(59, 231);
             label12.Name = "label12";
-            label12.Size = new Size(41, 15);
+            label12.Size = new Size(50, 20);
             label12.TabIndex = 21;
             label12.Text = "Phone";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(52, 200);
+            label13.Location = new Point(59, 267);
             label13.Name = "label13";
-            label13.Size = new Size(66, 15);
+            label13.Size = new Size(84, 20);
             label13.TabIndex = 20;
             label13.Text = "Fødselsdag";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(52, 140);
+            label14.Location = new Point(59, 187);
             label14.Name = "label14";
-            label14.Size = new Size(36, 15);
+            label14.Size = new Size(46, 20);
             label14.TabIndex = 19;
             label14.Text = "Email";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(52, 106);
+            label15.Location = new Point(59, 141);
             label15.Name = "label15";
-            label15.Size = new Size(57, 15);
+            label15.Size = new Size(71, 20);
             label15.TabIndex = 18;
             label15.Text = "Efternavn";
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(52, 70);
+            label16.Location = new Point(59, 93);
             label16.Name = "label16";
-            label16.Size = new Size(50, 15);
+            label16.Size = new Size(61, 20);
             label16.TabIndex = 17;
             label16.Text = "Fornavn";
             // 
@@ -250,18 +240,17 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F);
-            label10.Location = new Point(52, 26);
+            label10.Location = new Point(59, 35);
             label10.Name = "label10";
-            label10.Size = new Size(111, 21);
+            label10.Size = new Size(138, 28);
             label10.TabIndex = 13;
             label10.Text = "Rediger kunde";
             // 
             // create_button
             // 
-            create_button.Location = new Point(552, 145);
-            create_button.Margin = new Padding(3, 2, 3, 2);
+            create_button.Location = new Point(631, 193);
             create_button.Name = "create_button";
-            create_button.Size = new Size(82, 22);
+            create_button.Size = new Size(94, 29);
             create_button.TabIndex = 0;
             create_button.Text = "Ny medlem";
             create_button.UseVisualStyleBackColor = true;
@@ -269,10 +258,9 @@
             // 
             // edit_button
             // 
-            edit_button.Location = new Point(552, 189);
-            edit_button.Margin = new Padding(3, 2, 3, 2);
+            edit_button.Location = new Point(631, 252);
             edit_button.Name = "edit_button";
-            edit_button.Size = new Size(82, 22);
+            edit_button.Size = new Size(94, 29);
             edit_button.TabIndex = 1;
             edit_button.Text = "Rediger";
             edit_button.UseVisualStyleBackColor = true;
@@ -295,18 +283,16 @@
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(10, 9);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(511, 320);
+            panel2.Size = new Size(584, 427);
             panel2.TabIndex = 9;
             // 
             // button9
             // 
-            button9.Location = new Point(314, 280);
-            button9.Margin = new Padding(3, 2, 3, 2);
+            button9.Location = new Point(359, 373);
             button9.Name = "button9";
-            button9.Size = new Size(82, 22);
+            button9.Size = new Size(94, 29);
             button9.TabIndex = 33;
             button9.Text = "Annuler";
             button9.UseVisualStyleBackColor = true;
@@ -314,51 +300,45 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(173, 227);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
+            textBox6.Location = new Point(198, 303);
             textBox6.Multiline = true;
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(320, 44);
+            textBox6.Size = new Size(365, 57);
             textBox6.TabIndex = 16;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(173, 195);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
+            textBox5.Location = new Point(198, 260);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(110, 23);
+            textBox5.Size = new Size(125, 27);
             textBox5.TabIndex = 15;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(173, 166);
-            textBox4.Margin = new Padding(3, 2, 3, 2);
+            textBox4.Location = new Point(198, 221);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(110, 23);
+            textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 14;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(173, 134);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
+            textBox3.Location = new Point(198, 179);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(110, 23);
+            textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 13;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(173, 101);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
+            textBox2.Location = new Point(198, 135);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(110, 23);
+            textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 12;
             // 
             // button4
             // 
-            button4.Location = new Point(410, 280);
-            button4.Margin = new Padding(3, 2, 3, 2);
+            button4.Location = new Point(469, 373);
             button4.Name = "button4";
-            button4.Size = new Size(82, 22);
+            button4.Size = new Size(94, 29);
             button4.TabIndex = 11;
             button4.Text = "Gem";
             button4.UseVisualStyleBackColor = true;
@@ -367,62 +347,61 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(52, 227);
+            label9.Location = new Point(59, 303);
             label9.Name = "label9";
-            label9.Size = new Size(37, 15);
+            label9.Size = new Size(47, 20);
             label9.TabIndex = 7;
             label9.Text = "Notat";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(173, 63);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Location = new Point(198, 84);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(110, 23);
+            textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 6;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(52, 169);
+            label8.Location = new Point(59, 225);
             label8.Name = "label8";
-            label8.Size = new Size(41, 15);
+            label8.Size = new Size(50, 20);
             label8.TabIndex = 5;
             label8.Text = "Phone";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(52, 195);
+            label7.Location = new Point(59, 260);
             label7.Name = "label7";
-            label7.Size = new Size(66, 15);
+            label7.Size = new Size(84, 20);
             label7.TabIndex = 4;
             label7.Text = "Fødselsdag";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(52, 136);
+            label6.Location = new Point(59, 181);
             label6.Name = "label6";
-            label6.Size = new Size(36, 15);
+            label6.Size = new Size(46, 20);
             label6.TabIndex = 3;
             label6.Text = "Email";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(52, 101);
+            label5.Location = new Point(59, 135);
             label5.Name = "label5";
-            label5.Size = new Size(57, 15);
+            label5.Size = new Size(71, 20);
             label5.TabIndex = 2;
             label5.Text = "Efternavn";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(52, 65);
+            label4.Location = new Point(59, 87);
             label4.Name = "label4";
-            label4.Size = new Size(50, 15);
+            label4.Size = new Size(61, 20);
             label4.TabIndex = 1;
             label4.Text = "Fornavn";
             // 
@@ -430,18 +409,17 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(52, 11);
+            label3.Location = new Point(59, 15);
             label3.Name = "label3";
-            label3.Size = new Size(207, 42);
+            label3.Size = new Size(260, 56);
             label3.TabIndex = 0;
             label3.Text = "Opret ny medlem\r\nVenligst fyld ind information\r\n";
             // 
             // list_button
             // 
-            list_button.Location = new Point(552, 100);
-            list_button.Margin = new Padding(3, 2, 3, 2);
+            list_button.Location = new Point(631, 133);
             list_button.Name = "list_button";
-            list_button.Size = new Size(82, 22);
+            list_button.Size = new Size(94, 29);
             list_button.TabIndex = 10;
             list_button.Text = "Vis liste";
             list_button.UseVisualStyleBackColor = true;
@@ -449,10 +427,9 @@
             // 
             // button10
             // 
-            button10.Location = new Point(552, 280);
-            button10.Margin = new Padding(3, 2, 3, 2);
+            button10.Location = new Point(631, 373);
             button10.Name = "button10";
-            button10.Size = new Size(82, 22);
+            button10.Size = new Size(94, 29);
             button10.TabIndex = 13;
             button10.Text = "Tilbage";
             button10.UseVisualStyleBackColor = true;
@@ -463,39 +440,37 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Alle", "Aktiv", "Inaktiv" });
-            comboBox1.Location = new Point(106, 42);
-            comboBox1.Margin = new Padding(3, 2, 3, 2);
+            comboBox1.Location = new Point(121, 56);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(133, 23);
+            comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 9;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(55, 19);
+            label1.Location = new Point(63, 25);
             label1.Name = "label1";
-            label1.Size = new Size(92, 21);
+            label1.Size = new Size(116, 28);
             label1.TabIndex = 11;
             label1.Text = "Vælg kunde";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(55, 55);
+            label2.Location = new Point(63, 73);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(49, 20);
             label2.TabIndex = 12;
             label2.Text = "Status";
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(55, 92);
-            listBox1.Margin = new Padding(3, 2, 3, 2);
+            listBox1.Location = new Point(63, 123);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(382, 214);
+            listBox1.Size = new Size(436, 284);
             listBox1.TabIndex = 8;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -506,17 +481,16 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(comboBox1);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(506, 423);
+            panel1.Size = new Size(578, 564);
             panel1.TabIndex = 8;
             panel1.Paint += panel1_Paint;
             // 
             // CustomerForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(654, 332);
+            ClientSize = new Size(747, 443);
             Controls.Add(panel1);
             Controls.Add(button10);
             Controls.Add(list_button);
@@ -524,7 +498,6 @@
             Controls.Add(create_button);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
             Load += CustomerForm_Load;

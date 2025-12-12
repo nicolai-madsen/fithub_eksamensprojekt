@@ -22,6 +22,17 @@ namespace FitHubManagement.UI.CustomerUI
             panel1.BringToFront();
         }
 
+
+        private void button1_Click(object sender, EventArgs e) //"Ny medlem"
+        {
+            panel2.Show();
+            panel2.BringToFront();
+        }
+        private void button2_Click(object sender, EventArgs e) //Rediger
+        {
+            panel3.Show();
+            panel3.BringToFront();
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             //gem for "oppret medlem"
@@ -33,22 +44,9 @@ namespace FitHubManagement.UI.CustomerUI
             panel1.BringToFront();
         }
 
-        private void button1_Click(object sender, EventArgs e) //"Ny medlem"
+        private void button7_Click(object sender, EventArgs e)
         {
-            panel2.Show();
-            panel2.BringToFront();
-        }
-
-        private void button2_Click(object sender, EventArgs e) //Rediger
-        {
-            panel3.Show();
-            panel3.BringToFront();
-        }
-
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            //denne skal klear all for "create customer"
+            //gem for rediger kunde
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -57,9 +55,9 @@ namespace FitHubManagement.UI.CustomerUI
             this.clear();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button9_Click(object sender, EventArgs e)
         {
-            //gem for rediger kunde
+            //denne skal klear all for "create customer"
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -93,5 +91,14 @@ namespace FitHubManagement.UI.CustomerUI
         {
 
         }
+
+        public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
+
+
+
 }

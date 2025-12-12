@@ -11,7 +11,9 @@ namespace FitHubManagement.BusinessLogic
 {
     public class CustomerService
     {
-    
-
+        public void createCustomer(CustomerModel customer) 
+        {
+            
+        }
     }
 }
