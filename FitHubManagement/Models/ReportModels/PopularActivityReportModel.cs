@@ -9,13 +9,20 @@ namespace FitHubManagement.Models.ReportModels
     internal class PopularActivityReportModel
     {
         public string ActivityName { get; set; }
-        public DateOnly ActivityDate { get; set; }
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
-        public int BookingCount { get; set; } // Antal kommer fra SQL kommando (COUNT), der tæller hvor mange bookinger der eksiterer for hver activity med LEFT JOIN
+        public DateTime StartDateTime { get; set; }   // direkte fra DB
+        public DateTime EndDateTime { get; set; }     // hvis du ændrer DB til at have EndDateTime
+        public int BookingCount { get; set; }         // fra COUNT i SQL
 
-        public DateTime StartDateTime => ActivityDate.ToDateTime(StartTime);
-        public DateTime EndDateTime => ActivityDate.ToDateTime(EndTime);
-        public TimeSpan Duration
+        // Computed property: kun dato
+        public DateOnly ActivityDate => DateOnly.FromDateTime(StartDateTime);
+
+        // Computed property: kun starttid
+        public TimeOnly StartTime => TimeOnly.FromDateTime(StartDateTime);
+
+        // Computed property: kun sluttid
+        public TimeOnly EndTime => TimeOnly.FromDateTime(EndDateTime);
+
+        // Computed property: varighed
+        public TimeSpan Duration => EndDateTime - StartDateTime;
     }
 }
