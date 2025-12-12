@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Models
 {
-    internal class MembershipModel
+    public class MembershipModel
     {
         public int MembershipId { get; set; }
         public string MembershipName { get; set; }
