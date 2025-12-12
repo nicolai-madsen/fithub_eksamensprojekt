@@ -178,7 +178,9 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(327, 49);
             comboBox2.TabIndex = 1;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            comboBox2.SelectedIndex = -1;
+
+
             // 
             // dateTimePicker1
             // 
@@ -278,7 +280,7 @@
             cmbLocationActivity.Name = "cmbLocationActivity";
             cmbLocationActivity.Size = new Size(327, 49);
             cmbLocationActivity.TabIndex = 13;
-            cmbLocationActivity.SelectedIndexChanged += cmbLocationActivity_SelectedIndexChanged;
+            cmbLocationActivity.SelectedIndex = -1;
             // 
             // dateTimePicker2
             // 
@@ -331,7 +333,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(327, 47);
             textBox1.TabIndex = 19;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.Text += textBox1.Text;
             // 
             // button3
             // 
@@ -371,7 +373,7 @@
             btnSearchGet.TabIndex = 19;
             btnSearchGet.Text = "Vis søgeresultater";
             btnSearchGet.UseVisualStyleBackColor = true;
-            btnSearchGet.Click += btnSearchGet_Click;
+            btnSearchGet.Click += button1_Click;
             // 
             // cmbSearchLocation
             // 
@@ -390,7 +392,7 @@
             dTPSearchDate.Name = "dTPSearchDate";
             dTPSearchDate.Size = new Size(397, 47);
             dTPSearchDate.TabIndex = 6;
-            dTPSearchDate.ValueChanged += dTPSearchDate_ValueChanged;
+            
             // 
             // cmbSearchActivity
             // 
@@ -400,7 +402,7 @@
             cmbSearchActivity.Name = "cmbSearchActivity";
             cmbSearchActivity.Size = new Size(397, 49);
             cmbSearchActivity.TabIndex = 5;
-            cmbSearchActivity.SelectedIndexChanged += cmbSearchActivity_SelectedIndexChanged;
+            cmbSearchActivity.SelectedIndex = -1;
             // 
             // lstbxSearchGet
             // 
@@ -507,7 +509,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(327, 49);
             comboBox1.TabIndex = 20;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.SelectedIndex = -1;
             // 
             // CreateActivityForm
             // 
