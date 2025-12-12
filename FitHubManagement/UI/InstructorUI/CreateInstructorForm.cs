@@ -1,4 +1,5 @@
-﻿using FitHubManagement.DataLogic.ActivityTypeDL;
+﻿using FitHubManagement.BusinessLogic;
+using FitHubManagement.DataLogic.ActivityTypeDL;
 using FitHubManagement.DataLogic.InstructorDL;
 using FitHubManagement.Models;
 using System;
@@ -15,6 +16,8 @@ namespace FitHubManagement.UI.Instructor
 {
     public partial class CreateInstructorForm : Form
     {
+
+
         public CreateInstructorForm()
         {
             InitializeComponent();
@@ -110,6 +113,8 @@ namespace FitHubManagement.UI.Instructor
                 txtEmail.Text = selectedInstructor.Email;
                 txtPhone.Text = selectedInstructor.PhoneNumber;
 
+                InstructorModel instructor = new InstructorModel();
+
                 // Hent aktivitetstype baseret på InstructorID
                 var activity = GetAllActivityTypeDL.ReadActivityByInstructorID(selectedInstructor.InstructorID);
 
@@ -128,29 +133,29 @@ namespace FitHubManagement.UI.Instructor
 
         private void btnSaveIns_Click(object sender, EventArgs e)
         {
-            var selectedInstructor = lstbxGetAllIns.SelectedItem as InstructorModel;
+            int index = lstbxGetAllIns.SelectedIndex;
 
-            if (selectedInstructor != null)
+            if (index >= 0)
             {
-                // Opdater modellen med nye værdier fra UI
+                InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
+
+                // Opdater med værdier fra tekstbokse
                 selectedInstructor.FirstName = txtFirstName.Text;
                 selectedInstructor.LastName = txtLastName.Text;
                 selectedInstructor.Email = txtEmail.Text;
                 selectedInstructor.PhoneNumber = txtPhone.Text;
 
-                // Gem i databasen via DAL
-                UpdateInstructorDL.UpdateInstructor(selectedInstructor);
+                // Kald BLL
+                InstructorBLL instructorBLL = new InstructorBLL();
+                instructorBLL.SaveInstructor(selectedInstructor);
 
                 MessageBox.Show("Instruktør opdateret!");
-
-                // Genindlæs listen så ændringerne vises
                 LoadInstructors();
             }
             else
             {
                 MessageBox.Show("Ingen instruktør valgt.");
             }
-
         }
     }
 }

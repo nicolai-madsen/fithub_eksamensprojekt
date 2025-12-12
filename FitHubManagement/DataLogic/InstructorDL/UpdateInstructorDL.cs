@@ -88,25 +88,25 @@ namespace FitHubManagement.DataLogic.InstructorDL
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
-        public static void UpdateInstructor(InstructorModel instructor)
+        public void UpdateInstructor(InstructorModel instructor)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using SqlConnection connection = new SqlConnection(connectionString);
             {
                 string query = @"UPDATE Instructor
-                         SET FirstName = @FirstName,
-                             LastName = @LastName,
-                             Email = @Email,
-                             Phone = @PhoneNumber
-                         WHERE InstructorID = @InstructorID";
+                             SET FirstName = @FirstName,
+                                 LastName = @LastName,
+                                 Email = @Email,
+                                 Phone = @Phone
+                             WHERE InstructorID = @InstructorID";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@FirstName", instructor.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", instructor.LastName);
                 cmd.Parameters.AddWithValue("@Email", instructor.Email);
-                cmd.Parameters.AddWithValue("@PhoneNumber", instructor.PhoneNumber);
+                cmd.Parameters.AddWithValue("@Phone", instructor.PhoneNumber);
                 cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
 
-                conn.Open();
+                connection.Open();
                 cmd.ExecuteNonQuery();
             }
         }
