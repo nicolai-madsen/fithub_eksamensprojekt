@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 
 namespace FitHubManagement.DataLogic.CustomerDL
 {
-    internal class CreateCustomerDL
+    public class CreateCustomerDL
     {
 
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
@@ -36,6 +37,14 @@ namespace FitHubManagement.DataLogic.CustomerDL
                 Console.WriteLine($"Created {changed} new Customer.");
             }
         }
-        
     }
+
+
 }
+
+
+    
+
+      
+    
+

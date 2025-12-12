@@ -16,14 +16,12 @@ namespace FitHubManagement.DataLogic.InstructorDL
         {
             using SqlConnection connection = new SqlConnection(connectionString); //Åbner connection med "using SqlConnection..."
             connection.Open(); //Åbner forbindelse
-            Console.WriteLine("Connection to database established.\n"); //Debug-besked. Kan fjernes i final version.
 
 
             string insertSql = "INSERT INTO Instructor (FirstName, LastName, Email, Phone, Certifications) VALUES (@FirstName, @LastName, @Email, @Phone, @Certifications)"; //
-            Console.WriteLine($"SQL Command: {insertSql}"); //Debug SQL-besked. Bruges til at fejlsøge SQL.
             using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
             {
-                insertCmd.Parameters.AddWithValue("@FirstName", firstName);
+                insertCmd.Parameters.AddWithValue("@FirstName", firstName); //Sæt værdien firstname ind i SQL-parameteren.
                 insertCmd.Parameters.AddWithValue("@LastName", lastName);
                 insertCmd.Parameters.AddWithValue("@Email", email);
                 insertCmd.Parameters.AddWithValue("@Phone", phone);
@@ -32,7 +30,7 @@ namespace FitHubManagement.DataLogic.InstructorDL
 
 
                 int changed = insertCmd.ExecuteNonQuery();
-                Console.WriteLine($"Created {changed} new Instructor.");
+                
             }
         }
     }

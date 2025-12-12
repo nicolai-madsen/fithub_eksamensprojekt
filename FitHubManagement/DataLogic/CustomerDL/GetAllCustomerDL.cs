@@ -31,6 +31,15 @@ namespace FitHubManagement.DataLogic.CustomerDL
                 while (reader.Read())
                 {
                     CustomerModel customer = new CustomerModel();
+                    customer.CustomerId = Convert.ToInt32(reader["CustomerID"]);
+                    customer.FirstName = Convert.ToString(reader["FirstName"]);
+                    customer.LastName = Convert.ToString(reader["LastName"]);
+                    customer.Email = Convert.ToString(reader["Email"]);
+                    customer.Phone = Convert.ToString(reader["Phone"]);
+                    customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
+
+
+                    //Følgende skal evt. slettes? Da de gør ikke noget?
                     int customerId = Convert.ToInt32(reader["CustomerID"]); // Convert.ToString/Int32 crasher hvis feltet er null, potentiel point of optimization
                     int membershipId = Convert.ToInt32(reader["MembershipID"]);
                     string firstName = Convert.ToString(reader["FirstName"]);
