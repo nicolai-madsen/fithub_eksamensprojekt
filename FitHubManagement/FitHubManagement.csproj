@@ -33,4 +33,8 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataLogic\MembershipDL\" />
+  </ItemGroup>
+
 </Project>

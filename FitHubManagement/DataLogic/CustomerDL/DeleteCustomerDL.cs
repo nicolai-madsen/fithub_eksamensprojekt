@@ -3,8 +3,10 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using FitHubManagement.Models;
 
 namespace FitHubManagement.DataLogic.CustomerDL
 {
@@ -13,7 +15,7 @@ namespace FitHubManagement.DataLogic.CustomerDL
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
-        public static void DeleteCustomer(int customerId)
+        public static void DeleteCustomer(CustomerModel customer)
         {
             // Open connection first
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -24,11 +26,13 @@ namespace FitHubManagement.DataLogic.CustomerDL
             string deleteSql = $"DELETE FROM Customer WHERE CustomerID = @customerId";
             using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
             {
-                deleteCmd.Parameters.AddWithValue("@customerId", customerId);
+                deleteCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
 
                 int deleted = deleteCmd.ExecuteNonQuery();
                 Console.WriteLine($"{deleted} rows deleted.");
             }
+
+   
         }
     }
 }

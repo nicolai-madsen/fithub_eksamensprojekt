@@ -10,9 +10,9 @@ namespace FitHubManagement.DataLogic.InstructorDL
 {
     public class GetAllInstructorDL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+        public static string connectionString = "Server=.;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
-        public static Instructor ReadInstructor(int instructorId)
+        public static InstructorModel ReadInstructor(int instructorId)
         {
             // Open connection first
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -31,7 +31,7 @@ namespace FitHubManagement.DataLogic.InstructorDL
 
                     if (reader.Read())
                     {
-                        Instructor ins = new Instructor
+                        InstructorModel ins = new InstructorModel
                         {
                             InstructorID = reader.GetInt32(0),
                             FirstName = reader.GetString(1),
@@ -51,6 +51,34 @@ namespace FitHubManagement.DataLogic.InstructorDL
                     }
                 }
             }
+        }
+        public static List<InstructorModel> ReadAllInstructors()
+        {
+            List<InstructorModel> instructors = new List<InstructorModel>();
+
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string selectSql = "SELECT InstructorID, FirstName, LastName, Email, Phone FROM Instructor"; //HER SKAL DER OGSÅ VÆRE CERTIFICATIONS
+            using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
+            using SqlDataReader reader = selectCmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                InstructorModel ins = new InstructorModel
+                {
+                    InstructorID = reader.GetInt32(0),
+                    FirstName = reader.GetString(1),
+                    LastName = reader.GetString(2),
+                    Email = reader.GetString(3),
+                    PhoneNumber = reader.GetString(4),
+                    // DEN FINDES IKKE I DATABASEN --- Certifications = reader.IsDBNull(5) ? "" : reader.GetString(5)
+                };
+
+                instructors.Add(ins);
+            }
+
+            return instructors;
         }
     }
 }

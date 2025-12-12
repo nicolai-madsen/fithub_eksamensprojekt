@@ -1,5 +1,7 @@
 ﻿using FitHubManagement.BusinessLogic; //Importerer/reference til BLL
+using FitHubManagement.Models;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace FitHubManagement.UI.Activity
     {
         private readonly ActivityService activityService = new ActivityService(); //Et objekt bliver oprettet af klassen ActivityService, så metoder i BLL kan bruges. Readonly sikrer, at objektet aldrig ændres
 
+
         public CreateActivityForm()
         {
             InitializeComponent();
@@ -25,31 +28,60 @@ namespace FitHubManagement.UI.Activity
         }
 
         //Panel create activity
+
+        private List<string> locations;
+        private List<string> activityType;
+
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
+
         {
-            var location = activityService.GetAllLocations(); //Kalder til BLL
-            cmbLocationActivity.DataSource = location; //Binder data til combobox
-            cmbLocationActivity.SelectedIndex = -1; //Feltet er tomt fra start
+            locations = activityService.GetAllLocations();
+
+            cmbLocationActivity.DataSource = locations;
+            cmbLocationActivity.SelectedIndex = -1;
+
+            cmbSearchLocation.DataSource = locations;
+            cmbSearchLocation.SelectedIndex = -1;
+
+            activityType = activityService.GetAllActivityTypes();
+
+            cmbSearchActivity.DataSource = activityType;
+            cmbSearchActivity.SelectedIndex = -1;
+
+            comboBox2.DataSource = activityType;
+            comboBox2.SelectedIndex = -1;
+        }
+
+        private bool ValidateComboBox(ComboBox cmb)
+        {
+            if (cmb.SelectedIndex < 0)
+            {
+                MessageBox.Show("Fejl! Udfyld alle felter");
+                return false;
+            }
+            return true;
         }
 
 
         private void btnCreateActivity_Click(object sender, EventArgs e)
         {
+            // Valider comboboxes FØRST
+            if (!ValidateComboBox(cmbLocationActivity)) return;
+            if (!ValidateComboBox(comboBox2)) return;
 
+            // NumericUpDown
+            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; // Læser input og konverterer numericUpDpwn til int, da det default er decimal
 
-            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; //Læser input og konverterer numericUpDpwn til int, da det default er decimal
+            // Location via index
+            int locationIndex = cmbLocationActivity.SelectedIndex;
+            string activityLocation = locations[locationIndex];
 
-            //string duration = txtDuration.Text; //Læser input i textboks og konverterer til string
+            // Activity type via index
+            int activityTypeIndex = comboBox2.SelectedIndex;
+            string activityTypeName = activityType[activityTypeIndex];
 
-            if (cmbLocationActivity.SelectedItem == null) //comboBox kan være null, men må ikke være null ved oprettelse. Derfor checkes og udsendes fejlmeddelelse hvis tomt.
-            {
-                MessageBox.Show("Vælg venligst en lokation");
-                return;
-            }
-
-            string activityLocation = cmbLocationActivity.SelectedItem.ToString();
-
-            DateTime chosenDate = dateTimePicker1.Value; //Gemmer den valgte dato og konverterer direkte til DateTime
+            // Date
+            DateTime chosenDate = dateTimePicker1.Value;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -78,7 +110,7 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) //Holdtype i panel med createActivity
         {
 
         }
@@ -95,11 +127,6 @@ namespace FitHubManagement.UI.Activity
         {
             this.Owner.Show();
             this.Close();
-        }
-
-        private void btnSearchGet_Click(object sender, EventArgs e)
-        {
-
         }
 
         //Panel søgning

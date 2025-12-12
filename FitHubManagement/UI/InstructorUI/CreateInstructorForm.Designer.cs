@@ -42,11 +42,12 @@
             btnCancelCreateIns = new Button();
             panel1 = new Panel();
             GetAll = new Panel();
+            lstbxGetAllIns = new ListBox();
             btnCreateIns = new Button();
             btnGetAllIns = new Button();
             btnBackToFront = new Button();
             label1 = new Label();
-            lstbxGetAllIns = new ListBox();
+            button1 = new Button();
             panel1.SuspendLayout();
             GetAll.SuspendLayout();
             SuspendLayout();
@@ -54,111 +55,112 @@
             // lblFirstName
             // 
             lblFirstName.AutoSize = true;
-            lblFirstName.Location = new Point(17, 135);
-            lblFirstName.Margin = new Padding(4, 0, 4, 0);
+            lblFirstName.Location = new Point(8, 66);
+            lblFirstName.Margin = new Padding(2, 0, 2, 0);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(124, 41);
+            lblFirstName.Size = new Size(61, 20);
             lblFirstName.TabIndex = 4;
             lblFirstName.Text = "Fornavn";
             // 
             // lblLastName
             // 
             lblLastName.AutoSize = true;
-            lblLastName.Location = new Point(17, 234);
-            lblLastName.Margin = new Padding(4, 0, 4, 0);
+            lblLastName.Location = new Point(8, 114);
+            lblLastName.Margin = new Padding(2, 0, 2, 0);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(141, 41);
+            lblLastName.Size = new Size(71, 20);
             lblLastName.TabIndex = 5;
             lblLastName.Text = "Efternavn";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(17, 344);
-            lblEmail.Margin = new Padding(4, 0, 4, 0);
+            lblEmail.Location = new Point(8, 168);
+            lblEmail.Margin = new Padding(2, 0, 2, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(88, 41);
+            lblEmail.Size = new Size(46, 20);
             lblEmail.TabIndex = 6;
             lblEmail.Text = "Email";
             // 
             // lblPhone
             // 
             lblPhone.AutoSize = true;
-            lblPhone.Location = new Point(17, 447);
-            lblPhone.Margin = new Padding(4, 0, 4, 0);
+            lblPhone.Location = new Point(8, 218);
+            lblPhone.Margin = new Padding(2, 0, 2, 0);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(114, 41);
+            lblPhone.Size = new Size(58, 20);
             lblPhone.TabIndex = 7;
             lblPhone.Text = "Telefon";
             // 
             // lblCert
             // 
             lblCert.AutoSize = true;
-            lblCert.Location = new Point(17, 545);
-            lblCert.Margin = new Padding(4, 0, 4, 0);
+            lblCert.Location = new Point(8, 266);
+            lblCert.Margin = new Padding(2, 0, 2, 0);
             lblCert.Name = "lblCert";
-            lblCert.Size = new Size(136, 41);
+            lblCert.Size = new Size(69, 20);
             lblCert.TabIndex = 8;
             lblCert.Text = "Certifikat";
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(227, 135);
-            txtFirstName.Margin = new Padding(4);
+            txtFirstName.Location = new Point(107, 66);
+            txtFirstName.Margin = new Padding(2);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(586, 47);
+            txtFirstName.Size = new Size(278, 27);
             txtFirstName.TabIndex = 9;
             txtFirstName.TextChanged += FirstNameTxt_TextChanged;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(227, 234);
-            txtLastName.Margin = new Padding(4);
+            txtLastName.Location = new Point(107, 114);
+            txtLastName.Margin = new Padding(2);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(586, 47);
+            txtLastName.Size = new Size(278, 27);
             txtLastName.TabIndex = 10;
             txtLastName.TextChanged += LastNameTxt_TextChanged;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(227, 344);
-            txtEmail.Margin = new Padding(4);
+            txtEmail.Location = new Point(107, 168);
+            txtEmail.Margin = new Padding(2);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(586, 47);
+            txtEmail.Size = new Size(278, 27);
             txtEmail.TabIndex = 11;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(227, 447);
-            txtPhone.Margin = new Padding(4);
+            txtPhone.Location = new Point(107, 218);
+            txtPhone.Margin = new Padding(2);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(586, 47);
+            txtPhone.Size = new Size(278, 27);
             txtPhone.TabIndex = 12;
             // 
             // txtCert
             // 
-            txtCert.Location = new Point(227, 545);
-            txtCert.Margin = new Padding(4);
+            txtCert.Location = new Point(107, 266);
+            txtCert.Margin = new Padding(2);
             txtCert.Name = "txtCert";
-            txtCert.Size = new Size(586, 47);
+            txtCert.Size = new Size(344, 27);
             txtCert.TabIndex = 13;
             // 
             // btnSaveIns
             // 
-            btnSaveIns.Location = new Point(17, 668);
-            btnSaveIns.Margin = new Padding(4);
+            btnSaveIns.Location = new Point(8, 326);
+            btnSaveIns.Margin = new Padding(2);
             btnSaveIns.Name = "btnSaveIns";
-            btnSaveIns.Size = new Size(446, 70);
+            btnSaveIns.Size = new Size(210, 34);
             btnSaveIns.TabIndex = 14;
             btnSaveIns.Text = "Gem";
             btnSaveIns.UseVisualStyleBackColor = true;
+            btnSaveIns.Click += btnSaveIns_Click;
             // 
             // btnCancelCreateIns
             // 
-            btnCancelCreateIns.Location = new Point(521, 668);
-            btnCancelCreateIns.Margin = new Padding(4);
+            btnCancelCreateIns.Location = new Point(226, 326);
+            btnCancelCreateIns.Margin = new Padding(2);
             btnCancelCreateIns.Name = "btnCancelCreateIns";
-            btnCancelCreateIns.Size = new Size(480, 70);
+            btnCancelCreateIns.Size = new Size(226, 34);
             btnCancelCreateIns.TabIndex = 15;
             btnCancelCreateIns.Text = "Annuller";
             btnCancelCreateIns.UseVisualStyleBackColor = true;
@@ -177,26 +179,36 @@
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(lblCert);
             panel1.Controls.Add(txtFirstName);
-            panel1.Location = new Point(15, 15);
-            panel1.Margin = new Padding(6);
+            panel1.Location = new Point(10, 25);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1027, 1080);
+            panel1.Size = new Size(483, 584);
             panel1.TabIndex = 16;
+            panel1.Paint += panel1_Paint;
             // 
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
-            GetAll.Location = new Point(0, 0);
+            GetAll.Location = new Point(10, 4);
+            GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
-            GetAll.Size = new Size(1016, 1050);
+            GetAll.Size = new Size(478, 512);
             GetAll.TabIndex = 21;
+            // 
+            // lstbxGetAllIns
+            // 
+            lstbxGetAllIns.FormattingEnabled = true;
+            lstbxGetAllIns.Location = new Point(1, 41);
+            lstbxGetAllIns.Margin = new Padding(1);
+            lstbxGetAllIns.Name = "lstbxGetAllIns";
+            lstbxGetAllIns.Size = new Size(450, 444);
+            lstbxGetAllIns.TabIndex = 0;
+            lstbxGetAllIns.SelectedIndexChanged += lstbxGetAllIns_SelectedIndexChanged;
             // 
             // btnCreateIns
             // 
-            btnCreateIns.Location = new Point(1155, 144);
-            btnCreateIns.Margin = new Padding(6);
+            btnCreateIns.Location = new Point(544, 70);
             btnCreateIns.Name = "btnCreateIns";
-            btnCreateIns.Size = new Size(270, 59);
+            btnCreateIns.Size = new Size(127, 29);
             btnCreateIns.TabIndex = 17;
             btnCreateIns.Text = "Opret";
             btnCreateIns.UseVisualStyleBackColor = true;
@@ -204,10 +216,9 @@
             // 
             // btnGetAllIns
             // 
-            btnGetAllIns.Location = new Point(1155, 285);
-            btnGetAllIns.Margin = new Padding(6);
+            btnGetAllIns.Location = new Point(544, 139);
             btnGetAllIns.Name = "btnGetAllIns";
-            btnGetAllIns.Size = new Size(270, 59);
+            btnGetAllIns.Size = new Size(127, 29);
             btnGetAllIns.TabIndex = 18;
             btnGetAllIns.Text = "Vis alle";
             btnGetAllIns.UseVisualStyleBackColor = true;
@@ -215,9 +226,10 @@
             // 
             // btnBackToFront
             // 
-            btnBackToFront.Location = new Point(1829, 946);
+            btnBackToFront.Location = new Point(861, 461);
+            btnBackToFront.Margin = new Padding(1);
             btnBackToFront.Name = "btnBackToFront";
-            btnBackToFront.Size = new Size(188, 58);
+            btnBackToFront.Size = new Size(88, 28);
             btnBackToFront.TabIndex = 20;
             btnBackToFront.Text = "Tilbage";
             btnBackToFront.UseVisualStyleBackColor = true;
@@ -227,36 +239,40 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(778, 9);
+            label1.Location = new Point(366, 4);
+            label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(673, 81);
+            label1.Size = new Size(336, 41);
             label1.TabIndex = 22;
             label1.Text = "Personaleadministration";
             label1.Click += label1_Click;
             // 
-            // lstbxGetAllIns
+            // button1
             // 
-            lstbxGetAllIns.FormattingEnabled = true;
-            lstbxGetAllIns.ItemHeight = 41;
-            lstbxGetAllIns.Location = new Point(32, 130);
-            lstbxGetAllIns.Name = "lstbxGetAllIns";
-            lstbxGetAllIns.Size = new Size(951, 865);
-            lstbxGetAllIns.TabIndex = 0;
+            button1.Location = new Point(544, 207);
+            button1.Name = "button1";
+            button1.Size = new Size(127, 29);
+            button1.TabIndex = 23;
+            button1.Text = "Rediger";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // CreateInstructorForm
             // 
-            AutoScaleDimensions = new SizeF(17F, 41F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2155, 1078);
+            ClientSize = new Size(905, 515);
             Controls.Add(label1);
+            Controls.Add(panel1);
+            Controls.Add(button1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
             Controls.Add(GetAll);
-            Controls.Add(panel1);
-            Margin = new Padding(4);
+            Margin = new Padding(2);
             Name = "CreateInstructorForm";
             Text = "Form1";
+            Load += CreateInstructorForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             GetAll.ResumeLayout(false);
@@ -284,5 +300,6 @@
         private Panel GetAll;
         private Label label1;
         private ListBox lstbxGetAllIns;
+        private Button button1;
     }
 }

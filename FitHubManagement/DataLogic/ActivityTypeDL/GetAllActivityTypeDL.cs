@@ -70,6 +70,41 @@ namespace FitHubManagement.DataLogic.ActivityTypeDL
             return activityTypeList;
         }
 
+       
+        
+        
+        
+        // Metode der henter en aktivitet baseret på InstructorID
+        public class ActivityTypeDL
+        {
+            public ActivityTypeModel ReadActivityByInstructorID(int instructorID)
+            {
+                using SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                {
+                    string query = @"SELECT ActivityTypeId, ActivityTypeName, InstructorID
+                                 FROM ActivityType
+                                 WHERE InstructorID = @InstructorID";
+
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@InstructorID", instructorID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        ActivityTypeModel activity = new ActivityTypeModel();
+                        activity.ActivityTypeId = (int)reader["ActivityTypeId"];
+                        activity.ActivityTypeName = reader["ActivityTypeName"].ToString();
+                        activity.InstructorId = (int)reader["InstructorID"];
+                        return activity;
+                    }
+
+                    return null;
+                }
+            }
+        }
+
     }
 }
 
