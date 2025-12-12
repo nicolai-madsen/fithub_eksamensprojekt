@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.DataLogic.MembershipDL
 {
-    public class GetAllMembership
+    public class GetAllMembershipDL
     {
         public static string connectionString = "Server=.;Database=FitHubDB;" +
                                                 "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
-        public MembershipModel ReadMembership(int membershipId)
+        public MembershipModel GetMembership(int membershipId)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -36,7 +36,7 @@ namespace FitHubManagement.DataLogic.MembershipDL
                 }
             }
         }
-        public List<MembershipModel> ReadAllMembership()
+        public List<MembershipModel> GetAllMembership()
         {
             List<MembershipModel> memberships = new List<MembershipModel>();
 

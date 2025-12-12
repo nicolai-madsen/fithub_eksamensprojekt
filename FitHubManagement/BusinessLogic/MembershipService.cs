@@ -10,41 +10,61 @@ namespace FitHubManagement.BusinessLogic
 {
     public class MembershipService
     {
-        // <--- Create Service --->
-        private readonly CreateMembershipDL _createMembershipDL;
-        public MembershipService(CreateMembershipDL membershipDL) 
-        {
-            _createMembershipDL = membershipDL; // Injects the DAL into Create Service
-        }
+        // DAL objekter
+        private readonly CreateMembershipDL _createMembershipDL = new CreateMembershipDL();
+        private readonly UpdateMembershipDL _updateMembershipDL = new UpdateMembershipDL();
+        private readonly GetAllMembershipDL _getAllMembershipDL = new GetAllMembershipDL();
+        private readonly DeleteMembershipDL _deleteMembershipDL = new DeleteMembershipDL();
+
+        // Opret Membership
         public MembershipModel CreateMembership(MembershipModel membership)
         {
-            // Validering (Tomt felt) på MembershipName
+            // Validering
             if (string.IsNullOrEmpty(membership.MembershipName))
                 throw new ArgumentNullException("Aktivitets-navn skal udfyldes");
 
-            // Validering (Tomt felt) på MembershipDescription
             if (string.IsNullOrEmpty(membership.MembershipDescription))
                 throw new ArgumentNullException("Aktivitets-beskrivelse skal udfyldes");
 
-            // Validering (Tomt felt) på MembershipDescription
-            if (decimal.(membership.MonthlyPrice))
-                throw new ArgumentNullException("Aktivitets-beskrivelse skal udfyldes");
+            if (membership.MonthlyPrice < 0)
+                throw new Exception("Månedspris skal være 0 eller større");
 
+            int newId = _createMembershipDL.CreateMembership(membership); // ID fra oprettet objekt bliver gemt som newId
 
-            // Få ID på oprettet row tilbage, så det kan vises i UI
-            int newId = _createMembershipDL.CreateMembership(membership);
+            membership.MembershipId = newId; // newId bliver sat ind som property MembershipId i model objektetet.
 
-            // Sæt objekt property til det hentede ID
-            membership.MembershipId = newId;
-
-            return membership;
+            return membership; // return model til validering i UI
         }
 
-        // <--- Update Service --->
-        private readonly UpdateMembershipDL _updateMembershipDL;
-        public int UpdateMembership(MembershipModel membership) 
+        // Opdater Membership
+        public int UpdateMembership(MembershipModel membership)
         {
-            return _updateMembershipDL.UpdateMembership(membership); // Call update method in UpdateDL on membership object (data for DB)
+            // Validering
+            if (string.IsNullOrEmpty(membership.MembershipName))
+                throw new ArgumentNullException("Aktivitets-navn skal udfyldes");
+
+            if (string.IsNullOrEmpty(membership.MembershipDescription))
+                throw new ArgumentNullException("Aktivitets-beskrivelse skal udfyldes");
+
+            if (membership.MonthlyPrice < 0)
+                throw new Exception("Månedspris skal være 0 eller større");
+
+            return _updateMembershipDL.UpdateMembership(membership);
+        }
+
+        // Hent alle Membership
+        public List<MembershipModel> GetAllMemberships()
+        {
+            return _getAllMembershipDL.GetAllMembership();
+        }
+
+        // Slet Membership
+        public int DeleteMembership(int membershipId)
+        {
+            if (membershipId <= 0)
+                throw new ArgumentException("Ugyldigt medlemskabs-ID");
+
+            return _deleteMembershipDL.DeleteMembership(membershipId); 
         }
     }
 }
