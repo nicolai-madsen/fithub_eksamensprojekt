@@ -10,7 +10,7 @@ namespace FitHubManagement.DataLogic.ReportsDL
 {
     internal class ActiveCustomerReportDL
     {
-        public static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FitHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public static string connectionString = "Data Source=.;Initial Catalog=FitHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         public static List<ActiveCustomerReportModel> GetAllActiveCustomer()
         {
             using SqlConnection connection = new SqlConnection(connectionString);

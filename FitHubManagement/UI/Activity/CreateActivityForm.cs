@@ -21,7 +21,7 @@ namespace FitHubManagement.UI.Activity
             InitializeComponent();
             pnlCreateActivity.Visible = true;
             pnlSearchActivity.Visible = false;
-           
+
         }
 
         //Panel create activity
@@ -95,6 +95,11 @@ namespace FitHubManagement.UI.Activity
         {
             this.Owner.Show();
             this.Close();
+        }
+
+        private void btnSearchGet_Click(object sender, EventArgs e)
+        {
+
         }
 
         //Panel søgning

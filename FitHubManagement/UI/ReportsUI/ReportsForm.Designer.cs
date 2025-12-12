@@ -35,9 +35,10 @@
             // 
             // btnActiveCustomerReport
             // 
-            btnActiveCustomerReport.Location = new Point(12, 96);
+            btnActiveCustomerReport.Location = new Point(14, 128);
+            btnActiveCustomerReport.Margin = new Padding(3, 4, 3, 4);
             btnActiveCustomerReport.Name = "btnActiveCustomerReport";
-            btnActiveCustomerReport.Size = new Size(117, 23);
+            btnActiveCustomerReport.Size = new Size(149, 31);
             btnActiveCustomerReport.TabIndex = 0;
             btnActiveCustomerReport.Text = "Aktive Medlemmer";
             btnActiveCustomerReport.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@
             // 
             // btnPopularActivityReport
             // 
-            btnPopularActivityReport.Location = new Point(12, 125);
+            btnPopularActivityReport.Location = new Point(14, 167);
+            btnPopularActivityReport.Margin = new Padding(3, 4, 3, 4);
             btnPopularActivityReport.Name = "btnPopularActivityReport";
-            btnPopularActivityReport.Size = new Size(117, 23);
+            btnPopularActivityReport.Size = new Size(149, 31);
             btnPopularActivityReport.TabIndex = 1;
             btnPopularActivityReport.Text = "Populære Hold";
             btnPopularActivityReport.UseVisualStyleBackColor = true;
@@ -56,20 +58,21 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(14, 12);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(50, 20);
             label1.TabIndex = 2;
             label1.Text = "label1";
             // 
             // ReportsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(label1);
             Controls.Add(btnPopularActivityReport);
             Controls.Add(btnActiveCustomerReport);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ReportsForm";
             Text = "ReportsForm";
             ResumeLayout(false);

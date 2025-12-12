@@ -10,8 +10,7 @@ namespace FitHubManagement.DataLogic.ReportsDL
 {
     internal class PopularActivityReportDL
     {
-        public static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FitHubDB;Integrated Security=True;Connect " +
-                                                "Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public static string connectionString = "Data Source=.;Initial Catalog=FitHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         // Opret forbindelse til databasen
         // Send query til databasen. Query forklaret længere nede
         // Fyld rapport DTO's properties med data fra databasen

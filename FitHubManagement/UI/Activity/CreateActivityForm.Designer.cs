@@ -273,7 +273,7 @@
             // 
             cmbLocationActivity.FormattingEnabled = true;
             cmbLocationActivity.Location = new Point(93, 207);
-            cmbLocationActivity.Margin = new Padding(1, 1, 1, 1);
+            cmbLocationActivity.Margin = new Padding(1);
             cmbLocationActivity.Name = "cmbLocationActivity";
             cmbLocationActivity.Size = new Size(156, 28);
             cmbLocationActivity.TabIndex = 13;
@@ -283,7 +283,7 @@
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.Location = new Point(369, 134);
-            dateTimePicker2.Margin = new Padding(1, 1, 1, 1);
+            dateTimePicker2.Margin = new Padding(1);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.ShowUpDown = true;
             dateTimePicker2.Size = new Size(118, 27);
@@ -317,7 +317,7 @@
             pnlCreateActivity.Controls.Add(label2);
             pnlCreateActivity.Controls.Add(label1);
             pnlCreateActivity.Location = new Point(13, 45);
-            pnlCreateActivity.Margin = new Padding(1, 1, 1, 1);
+            pnlCreateActivity.Margin = new Padding(1);
             pnlCreateActivity.Name = "pnlCreateActivity";
             pnlCreateActivity.Size = new Size(581, 534);
             pnlCreateActivity.TabIndex = 16;
@@ -345,7 +345,7 @@
             pnlSearchActivity.Controls.Add(lblSearchActivity);
             pnlSearchActivity.Controls.Add(lblSearchCriteria);
             pnlSearchActivity.Location = new Point(0, 0);
-            pnlSearchActivity.Margin = new Padding(1, 1, 1, 1);
+            pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
             pnlSearchActivity.Size = new Size(562, 494);
             pnlSearchActivity.TabIndex = 20;
@@ -360,12 +360,13 @@
             btnSearchGet.TabIndex = 19;
             btnSearchGet.Text = "Vis søgeresultater";
             btnSearchGet.UseVisualStyleBackColor = true;
+            btnSearchGet.Click += btnSearchGet_Click;
             // 
             // cmbSearchLocation
             // 
             cmbSearchLocation.FormattingEnabled = true;
             cmbSearchLocation.Location = new Point(101, 190);
-            cmbSearchLocation.Margin = new Padding(1, 1, 1, 1);
+            cmbSearchLocation.Margin = new Padding(1);
             cmbSearchLocation.Name = "cmbSearchLocation";
             cmbSearchLocation.Size = new Size(189, 28);
             cmbSearchLocation.TabIndex = 14;
@@ -383,7 +384,7 @@
             // 
             cmbSearchActivity.FormattingEnabled = true;
             cmbSearchActivity.Location = new Point(101, 73);
-            cmbSearchActivity.Margin = new Padding(1, 1, 1, 1);
+            cmbSearchActivity.Margin = new Padding(1);
             cmbSearchActivity.Name = "cmbSearchActivity";
             cmbSearchActivity.Size = new Size(189, 28);
             cmbSearchActivity.TabIndex = 5;
@@ -392,7 +393,7 @@
             // 
             lstbxSearchGet.FormattingEnabled = true;
             lstbxSearchGet.Location = new Point(7, 260);
-            lstbxSearchGet.Margin = new Padding(1, 1, 1, 1);
+            lstbxSearchGet.Margin = new Padding(1);
             lstbxSearchGet.Name = "lstbxSearchGet";
             lstbxSearchGet.Size = new Size(560, 244);
             lstbxSearchGet.TabIndex = 4;

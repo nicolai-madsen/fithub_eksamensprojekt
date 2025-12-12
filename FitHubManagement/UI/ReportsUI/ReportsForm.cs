@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FitHubManagement.BusinessLogic.ReportProviders;
+using FitHubManagement.Models.ReportModels;
 
 namespace FitHubManagement.UI.ReportsUI
 {
@@ -24,10 +26,11 @@ namespace FitHubManagement.UI.ReportsUI
         {
             try
             {
-                var popularActivities = PopularActivityReportDL.GetPopularActivities();
+                var popularActivityReportProvider = new PopularActivityReportProvider();
+                List<PopularActivityReportModel> reportData = popularActivityReportProvider.GetPopularActivities();
 
                 var formatter = new ReportFormatter();
-                string formatted = formatter.FormatPopularActivities(popularActivities);
+                string formatted = formatter.FormatPopularActivities(reportData);
 
                 var writer = new ReportWriter();
                 writer.WriteTxtReport(formatted, "Populære_Hold_Rapport.txt");
@@ -45,10 +48,11 @@ namespace FitHubManagement.UI.ReportsUI
         {
             try
             {
-                var customers = ActiveCustomerReportDL.GetAllActiveCustomer();
+                var activeCustomerReportProvider = new ActiveCustomerReportProvider();
+                List<ActiveCustomerReportModel> reportData = activeCustomerReportProvider.GetActiveCustomers();
 
                 var formatter = new ReportFormatter();
-                string formatted = formatter.FormatActiveCustomers(customers);
+                string formatted = formatter.FormatActiveCustomers(reportData);
 
                 var writer = new ReportWriter();
                 writer.WriteTxtReport(formatted, "Aktive_Medlemmer_Rapport.txt");
