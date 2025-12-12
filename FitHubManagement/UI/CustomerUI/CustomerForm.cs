@@ -82,5 +82,10 @@ namespace FitHubManagement.UI.CustomerUI
         {
             //slette denne !!!
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
