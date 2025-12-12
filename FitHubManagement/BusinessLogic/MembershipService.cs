@@ -13,6 +13,7 @@ namespace FitHubManagement.BusinessLogic
         // DAL objekter
         private readonly CreateMembershipDL _createMembershipDL = new CreateMembershipDL();
         private readonly UpdateMembershipDL _updateMembershipDL = new UpdateMembershipDL();
+        private readonly GetAllMembershipDL _getMembershipDL = new GetAllMembershipDL();
         private readonly GetAllMembershipDL _getAllMembershipDL = new GetAllMembershipDL();
         private readonly DeleteMembershipDL _deleteMembershipDL = new DeleteMembershipDL();
 
@@ -50,6 +51,12 @@ namespace FitHubManagement.BusinessLogic
                 throw new Exception("Månedspris skal være 0 eller større");
 
             return _updateMembershipDL.UpdateMembership(membership);
+        }
+
+        // Hent (ID) Membership
+        public MembershipModel GetMembership(int memebershipId)
+        {
+            return _getMembershipDL.GetMembership(memebershipId);
         }
 
         // Hent alle Membership
