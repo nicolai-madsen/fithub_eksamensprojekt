@@ -333,7 +333,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(327, 47);
             textBox1.TabIndex = 19;
-            textBox1.Text += textBox1.Text;
+           
             // 
             // button3
             // 
