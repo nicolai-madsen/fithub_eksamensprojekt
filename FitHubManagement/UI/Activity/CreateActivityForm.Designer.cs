@@ -371,6 +371,7 @@
             btnSearchGet.TabIndex = 19;
             btnSearchGet.Text = "Vis søgeresultater";
             btnSearchGet.UseVisualStyleBackColor = true;
+            btnSearchGet.Click += btnSearchGet_Click;
             // 
             // cmbSearchLocation
             // 

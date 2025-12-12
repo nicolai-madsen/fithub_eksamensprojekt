@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.UI.Activity;
+using FitHubManagement.UI.ReportsUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,7 +50,8 @@ namespace FitHubManagement.UI
 
         private void button3_Click(object sender, EventArgs e) //Rapport
         {
-
+            ReportsForm reportsForm = new ReportsForm();
+            reportsForm.ShowDialog();
         }
 
         private void btnBookingFront_Click(object sender, EventArgs e)

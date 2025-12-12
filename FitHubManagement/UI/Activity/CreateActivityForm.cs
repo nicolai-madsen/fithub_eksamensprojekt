@@ -129,36 +129,6 @@ namespace FitHubManagement.UI.Activity
             this.Close();
         }
 
-        private void dTPSearchDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbSearchActivity_SelectedIndexChanged(object sender, EventArgs e) //Holdtype fyld combobox. Opret Hold.
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbLocationActivity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) //Viser tilknyttet instruktør
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //Panel søgning
 
     }
