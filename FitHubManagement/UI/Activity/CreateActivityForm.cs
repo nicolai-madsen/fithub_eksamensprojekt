@@ -21,15 +21,43 @@ namespace FitHubManagement.UI.Activity
             InitializeComponent();
             pnlCreateActivity.Visible = true;
             pnlSearchActivity.Visible = false;
-           
+
         }
+
+      
+
+       
+
 
         //Panel create activity
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
         {
-            var location = activityService.GetAllLocations(); //Kalder til BLL
-            cmbLocationActivity.DataSource = location; //Binder data til combobox
+            var location = activityService.GetAllLocations(); //Kalder til BLL 
+            cmbLocationActivity.DataSource = location; //Binder data til combobox, Lokation
             cmbLocationActivity.SelectedIndex = -1; //Feltet er tomt fra start
+
+            var locationSearch = activityService.GetAllLocations(); //Søg lokation
+            cmbSearchLocation.DataSource = locationSearch; 
+            cmbSearchLocation.SelectedIndex = -1; 
+
+            var activityTypeNameSearch = activityService.GetAllActivityTypes(); //Holdtype
+            cmbSearchActivity.DataSource = activityTypeNameSearch;
+            cmbSearchActivity.SelectedIndex = -1;
+
+            var activityTypeName = activityService.GetAllActivityTypes(); //Holdtype
+            comboBox2.DataSource = activityTypeNameSearch;
+            comboBox2.SelectedIndex = -1;
+
+
+        }
+        private bool ValidateComboBox(ComboBox cmb) //Fejlmeddelelse til álle combobox. comboBox kan være null, men må ikke være null ved oprettelse.
+        {
+            if (cmb.SelectedItem == null)
+            {
+                MessageBox.Show("Fejl! Sørg for, at alle felter er udfyldt");
+                return false;
+            }
+            return true;
         }
 
 
@@ -41,13 +69,11 @@ namespace FitHubManagement.UI.Activity
 
             //string duration = txtDuration.Text; //Læser input i textboks og konverterer til string
 
-            if (cmbLocationActivity.SelectedItem == null) //comboBox kan være null, men må ikke være null ved oprettelse. Derfor checkes og udsendes fejlmeddelelse hvis tomt.
-            {
-                MessageBox.Show("Vælg venligst en lokation");
-                return;
-            }
+            string activityLocation = cmbLocationActivity.SelectedItem.ToString(); //ComboBox til string med Holdtype navn
+            if (!ValidateComboBox(cmbLocationActivity)) return;
 
-            string activityLocation = cmbLocationActivity.SelectedItem.ToString();
+            string activityTypeName = comboBox2.SelectedItem.ToString();
+            if (!ValidateComboBox(comboBox2)) return;
 
             DateTime chosenDate = dateTimePicker1.Value; //Gemmer den valgte dato og konverterer direkte til DateTime
         }
@@ -78,7 +104,7 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) //Holdtype i panel med createActivity
         {
 
         }
@@ -95,6 +121,26 @@ namespace FitHubManagement.UI.Activity
         {
             this.Owner.Show();
             this.Close();
+        }
+
+        private void dTPSearchDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSearchActivity_SelectedIndexChanged(object sender, EventArgs e) //Holdtype fyld combobox. Opret Hold.
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbLocationActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         //Panel søgning
