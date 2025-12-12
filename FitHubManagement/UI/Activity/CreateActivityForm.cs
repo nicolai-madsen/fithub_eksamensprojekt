@@ -50,11 +50,12 @@ namespace FitHubManagement.UI.Activity
 
 
         }
-        private bool ValidateComboBox(ComboBox cmb) //Fejlmeddelelse til álle combobox. comboBox kan være null, men må ikke være null ved oprettelse.
+
+        private bool ValidateComboBox(ComboBox cmb) //Fejlmeddelelse til alle combobox. comboBox kan være null, men må ikke være null ved oprettelse.
         {
             if (cmb.SelectedItem == null)
             {
-                MessageBox.Show("Fejl! Sørg for, at alle felter er udfyldt");
+                MessageBox.Show("Fejl! Udfyld alle felter");
                 return false;
             }
             return true;
