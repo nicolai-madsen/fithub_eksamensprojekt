@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class Class1
+    public class InstructorService
     {
 
     }
