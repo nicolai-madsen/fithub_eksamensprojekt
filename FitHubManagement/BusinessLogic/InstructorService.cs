@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataLogic.ActivityTypeDL.GetAllActivityTypeDL;
 
 namespace FitHubManagement.BusinessLogic
 {
@@ -24,6 +25,22 @@ namespace FitHubManagement.BusinessLogic
                 throw new ArgumentException("Fornavn må ikke være tomt");
 
             _dal.UpdateInstructor(instructor);
+        }
+
+
+    }
+    public class ActivityTypeBLL
+    {
+        private ActivityTypeDL _dal;
+
+        public ActivityTypeBLL()
+        {
+            _dal = new ActivityTypeDL();
+        }
+
+        public ActivityTypeModel GetActivityByInstructorID(int instructorID)
+        {
+            return _dal.ReadActivityByInstructorID(instructorID);
         }
 
     }
