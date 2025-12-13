@@ -130,6 +130,9 @@ namespace FitHubManagement.UI.Activity
         }
 
         //Panel søgning
+        private void btnSearchGet_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
