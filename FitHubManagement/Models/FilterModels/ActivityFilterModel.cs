@@ -16,6 +16,10 @@ namespace FitHubManagement.Models.FilterModels
         public TimeOnly? EndTime { get; set; }
         public string? ActivityLocation { get; set; }
 
+        public override string ToString()
+        {
+            return $"{ActivityTypeName} - {InstructorName} - {ActivityDate:dd/MM/yyyy} {StartTime:hh\\:mm}-{EndTime:hh\\:mm} @ {ActivityLocation}";
+        }
 
     }
 }

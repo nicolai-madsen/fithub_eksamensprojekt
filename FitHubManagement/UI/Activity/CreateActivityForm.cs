@@ -1,5 +1,7 @@
 ﻿using FitHubManagement.BusinessLogic; //Importerer/reference til BLL
+using FitHubManagement.BusinessLogic.ActivityBL;
 using FitHubManagement.Models;
+using FitHubManagement.Models.FilterModels;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
@@ -132,7 +134,15 @@ namespace FitHubManagement.UI.Activity
         //Panel søgning
         private void btnSearchGet_Click(object sender, EventArgs e)
         {
+            var filterModel = new ActivityFilterModel
+            {
+                ActivityTypeName = cmbSearchActivity.SelectedItem?.ToString()
+            };
+            var service = new ActivityFilterService();
+            var activities = service.GetFilteredActivities(filterModel);
 
+            lstbxSearchGet.DataSource = activities;
+            MessageBox.Show($"Found {activities.Count} activities");
         }
     }
 }
