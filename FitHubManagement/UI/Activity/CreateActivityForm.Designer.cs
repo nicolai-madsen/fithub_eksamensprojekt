@@ -165,6 +165,7 @@
             label3 = new Label();
             btnSearchActivity = new Button();
             button4 = new Button();
+            chkFilterByDate = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
             pnlCreateActivity.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
@@ -353,6 +354,7 @@
             // 
             // pnlSearchActivity
             // 
+            pnlSearchActivity.Controls.Add(chkFilterByDate);
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(cmbSearchLocation);
             pnlSearchActivity.Controls.Add(dTPSearchDate);
@@ -495,7 +497,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(602, 371);
+            button4.Location = new Point(602, 349);
             button4.Margin = new Padding(2, 3, 2, 3);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
@@ -503,6 +505,16 @@
             button4.Text = "Tilbage";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(260, 101);
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(79, 19);
+            chkFilterByDate.TabIndex = 20;
+            chkFilterByDate.Text = "Brug Dato";
+            chkFilterByDate.UseVisualStyleBackColor = true;
             // 
             // CreateActivityForm
             // 
@@ -572,6 +584,7 @@
         private Label lblSearchCriteria;
         private TextBox textBox1;
         private ComboBox comboBox1;
+        private CheckBox chkFilterByDate;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 

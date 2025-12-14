@@ -46,8 +46,10 @@ namespace FitHubManagement.DataLogic.ActivityDL
                 WHERE 1=1
             ";
 
-            using SqlCommand command = new SqlCommand(filterQuery, connection);
 
+            using SqlCommand command = new SqlCommand(filterQuery, connection);
+            // Tilføjer "WHERE" til filterQuery, hvis property ikke er null/tom.
+            // Hvis en af properties i filter modellen er udfyldt, så indsættes det som filter kriterie, ved at tilføje til WHERE
             if (filterModel.ActivityLocation != null && filterModel.ActivityLocation != "") 
             {
                 filterQuery += " AND a.ActivityLocation = @ActivityLocation";
@@ -69,10 +71,7 @@ namespace FitHubManagement.DataLogic.ActivityDL
             if (filterModel.ActivityDate.HasValue)
             {
                 filterQuery += " AND CAST(StartDateTime AS DATE) = @ActivityDate";
-                command.Parameters.AddWithValue(
-                    "@ActivityDate",
-                    filterModel.ActivityDate.Value.ToDateTime(TimeOnly.MinValue) // Gem StartDateTime som ActivityDate (cast fra DATETIME til DATE)
-                );
+                command.Parameters.AddWithValue("@ActivityDate", filterModel.ActivityDate.Value.ToDateTime(TimeOnly.MinValue)); // Konvertér DateOnly til DateTime, som DB også bruger
             }
 
             if (filterModel.StartTime.HasValue)
@@ -90,6 +89,7 @@ namespace FitHubManagement.DataLogic.ActivityDL
             command.CommandText = filterQuery;
 
             using SqlDataReader reader = command.ExecuteReader();
+            // Fyld filter modeller med resultater af filtrering og return listen, så den kan modtages i BL
             while (reader.Read())
             {
                 ActivityFilterModel activity = new ActivityFilterModel();

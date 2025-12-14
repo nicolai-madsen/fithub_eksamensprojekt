@@ -134,15 +134,36 @@ namespace FitHubManagement.UI.Activity
         //Panel søgning
         private void btnSearchGet_Click(object sender, EventArgs e)
         {
+            // Model som indeholder filter kriterier, bruges i BL. BL Kalder DAL, som returnerer en liste af resultater, der vises i lstbxSearchGet
             var filterModel = new ActivityFilterModel
             {
-                ActivityTypeName = cmbSearchActivity.SelectedItem?.ToString()
+                ActivityTypeName = cmbSearchActivity.SelectedItem?.ToString(),
+                ActivityLocation = cmbSearchLocation.SelectedItem?.ToString()
             };
-            var service = new ActivityFilterService();
+
+            if (chkFilterByDate.Checked) // Hvis filter by date checkboxen er "checked", så tilføjer den datoen i dtp.Value 
+            {
+                filterModel.ActivityDate = DateOnly.FromDateTime(dTPSearchDate.Value);
+            }
+            else
+            {
+                filterModel.ActivityDate = null;
+            }
+
+
+
+                var service = new ActivityFilterService();
             var activities = service.GetFilteredActivities(filterModel);
 
             lstbxSearchGet.DataSource = activities;
             MessageBox.Show($"Found {activities.Count} activities");
+
+            // Sletter input fra combo boxes, når brugeren trykker på knappen (filter reset)
+            cmbLocationActivity.SelectedItem = null;
+            cmbLocationActivity.Text = "";
+
+            cmbSearchLocation.SelectedItem = null;
+            cmbSearchActivity.Text = "";
         }
     }
 }
