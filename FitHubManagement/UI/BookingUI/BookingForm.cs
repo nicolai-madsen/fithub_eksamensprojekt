@@ -1,5 +1,4 @@
-﻿using FitHubManagement.DataLogic.CustomerDL;
-using FitHubManagement.Models;
+﻿using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.UI.BookingUI
 {
@@ -33,7 +33,7 @@ namespace FitHubManagement.UI.BookingUI
             string name = textBox1.Text;
             string phone = textBox2.Text;
 
-            GetAllCustomerDL customerDL = new GetAllCustomerDL();
+            CustomerCRUD customerDL = new CustomerCRUD();
             List<CustomerModel> customers = customerDL.GetAllCustomer();
 
 

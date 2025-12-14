@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿/*using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -36,3 +36,4 @@ namespace FitHubManagement.DataLogic.CustomerDL
         }
     }
 }
+*/
