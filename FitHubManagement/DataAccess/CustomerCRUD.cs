@@ -1,0 +1,299 @@
+﻿using FitHubManagement.Models;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FitHubManagement.DataAccess
+{
+        public class CustomerCRUD
+        {
+            public static string connectionString = "Server=localhost;Database=FitHubDB;" +
+                                           "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+
+            //CREATE
+            public void CreateCustomer(CustomerModel customer)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string insertSql = $"INSERT INTO Customer (MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote) VALUES (@MembershipID, @FirstName, @LastName, @Email, @Phone, @Birthday, @PersonalNote)";
+                Console.WriteLine($"SQL Command: {insertSql}");
+                using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
+                {
+                    insertCmd.Parameters.AddWithValue("@MembershipID", customer.MembershipId);
+                    insertCmd.Parameters.AddWithValue("@FirstName", customer.FirstName);
+                    insertCmd.Parameters.AddWithValue("@LastName", customer.LastName);
+                    insertCmd.Parameters.AddWithValue("@Email", customer.Email);
+                    insertCmd.Parameters.AddWithValue("@Phone", customer.Phone);
+                    insertCmd.Parameters.AddWithValue("@Birthday", customer.Birthday);
+                    insertCmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
+
+                    int changed = insertCmd.ExecuteNonQuery(); // Tæller mængden af rows der blev ændret af Sql kommando
+                    Console.WriteLine($"Created {changed} new Customer.");
+                }
+            }
+
+
+            }
+
+            //UPDATE
+            public void UpdateMembership(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET Membership = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+
+
+            }
+
+            public void UpdateFirstName(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET FirstName = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+            }
+
+            public void UpdateLastName(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET LastName = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+
+        
+            }
+
+            public void UpdateEmail(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+ 
+            }
+
+            public void UpdatePhone(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET Phone = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+            }
+
+            public void UpdateBirthday(CustomerModel customer, DateTime newValue)
+            {
+                using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET Birthday = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            } 
+            }
+
+            public void UpdatePersonalNote(CustomerModel customer, string newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET PersonalNote = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+            }
+
+            public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
+            {
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
+                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                    int updated = updateCmd.ExecuteNonQuery();
+                    Console.WriteLine($"{updated} rows updated.");
+                }
+            }
+            }
+
+
+                //READ
+            public List<CustomerModel> GetAllCustomer()
+            {
+                List<CustomerModel> customerList = new List<CustomerModel>();
+
+            using (SqlConnection connection = this.connection())
+            {
+                string query = $"SELECT * FROM Customer";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        CustomerModel customer = new CustomerModel();
+
+                        customer.CustomerId = Convert.ToInt32(reader["CustomerID"]); // Convert.ToString/Int32 crasher hvis feltet er null, potentiel point of optimization
+                        customer.MembershipId = Convert.ToInt32(reader["MembershipID"]);
+                        customer.FirstName = Convert.ToString(reader["FirstName"]);
+                        customer.LastName = Convert.ToString(reader["LastName"]);
+                        customer.Email = Convert.ToString(reader["Email"]);
+                        customer.Phone = Convert.ToString(reader["Phone"]);
+                        customer.Birthday = Convert.ToDateTime(reader["Birthday"]); // This one probably shouldn't be converted to string, keep as DateTime type instead. Just dunno how, lol
+                        customer.PersonalNote = Convert.ToString(reader["PersonalNote"]);
+                        customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
+                        customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
+
+                        customerList.Add(customer);
+                    }
+                }
+                   return customerList;
+                }
+            }
+
+            public List<CustomerModel> GetIactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+            {
+                List<CustomerModel> customerList = new List<CustomerModel>();
+
+            using (SqlConnection connection = this.connection())
+            {
+
+                string query = $"SELECT * FROM Customer WHERE Inactive = 1";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+
+                        CustomerModel customer = new CustomerModel();
+                        customer.CustomerId = Convert.ToInt32(reader["CustomerID"]);
+                        customer.MembershipId = Convert.ToInt32(reader["MembershipID"]);
+                        customer.FirstName = Convert.ToString(reader["FirstName"]);
+                        customer.LastName = Convert.ToString(reader["LastName"]);
+                        customer.Email = Convert.ToString(reader["Email"]);
+                        customer.Phone = Convert.ToString(reader["Phone"]);
+                        customer.Birthday = Convert.ToDateTime(reader["Birthday"]);
+                        customer.PersonalNote = Convert.ToString(reader["PersonalNote"]);
+                        customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
+                        customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
+
+                        customerList.Add(customer);
+                    }
+                }
+                    return customerList;
+                }
+            }
+
+            public List<CustomerModel> GetActiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+            {
+                List<CustomerModel> customerList = new List<CustomerModel>();
+
+            using (SqlConnection connection = this.connection())
+            {
+                string query = $"SELECT * FROM Customer WHERE Inactive = 0";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+
+                        CustomerModel customer = new CustomerModel();
+                        customer.CustomerId = Convert.ToInt32(reader["CustomerID"]);
+                        customer.MembershipId = Convert.ToInt32(reader["MembershipID"]);
+                        customer.FirstName = Convert.ToString(reader["FirstName"]);
+                        customer.LastName = Convert.ToString(reader["LastName"]);
+                        customer.Email = Convert.ToString(reader["Email"]);
+                        customer.Phone = Convert.ToString(reader["Phone"]);
+                        customer.Birthday = Convert.ToDateTime(reader["Birthday"]);
+                        customer.PersonalNote = Convert.ToString(reader["PersonalNote"]);
+                        customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
+                        customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
+
+
+                        customerList.Add(customer);
+                    }
+                }
+                    return customerList;
+                }
+            }
+
+
+            #region helper metode
+            internal SqlConnection connection()
+            {
+
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                Console.WriteLine("Connection to database established.\n");
+                return connection;
+            }
+            #endregion
+
+        }
+    }
+

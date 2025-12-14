@@ -10,8 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitHubManagement.Models;
-using FitHubManagement.DataLogic.CustomerDL;
 using System.Linq.Expressions;
+using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.UI.CustomerUI
 {
@@ -36,7 +36,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                GetAllCustomerDL customerDL = new GetAllCustomerDL();
+                CustomerCRUD customerDL = new CustomerCRUD();
                 List<CustomerModel> customers = customerDL.GetAllCustomer();
 
                 CustomerListBox.Items.Clear();
@@ -62,7 +62,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                GetAllCustomerDL customerDL = new GetAllCustomerDL();
+                CustomerCRUD customerDL = new CustomerCRUD();
                 List<CustomerModel> customers = customerDL.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
@@ -87,8 +87,8 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-               
-                GetAllCustomerDL customerDL = new GetAllCustomerDL();
+
+                CustomerCRUD customerDL = new CustomerCRUD();
                 List<CustomerModel> customers = customerDL.GetIactiveCustomer();
 
                 CustomerListBox.Items.Clear();

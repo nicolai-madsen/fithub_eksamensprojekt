@@ -1,4 +1,4 @@
-﻿using FitHubManagement.Models;
+﻿/*using FitHubManagement.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections;
@@ -135,11 +135,7 @@ namespace FitHubManagement.DataLogic.CustomerDL
     }
 }
 
-
-// Tilføj en kolonne med fulde navne til visning
-/* dt.Columns.Add("FullName", typeof(string));*/
-
-
-
+ Tilføj en kolonne med fulde navne til visning
+ dt.Columns.Add("FullName", typeof(string));*/
 
 
