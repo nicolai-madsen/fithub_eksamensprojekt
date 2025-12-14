@@ -152,6 +152,7 @@
             textBox1 = new TextBox();
             button3 = new Button();
             pnlSearchActivity = new Panel();
+            chkFilterByDate = new CheckBox();
             btnSearchGet = new Button();
             cmbSearchLocation = new ComboBox();
             dTPSearchDate = new DateTimePicker();
@@ -165,7 +166,6 @@
             label3 = new Label();
             btnSearchActivity = new Button();
             button4 = new Button();
-            chkFilterByDate = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
             pnlCreateActivity.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
@@ -343,7 +343,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(261, 337);
+            button3.Location = new Point(260, 337);
             button3.Margin = new Padding(2, 3, 2, 3);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
@@ -370,6 +370,16 @@
             pnlSearchActivity.Size = new Size(492, 371);
             pnlSearchActivity.TabIndex = 20;
             pnlSearchActivity.Paint += pnlSearcActivity_Paint;
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(260, 101);
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(79, 19);
+            chkFilterByDate.TabIndex = 20;
+            chkFilterByDate.Text = "Brug Dato";
+            chkFilterByDate.UseVisualStyleBackColor = true;
             // 
             // btnSearchGet
             // 
@@ -497,7 +507,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(602, 349);
+            button4.Location = new Point(602, 337);
             button4.Margin = new Padding(2, 3, 2, 3);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
@@ -505,16 +515,6 @@
             button4.Text = "Tilbage";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
-            // 
-            // chkFilterByDate
-            // 
-            chkFilterByDate.AutoSize = true;
-            chkFilterByDate.Location = new Point(260, 101);
-            chkFilterByDate.Name = "chkFilterByDate";
-            chkFilterByDate.Size = new Size(79, 19);
-            chkFilterByDate.TabIndex = 20;
-            chkFilterByDate.Text = "Brug Dato";
-            chkFilterByDate.UseVisualStyleBackColor = true;
             // 
             // CreateActivityForm
             // 
@@ -525,8 +525,8 @@
             Controls.Add(btnSearchActivity);
             Controls.Add(btnActivityCreate);
             Controls.Add(label3);
-            Controls.Add(pnlSearchActivity);
             Controls.Add(pnlCreateActivity);
+            Controls.Add(pnlSearchActivity);
             Margin = new Padding(2, 3, 2, 3);
             MaximumSize = new Size(802, 441);
             MinimumSize = new Size(799, 404);
