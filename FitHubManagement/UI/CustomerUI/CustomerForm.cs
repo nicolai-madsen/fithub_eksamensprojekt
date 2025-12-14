@@ -40,6 +40,10 @@ namespace FitHubManagement.UI.CustomerUI
                 List<CustomerModel> customers = customerDL.GetAllCustomer();
 
                 CustomerListBox.Items.Clear();
+                CustomerListBox.Items.Add("Alle kunder");
+                CustomerListBox.Items.Add("------------------------------------------------------------------");
+
+
 
                 foreach (CustomerModel customer in customers)
                 {
@@ -62,6 +66,9 @@ namespace FitHubManagement.UI.CustomerUI
                 List<CustomerModel> customers = customerDL.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
+                CustomerListBox.Items.Add("Aktive kunder");
+                CustomerListBox.Items.Add("------------------------------------------------------------------");
+
 
                 foreach (CustomerModel customer in customers)
                 {
@@ -80,21 +87,26 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
+               
                 GetAllCustomerDL customerDL = new GetAllCustomerDL();
                 List<CustomerModel> customers = customerDL.GetIactiveCustomer();
 
                 CustomerListBox.Items.Clear();
+                CustomerListBox.Items.Add("Inaktive kunder");
+                CustomerListBox.Items.Add("------------------------------------------------------------------");
 
-                foreach(CustomerModel customer in customers)
+
+                foreach (CustomerModel customer in customers)
                 {
                     string line = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
                     CustomerListBox.Items.Add(line);
-                }  
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Fejl med tilkobling af database");
             }
         }
+ 
     }
 }
