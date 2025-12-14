@@ -18,7 +18,7 @@ namespace FitHubManagement.DataLogic.CustomerDL
         public void CreateCustomer(CustomerModel customer)
         {
 
-            SqlConnection connection = this.connection();
+            using (SqlConnection connection = this.connection())
 
             string insertSql = $"INSERT INTO Customer (MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote) VALUES (@MembershipID, @FirstName, @LastName, @Email, @Phone, @Birthday, @PersonalNote)";
             Console.WriteLine($"SQL Command: {insertSql}");
@@ -41,7 +41,7 @@ namespace FitHubManagement.DataLogic.CustomerDL
         internal SqlConnection connection()
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             Console.WriteLine("Connection to database established.\n");
             return connection;

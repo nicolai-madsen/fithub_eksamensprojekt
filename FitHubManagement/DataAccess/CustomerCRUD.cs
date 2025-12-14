@@ -16,9 +16,8 @@ namespace FitHubManagement.DataAccess
             //CREATE
             public void CreateCustomer(CustomerModel customer)
             {
-
-                SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string insertSql = $"INSERT INTO Customer (MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote) VALUES (@MembershipID, @FirstName, @LastName, @Email, @Phone, @Birthday, @PersonalNote)";
                 Console.WriteLine($"SQL Command: {insertSql}");
                 using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
@@ -36,29 +35,14 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
-            //DELETE
-            public void DeleteCustomer(CustomerModel customer)
-            {
-                // Open connection first
-                SqlConnection connection = this.connection();
 
-                // Remove student from database
-                string deleteSql = $"DELETE FROM Customer WHERE CustomerID = @customerId";
-                using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
-                {
-                    deleteCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
-
-                    int deleted = deleteCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{deleted} rows deleted.");
-                }
             }
 
             //UPDATE
             public void UpdateMembership(CustomerModel customer, string newValue)
             {
-
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET Membership = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -70,11 +54,13 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
+
+            }
+
             public void UpdateFirstName(CustomerModel customer, string newValue)
             {
-
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET FirstName = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -85,12 +71,12 @@ namespace FitHubManagement.DataAccess
                     Console.WriteLine($"{updated} rows updated.");
                 }
             }
+            }
 
             public void UpdateLastName(CustomerModel customer, string newValue)
             {
-
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET LastName = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -102,10 +88,13 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
+        
+            }
+
             public void UpdateEmail(CustomerModel customer, string newValue)
             {
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -115,13 +104,15 @@ namespace FitHubManagement.DataAccess
                     int updated = updateCmd.ExecuteNonQuery();
                     Console.WriteLine($"{updated} rows updated.");
                 }
+            }
+ 
             }
 
             public void UpdatePhone(CustomerModel customer, string newValue)
             {
-                using SqlConnection connection = this.connection();
-
-                string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
+            using (SqlConnection connection = this.connection())
+            {
+                string updateSql = $"UPDATE Customer SET Phone = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
                     updateCmd.Parameters.AddWithValue("@newValue", newValue);
@@ -131,11 +122,12 @@ namespace FitHubManagement.DataAccess
                     Console.WriteLine($"{updated} rows updated.");
                 }
             }
+            }
 
             public void UpdateBirthday(CustomerModel customer, DateTime newValue)
             {
-                using SqlConnection connection = this.connection();
-
+                using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET Birthday = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -145,12 +137,13 @@ namespace FitHubManagement.DataAccess
                     int updated = updateCmd.ExecuteNonQuery();
                     Console.WriteLine($"{updated} rows updated.");
                 }
+            } 
             }
 
             public void UpdatePersonalNote(CustomerModel customer, string newValue)
             {
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET PersonalNote = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -161,11 +154,12 @@ namespace FitHubManagement.DataAccess
                     Console.WriteLine($"{updated} rows updated.");
                 }
             }
+            }
 
             public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
             {
-                using SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                 {
@@ -176,6 +170,7 @@ namespace FitHubManagement.DataAccess
                     Console.WriteLine($"{updated} rows updated.");
                 }
             }
+            }
 
 
                 //READ
@@ -183,8 +178,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-                SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string query = $"SELECT * FROM Customer";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -195,7 +190,7 @@ namespace FitHubManagement.DataAccess
                     while (reader.Read())
                     {
                         CustomerModel customer = new CustomerModel();
-                    
+
                         customer.CustomerId = Convert.ToInt32(reader["CustomerID"]); // Convert.ToString/Int32 crasher hvis feltet er null, potentiel point of optimization
                         customer.MembershipId = Convert.ToInt32(reader["MembershipID"]);
                         customer.FirstName = Convert.ToString(reader["FirstName"]);
@@ -207,10 +202,10 @@ namespace FitHubManagement.DataAccess
                         customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
                         customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
 
-
                         customerList.Add(customer);
                     }
-                    return customerList;
+                }
+                   return customerList;
                 }
             }
 
@@ -218,8 +213,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-                SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
 
                 string query = $"SELECT * FROM Customer WHERE Inactive = 1";
 
@@ -244,10 +239,9 @@ namespace FitHubManagement.DataAccess
                         customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
                         customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
 
-                        string line = $"Medlems ID: {customer.CustomerId}, Medlem Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId}, Email:{customer.Email}, Telefon: {customer.Phone}, Fødselsdag: {customer.Birthday} Personlig Note: [{customer.PersonalNote}] Inaktiv: {customer.Inactive} CreatedDate: {customer.CreatedDate}";
-
                         customerList.Add(customer);
                     }
+                }
                     return customerList;
                 }
             }
@@ -256,8 +250,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-                SqlConnection connection = this.connection();
-
+            using (SqlConnection connection = this.connection())
+            {
                 string query = $"SELECT * FROM Customer WHERE Inactive = 0";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -280,10 +274,10 @@ namespace FitHubManagement.DataAccess
                         customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
                         customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
 
-                        string line = $"Medlems ID: {customer.CustomerId}, Medlem Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId}, Email:{customer.Email}, Telefon: {customer.Phone}, Fødselsdag: {customer.Birthday} Personlig Note: [{customer.PersonalNote}] Inaktiv: {customer.Inactive} CreatedDate: {customer.CreatedDate}";
 
                         customerList.Add(customer);
                     }
+                }
                     return customerList;
                 }
             }
