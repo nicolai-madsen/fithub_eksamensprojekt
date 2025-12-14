@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
-            StatusComboBox = new ComboBox();
-            label2 = new Label();
+            CustomerInfoBtn = new Button();
+            ShowActiveBtn = new Button();
+            ShowInactiveBtn = new Button();
+            ShowAllBtn = new Button();
+            EditBtn = new Button();
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
             EditCustomerPanel = new Panel();
@@ -69,17 +72,39 @@
             NewCustomerTitle = new Label();
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
-            EditBtn = new Button();
             BackBtn = new Button();
+            panel1 = new Panel();
+            textBox7 = new TextBox();
+            listBox1 = new ListBox();
+            label2 = new Label();
+            InfoBackBtn = new Button();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            textBox4 = new TextBox();
+            textBox5 = new TextBox();
+            label3 = new Label();
+            textBox6 = new TextBox();
+            label10 = new Label();
+            label18 = new Label();
+            label19 = new Label();
+            label20 = new Label();
+            label21 = new Label();
+            Kundeinformation = new Label();
             ListPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // ListPanel
             // 
-            ListPanel.Controls.Add(StatusComboBox);
-            ListPanel.Controls.Add(label2);
+            ListPanel.Controls.Add(CustomerInfoBtn);
+            ListPanel.Controls.Add(ShowActiveBtn);
+            ListPanel.Controls.Add(ShowInactiveBtn);
+            ListPanel.Controls.Add(ShowAllBtn);
+            ListPanel.Controls.Add(EditBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
             ListPanel.Location = new Point(772, 12);
@@ -87,24 +112,53 @@
             ListPanel.Size = new Size(578, 564);
             ListPanel.TabIndex = 8;
             // 
-            // StatusComboBox
+            // CustomerInfoBtn
             // 
-            StatusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Items.AddRange(new object[] { "Alle", "Aktiv", "Inaktiv" });
-            StatusComboBox.Location = new Point(118, 70);
-            StatusComboBox.Name = "StatusComboBox";
-            StatusComboBox.Size = new Size(151, 28);
-            StatusComboBox.TabIndex = 13;
+            CustomerInfoBtn.Location = new Point(63, 423);
+            CustomerInfoBtn.Name = "CustomerInfoBtn";
+            CustomerInfoBtn.Size = new Size(116, 29);
+            CustomerInfoBtn.TabIndex = 20;
+            CustomerInfoBtn.Text = "Information";
+            CustomerInfoBtn.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // ShowActiveBtn
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(63, 73);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 20);
-            label2.TabIndex = 12;
-            label2.Text = "Status";
+            ShowActiveBtn.Location = new Point(195, 82);
+            ShowActiveBtn.Name = "ShowActiveBtn";
+            ShowActiveBtn.Size = new Size(94, 29);
+            ShowActiveBtn.TabIndex = 19;
+            ShowActiveBtn.Text = "Vis aktiv";
+            ShowActiveBtn.UseVisualStyleBackColor = true;
+            ShowActiveBtn.Click += ShowActiveBtn_Click;
+            // 
+            // ShowInactiveBtn
+            // 
+            ShowInactiveBtn.Location = new Point(320, 82);
+            ShowInactiveBtn.Name = "ShowInactiveBtn";
+            ShowInactiveBtn.Size = new Size(94, 29);
+            ShowInactiveBtn.TabIndex = 18;
+            ShowInactiveBtn.Text = "Vis inaktiv";
+            ShowInactiveBtn.UseVisualStyleBackColor = true;
+            ShowInactiveBtn.Click += ShowInactiveBtn_Click;
+            // 
+            // ShowAllBtn
+            // 
+            ShowAllBtn.Location = new Point(63, 82);
+            ShowAllBtn.Name = "ShowAllBtn";
+            ShowAllBtn.Size = new Size(94, 29);
+            ShowAllBtn.TabIndex = 17;
+            ShowAllBtn.Text = "Vis alle";
+            ShowAllBtn.UseVisualStyleBackColor = true;
+            ShowAllBtn.Click += ShowBtn_Click;
+            // 
+            // EditBtn
+            // 
+            EditBtn.Location = new Point(405, 423);
+            EditBtn.Name = "EditBtn";
+            EditBtn.Size = new Size(94, 29);
+            EditBtn.TabIndex = 15;
+            EditBtn.Text = "Rediger";
+            EditBtn.UseVisualStyleBackColor = true;
             // 
             // ChooseCustomerTitle
             // 
@@ -452,38 +506,203 @@
             // 
             // NewCustomerBtn
             // 
-            NewCustomerBtn.Location = new Point(631, 184);
+            NewCustomerBtn.Location = new Point(631, 252);
             NewCustomerBtn.Name = "NewCustomerBtn";
             NewCustomerBtn.Size = new Size(94, 29);
             NewCustomerBtn.TabIndex = 14;
             NewCustomerBtn.Text = "Ny medlem";
             NewCustomerBtn.UseVisualStyleBackColor = true;
             // 
-            // EditBtn
-            // 
-            EditBtn.Location = new Point(631, 240);
-            EditBtn.Name = "EditBtn";
-            EditBtn.Size = new Size(94, 29);
-            EditBtn.TabIndex = 15;
-            EditBtn.Text = "Rediger";
-            EditBtn.UseVisualStyleBackColor = true;
-            // 
             // BackBtn
             // 
-            BackBtn.Location = new Point(631, 311);
+            BackBtn.Location = new Point(631, 386);
             BackBtn.Name = "BackBtn";
             BackBtn.Size = new Size(94, 29);
             BackBtn.TabIndex = 16;
             BackBtn.Text = "Tilbage";
             BackBtn.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(textBox7);
+            panel1.Controls.Add(listBox1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(InfoBackBtn);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(textBox4);
+            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(textBox6);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(label18);
+            panel1.Controls.Add(label19);
+            panel1.Controls.Add(label20);
+            panel1.Controls.Add(label21);
+            panel1.Controls.Add(Kundeinformation);
+            panel1.Location = new Point(711, 496);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(613, 451);
+            panel1.TabIndex = 37;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(428, 94);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(125, 27);
+            textBox7.TabIndex = 40;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(373, 182);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(187, 104);
+            listBox1.TabIndex = 39;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(373, 153);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 20);
+            label2.TabIndex = 38;
+            label2.Text = "Bookede hold";
+            // 
+            // InfoBackBtn
+            // 
+            InfoBackBtn.Location = new Point(481, 377);
+            InfoBackBtn.Name = "InfoBackBtn";
+            InfoBackBtn.Size = new Size(94, 29);
+            InfoBackBtn.TabIndex = 36;
+            InfoBackBtn.Text = "Tilbage";
+            InfoBackBtn.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(373, 97);
+            label1.Name = "label1";
+            label1.Size = new Size(49, 20);
+            label1.TabIndex = 31;
+            label1.Text = "Status";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(198, 309);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(368, 53);
+            textBox1.TabIndex = 29;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(198, 266);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 28;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(198, 228);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 27;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(198, 184);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(125, 27);
+            textBox4.TabIndex = 26;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(198, 141);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(125, 27);
+            textBox5.TabIndex = 25;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(60, 309);
+            label3.Name = "label3";
+            label3.Size = new Size(47, 20);
+            label3.TabIndex = 23;
+            label3.Text = "Notat";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(198, 90);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(125, 27);
+            textBox6.TabIndex = 22;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(60, 231);
+            label10.Name = "label10";
+            label10.Size = new Size(50, 20);
+            label10.TabIndex = 21;
+            label10.Text = "Phone";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(60, 266);
+            label18.Name = "label18";
+            label18.Size = new Size(84, 20);
+            label18.TabIndex = 20;
+            label18.Text = "Fødselsdag";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(60, 187);
+            label19.Name = "label19";
+            label19.Size = new Size(46, 20);
+            label19.TabIndex = 19;
+            label19.Text = "Email";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(60, 141);
+            label20.Name = "label20";
+            label20.Size = new Size(71, 20);
+            label20.TabIndex = 18;
+            label20.Text = "Efternavn";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(60, 93);
+            label21.Name = "label21";
+            label21.Size = new Size(61, 20);
+            label21.TabIndex = 17;
+            label21.Text = "Fornavn";
+            // 
+            // Kundeinformation
+            // 
+            Kundeinformation.AutoSize = true;
+            Kundeinformation.Font = new Font("Segoe UI", 12F);
+            Kundeinformation.Location = new Point(60, 34);
+            Kundeinformation.Name = "Kundeinformation";
+            Kundeinformation.Size = new Size(171, 28);
+            Kundeinformation.TabIndex = 13;
+            Kundeinformation.Text = "Kundeinformation";
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1397, 874);
+            ClientSize = new Size(1397, 986);
+            Controls.Add(panel1);
             Controls.Add(BackBtn);
-            Controls.Add(EditBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
             Controls.Add(ListPanel);
@@ -497,6 +716,8 @@
             EditCustomerPanel.PerformLayout();
             NewCustomerPanel.ResumeLayout(false);
             NewCustomerPanel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -544,5 +765,29 @@
         private Button NewCustomerConfirmBtn;
         private Button EditCustomerCancelBtn;
         private ComboBox StatusComboBox;
+        private Button ShowAllBtn;
+        private Button ShowActiveBtn;
+        private Button ShowInactiveBtn;
+        private Button CustomerInfoBtn;
+        private Panel panel1;
+        private Button button1;
+        private Button InfoBackBtn;
+        private Label label1;
+        private ComboBox comboBox1;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private TextBox textBox4;
+        private TextBox textBox5;
+        private Label label3;
+        private TextBox textBox6;
+        private Label label10;
+        private Label label18;
+        private Label label19;
+        private Label label20;
+        private Label label21;
+        private Label Kundeinformation;
+        private TextBox textBox7;
+        private ListBox listBox1;
     }
 }
