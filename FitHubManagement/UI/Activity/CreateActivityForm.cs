@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +34,7 @@ namespace FitHubManagement.UI.Activity
         //---------------------------------------------MONA--------------------------------
         private List<string> locations;
         private List<string> activityType;
-
+        private List<string> duration;
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
@@ -52,6 +53,11 @@ namespace FitHubManagement.UI.Activity
 
             comboBox2.DataSource = activityType;
             comboBox2.SelectedIndex = -1;
+
+            duration = activityService.GetAllDuration();
+
+            comboBox1.DataSource = duration;
+            comboBox1.SelectedIndex = -1;
         }
 
         private bool ValidateComboBox(ComboBox cmb)
@@ -65,26 +71,7 @@ namespace FitHubManagement.UI.Activity
         }
 
 
-        private void btnCreateActivity_Click(object sender, EventArgs e)
-        {
-            // Valider comboboxes FØRST
-            if (!ValidateComboBox(cmbLocationActivity)) return;
-            if (!ValidateComboBox(comboBox2)) return;
 
-            // NumericUpDown
-            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; // Læser input og konverterer numericUpDpwn til int, da det default er decimal
-
-            // Location via index
-            int locationIndex = cmbLocationActivity.SelectedIndex;
-            string activityLocation = locations[locationIndex];
-
-            // Activity type via index
-            int activityTypeIndex = comboBox2.SelectedIndex;
-            string activityTypeName = activityType[activityTypeIndex];
-
-            // Date
-            DateTime chosenDate = dateTimePicker1.Value;
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -129,6 +116,53 @@ namespace FitHubManagement.UI.Activity
         {
             this.Owner.Show();
             this.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nmrUpDwnMaxPartisipant_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlCreateActivity_Paint(object sender, PaintEventArgs e) //Knap til opret hold i panelet
+        {
+
+
+        }
+
+        private void btnCreateActivityPanel_Click(object sender, EventArgs e)
+        {
+            // Valider comboboxes FØRST
+            if (!ValidateComboBox(cmbLocationActivity)) return;
+            if (!ValidateComboBox(comboBox2)) return;
+            if (!ValidateComboBox(comboBox1)) return;
+
+            // NumericUpDown
+            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; // Læser input og konverterer numericUpDpwn til int, da det default er decimal
+
+            // Location via index
+            int locationIndex = cmbLocationActivity.SelectedIndex;
+            string activityLocation = locations[locationIndex];
+
+            // Activity type via index
+            int activityTypeIndex = comboBox2.SelectedIndex;
+            string activityTypeName = activityType[activityTypeIndex];
+
+            //Duration via index
+            int durationIndex = comboBox1.SelectedIndex;
+            string activityDuration = duration[durationIndex];
+
+            // Date
+            DateTime chosenDate = dateTimePicker1.Value;
+        }
+
+        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         //Panel søgning

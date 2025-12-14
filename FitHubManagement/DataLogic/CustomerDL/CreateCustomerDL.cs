@@ -9,7 +9,7 @@ using System.Drawing.Text;
 
 namespace FitHubManagement.DataLogic.CustomerDL
 {
-    internal class CreateCustomerDL
+    public class CreateCustomerDL
     {
 
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
