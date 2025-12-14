@@ -43,7 +43,6 @@ namespace FitHubManagement.DataLogic.CustomerDL
                     customer.Inactive = Convert.ToBoolean(reader["Inactive"]);
                     customer.CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
 
-                    string line = $"Medlems ID: {customer.CustomerId}, Medlem Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId}, Email:{customer.Email}, Telefon: {customer.Phone}, Fødselsdag: {customer.Birthday} Personlig Note: [{customer.PersonalNote}] Inaktiv: {customer.Inactive} CreatedDate: {customer.CreatedDate}";
 
                     customerList.Add(customer);
                 }
