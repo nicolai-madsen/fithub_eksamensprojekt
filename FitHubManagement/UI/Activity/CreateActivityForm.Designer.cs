@@ -142,13 +142,13 @@
             label4 = new Label();
             label5 = new Label();
             lblDateActivity = new Label();
-            btnCreateActivity = new Button();
             toolTip1 = new ToolTip(components);
             cmbLocationActivity = new ComboBox();
             dateTimePicker2 = new DateTimePicker();
             lblTimeActivity = new Label();
             pnlCreateActivity = new Panel();
-            textBox1 = new TextBox();
+            comboBox1 = new ComboBox();
+            btnCreateActivityPanel = new Button();
             button3 = new Button();
             pnlSearchActivity = new Panel();
             btnSearchGet = new Button();
@@ -164,7 +164,7 @@
             label3 = new Label();
             btnSearchActivity = new Button();
             button4 = new Button();
-            comboBox1 = new ComboBox();
+            cmbInstructorCreateActivity = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
             pnlCreateActivity.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
@@ -173,20 +173,17 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(198, 205);
+            comboBox2.Location = new Point(228, 136);
             comboBox2.Margin = new Padding(6, 8, 6, 8);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(327, 49);
             comboBox2.TabIndex = 1;
-            comboBox2.SelectedIndex = -1;
-
-
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(784, 201);
+            dateTimePicker1.Location = new Point(814, 132);
             dateTimePicker1.Margin = new Padding(6, 8, 6, 8);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(246, 47);
@@ -194,16 +191,18 @@
             // 
             // nmrUpDwnMaxPartisipant
             // 
-            nmrUpDwnMaxPartisipant.Location = new Point(198, 652);
+            nmrUpDwnMaxPartisipant.Location = new Point(228, 583);
             nmrUpDwnMaxPartisipant.Margin = new Padding(6, 8, 6, 8);
+            nmrUpDwnMaxPartisipant.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             nmrUpDwnMaxPartisipant.Name = "nmrUpDwnMaxPartisipant";
             nmrUpDwnMaxPartisipant.Size = new Size(115, 47);
             nmrUpDwnMaxPartisipant.TabIndex = 5;
+            nmrUpDwnMaxPartisipant.ValueChanged += nmrUpDwnMaxPartisipant_ValueChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(23, 205);
+            label1.Location = new Point(53, 136);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
             label1.Size = new Size(141, 41);
@@ -213,7 +212,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(23, 314);
+            label2.Location = new Point(53, 245);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
             label2.Size = new Size(146, 41);
@@ -223,7 +222,7 @@
             // LblDuration
             // 
             LblDuration.AutoSize = true;
-            LblDuration.Location = new Point(23, 535);
+            LblDuration.Location = new Point(53, 466);
             LblDuration.Margin = new Padding(6, 0, 6, 0);
             LblDuration.Name = "LblDuration";
             LblDuration.Size = new Size(136, 41);
@@ -234,7 +233,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 428);
+            label4.Location = new Point(51, 359);
             label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
             label4.Size = new Size(132, 41);
@@ -244,7 +243,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(17, 654);
+            label5.Location = new Point(47, 585);
             label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
             label5.Size = new Size(147, 41);
@@ -254,39 +253,27 @@
             // lblDateActivity
             // 
             lblDateActivity.AutoSize = true;
-            lblDateActivity.Location = new Point(680, 205);
+            lblDateActivity.Location = new Point(710, 136);
             lblDateActivity.Margin = new Padding(6, 0, 6, 0);
             lblDateActivity.Name = "lblDateActivity";
             lblDateActivity.Size = new Size(89, 41);
             lblDateActivity.TabIndex = 11;
             lblDateActivity.Text = "Dato:";
             // 
-            // btnCreateActivity
-            // 
-            btnCreateActivity.Location = new Point(287, 920);
-            btnCreateActivity.Margin = new Padding(6, 8, 6, 8);
-            btnCreateActivity.Name = "btnCreateActivity";
-            btnCreateActivity.Size = new Size(183, 64);
-            btnCreateActivity.TabIndex = 12;
-            btnCreateActivity.Text = "Opret";
-            btnCreateActivity.UseVisualStyleBackColor = true;
-            btnCreateActivity.Click += btnCreateActivity_Click;
-            // 
             // cmbLocationActivity
             // 
             cmbLocationActivity.FormattingEnabled = true;
-            cmbLocationActivity.Location = new Point(198, 424);
+            cmbLocationActivity.Location = new Point(228, 355);
             cmbLocationActivity.Margin = new Padding(2);
             cmbLocationActivity.Name = "cmbLocationActivity";
             cmbLocationActivity.Size = new Size(327, 49);
             cmbLocationActivity.TabIndex = 13;
-            cmbLocationActivity.SelectedIndex = -1;
             // 
             // dateTimePicker2
             // 
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(784, 275);
+            dateTimePicker2.Location = new Point(814, 206);
             dateTimePicker2.Margin = new Padding(2);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.ShowUpDown = true;
@@ -296,7 +283,7 @@
             // lblTimeActivity
             // 
             lblTimeActivity.AutoSize = true;
-            lblTimeActivity.Location = new Point(680, 283);
+            lblTimeActivity.Location = new Point(710, 214);
             lblTimeActivity.Margin = new Padding(2, 0, 2, 0);
             lblTimeActivity.Name = "lblTimeActivity";
             lblTimeActivity.Size = new Size(66, 41);
@@ -305,12 +292,12 @@
             // 
             // pnlCreateActivity
             // 
+            pnlCreateActivity.Controls.Add(cmbInstructorCreateActivity);
             pnlCreateActivity.Controls.Add(comboBox1);
-            pnlCreateActivity.Controls.Add(textBox1);
+            pnlCreateActivity.Controls.Add(btnCreateActivityPanel);
             pnlCreateActivity.Controls.Add(button3);
             pnlCreateActivity.Controls.Add(dateTimePicker1);
             pnlCreateActivity.Controls.Add(cmbLocationActivity);
-            pnlCreateActivity.Controls.Add(btnCreateActivity);
             pnlCreateActivity.Controls.Add(lblTimeActivity);
             pnlCreateActivity.Controls.Add(LblDuration);
             pnlCreateActivity.Controls.Add(label5);
@@ -326,18 +313,31 @@
             pnlCreateActivity.Name = "pnlCreateActivity";
             pnlCreateActivity.Size = new Size(1235, 1095);
             pnlCreateActivity.TabIndex = 16;
+            pnlCreateActivity.Paint += pnlCreateActivity_Paint;
             // 
-            // textBox1
+            // comboBox1
             // 
-            textBox1.Location = new Point(198, 324);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(327, 47);
-            textBox1.TabIndex = 19;
-           
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(228, 458);
+            comboBox1.Margin = new Padding(2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(327, 49);
+            comboBox1.TabIndex = 20;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // btnCreateActivityPanel
+            // 
+            btnCreateActivityPanel.Location = new Point(355, 798);
+            btnCreateActivityPanel.Name = "btnCreateActivityPanel";
+            btnCreateActivityPanel.Size = new Size(188, 58);
+            btnCreateActivityPanel.TabIndex = 21;
+            btnCreateActivityPanel.Text = "Opret hold";
+            btnCreateActivityPanel.UseVisualStyleBackColor = true;
+            btnCreateActivityPanel.Click += btnCreateActivityPanel_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(635, 920);
+            button3.Location = new Point(1011, 949);
             button3.Margin = new Padding(6, 8, 6, 8);
             button3.Name = "button3";
             button3.Size = new Size(183, 64);
@@ -392,7 +392,6 @@
             dTPSearchDate.Name = "dTPSearchDate";
             dTPSearchDate.Size = new Size(397, 47);
             dTPSearchDate.TabIndex = 6;
-            
             // 
             // cmbSearchActivity
             // 
@@ -402,7 +401,6 @@
             cmbSearchActivity.Name = "cmbSearchActivity";
             cmbSearchActivity.Size = new Size(397, 49);
             cmbSearchActivity.TabIndex = 5;
-            cmbSearchActivity.SelectedIndex = -1;
             // 
             // lstbxSearchGet
             // 
@@ -459,7 +457,7 @@
             // 
             // btnActivityCreate
             // 
-            btnActivityCreate.Location = new Point(1462, 262);
+            btnActivityCreate.Location = new Point(1446, 141);
             btnActivityCreate.Margin = new Padding(6, 8, 6, 8);
             btnActivityCreate.Name = "btnActivityCreate";
             btnActivityCreate.Size = new Size(183, 64);
@@ -501,15 +499,15 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // comboBox1
+            // cmbInstructorCreateActivity
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(198, 527);
-            comboBox1.Margin = new Padding(2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(327, 49);
-            comboBox1.TabIndex = 20;
-            comboBox1.SelectedIndex = -1;
+            cmbInstructorCreateActivity.FormattingEnabled = true;
+            cmbInstructorCreateActivity.Location = new Point(228, 245);
+            cmbInstructorCreateActivity.Margin = new Padding(6, 8, 6, 8);
+            cmbInstructorCreateActivity.Name = "cmbInstructorCreateActivity";
+            cmbInstructorCreateActivity.Size = new Size(327, 49);
+            cmbInstructorCreateActivity.TabIndex = 22;
+            cmbInstructorCreateActivity.SelectedIndexChanged += cmbInstructorCreateActivity_SelectedIndexChanged;
             // 
             // CreateActivityForm
             // 
@@ -517,9 +515,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1893, 1050);
             Controls.Add(pnlCreateActivity);
+            Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(btnSearchActivity);
-            Controls.Add(btnActivityCreate);
             Controls.Add(label3);
             Controls.Add(pnlSearchActivity);
             Margin = new Padding(6, 8, 6, 8);
@@ -547,7 +545,6 @@
         private Label label4;
         private Label label5;
         private Label lblDateActivity;
-        private Button btnCreateActivity;
         private ToolTip toolTip1;
         private ComboBox cmbLocationActivity;
         private DateTimePicker dateTimePicker2;
@@ -561,7 +558,6 @@
         private Panel pnlSearchActivity;
         private DateTimePicker dateTimePicker3;
         private ComboBox comboBox3;
-        private ListBox listBox1;
         private Label label9;
         private Label label8;
         private Label label7;
@@ -577,8 +573,9 @@
         private Label lblSearchDate;
         private Label lblSearchActivity;
         private Label lblSearchCriteria;
-        private TextBox textBox1;
         private ComboBox comboBox1;
+        private Button btnCreateActivityPanel;
+        private ComboBox cmbInstructorCreateActivity;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 
