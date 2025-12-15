@@ -29,6 +29,7 @@ namespace FitHubManagement.DataAccess
                     insertCmd.Parameters.AddWithValue("@Phone", customer.Phone);
                     insertCmd.Parameters.AddWithValue("@Birthday", customer.Birthday);
                     insertCmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
+                   
 
                     int changed = insertCmd.ExecuteNonQuery(); // Tæller mængden af rows der blev ændret af Sql kommando
                     Console.WriteLine($"Created {changed} new Customer.");
@@ -209,7 +210,7 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
-            public List<CustomerModel> GetIactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+          public List<CustomerModel> GetIactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
@@ -280,7 +281,7 @@ namespace FitHubManagement.DataAccess
                 }
                     return customerList;
                 }
-            }
+            } 
 
 
             #region helper metode
@@ -294,6 +295,6 @@ namespace FitHubManagement.DataAccess
             }
             #endregion
 
-        }
+        } 
     }
 

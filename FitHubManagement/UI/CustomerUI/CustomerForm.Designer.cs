@@ -55,6 +55,12 @@
             label16 = new Label();
             EditCustomerTitle = new Label();
             NewCustomerPanel = new Panel();
+            label25 = new Label();
+            textBox1 = new TextBox();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            Required = new Label();
             NewCustomerCancelBtn = new Button();
             NewCustomerConfirmBtn = new Button();
             Notes = new TextBox();
@@ -73,19 +79,19 @@
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
             BackBtn = new Button();
-            panel1 = new Panel();
-            textBox7 = new TextBox();
-            listBox1 = new ListBox();
+            CustomerInformationPanel = new Panel();
+            statusInfoTxt = new TextBox();
+            activityInfoList = new ListBox();
             label2 = new Label();
             InfoBackBtn = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            noteInfoTxt = new TextBox();
+            birthdayInfoTxt = new TextBox();
+            phoneInfoTxt = new TextBox();
+            emailInfoTxt = new TextBox();
+            lastNameInfoTxt = new TextBox();
             label3 = new Label();
-            textBox6 = new TextBox();
+            NameInfoTxt = new TextBox();
             label10 = new Label();
             label18 = new Label();
             label19 = new Label();
@@ -95,7 +101,7 @@
             ListPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
-            panel1.SuspendLayout();
+            CustomerInformationPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ListPanel
@@ -120,6 +126,7 @@
             CustomerInfoBtn.TabIndex = 20;
             CustomerInfoBtn.Text = "Information";
             CustomerInfoBtn.UseVisualStyleBackColor = true;
+            CustomerInfoBtn.Click += CustomerInfoBtn_Click;
             // 
             // ShowActiveBtn
             // 
@@ -349,6 +356,12 @@
             // 
             // NewCustomerPanel
             // 
+            NewCustomerPanel.Controls.Add(label25);
+            NewCustomerPanel.Controls.Add(textBox1);
+            NewCustomerPanel.Controls.Add(label24);
+            NewCustomerPanel.Controls.Add(label23);
+            NewCustomerPanel.Controls.Add(label22);
+            NewCustomerPanel.Controls.Add(Required);
             NewCustomerPanel.Controls.Add(NewCustomerCancelBtn);
             NewCustomerPanel.Controls.Add(NewCustomerConfirmBtn);
             NewCustomerPanel.Controls.Add(Notes);
@@ -369,6 +382,66 @@
             NewCustomerPanel.Size = new Size(584, 426);
             NewCustomerPanel.TabIndex = 9;
             // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(336, 88);
+            label25.Name = "label25";
+            label25.Size = new Size(99, 20);
+            label25.TabIndex = 41;
+            label25.Text = "Medlemstype";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(441, 85);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 40;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 11F);
+            label24.ForeColor = Color.Red;
+            label24.Location = new Point(150, 221);
+            label24.Name = "label24";
+            label24.Size = new Size(20, 25);
+            label24.TabIndex = 39;
+            label24.Text = "*";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 11F);
+            label23.ForeColor = Color.Red;
+            label23.Location = new Point(150, 182);
+            label23.Name = "label23";
+            label23.Size = new Size(20, 25);
+            label23.TabIndex = 38;
+            label23.Text = "*";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 11F);
+            label22.ForeColor = Color.Red;
+            label22.Location = new Point(150, 138);
+            label22.Name = "label22";
+            label22.Size = new Size(20, 25);
+            label22.TabIndex = 37;
+            label22.Text = "*";
+            // 
+            // Required
+            // 
+            Required.AutoSize = true;
+            Required.Font = new Font("Segoe UI", 11F);
+            Required.ForeColor = Color.Red;
+            Required.Location = new Point(150, 87);
+            Required.Name = "Required";
+            Required.Size = new Size(20, 25);
+            Required.TabIndex = 36;
+            Required.Text = "*";
+            // 
             // NewCustomerCancelBtn
             // 
             NewCustomerCancelBtn.Location = new Point(369, 374);
@@ -377,6 +450,7 @@
             NewCustomerCancelBtn.TabIndex = 35;
             NewCustomerCancelBtn.Text = "Annuler";
             NewCustomerCancelBtn.UseVisualStyleBackColor = true;
+            NewCustomerCancelBtn.Click += NewCustomerCancelBtn_Click;
             // 
             // NewCustomerConfirmBtn
             // 
@@ -386,6 +460,7 @@
             NewCustomerConfirmBtn.TabIndex = 34;
             NewCustomerConfirmBtn.Text = "Gem";
             NewCustomerConfirmBtn.UseVisualStyleBackColor = true;
+            NewCustomerConfirmBtn.Click += NewCustomerConfirmBtn_Click;
             // 
             // Notes
             // 
@@ -522,45 +597,46 @@
             BackBtn.Text = "Tilbage";
             BackBtn.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // CustomerInformationPanel
             // 
-            panel1.Controls.Add(textBox7);
-            panel1.Controls.Add(listBox1);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(InfoBackBtn);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox5);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(label18);
-            panel1.Controls.Add(label19);
-            panel1.Controls.Add(label20);
-            panel1.Controls.Add(label21);
-            panel1.Controls.Add(Kundeinformation);
-            panel1.Location = new Point(711, 496);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(613, 451);
-            panel1.TabIndex = 37;
+            CustomerInformationPanel.Controls.Add(statusInfoTxt);
+            CustomerInformationPanel.Controls.Add(activityInfoList);
+            CustomerInformationPanel.Controls.Add(label2);
+            CustomerInformationPanel.Controls.Add(InfoBackBtn);
+            CustomerInformationPanel.Controls.Add(label1);
+            CustomerInformationPanel.Controls.Add(noteInfoTxt);
+            CustomerInformationPanel.Controls.Add(birthdayInfoTxt);
+            CustomerInformationPanel.Controls.Add(phoneInfoTxt);
+            CustomerInformationPanel.Controls.Add(emailInfoTxt);
+            CustomerInformationPanel.Controls.Add(lastNameInfoTxt);
+            CustomerInformationPanel.Controls.Add(label3);
+            CustomerInformationPanel.Controls.Add(NameInfoTxt);
+            CustomerInformationPanel.Controls.Add(label10);
+            CustomerInformationPanel.Controls.Add(label18);
+            CustomerInformationPanel.Controls.Add(label19);
+            CustomerInformationPanel.Controls.Add(label20);
+            CustomerInformationPanel.Controls.Add(label21);
+            CustomerInformationPanel.Controls.Add(Kundeinformation);
+            CustomerInformationPanel.Location = new Point(737, 532);
+            CustomerInformationPanel.Name = "CustomerInformationPanel";
+            CustomerInformationPanel.Size = new Size(613, 451);
+            CustomerInformationPanel.TabIndex = 37;
             // 
-            // textBox7
+            // statusInfoTxt
             // 
-            textBox7.Location = new Point(428, 94);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(125, 27);
-            textBox7.TabIndex = 40;
+            statusInfoTxt.Location = new Point(428, 94);
+            statusInfoTxt.Name = "statusInfoTxt";
+            statusInfoTxt.ReadOnly = true;
+            statusInfoTxt.Size = new Size(125, 27);
+            statusInfoTxt.TabIndex = 40;
             // 
-            // listBox1
+            // activityInfoList
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(373, 182);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(187, 104);
-            listBox1.TabIndex = 39;
+            activityInfoList.FormattingEnabled = true;
+            activityInfoList.Location = new Point(373, 182);
+            activityInfoList.Name = "activityInfoList";
+            activityInfoList.Size = new Size(187, 104);
+            activityInfoList.TabIndex = 39;
             // 
             // label2
             // 
@@ -589,41 +665,46 @@
             label1.TabIndex = 31;
             label1.Text = "Status";
             // 
-            // textBox1
+            // noteInfoTxt
             // 
-            textBox1.Location = new Point(198, 309);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(368, 53);
-            textBox1.TabIndex = 29;
+            noteInfoTxt.Location = new Point(198, 309);
+            noteInfoTxt.Multiline = true;
+            noteInfoTxt.Name = "noteInfoTxt";
+            noteInfoTxt.ReadOnly = true;
+            noteInfoTxt.Size = new Size(368, 53);
+            noteInfoTxt.TabIndex = 29;
             // 
-            // textBox2
+            // birthdayInfoTxt
             // 
-            textBox2.Location = new Point(198, 266);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 28;
+            birthdayInfoTxt.Location = new Point(198, 266);
+            birthdayInfoTxt.Name = "birthdayInfoTxt";
+            birthdayInfoTxt.ReadOnly = true;
+            birthdayInfoTxt.Size = new Size(125, 27);
+            birthdayInfoTxt.TabIndex = 28;
             // 
-            // textBox3
+            // phoneInfoTxt
             // 
-            textBox3.Location = new Point(198, 228);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 27;
+            phoneInfoTxt.Location = new Point(198, 228);
+            phoneInfoTxt.Name = "phoneInfoTxt";
+            phoneInfoTxt.ReadOnly = true;
+            phoneInfoTxt.Size = new Size(125, 27);
+            phoneInfoTxt.TabIndex = 27;
             // 
-            // textBox4
+            // emailInfoTxt
             // 
-            textBox4.Location = new Point(198, 184);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 26;
+            emailInfoTxt.Location = new Point(198, 184);
+            emailInfoTxt.Name = "emailInfoTxt";
+            emailInfoTxt.ReadOnly = true;
+            emailInfoTxt.Size = new Size(125, 27);
+            emailInfoTxt.TabIndex = 26;
             // 
-            // textBox5
+            // lastNameInfoTxt
             // 
-            textBox5.Location = new Point(198, 141);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 25;
+            lastNameInfoTxt.Location = new Point(198, 141);
+            lastNameInfoTxt.Name = "lastNameInfoTxt";
+            lastNameInfoTxt.ReadOnly = true;
+            lastNameInfoTxt.Size = new Size(125, 27);
+            lastNameInfoTxt.TabIndex = 25;
             // 
             // label3
             // 
@@ -634,12 +715,13 @@
             label3.TabIndex = 23;
             label3.Text = "Notat";
             // 
-            // textBox6
+            // NameInfoTxt
             // 
-            textBox6.Location = new Point(198, 90);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 22;
+            NameInfoTxt.Location = new Point(198, 90);
+            NameInfoTxt.Name = "NameInfoTxt";
+            NameInfoTxt.ReadOnly = true;
+            NameInfoTxt.Size = new Size(125, 27);
+            NameInfoTxt.TabIndex = 22;
             // 
             // label10
             // 
@@ -701,7 +783,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1397, 986);
-            Controls.Add(panel1);
+            Controls.Add(CustomerInformationPanel);
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
@@ -716,8 +798,8 @@
             EditCustomerPanel.PerformLayout();
             NewCustomerPanel.ResumeLayout(false);
             NewCustomerPanel.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            CustomerInformationPanel.ResumeLayout(false);
+            CustomerInformationPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -769,25 +851,31 @@
         private Button ShowActiveBtn;
         private Button ShowInactiveBtn;
         private Button CustomerInfoBtn;
-        private Panel panel1;
+        private Panel CustomerInformationPanel;
         private Button button1;
         private Button InfoBackBtn;
         private Label label1;
         private ComboBox comboBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox noteInfoTxt;
+        private TextBox birthdayInfoTxt;
+        private TextBox phoneInfoTxt;
+        private TextBox emailInfoTxt;
+        private TextBox lastNameInfoTxt;
         private Label label3;
-        private TextBox textBox6;
+        private TextBox NameInfoTxt;
         private Label label10;
         private Label label18;
         private Label label19;
         private Label label20;
         private Label label21;
         private Label Kundeinformation;
-        private TextBox textBox7;
-        private ListBox listBox1;
+        private TextBox statusInfoTxt;
+        private ListBox activityInfoList;
+        private Label Required;
+        private Label label24;
+        private Label label23;
+        private Label label22;
+        private TextBox textBox1;
+        private Label label25;
     }
 }
