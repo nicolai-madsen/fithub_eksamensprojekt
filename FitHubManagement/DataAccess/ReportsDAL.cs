@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models.ReportModels;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace FitHubManagement.DataAccess
 {
     internal class ReportsDAL
     {
-        public static string connectionString = "Data Source=.;Initial Catalog=FitHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public static string connectionString =
+        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
 
         //__________________________GetAllActiveCustomer()_________________________________________
         public List<ActiveCustomerReportModel> GetAllActiveCustomer()

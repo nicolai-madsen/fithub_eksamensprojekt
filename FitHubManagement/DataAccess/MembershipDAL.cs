@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ namespace FitHubManagement.DataAccess
 {
     public class MembershipDAL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                                "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString =
+        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
 
         //CREATE
         public int CreateMembership(MembershipModel membership)
