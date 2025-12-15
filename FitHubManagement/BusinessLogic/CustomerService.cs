@@ -12,7 +12,7 @@ namespace FitHubManagement.BusinessLogic
  
     public class CustomerService
     {
-        private readonly CustomerCRUD repo = new(); //Repo refererer til DAL
+        private readonly CustomerDAL repo = new(); //Repo refererer til DAL
 
         //Create customer :))) 
         public void CreateCustomerBLL(CustomerModel customer)

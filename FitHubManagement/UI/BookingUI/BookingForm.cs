@@ -33,7 +33,7 @@ namespace FitHubManagement.UI.BookingUI
             string name = textBox1.Text;
             string phone = textBox2.Text;
 
-            CustomerCRUD customerDL = new CustomerCRUD();
+            CustomerDAL customerDL = new CustomerDAL();
             List<CustomerModel> customers = customerDL.GetAllCustomer();
 
 

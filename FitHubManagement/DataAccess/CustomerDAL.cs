@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.DataAccess
 {
-        public class CustomerCRUD
+        public class CustomerDAL
         {
             public static string connectionString = "Server=localhost;Database=FitHubDB;" +
                                            "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
