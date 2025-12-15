@@ -5,20 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     internal class ReportsDAL
     {
-        public static string connectionString = "Data Source=.;Initial Catalog=FitHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
         //__________________________GetAllActiveCustomer()_________________________________________
         public List<ActiveCustomerReportModel> GetAllActiveCustomer()
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-
-            Console.WriteLine("Connection to database established.");
 
             // Vælg felter fra databasen der skal bruges til at fylde rapport-DTO (ActiveCustomerReportModel.cs)
             // For hver Customer hentes også navnet på deres medlemskab (MembershipName) 
@@ -75,10 +72,8 @@ namespace FitHubManagement.DataAccess
         // Return den liste, så den kan bruges andre steder
         public List<PopularActivityReportModel> GetPopularActivities()
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-
-            Console.WriteLine("Connection to database established.");
 
             // Vælg felter fra databasen der skal bruges til at fylde rapport-DTO (PopularActivityReportModel.cs)
             // JOIN ActivityType, så vi får ActivityTypeName i stedet for ID (som er FK til Activity)

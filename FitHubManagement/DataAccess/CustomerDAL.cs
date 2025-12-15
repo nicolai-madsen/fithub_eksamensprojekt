@@ -5,18 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
         public class CustomerDAL
         {
-            public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                           "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
             //CREATE
             public void CreateCustomer(CustomerModel customer)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string insertSql = $"INSERT INTO Customer (MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote) VALUES (@MembershipID, @FirstName, @LastName, @Email, @Phone, @Birthday, @PersonalNote)";
                 Console.WriteLine($"SQL Command: {insertSql}");
@@ -42,7 +42,8 @@ namespace FitHubManagement.DataAccess
             //UPDATE
             public void UpdateMembership(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET Membership = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -60,7 +61,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdateFirstName(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET FirstName = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -76,7 +78,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdateLastName(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET LastName = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -94,7 +97,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdateEmail(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -111,7 +115,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdatePhone(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET Phone = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -127,7 +132,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdateBirthday(CustomerModel customer, DateTime newValue)
             {
-                using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET Birthday = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -143,7 +149,8 @@ namespace FitHubManagement.DataAccess
 
             public void UpdatePersonalNote(CustomerModel customer, string newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET PersonalNote = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -159,7 +166,8 @@ namespace FitHubManagement.DataAccess
 
             public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
             {
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
                 using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -179,7 +187,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string query = $"SELECT * FROM Customer";
 
@@ -214,7 +223,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
 
                 string query = $"SELECT * FROM Customer WHERE Inactive = 1";
@@ -251,7 +261,8 @@ namespace FitHubManagement.DataAccess
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
-            using (SqlConnection connection = this.connection())
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
             {
                 string query = $"SELECT * FROM Customer WHERE Inactive = 0";
 
@@ -288,9 +299,9 @@ namespace FitHubManagement.DataAccess
             internal SqlConnection connection()
             {
 
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-                Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection to database established.\n");
                 return connection;
             }
             #endregion
