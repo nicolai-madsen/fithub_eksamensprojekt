@@ -36,8 +36,8 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerCRUD customerDL = new CustomerCRUD();
-                List<CustomerModel> customers = customerDL.GetAllCustomer();
+                CustomerCRUD customerRead = new CustomerCRUD();
+                List<CustomerModel> customers = customerRead.GetAllCustomer();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Alle kunder");
@@ -47,9 +47,9 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string line = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
+                    string infoLine = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
 
-                    CustomerListBox.Items.Add(line);
+                    CustomerListBox.Items.Add(infoLine);
                 }
             }
             catch (Exception)
@@ -107,6 +107,78 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Fejl med tilkobling af database");
             }
         }
- 
+
+        private void CustomerInfoBtn_Click(object sender, EventArgs e) //SENERE
+        {
+            try
+            {
+                if (CustomerListBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Vælg kunde");
+                }
+                else
+                {
+                    //Kode for at fremheve infoPanel :)
+
+
+
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl med indlasting af medlem");
+            }
+
+
+        }
+
+        private void NewCustomerCancelBtn_Click(object sender, EventArgs e)
+        {
+            FirstName.Clear();
+            LastName.Clear();
+            Email.Clear();
+            Phone.Clear();
+            Birthday.Clear();
+            Notes.Clear();
+        }
+
+        private void NewCustomerConfirmBtn_Click(object sender, EventArgs e)
+        {
+            CustomerModel customer = new CustomerModel();
+            customer.FirstName = FirstName.Text;
+            customer.LastName = LastName.Text;
+            customer.Email = Email.Text;
+            customer.Phone = Phone.Text;
+            customer.MembershipId = 1;
+            customer.Birthday = DateTime.Now;
+            customer.PersonalNote = "";
+
+
+
+            try
+            {
+                service.CreateCustomerBLL(customer);
+
+                MessageBox.Show("Medlem opretted");
+                FirstName.Clear();
+                LastName.Clear();
+                Email.Clear();
+                Phone.Clear();
+                Birthday.Clear();
+                Notes.Clear();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl med indtasting af medlem");
+            }
+
+
+
+        }
+
+
     }
 }
