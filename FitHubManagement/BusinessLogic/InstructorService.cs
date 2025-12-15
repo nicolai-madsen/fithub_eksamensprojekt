@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static FitHubManagement.DataLogic.ActivityTypeDL.GetAllActivityTypeDL;
 
 namespace FitHubManagement.BusinessLogic
 {
@@ -31,11 +30,10 @@ namespace FitHubManagement.BusinessLogic
     }
     public class ActivityTypeBLL
     {
-        private ActivityTypeDL _dal;
-
+        private ActivityTypeDAL _dal;
         public ActivityTypeBLL()
         {
-            _dal = new ActivityTypeDL();
+            _dal = new ActivityTypeDAL();
         }
 
         public ActivityTypeModel GetActivityByInstructorID(int instructorID)

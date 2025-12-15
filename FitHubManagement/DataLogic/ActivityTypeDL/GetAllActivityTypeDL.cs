@@ -1,4 +1,4 @@
-﻿using FitHubManagement.Models;
+﻿/*using FitHubManagement.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -63,9 +63,6 @@ namespace FitHubManagement.DataLogic.ActivityTypeDL
                 }
             }
 
-            // Skriver i konsollen hvor mange aktiviteter der blev hentet
-            Console.WriteLine($"Loaded {activityTypeList.Count} activities from database.");
-
             // Returnerer listen med alle aktiviteter
             return activityTypeList;
         }
@@ -106,5 +103,5 @@ namespace FitHubManagement.DataLogic.ActivityTypeDL
         }
 
     }
-}
+}*/
 

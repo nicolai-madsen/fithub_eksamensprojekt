@@ -1,4 +1,4 @@
-﻿using FitHubManagement.DataLogic.ActivityTypeDL;
+﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace FitHubManagement.BusinessLogic
         /// 3. Tilføjet de nye properties til parametrene i CreateActivityType metoden
         /// 4. 
         /// </summary>
-        private readonly CreateActivityTypeDL _createDL;
+        private readonly ActivityTypeDAL _createDL;
 
         /*
          * Denne del slettes da vi ikke behøver en instans af CreateActivityTypeDL
@@ -39,7 +39,8 @@ namespace FitHubManagement.BusinessLogic
                 ActivityTypeDescription = description,
             };
 
-            int id = CreateActivityTypeDL.CreateActivityType(type);
+            ActivityTypeDAL dal = new ActivityTypeDAL();
+            int id = dal.CreateActivityType(type);
             type.ActivityTypeId = id;
             return type;
         }

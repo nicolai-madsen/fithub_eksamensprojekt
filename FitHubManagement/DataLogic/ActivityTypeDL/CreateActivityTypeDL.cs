@@ -1,4 +1,4 @@
-﻿using FitHubManagement.Models;
+﻿/*using FitHubManagement.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -40,3 +40,4 @@ namespace FitHubManagement.DataLogic.ActivityTypeDL
         
     }
 }
+*/

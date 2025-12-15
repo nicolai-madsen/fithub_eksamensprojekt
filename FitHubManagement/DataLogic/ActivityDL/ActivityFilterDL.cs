@@ -1,4 +1,4 @@
-﻿using FitHubManagement.Models.FilterModels;
+﻿/*using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
 
     public class ActivityFilterDL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                       "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString = "Server=.;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
         {
@@ -108,4 +108,4 @@ namespace FitHubManagement.DataLogic.ActivityDL
             return activities;
         }
     }
-}
+}*/
