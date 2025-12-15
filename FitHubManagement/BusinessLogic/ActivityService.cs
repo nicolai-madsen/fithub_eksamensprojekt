@@ -66,8 +66,5 @@ namespace FitHubManagement.BusinessLogic
         { 
             return ActivityDAL.GetAllDuration(); //Viser alle durations
         }
-
-
-
     }
 }
