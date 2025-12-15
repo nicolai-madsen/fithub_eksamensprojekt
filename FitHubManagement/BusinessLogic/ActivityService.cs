@@ -1,4 +1,65 @@
 ﻿using FitHubManagement.DataAccess;
+using FitHubManagement.Models;
+
+namespace FitHubManagement.BusinessLogic
+{
+    public class ActivityService
+    {
+        private readonly ActivityDAL _activityDal = new ActivityDAL();
+
+        public ActivityModel CreateActivity(
+            int activityTypeId,
+            int instructorId,
+            DateTime startDateTime,
+            string duration,
+            string activityLocation,
+            int maxParticipants)
+        {
+            // 1. Validering
+            if (maxParticipants <= 0)
+                throw new ArgumentException("Hold deltagere skal være over 0", nameof(maxParticipants));
+
+            if (maxParticipants > 20)
+                throw new ArgumentException("Hold deltagere skal være 20 eller under", nameof(maxParticipants));
+
+            if (string.IsNullOrWhiteSpace(activityLocation))
+                throw new ArgumentException("Oplys hvor holdet afholdes", nameof(activityLocation));
+
+            // 2. Model
+            var activity = new ActivityModel
+            {
+                ActivityTypeId = activityTypeId,
+                InstructorId = instructorId,
+                StartDateTime = startDateTime,
+                Duration = duration,
+                ActivityLocation = activityLocation,
+                MaxParticipant = maxParticipants
+            };
+
+            // 3. DAL-kald (INSTANS!)
+            activity.ActivityId = _activityDal.CreateActivity(activity);
+
+            return activity;
+        }
+
+        public List<string> GetAllLocations()
+        {
+            return _activityDal.GetAllLocations();
+        }
+
+        public List<string> GetAllActivityTypes()
+        {
+            return _activityDal.GetAllActivityTypes();
+        }
+
+        public List<string> GetAllDuration()
+        {
+            return _activityDal.GetAllDuration();
+        }
+    }
+}
+
+/*using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +68,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FitHubManagement.Models;
 using FitHubManagement.DataAccess;
+
 
 namespace FitHubManagement.BusinessLogic
 {
@@ -68,3 +130,4 @@ namespace FitHubManagement.BusinessLogic
         }
     }
 }
+*/
