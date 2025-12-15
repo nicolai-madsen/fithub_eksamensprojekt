@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitHubManagement.DataLogic.ReportsDL
+/*namespace FitHubManagement.DataLogic.ReportsDL
 {
     internal class PopularActivityReportDL
     {
@@ -61,3 +61,4 @@ namespace FitHubManagement.DataLogic.ReportsDL
         }
     }
 }
+*/
