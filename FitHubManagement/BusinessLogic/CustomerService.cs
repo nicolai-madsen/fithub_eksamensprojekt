@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitHubManagement.Models;
-using FitHubManagement.DataLogic;
 using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.BusinessLogic
