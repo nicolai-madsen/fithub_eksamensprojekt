@@ -55,16 +55,18 @@
             label16 = new Label();
             EditCustomerTitle = new Label();
             NewCustomerPanel = new Panel();
-            label25 = new Label();
-            textBox1 = new TextBox();
-            label24 = new Label();
             label23 = new Label();
+            label28 = new Label();
+            label26 = new Label();
+            memberType = new ComboBox();
+            BirthdayValue = new DateTimePicker();
+            label25 = new Label();
+            label24 = new Label();
             label22 = new Label();
             Required = new Label();
             NewCustomerCancelBtn = new Button();
             NewCustomerConfirmBtn = new Button();
             Notes = new TextBox();
-            Birthday = new TextBox();
             Phone = new TextBox();
             Email = new TextBox();
             LastName = new TextBox();
@@ -98,6 +100,7 @@
             label20 = new Label();
             label21 = new Label();
             Kundeinformation = new Label();
+            label27 = new Label();
             ListPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
@@ -356,16 +359,19 @@
             // 
             // NewCustomerPanel
             // 
-            NewCustomerPanel.Controls.Add(label25);
-            NewCustomerPanel.Controls.Add(textBox1);
-            NewCustomerPanel.Controls.Add(label24);
+            NewCustomerPanel.Controls.Add(label27);
             NewCustomerPanel.Controls.Add(label23);
+            NewCustomerPanel.Controls.Add(label28);
+            NewCustomerPanel.Controls.Add(label26);
+            NewCustomerPanel.Controls.Add(memberType);
+            NewCustomerPanel.Controls.Add(BirthdayValue);
+            NewCustomerPanel.Controls.Add(label25);
+            NewCustomerPanel.Controls.Add(label24);
             NewCustomerPanel.Controls.Add(label22);
             NewCustomerPanel.Controls.Add(Required);
             NewCustomerPanel.Controls.Add(NewCustomerCancelBtn);
             NewCustomerPanel.Controls.Add(NewCustomerConfirmBtn);
             NewCustomerPanel.Controls.Add(Notes);
-            NewCustomerPanel.Controls.Add(Birthday);
             NewCustomerPanel.Controls.Add(Phone);
             NewCustomerPanel.Controls.Add(Email);
             NewCustomerPanel.Controls.Add(LastName);
@@ -382,21 +388,61 @@
             NewCustomerPanel.Size = new Size(584, 426);
             NewCustomerPanel.TabIndex = 9;
             // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 11F);
+            label23.ForeColor = Color.Red;
+            label23.Location = new Point(424, 88);
+            label23.Name = "label23";
+            label23.Size = new Size(20, 25);
+            label23.TabIndex = 47;
+            label23.Text = "*";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI", 11F);
+            label28.ForeColor = Color.Red;
+            label28.Location = new Point(150, 181);
+            label28.Name = "label28";
+            label28.Size = new Size(20, 25);
+            label28.TabIndex = 46;
+            label28.Text = "*";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(450, 145);
+            label26.Name = "label26";
+            label26.Size = new Size(94, 60);
+            label26.TabIndex = 44;
+            label26.Text = "1 = Basic\r\n2 = Premium\r\n3 = VIP";
+            // 
+            // memberType
+            // 
+            memberType.DropDownStyle = ComboBoxStyle.DropDownList;
+            memberType.FormattingEnabled = true;
+            memberType.Location = new Point(450, 85);
+            memberType.Name = "memberType";
+            memberType.Size = new Size(125, 28);
+            memberType.TabIndex = 43;
+            // 
+            // BirthdayValue
+            // 
+            BirthdayValue.Location = new Point(198, 260);
+            BirthdayValue.Name = "BirthdayValue";
+            BirthdayValue.Size = new Size(250, 27);
+            BirthdayValue.TabIndex = 42;
+            // 
             // label25
             // 
             label25.AutoSize = true;
-            label25.Location = new Point(336, 88);
+            label25.Location = new Point(329, 87);
             label25.Name = "label25";
             label25.Size = new Size(99, 20);
             label25.TabIndex = 41;
             label25.Text = "Medlemstype";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(441, 85);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 40;
             // 
             // label24
             // 
@@ -408,17 +454,6 @@
             label24.Size = new Size(20, 25);
             label24.TabIndex = 39;
             label24.Text = "*";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 11F);
-            label23.ForeColor = Color.Red;
-            label23.Location = new Point(150, 182);
-            label23.Name = "label23";
-            label23.Size = new Size(20, 25);
-            label23.TabIndex = 38;
-            label23.Text = "*";
             // 
             // label22
             // 
@@ -469,13 +504,6 @@
             Notes.Name = "Notes";
             Notes.Size = new Size(365, 57);
             Notes.TabIndex = 16;
-            // 
-            // Birthday
-            // 
-            Birthday.Location = new Point(198, 260);
-            Birthday.Name = "Birthday";
-            Birthday.Size = new Size(125, 27);
-            Birthday.TabIndex = 15;
             // 
             // Phone
             // 
@@ -778,6 +806,17 @@
             Kundeinformation.TabIndex = 13;
             Kundeinformation.Text = "Kundeinformation";
             // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 11F);
+            label27.ForeColor = Color.Red;
+            label27.Location = new Point(150, 262);
+            label27.Name = "label27";
+            label27.Size = new Size(20, 25);
+            label27.TabIndex = 48;
+            label27.Text = "*";
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -810,7 +849,6 @@
         private Label ChooseCustomerTitle;
         private Label label2;
         private Label NewCustomerTitle;
-        private TextBox Birthday;
         private TextBox Phone;
         private TextBox Email;
         private TextBox LastName;
@@ -873,9 +911,13 @@
         private ListBox activityInfoList;
         private Label Required;
         private Label label24;
-        private Label label23;
         private Label label22;
-        private TextBox textBox1;
         private Label label25;
+        private DateTimePicker BirthdayValue;
+        private ComboBox memberType;
+        private Label label26;
+        private Label label28;
+        private Label label23;
+        private Label label27;
     }
 }

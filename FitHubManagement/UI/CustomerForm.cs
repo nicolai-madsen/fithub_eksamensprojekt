@@ -11,16 +11,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitHubManagement.Models;
 using System.Linq.Expressions;
-using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.UI.CustomerUI
 {
     public partial class CustomerForm : Form
     {
-        private readonly CustomerService service = new();
+        private readonly CustomerService service = new();  //Jeg bliver nødt at endre på denne, så logikk er i bsuinessn layer
         public CustomerForm()
         {
             InitializeComponent();
+            memberType.Items.Add("1");
+            memberType.Items.Add("2");
+            memberType.Items.Add("3");
             ListPanel.Visible = true;
             NewCustomerPanel.Visible = true;
             EditCustomerPanel.Visible = true;
@@ -124,24 +126,18 @@ namespace FitHubManagement.UI.CustomerUI
 
 
                 }
-
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Fejl med indlasting af medlem");
             }
-
-
         }
-
         private void NewCustomerCancelBtn_Click(object sender, EventArgs e)
         {
             FirstName.Clear();
             LastName.Clear();
             Email.Clear();
             Phone.Clear();
-            Birthday.Clear();
             Notes.Clear();
         }
 
@@ -152,12 +148,10 @@ namespace FitHubManagement.UI.CustomerUI
             customer.LastName = LastName.Text;
             customer.Email = Email.Text;
             customer.Phone = Phone.Text;
-            customer.MembershipId = 1;
-            customer.Birthday = DateTime.Now;
-            customer.PersonalNote = "";
-
-
-
+            customer.MembershipId = Convert.ToInt32(memberType.SelectedItem); 
+            customer.Birthday = BirthdayValue.Value;
+            customer.PersonalNote = Notes.Text;
+            
             try
             {
                 service.CreateCustomerBLL(customer);
@@ -167,18 +161,12 @@ namespace FitHubManagement.UI.CustomerUI
                 LastName.Clear();
                 Email.Clear();
                 Phone.Clear();
-                Birthday.Clear();
                 Notes.Clear();
             }
             catch (Exception)
             {
-                MessageBox.Show("Fejl med indtasting af medlem");
+                MessageBox.Show("Fejl med indtasting af medlem, husket at fylde alle nødvendige felter?");
             }
-
-
-
         }
-
-
     }
 }
