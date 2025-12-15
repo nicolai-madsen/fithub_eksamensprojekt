@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,12 @@ namespace FitHubManagement.DataAccess
 {
         public class CustomerDAL
         {
-            public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                           "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString =
+        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            //CREATE
-            public void CreateCustomer(CustomerModel customer)
+
+        //CREATE
+        public void CreateCustomer(CustomerModel customer)
             {
             using (SqlConnection connection = this.connection())
             {
