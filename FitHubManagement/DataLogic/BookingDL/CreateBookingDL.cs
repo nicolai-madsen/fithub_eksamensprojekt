@@ -11,22 +11,22 @@ namespace FitHubManagement.DataLogic.BookingDL
     {
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
-        public static void CreateBooking(int activityId, int customerId, string personalNote)
-        {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            Console.WriteLine("Connection to database established.\n");
+        //public static void CreateBooking(int activityId, int customerId, string personalNote)
+        //{
+        //    using SqlConnection connection = new SqlConnection(connectionString);
+        //    connection.Open();
+        //    Console.WriteLine("Connection to database established.\n");
 
 
-            string insertSql = $"INSERT INTO Booking (ActivityID, CustomerID, PersonalNote) VALUES (@ActivityID, @CustomerID, @PersonalNote)";
-            Console.WriteLine($"SQL Command: {insertSql}");
-            using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
-            {
-                insertCmd.Parameters.AddWithValue("@ActivityID", activityId);
-                insertCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                insertCmd.Parameters.AddWithValue("@PersonalNote", personalNote);
-                insertCmd.ExecuteNonQuery();
-            }
-        }
+        //    string insertSql = $"INSERT INTO Booking (ActivityID, CustomerID, PersonalNote) VALUES (@ActivityID, @CustomerID, @PersonalNote)";
+        //    Console.WriteLine($"SQL Command: {insertSql}");
+        //    using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
+        //    {
+        //        insertCmd.Parameters.AddWithValue("@ActivityID", activityId);
+        //        insertCmd.Parameters.AddWithValue("@CustomerID", customerId);
+        //        insertCmd.Parameters.AddWithValue("@PersonalNote", personalNote);
+        //        insertCmd.ExecuteNonQuery();
+        //    }
+        //}
     }
 }

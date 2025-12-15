@@ -12,22 +12,22 @@ namespace FitHubManagement.DataLogic.BookingDL
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
-        public static void DeleteBooking(int bookingId)
-        {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            Console.WriteLine("Connection to database established.");
+        //public static void DeleteBooking(int bookingId)
+        //{
+        //    // Open connection first
+        //    using SqlConnection connection = new SqlConnection(connectionString);
+        //    connection.Open();
+        //    Console.WriteLine("Connection to database established.");
 
-            // Remove student from database
-            string deleteSql = $"DELETE FROM Booking WHERE BookingID = @bookingId";
-            using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
-            {
-                deleteCmd.Parameters.AddWithValue("@ActivityID", bookingId);
+        //    // Remove student from database
+        //    string deleteSql = $"DELETE FROM Booking WHERE BookingID = @bookingId";
+        //    using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
+        //    {
+        //        deleteCmd.Parameters.AddWithValue("@ActivityID", bookingId);
 
-                int deleted = deleteCmd.ExecuteNonQuery();
-                Console.WriteLine($"{deleted} rows deleted.");
-            }
-        }
+        //        int deleted = deleteCmd.ExecuteNonQuery();
+        //        Console.WriteLine($"{deleted} rows deleted.");
+        //    }
+        //}
     }
 }
