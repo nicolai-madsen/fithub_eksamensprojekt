@@ -66,7 +66,7 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(15, 15);
-            panel1.Margin = new Padding(4, 4, 4, 4);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
             panel1.Size = new Size(671, 532);
             panel1.TabIndex = 0;
@@ -74,17 +74,18 @@
             // button4
             // 
             button4.Location = new Point(339, 452);
-            button4.Margin = new Padding(4, 4, 4, 4);
+            button4.Margin = new Padding(4);
             button4.Name = "button4";
             button4.Size = new Size(118, 36);
             button4.TabIndex = 8;
             button4.Text = "Annuller";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
             button3.Location = new Point(479, 452);
-            button3.Margin = new Padding(4, 4, 4, 4);
+            button3.Margin = new Padding(4);
             button3.Name = "button3";
             button3.Size = new Size(118, 36);
             button3.TabIndex = 7;
@@ -95,7 +96,7 @@
             // button2
             // 
             button2.Location = new Point(528, 165);
-            button2.Margin = new Padding(4, 4, 4, 4);
+            button2.Margin = new Padding(4);
             button2.Name = "button2";
             button2.Size = new Size(69, 36);
             button2.TabIndex = 6;
@@ -106,7 +107,7 @@
             // textBox2
             // 
             textBox2.Location = new Point(149, 165);
-            textBox2.Margin = new Padding(4, 4, 4, 4);
+            textBox2.Margin = new Padding(4);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(155, 31);
             textBox2.TabIndex = 5;
@@ -114,20 +115,22 @@
             // textBox1
             // 
             textBox1.Location = new Point(149, 98);
-            textBox1.Margin = new Padding(4, 4, 4, 4);
+            textBox1.Margin = new Padding(4);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 31);
             textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 25;
             listBox1.Location = new Point(31, 228);
-            listBox1.Margin = new Padding(4, 4, 4, 4);
+            listBox1.Margin = new Padding(4);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(564, 204);
             listBox1.TabIndex = 3;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -172,7 +175,7 @@
             panel2.Controls.Add(button5);
             panel2.Controls.Add(listBox2);
             panel2.Location = new Point(858, 4);
-            panel2.Margin = new Padding(4, 4, 4, 4);
+            panel2.Margin = new Padding(4);
             panel2.Name = "panel2";
             panel2.Size = new Size(671, 622);
             panel2.TabIndex = 2;
@@ -190,7 +193,7 @@
             // button8
             // 
             button8.Location = new Point(54, 456);
-            button8.Margin = new Padding(4, 4, 4, 4);
+            button8.Margin = new Padding(4);
             button8.Name = "button8";
             button8.Size = new Size(118, 36);
             button8.TabIndex = 9;
@@ -200,7 +203,7 @@
             // button7
             // 
             button7.Location = new Point(340, 456);
-            button7.Margin = new Padding(4, 4, 4, 4);
+            button7.Margin = new Padding(4);
             button7.Name = "button7";
             button7.Size = new Size(118, 36);
             button7.TabIndex = 8;
@@ -211,7 +214,7 @@
             // button6
             // 
             button6.Location = new Point(489, 456);
-            button6.Margin = new Padding(4, 4, 4, 4);
+            button6.Margin = new Padding(4);
             button6.Name = "button6";
             button6.Size = new Size(118, 36);
             button6.TabIndex = 7;
@@ -223,7 +226,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(149, 159);
-            comboBox1.Margin = new Padding(4, 4, 4, 4);
+            comboBox1.Margin = new Padding(4);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(188, 33);
             comboBox1.TabIndex = 6;
@@ -231,7 +234,7 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(149, 99);
-            dateTimePicker1.Margin = new Padding(4, 4, 4, 4);
+            dateTimePicker1.Margin = new Padding(4);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(228, 31);
             dateTimePicker1.TabIndex = 5;
@@ -259,7 +262,7 @@
             // button5
             // 
             button5.Location = new Point(528, 162);
-            button5.Margin = new Padding(4, 4, 4, 4);
+            button5.Margin = new Padding(4);
             button5.Name = "button5";
             button5.Size = new Size(69, 36);
             button5.TabIndex = 1;
@@ -271,7 +274,7 @@
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 25;
             listBox2.Location = new Point(31, 228);
-            listBox2.Margin = new Padding(4, 4, 4, 4);
+            listBox2.Margin = new Padding(4);
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(564, 204);
             listBox2.TabIndex = 0;
@@ -279,7 +282,7 @@
             // button1
             // 
             button1.Location = new Point(706, 468);
-            button1.Margin = new Padding(4, 4, 4, 4);
+            button1.Margin = new Padding(4);
             button1.Name = "button1";
             button1.Size = new Size(118, 36);
             button1.TabIndex = 1;
@@ -295,7 +298,7 @@
             Controls.Add(panel2);
             Controls.Add(button1);
             Controls.Add(panel1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "BookingForm";
             Text = "BookingForm";
             panel1.ResumeLayout(false);
