@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;

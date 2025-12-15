@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace FitHubManagement.DataAccess
         public class CustomerDAL
         {
 
-            //CREATE
-            public void CreateCustomer(CustomerModel customer)
+
+        //CREATE
+        public void CreateCustomer(CustomerModel customer)
             {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
