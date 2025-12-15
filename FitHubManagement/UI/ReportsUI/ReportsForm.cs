@@ -1,5 +1,4 @@
 ﻿using FitHubManagement.Reports;
-using FitHubManagement.DataLogic.ReportsDL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

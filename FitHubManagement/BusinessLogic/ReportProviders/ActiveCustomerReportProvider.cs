@@ -1,4 +1,4 @@
-﻿using FitHubManagement.DataLogic.ReportsDL;
+﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models.ReportModels;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,10 @@ namespace FitHubManagement.BusinessLogic.ReportProviders
     {
         public List<ActiveCustomerReportModel> GetActiveCustomers()
         {
-            var customers = ActiveCustomerReportDL.GetAllActiveCustomer();
-            return customers;
+            ReportsDAL dal = new ReportsDAL();
+            var activecustomers = dal.GetAllActiveCustomer();
+            return activecustomers;
+            
         }
     }
 }
