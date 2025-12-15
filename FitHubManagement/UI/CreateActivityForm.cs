@@ -186,7 +186,7 @@ namespace FitHubManagement.UI.Activity
 
 
 
-                var service = new ActivityFilterService();
+            var service = new ActivityFilterService();
             var activities = service.GetFilteredActivities(filterModel);
 
             lstbxSearchGet.DataSource = activities;
@@ -198,6 +198,11 @@ namespace FitHubManagement.UI.Activity
 
             cmbSearchLocation.SelectedItem = null;
             cmbSearchActivity.Text = "";
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
