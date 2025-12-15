@@ -1,5 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataLogic.ActivityDL;
+using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +36,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerCRUD customerRead = new CustomerCRUD();
+                CustomerDAL customerRead = new CustomerDAL();
                 List<CustomerModel> customers = customerRead.GetAllCustomer();
 
                 CustomerListBox.Items.Clear();
@@ -62,7 +62,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerCRUD customerDL = new CustomerCRUD();
+                CustomerDAL customerDL = new CustomerDAL();
                 List<CustomerModel> customers = customerDL.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
@@ -88,7 +88,7 @@ namespace FitHubManagement.UI.CustomerUI
             try
             {
 
-                CustomerCRUD customerDL = new CustomerCRUD();
+                CustomerDAL customerDL = new CustomerDAL();
                 List<CustomerModel> customers = customerDL.GetIactiveCustomer();
 
                 CustomerListBox.Items.Clear();

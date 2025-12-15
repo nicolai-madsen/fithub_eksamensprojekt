@@ -1,4 +1,4 @@
-﻿using FitHubManagement.DataLogic.ActivityDL;
+﻿using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitHubManagement.Models;
+using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.BusinessLogic
 {
@@ -42,7 +43,7 @@ namespace FitHubManagement.BusinessLogic
             };
 
             // Gem i databasen og få ID tilbage
-            activity.ActivityId = CreateActivityDL.CreateActivity(activity);
+            activity.ActivityId = ActivityDAL.CreateActivity(activity);
 
             // 4. Return final object
             return activity;
@@ -52,18 +53,18 @@ namespace FitHubManagement.BusinessLogic
 
         public List<string> GetAllLocations()
         {
-            return GetAllActivityDL.GetAllLocations(); // Vis alle locations
+            return ActivityDAL.GetAllLocations(); // Vis alle locations
         }
 
         public List<string> GetAllActivityTypes()
         {
-            return GetAllActivityDL.GetAllActivityTypes(); //Vis alle typer af holdnavne
+            return ActivityDAL.GetAllActivityTypes(); //Vis alle typer af holdnavne
 
         }
 
         public List<string> GetAllDuration()
         { 
-            return GetAllActivityDL.GetAllDuration(); //Viser alle durations
+            return ActivityDAL.GetAllDuration(); //Viser alle durations
         }
 
 

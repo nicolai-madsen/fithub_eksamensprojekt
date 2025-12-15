@@ -1,4 +1,4 @@
-﻿using FitHubManagement.Models.FilterModels;
+﻿/*using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -107,4 +107,4 @@ namespace FitHubManagement.DataLogic.ActivityDL
             return activities;
         }
     }
-}
+}*/
