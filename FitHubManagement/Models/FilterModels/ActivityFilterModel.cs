@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FitHubManagement.Models.FilterModels
+{
+    public class ActivityFilterModel
+    {
+        public int ActivityId { get; set; }
+        public string? ActivityTypeName { get; set; }
+        public string? InstructorName { get; set; }
+        public DateOnly? ActivityDate { get; set; }
+        public TimeOnly? StartTime { get; set; }
+        public TimeOnly? EndTime { get; set; }
+        public string? ActivityLocation { get; set; }
+
+        public override string ToString()
+        {
+            return $"{ActivityTypeName} - {InstructorName} - {ActivityDate:dd/MM/yyyy} {StartTime:hh\\:mm}-{EndTime:hh\\:mm} @ {ActivityLocation}";
+        }
+
+    }
+}
