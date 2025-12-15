@@ -1,8 +1,9 @@
-﻿using FitHubManagement.DataLogic.MembershipDL;
+﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +11,11 @@ namespace FitHubManagement.BusinessLogic
 {
     public class MembershipService
     {
-        // DAL objekter
-        private readonly CreateMembershipDL _createMembershipDL = new CreateMembershipDL();
-        private readonly UpdateMembershipDL _updateMembershipDL = new UpdateMembershipDL();
-        private readonly GetAllMembershipDL _getMembershipDL = new GetAllMembershipDL();
-        private readonly GetAllMembershipDL _getAllMembershipDL = new GetAllMembershipDL();
-        private readonly DeleteMembershipDL _deleteMembershipDL = new DeleteMembershipDL();
+
+
+    
+        private readonly MembershipDAL _membershipDAL = new MembershipDAL();
+        
 
         // Opret Membership
         public MembershipModel CreateMembership(MembershipModel membership)
@@ -30,7 +30,7 @@ namespace FitHubManagement.BusinessLogic
             if (membership.MonthlyPrice < 0)
                 throw new Exception("Månedspris skal være 0 eller større");
 
-            int newId = _createMembershipDL.CreateMembership(membership); // ID fra oprettet objekt bliver gemt som newId
+            int newId = _membershipDAL.CreateMembership(membership); // ID fra oprettet objekt bliver gemt som newId
 
             membership.MembershipId = newId; // newId bliver sat ind som property MembershipId i model objektetet.
 
@@ -50,19 +50,19 @@ namespace FitHubManagement.BusinessLogic
             if (membership.MonthlyPrice < 0)
                 throw new Exception("Månedspris skal være 0 eller større");
 
-            return _updateMembershipDL.UpdateMembership(membership);
+            return _membershipDAL.UpdateMembership(membership);
         }
 
         // Hent (ID) Membership
         public MembershipModel GetMembership(int memebershipId)
         {
-            return _getMembershipDL.GetMembership(memebershipId);
+            return _membershipDAL.GetMembership(memebershipId);
         }
 
         // Hent alle Membership
         public List<MembershipModel> GetAllMemberships()
         {
-            return _getAllMembershipDL.GetAllMembership();
+            return _membershipDAL.GetAllMembership();
         }
 
         // Slet Membership
@@ -71,7 +71,7 @@ namespace FitHubManagement.BusinessLogic
             if (membershipId <= 0)
                 throw new ArgumentException("Ugyldigt medlemskabs-ID");
 
-            return _deleteMembershipDL.DeleteMembership(membershipId); 
+            return _membershipDAL.DeleteMembership(membershipId);
         }
     }
 }
