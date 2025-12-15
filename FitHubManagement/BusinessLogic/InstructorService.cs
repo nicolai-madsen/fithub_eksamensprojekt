@@ -1,4 +1,4 @@
-﻿using FitHubManagement.DataLogic.InstructorDL;
+﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace FitHubManagement.BusinessLogic
 {
     public class InstructorService
     {
-        private UpdateInstructorDL _dal;
+        private InstructorDAL _dal;
 
         public InstructorService()
         {
-            _dal = new UpdateInstructorDL();
+            _dal = new InstructorDAL();
         }
 
         public void SaveInstructor(InstructorModel instructor)
