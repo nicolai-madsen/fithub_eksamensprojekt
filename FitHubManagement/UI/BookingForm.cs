@@ -1,15 +1,5 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 
 namespace FitHubManagement.UI.BookingUI
@@ -52,9 +42,6 @@ namespace FitHubManagement.UI.BookingUI
             panel2.Visible = true;
         }
 
-
-
-
         //LENA
         private void button2_Click(object sender, EventArgs e) // Panel1 Vis knap
         {
@@ -89,13 +76,13 @@ namespace FitHubManagement.UI.BookingUI
         }
 
 
-
-
         private void button1_Click(object sender, EventArgs e) //tilbage knap
         {
             this.Owner.Show();
             this.Close();
         }
+
+
 
         private void button7_Click(object sender, EventArgs e) //tilbage på "find booking", tager deg tilbage til kunde
         {
@@ -103,32 +90,56 @@ namespace FitHubManagement.UI.BookingUI
             panel1.BringToFront();
         }
 
+
         private void button6_Click(object sender, EventArgs e) //tilmeld knapp
         {
             //Skal passe på at kunde faktisk bliver gemt og lagt til, gi besked med success og fail
         }
 
+
         private void textBox1_TextChanged(object sender, EventArgs e) //Søg knap i panel1
         {
+
+            // Henter det, brugeren har skrevet i navn-TextBoxen
             string name = textBox1.Text;
+
+            // Henter det, brugeren har skrevet i telefon-TextBoxen
             string phone = textBox2.Text;
+
+            // Opretter forbindelse til databasen via DAL
             CustomerDAL customerDL = new CustomerDAL();
+
+            // Henter alle kunder fra databasen
             List<CustomerModel> customers = customerDL.GetAllCustomer();
+
+            // Rydder listBox før nye søgeresultater vises
             listBox1.Items.Clear();
 
+            // Gennemgår alle kunder én ad gangen
             foreach (CustomerModel customer in customers)
             {
-                if (customer.FirstName.Contains(name) || customer.LastName.Contains(name) || customer.Phone.Contains(phone))
+                // Tjekker om navnet matcher (eller hvis navnefeltet er tomt)
+                bool matchName =
+                    name == "" ||
+                    customer.FirstName.Contains(name) ||
+                    customer.LastName.Contains(name);
+
+                // Tjekker om telefonnummeret matcher (eller hvis telefonfeltet er tomt)
+                bool matchPhone =
+                    phone == "" ||
+                    customer.Phone.Contains(phone);
+
+                // Kunden vises kun, hvis begge betingelser er opfyldt
+                if (matchName && matchPhone)
                 {
+                    // Viser kundens fulde navn i listBox
                     listBox1.Items.Add(customer.FirstName + " " + customer.LastName);
-
-
                 }
             }
         }
 
         //LENA
-        private void button4_Click(object sender, EventArgs e) //Nulstil knap i panel1
+        public void button4_Click(object sender, EventArgs e) //Nulstil knap i panel1
         {
             textBox1.Text = "";
             textBox2.Text = "";
@@ -157,7 +168,15 @@ namespace FitHubManagement.UI.BookingUI
         }
     }
 }
+    
 
     
+
+   
+
+
+
+
+
 
 
