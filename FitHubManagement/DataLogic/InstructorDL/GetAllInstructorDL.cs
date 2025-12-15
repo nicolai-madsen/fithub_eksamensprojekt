@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 namespace FitHubManagement.DataLogic.InstructorDL
 {
     public class GetAllInstructorDL
-    {
+    {/*
         public static string connectionString = "Server=.;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        
         public static InstructorModel ReadInstructor(int instructorId)
         {
             // Open connection first
@@ -79,6 +80,6 @@ namespace FitHubManagement.DataLogic.InstructorDL
             }
 
             return instructors;
-        }
+        }*/
     }
 }

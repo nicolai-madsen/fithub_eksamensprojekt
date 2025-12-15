@@ -1,6 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataLogic.ActivityTypeDL;
-using FitHubManagement.DataLogic.InstructorDL;
+using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -75,7 +74,7 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructors()
         {
-            List<InstructorModel> instructors = GetAllInstructorDL.ReadAllInstructors();
+            List<InstructorModel> instructors = InstructorDAL.ReadAllInstructors();
 
             lstbxGetAllIns.DataSource = instructors;
             lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
