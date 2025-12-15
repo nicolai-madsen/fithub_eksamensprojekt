@@ -16,6 +16,8 @@ namespace FitHubManagement.BusinessLogic
         //Create customer :))) 
         public void CreateCustomerBLL(CustomerModel customer)
         {
+
+
             if (string.IsNullOrWhiteSpace(customer.FirstName) ||
                 string.IsNullOrWhiteSpace(customer.LastName) ||
                 string.IsNullOrWhiteSpace(customer.Email) ||
@@ -23,10 +25,22 @@ namespace FitHubManagement.BusinessLogic
 
 
 
-                throw new Exception ("Indtast alle krevde felt");
+                throw new Exception ();
 
-            repo.CreateCustomer(customer); 
+            if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
+
+                throw new Exception();
+
+            if (customer.Birthday.Date == DateTime.Now.Date) //Denne må endres, tenk om nogen tilmelder sig på sin bursdag!!
+                throw new Exception ();
+
+
+            repo.CreateCustomer(customer);
         }  
 
+       
+
+        
+     
     }
 }

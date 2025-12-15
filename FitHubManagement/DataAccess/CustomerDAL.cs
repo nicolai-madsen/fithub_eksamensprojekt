@@ -259,9 +259,9 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
-            public List<CustomerModel> GetActiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
-            {
-                List<CustomerModel> customerList = new List<CustomerModel>();
+        public List<CustomerModel> GetActiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+        {
+            List<CustomerModel> customerList = new List<CustomerModel>();
 
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -292,13 +292,14 @@ namespace FitHubManagement.DataAccess
                         customerList.Add(customer);
                     }
                 }
-                    return customerList;
-                }
-            } 
+                return customerList;
+            }
+        }
 
 
-            #region helper metode
-            internal SqlConnection connection()
+
+        #region helper metode
+        internal SqlConnection connection()
             {
 
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
