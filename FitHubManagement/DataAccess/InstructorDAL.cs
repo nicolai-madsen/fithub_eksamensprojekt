@@ -1,24 +1,21 @@
 ﻿using FitHubManagement.Models;
-using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     internal class InstructorDAL
     {
-        public static string connectionString =
-        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
         public static void CreateInstructor(string firstName, string lastName, string email, string phone, string Certifications) //Metoden
         {
-            using SqlConnection connection = new SqlConnection(connectionString); //Åbner connection med "using SqlConnection..."
-            connection.Open(); //Åbner forbindelse
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             string insertSql = "INSERT INTO Instructor (FirstName, LastName, Email, Phone, Certifications) VALUES (@FirstName, @LastName, @Email, @Phone, @Certifications)"; //
             using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
@@ -36,11 +33,8 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdateFirstName(int instructorId, string newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = "UPDATE Instructor SET FirstName = @newValue WHERE InstructorID = @instructorId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -55,11 +49,9 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdateLastName(int instructorId, string newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
+
 
             string updateSql = "UPDATE Instructor SET LastName = @newValue WHERE InstructorID = @instructorId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -74,11 +66,8 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdateEmail(int instructorId, string newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = "UPDATE Instructor SET Email = @newValue WHERE InstructorID = @instructorId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -93,11 +82,9 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdatePhone(int instructorId, string newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
+
 
             string updateSql = "UPDATE Instructor SET Phone = @newValue WHERE InstructorID = @instructorId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -111,7 +98,9 @@ namespace FitHubManagement.DataAccess
         }
         public void UpdateInstructor(InstructorModel instructor)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
             {
                 string query = @"UPDATE Instructor
                              SET FirstName = @FirstName,
@@ -127,17 +116,15 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@Phone", instructor.PhoneNumber);
                 cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
 
-                connection.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
         public static void DeleteInstructor(int instructorId)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
+
 
             // Remove instructor from database
             string deleteSql = "DELETE FROM Instructor WHERE InstructorID = @instructorId";
@@ -152,10 +139,9 @@ namespace FitHubManagement.DataAccess
 
         public static InstructorModel ReadInstructor(int instructorId)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
+
 
             // Read instructor from database
             string selectSql = "SELECT InstructorID, FirstName, LastName, Email, Phone, Certifications " +
@@ -195,8 +181,9 @@ namespace FitHubManagement.DataAccess
         {
             List<InstructorModel> instructors = new List<InstructorModel>();
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
+
 
             string selectSql = "SELECT InstructorID, FirstName, LastName, Email, Phone FROM Instructor"; //HER SKAL DER OGSÅ VÆRE CERTIFICATIONS
             using SqlCommand selectCmd = new SqlCommand(selectSql, connection);

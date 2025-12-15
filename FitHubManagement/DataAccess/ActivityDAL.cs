@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;
@@ -6,13 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     public class ActivityDAL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                     "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         //Activity filter
 
@@ -20,7 +20,7 @@ namespace FitHubManagement.DataAccess
         {
             List<ActivityFilterModel> activities = new List<ActivityFilterModel>();
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
 
@@ -110,9 +110,8 @@ namespace FitHubManagement.DataAccess
         public int CreateActivity(ActivityModel activity) // Metoden der laver en Activity tager et helt Activity objekt, som har properties med vores data
 
         {
-            using SqlConnection connection = new SqlConnection(connectionString); // "Using" giver adgang til alle de metoder som klassen SqlConnection. 
-            connection.Open(); // Åben forbindelsen til databasen
-            Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
 
             // string indeholder den kommando der sendes til databasen. String er en Sql kommando, der indsætter en ny Activity i databasen
@@ -142,10 +141,8 @@ namespace FitHubManagement.DataAccess
         //DELETE
         public void DeleteActivity(int activityId)
         {
-            using SqlConnection connection = new SqlConnection(connectionString); // Lav en ny connection til databasen med SqlConnection klassen.
-                                                                                  // Vi laver en ny instans (når der står "= new SqlConnection", så er det en ny instans. Vi laver et objekt)
-            connection.Open(); // connection åbnes.
-            Console.WriteLine("Connection to database established.");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             // Remove student from database
             string deleteSql = $"DELETE FROM Activity WHERE ActivityID = @activityId"; // SQL kommando der sendes til databasen. Vi bruger @activityId, for sikkerhed.  
@@ -168,9 +165,8 @@ namespace FitHubManagement.DataAccess
             List<ActivityModel> activityList = new List<ActivityModel>();
 
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
 
             string query =
@@ -223,9 +219,8 @@ namespace FitHubManagement.DataAccess
         public List<string> GetAllLocations() //Viser forskellige lokationer, der er i databasen
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString); // "Using" giver adgang til alle de metoder som klassen SqlConnection. 
-            connection.Open(); // Åben forbindelsen til databasen
-            Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
 
             var activitylocation = new List<string>();
@@ -251,9 +246,8 @@ namespace FitHubManagement.DataAccess
 
         public List<string> GetAllActivityTypes() //En liste af alle navne på holdtyper. Metoden hører til i ActivityType, men der er ikke oprettet klasser i ActivityType endnu.
         {
-            using SqlConnection connection = new SqlConnection(connectionString); // "Using" giver adgang til alle de metoder som klassen SqlConnection. 
-            connection.Open(); // Åben forbindelsen til databasen
-            Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             var activityTypeNameOnly = new List<string>();
 
@@ -276,9 +270,8 @@ namespace FitHubManagement.DataAccess
 
         public List<string> GetAllDuration() //Viser de forskellige durations, der er i databasen
         {
-            using SqlConnection connection = new SqlConnection(connectionString); // "Using" giver adgang til alle de metoder som klassen SqlConnection. 
-            connection.Open(); // Åben forbindelsen til databasen
-            Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
 
             var activityDuration = new List<string>();
@@ -305,11 +298,8 @@ namespace FitHubManagement.DataAccess
         //UPDATE
         public void UpdateActivityType(int activityId, int newValue)
         {
-            using SqlConnection connection = new SqlConnection(connectionString); // Vi laver en ny SqlConnection og kalder den "connection". Et SqlConnection objekt skal bruge et parameter,
-                                                                                  // som er vores connectionString. Denne string indeholder "adgangs adressen" til vores lokale database.
-
-            connection.Open(); // Åbn connection til database
-            Console.WriteLine("Connection to database established."); // Bekræft connection i console
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             string updateSql = $"UPDATE Activity SET ActivityTypeID = @newValue WHERE ActivityID = @activityId"; // SQL kommando (string sendes til databasen) opdaterer en Activity
                                                                                                                  // ud fra ActivityID, da denne altid er unik.
@@ -326,10 +316,8 @@ namespace FitHubManagement.DataAccess
         public void UpdateInstructor(int activityId, int newValue)
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Activity SET InstructorID = @newValue WHERE ActivityID = @activityId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -344,11 +332,8 @@ namespace FitHubManagement.DataAccess
 
         public void UpdateStartDateTime(int activityId, DateTime newValue)
         {
-
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Activity SET StartDateTime = @newValue WHERE ActivityID = @activityId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -364,10 +349,8 @@ namespace FitHubManagement.DataAccess
         public void UpdateDuration(int activityId, string newValue)
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Activity SET Duration = @newValue WHERE ActivityID = @activityId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -383,10 +366,8 @@ namespace FitHubManagement.DataAccess
         public void UpdateActivityLocation(int activityId, string newValue)
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Activity SET ActivityLocation = @newValue WHERE ActivityID = @activityId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -402,10 +383,8 @@ namespace FitHubManagement.DataAccess
         public void UpdateMaxParticipants(int activityId, int newValue)
         {
 
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Activity SET MaxParticipants = @newValue WHERE ActivityID = @activityId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))

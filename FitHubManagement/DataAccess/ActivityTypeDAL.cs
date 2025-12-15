@@ -1,10 +1,12 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
@@ -12,13 +14,10 @@ namespace FitHubManagement.DataAccess
 
     //CREATE ACTIVITY____________________________________________________________________________________________
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
         public int CreateActivityType(ActivityTypeModel activityType)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.\n");
 
 
             string insertSql = $"INSERT INTO ActivityType (ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription) VALUES (@ActivityTypeID, @InstructorID, @ActivityTypeName, @ActivityTypeDescription)";
@@ -47,9 +46,8 @@ namespace FitHubManagement.DataAccess
             List<ActivityTypeModel> activityTypeList = new List<ActivityTypeModel>();
 
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
 
             string query =
@@ -96,9 +94,9 @@ namespace FitHubManagement.DataAccess
             // Metode der henter en aktivitet baseret på InstructorID
             public ActivityTypeModel ReadActivityByInstructorID(int instructorID)
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-                {
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+            {
                     string query = @"SELECT ActivityTypeId, ActivityTypeName, InstructorID
                                  FROM ActivityType
                                  WHERE InstructorID = @InstructorID";

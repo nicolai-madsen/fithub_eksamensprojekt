@@ -6,20 +6,18 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     internal class BookingDAL
     {
-        public static string connectionString =
-        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         // CREATE
         public static void CreateBooking(int activityId, int customerId, string personalNote)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.\n");
 
 
             string insertSql = $"INSERT INTO Booking (ActivityID, CustomerID, PersonalNote) VALUES (@ActivityID, @CustomerID, @PersonalNote)";
@@ -36,10 +34,8 @@ namespace FitHubManagement.DataAccess
         // DELETE
         public static void DeleteBooking(int bookingId)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             // Remove student from database
             string deleteSql = $"DELETE FROM Booking WHERE BookingID = @bookingId";
@@ -58,10 +54,8 @@ namespace FitHubManagement.DataAccess
             // Liste hvor vi samler alle booking-objekter
             List<BookingModel> bookings = new List<BookingModel>();
 
-            // Opretter en forbindelse til databasen
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
 
             string query = "SELECT BookingID, ClassID, MemberID, PersonalNote FROM Booking";
@@ -107,10 +101,8 @@ namespace FitHubManagement.DataAccess
         public static void UpdateActivity(int bookingId, int newValue)
         {
             // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Booking SET ActivityID = @newValue WHERE BookingID = @bookingId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -125,11 +117,8 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdateCustomer(int bookingId, int newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Booking SET CustomerID = @newValue WHERE BookingID = @bookingId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
@@ -144,11 +133,8 @@ namespace FitHubManagement.DataAccess
 
         public static void UpdatePersonalNote(int bookingId, string newValue)
         {
-            // Open connection first
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection to database established.");
 
             string updateSql = $"UPDATE Booking SET PersonalNote = @newValue WHERE BookingID = @bookingId";
             using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))

@@ -1,23 +1,23 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     public class MembershipDAL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                                "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         //CREATE
         public int CreateMembership(MembershipModel membership)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open(); // Åben forbindelsen til databasen
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             string insertSql = @"INSERT INTO Membership (MembershipName, MembershipDescription, MonthlyPrice)
                                 VALUES (@MembershipName, @MembershipDescription, @MonthlyPrice)
@@ -37,9 +37,8 @@ namespace FitHubManagement.DataAccess
         //DELETE
         public int DeleteMembership(int membershipId) // non static, so method can be called on instances of objects
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-
-            connection.Open(); // connection åbnes.
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
             string deleteSql = $"DELETE FROM membership WHERE MembershipId = @membershipId"; // Send query til databasen
             using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
@@ -54,7 +53,7 @@ namespace FitHubManagement.DataAccess
         //READ
         public MembershipModel GetMembership(int membershipId)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string selectSql = "SELECT MembershipID, MembershipName, MembershipDescription, MonthlyPrice" +
@@ -80,7 +79,7 @@ namespace FitHubManagement.DataAccess
         {
             List<MembershipModel> memberships = new List<MembershipModel>();
 
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string selectSql = "SELECT MembershipID, MembershipName, MembershipDescription, MonthlyPrice FROM Membership";
@@ -106,9 +105,8 @@ namespace FitHubManagement.DataAccess
         public int CreateMembershipRepo(MembershipModel membership)
 
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open(); // Åben forbindelsen til databasen
-            Console.WriteLine("Connection to database established.\n");
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
 
 
 
@@ -130,7 +128,7 @@ namespace FitHubManagement.DataAccess
         //UPDATE
         public int UpdateMembership(MembershipModel membership) // This method might fuck. 
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string sql = @"
@@ -151,8 +149,7 @@ namespace FitHubManagement.DataAccess
 
         public int UpdateMembershipName(int membershipId, string newValue)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string updateSql = "UPDATE Membership SET MembershipName = @NewValue WHERE MembershipId = @MembershipId";
@@ -168,8 +165,7 @@ namespace FitHubManagement.DataAccess
 
         public int UpdateMembershipDescription(int membershipId, string newValue)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string updateSql = "UPDATE Membership SET MembershipDescription = @NewValue WHERE MembershipID = @MembershipId";
@@ -186,8 +182,7 @@ namespace FitHubManagement.DataAccess
 
         public int MembershipMonthlyPrice(int membershipId, string newValue)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
             string updateSql = "UPDATE Membership SET MonthlyPrice = @NewValue WHERE MembershipId = @MembershipId";
