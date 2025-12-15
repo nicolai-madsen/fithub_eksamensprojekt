@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace FitHubManagement.DataLogic.InstructorDL
 {
     public class DeleteInstructorDL
-    {
+    {/*
         public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+                                      "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        
         public static void DeleteInstructor(int instructorId)
         {
             // Open connection first
@@ -27,7 +28,7 @@ namespace FitHubManagement.DataLogic.InstructorDL
                 int deleted = deleteCmd.ExecuteNonQuery();
                 Console.WriteLine($"{deleted} rows deleted.");
             }
-        }
+        }*/
     }
 }
 
