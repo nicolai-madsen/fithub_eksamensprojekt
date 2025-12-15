@@ -25,7 +25,7 @@ namespace FitHubManagement.UI.Activity
         public CreateActivityForm()
         {
             InitializeComponent();
-            pnlCreateActivity.Visible = true;
+            panel1.Visible = true;
             pnlSearchActivity.Visible = false;
 
         }
@@ -80,7 +80,7 @@ namespace FitHubManagement.UI.Activity
 
         private void button2_Click(object sender, EventArgs e)
         {
-            pnlCreateActivity.Visible = true;
+            panel1.Visible = true;
             pnlSearchActivity.Visible = false;
         }
 
@@ -107,7 +107,7 @@ namespace FitHubManagement.UI.Activity
         private void button1_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
-            pnlCreateActivity.Visible = false;
+            panel1.Visible = false;
 
 
         }
