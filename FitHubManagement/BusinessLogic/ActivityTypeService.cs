@@ -1,4 +1,4 @@
-﻿using FitHubManagement.DataLogic.ActivityTypeDL;
+﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using System;
 using System.Collections.Generic;

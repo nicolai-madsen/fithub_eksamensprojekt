@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitHubManagement.DataLogic.ActivityTypeDL
+namespace FitHubManagement.DataAccess
 {
     internal class ActivityTypeDAL
 
