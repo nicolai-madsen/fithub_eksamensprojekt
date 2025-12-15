@@ -10,9 +10,10 @@ namespace FitHubManagement.DataLogic.InstructorDL
 {
     public class UpdateInstructorDL
     {
+        /*
         public static string connectionString = "Server=.;Database=FitHubDB;" +
                                         "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
-
+        
         public static void UpdateFirstName(int instructorId, string newValue)
         {
             // Open connection first
@@ -109,6 +110,6 @@ namespace FitHubManagement.DataLogic.InstructorDL
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
-        }
+        }*/
     }
 }

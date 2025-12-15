@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace FitHubManagement.DataAccess
 {
     internal class InstructorDAL
     {
-        public static string connectionString = "Server=localhost;Database=FitHubDB;" +
-                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+        public static string connectionString =
+        ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         public static void CreateInstructor(string firstName, string lastName, string email, string phone, string Certifications) //Metoden
         {
@@ -27,8 +28,6 @@ namespace FitHubManagement.DataAccess
                 insertCmd.Parameters.AddWithValue("@Email", email);
                 insertCmd.Parameters.AddWithValue("@Phone", phone);
                 insertCmd.Parameters.AddWithValue("@Certifications", Certifications);
-
-
 
                 int changed = insertCmd.ExecuteNonQuery();
 
