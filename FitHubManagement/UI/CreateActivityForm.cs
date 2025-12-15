@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata.Ecma335; // ????
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +20,7 @@ namespace FitHubManagement.UI.Activity
     public partial class CreateActivityForm : Form
     {
         private readonly ActivityService activityService = new ActivityService(); //Et objekt bliver oprettet af klassen ActivityService, så metoder i BLL kan bruges. Readonly sikrer, at objektet aldrig ændres
-
+        private readonly ActivityTypeService activityTypeService = new ActivityTypeService();
 
         public CreateActivityForm()
         {
@@ -33,7 +33,9 @@ namespace FitHubManagement.UI.Activity
         //Panel create activity
         //---------------------------------------------MONA--------------------------------
         private List<string> locations;
-        private List<string> activityType;
+        private List<string> certifiedInstructors;
+        private List<string> GetAllActivityTypeNames;
+        private List<ActivityTypeModel> activityType;
         private List<string> duration;
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
@@ -47,12 +49,18 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.SelectedIndex = -1;
 
             activityType = activityService.GetAllActivityTypes();
+          
 
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
 
+            comboBox2.DisplayMember = "ActivityTypeName";
+            comboBox2.ValueMember = "ActivityTypeID";
             comboBox2.DataSource = activityType;
             comboBox2.SelectedIndex = -1;
+
+            label10.Text = "";
+            
 
             duration = activityService.GetAllDuration();
 
@@ -158,10 +166,11 @@ namespace FitHubManagement.UI.Activity
 
             // Date
             DateTime chosenDate = dateTimePicker1.Value;
-        }
 
-        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            string certifiedInstructor = label10.Text;
+
+
+
 
         }
 
@@ -200,7 +209,18 @@ namespace FitHubManagement.UI.Activity
             cmbSearchActivity.Text = "";
         }
 
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectActivityTypeID = (int)comboBox2.SelectedValue;
+            
+            label10.Text = certifiedInstructors = activityTypeService.GetCertifiedInstructor(activityTypeId);
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e) // Sorryyy
         {
 
         }

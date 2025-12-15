@@ -40,7 +40,7 @@ namespace FitHubManagement.DataAccess
         //________________________________________________________________________________________________________
 
         // Metode der henter alle aktiviteter fra databasen
-        public List<ActivityTypeModel> GetAllActivityTypes()
+        public List<ActivityTypeModel> GetAllActivityType()
         {
             // Liste til at gemme alle Activity-objekter
             List<ActivityTypeModel> activityTypeList = new List<ActivityTypeModel>();
@@ -118,9 +118,29 @@ namespace FitHubManagement.DataAccess
                     return null;
                 }
             }
-        
-        //________________________________________________________________________________________________________
 
+        //________________________________________________________________________________________________________
+        public string GetCertifiedInstructor(int activityTypeId) //Henter certificeret instruktør til relatede holdtype
+        {
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            // query henter First -og LastName fra Instructor via Instructor FK i ActivityType (JOIN)
+            string selectSql = @"
+                SELECT i.FirstName + ' ' + i.LastName AS CertifiedInstructorName 
+                FROM ActivityType at 
+                INNER JOIN Instructor i ON at.InstructorID = i.InstructorID
+                WHERE at.ActivityTypeID = @ActivityTypeID
+            ";
+
+            using (SqlCommand cmd = new SqlCommand(selectSql, connection))
+            {
+                cmd.Parameters.AddWithValue("@ActivityTypeID", activityTypeId);
+
+                var result = cmd.ExecuteScalar();
+                return result.ToString();
+            }
+        }
 
 
     }

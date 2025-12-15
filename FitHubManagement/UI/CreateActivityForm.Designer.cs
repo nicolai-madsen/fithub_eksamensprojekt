@@ -151,6 +151,8 @@
             btnSearchActivity = new Button();
             button4 = new Button();
             panel1 = new Panel();
+            label11 = new Label();
+            label10 = new Label();
             comboBox1 = new ComboBox();
             button3 = new Button();
             dateTimePicker1 = new DateTimePicker();
@@ -174,7 +176,7 @@
             // LblDuration
             // 
             LblDuration.AutoSize = true;
-            LblDuration.Location = new Point(17, 229);
+            LblDuration.Location = new Point(19, 154);
             LblDuration.Margin = new Padding(6, 0, 6, 0);
             LblDuration.Name = "LblDuration";
             LblDuration.Size = new Size(53, 15);
@@ -348,6 +350,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label11);
+            panel1.Controls.Add(label10);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(dateTimePicker1);
@@ -371,10 +375,28 @@
             panel1.TabIndex = 21;
             panel1.Paint += panel1_Paint;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(18, 86);
+            label11.Margin = new Padding(6, 0, 6, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(58, 15);
+            label11.TabIndex = 24;
+            label11.Text = "Instruktør";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(85, 86);
+            label10.Name = "label10";
+            label10.Size = new Size(0, 15);
+            label10.TabIndex = 23;
+            // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(78, 226);
+            comboBox1.Location = new Point(80, 151);
             comboBox1.Margin = new Padding(2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(134, 23);
@@ -405,7 +427,7 @@
             // cmbLocationActivity
             // 
             cmbLocationActivity.FormattingEnabled = true;
-            cmbLocationActivity.Location = new Point(78, 44);
+            cmbLocationActivity.Location = new Point(79, 116);
             cmbLocationActivity.Margin = new Padding(2);
             cmbLocationActivity.Name = "cmbLocationActivity";
             cmbLocationActivity.Size = new Size(134, 23);
@@ -444,7 +466,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(17, 47);
+            label4.Location = new Point(18, 119);
             label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
             label4.Size = new Size(53, 15);
@@ -464,7 +486,7 @@
             // cmbInstructorCreateActivity
             // 
             cmbInstructorCreateActivity.FormattingEnabled = true;
-            cmbInstructorCreateActivity.Location = new Point(78, 164);
+            cmbInstructorCreateActivity.Location = new Point(366, 377);
             cmbInstructorCreateActivity.Margin = new Padding(6, 8, 6, 8);
             cmbInstructorCreateActivity.Name = "cmbInstructorCreateActivity";
             cmbInstructorCreateActivity.Size = new Size(134, 23);
@@ -474,7 +496,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 105);
+            label1.Location = new Point(18, 44);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
             label1.Size = new Size(56, 15);
@@ -495,11 +517,12 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(78, 102);
+            comboBox2.Location = new Point(79, 41);
             comboBox2.Margin = new Padding(6, 8, 6, 8);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(134, 23);
+            comboBox2.Size = new Size(193, 23);
             comboBox2.TabIndex = 1;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // btnCreateActivityPanel
             // 
@@ -514,7 +537,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 167);
+            label2.Location = new Point(305, 380);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
             label2.Size = new Size(58, 15);
@@ -588,6 +611,8 @@
         private ComboBox comboBox2;
         private Button btnCreateActivityPanel;
         private Label label2;
+        private Label label11;
+        private Label label10;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 

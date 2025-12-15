@@ -16,7 +16,7 @@ namespace FitHubManagement.BusinessLogic
         /// 3. Tilføjet de nye properties til parametrene i CreateActivityType metoden
         /// 4. 
         /// </summary>
-        private readonly ActivityTypeDAL _createDL;
+        private readonly ActivityTypeDAL _activityTypeDAL = new ActivityTypeDAL();
 
         /*
          * Denne del slettes da vi ikke behøver en instans af CreateActivityTypeDL
@@ -43,6 +43,16 @@ namespace FitHubManagement.BusinessLogic
             int id = dal.CreateActivityType(type);
             type.ActivityTypeId = id;
             return type;
+        }
+
+        public List<ActivityTypeModel> GetAllActivityType()
+        {
+            return _activityTypeDAL.GetAllActivityType();
+        }
+
+        public string GetCertifiedInstructor(int activityTypeId)
+        {
+            return _activityTypeDAL.GetCertifiedInstructor(activityTypeId);
         }
     }
 }

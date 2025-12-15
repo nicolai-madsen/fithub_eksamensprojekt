@@ -13,7 +13,7 @@ namespace FitHubManagement.DataAccess
 {
     public class ActivityDAL
     {
-
+        #region FILTER METHODS
         //Activity filter
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
@@ -103,8 +103,9 @@ namespace FitHubManagement.DataAccess
             }
             return activities;
         }
+        #endregion
 
-
+        #region CREATE METHOD
         //Create activity
 
         public int CreateActivity(ActivityModel activity) // Metoden der laver en Activity tager et helt Activity objekt, som har properties med vores data
@@ -136,8 +137,9 @@ namespace FitHubManagement.DataAccess
             }
 
         }
+        #endregion
 
-
+        #region DELETE METHODS
         //DELETE
         public void DeleteActivity(int activityId)
         {
@@ -154,7 +156,9 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{deleted} rows deleted."); // deleted holder antal rækker der blev ændret af SQL kommando.
             }
         }
+        #endregion
 
+        #region GET METHODS
         //READ
 
 
@@ -215,7 +219,7 @@ namespace FitHubManagement.DataAccess
             return activityList;
         }
 
-
+        
         public List<string> GetAllLocations() //Viser forskellige lokationer, der er i databasen
         {
 
@@ -293,8 +297,11 @@ namespace FitHubManagement.DataAccess
 
             return activityDuration;
         }
-        
 
+ 
+        #endregion
+
+        #region UPDATE METHODS
         //UPDATE
         public void UpdateActivityType(int activityId, int newValue)
         {
@@ -396,6 +403,7 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+        #endregion
     }
 }
 
