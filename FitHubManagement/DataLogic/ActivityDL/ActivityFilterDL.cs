@@ -17,7 +17,8 @@ namespace FitHubManagement.DataLogic.ActivityDL
 
     public class ActivityFilterDL
     {
-        public static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FitHubDB;Trusted_Connection=True;";
+        public static string connectionString = "Server=.;Database=FitHubDB;" +
+                                        "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
         {
