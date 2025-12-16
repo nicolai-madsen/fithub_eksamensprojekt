@@ -15,6 +15,7 @@ namespace FitHubManagement.DataAccess
             // Connection string gemmes her
             public static readonly string ConnectionString = "Server=.;Database=FitHubDB;" +
                 "Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
+
         }
     }
 }
