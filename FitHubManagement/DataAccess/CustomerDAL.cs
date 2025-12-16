@@ -15,6 +15,8 @@ namespace FitHubManagement.DataAccess
 
 
         //CREATE
+
+        #region
         public void CreateCustomer(CustomerModel customer)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
@@ -41,7 +43,11 @@ namespace FitHubManagement.DataAccess
 
         }
 
+        #endregion
+
         //UPDATE
+
+        #region
         public void UpdateMembership(CustomerModel customer, string newValue)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
@@ -60,6 +66,7 @@ namespace FitHubManagement.DataAccess
 
 
         }
+        
 
         public void UpdateFirstName(CustomerModel customer, string newValue)
         {
@@ -183,8 +190,12 @@ namespace FitHubManagement.DataAccess
             }
         }
 
+        #endregion
+
 
         //READ
+
+        #region
         public List<CustomerModel> GetAllCustomer()
         {
             List<CustomerModel> customerList = new List<CustomerModel>();
@@ -327,7 +338,9 @@ namespace FitHubManagement.DataAccess
                 return null;
             }
         }
-        
+
+        #endregion
+
     }
 }
 
