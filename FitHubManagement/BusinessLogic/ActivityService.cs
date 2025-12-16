@@ -28,7 +28,8 @@ namespace FitHubManagement.BusinessLogic
 
             // opret variabel til at holde minutter, konverteret og omregnet fra string Duration
             int minutes = 0;
-            var match = System.Text.RegularExpressions.Regex.Match(duration, @"\d+");
+            var match = System.Text.RegularExpressions.Regex.Match(duration, @"\d+"); //  " \d+ " en "regular expression" også kaldt Regex. "\d" betyder "find tal". " + " betyder kig efter flere tal
+                                                                                      // "var match" typen er en Match-klasse fra Text.RegularExpressions (derfor bruges "var") 
             if (match.Success)
             {
                 minutes = int.Parse(match.Value);
