@@ -90,6 +90,8 @@ namespace FitHubManagement.UI.BookingUI
         }
 
         // Søgning (kald fra textBox1 og textBox2)
+
+        //LENA
         private void textBox_Search_TextChanged(object sender, EventArgs e)
         {
             string name = textBox1.Text.Trim();
@@ -103,10 +105,9 @@ namespace FitHubManagement.UI.BookingUI
             foreach (CustomerModel customer in customers)
             {
                 // match navn hvis name ikke er tom
-                bool matchName =
-                    name == "" ||
-                    (customer.FirstName ?? "").Contains(name, StringComparison.OrdinalIgnoreCase) ||
-                    (customer.LastName ?? "").Contains(name, StringComparison.OrdinalIgnoreCase);
+                bool matchName = name == "" || (customer.FirstName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase) || 
+                    (customer.LastName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase);
+
 
                 // match telefon hvis phone ikke er tom (ignorer mellemrum)
                 bool matchPhone =
@@ -124,10 +125,12 @@ namespace FitHubManagement.UI.BookingUI
             listBox1.ClearSelected();
         }
 
+
         // Hvis du stadig har textBox1_TextChanged fra Designer, kan du bare kalde metoden:
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textBox_Search_TextChanged(sender, e);
+            
         }
 
         // Og for textBox2 (lav denne event i Designer)
@@ -137,7 +140,7 @@ namespace FitHubManagement.UI.BookingUI
         }
 
         // Nulstil knap
-        public void button4_Click(object sender, EventArgs e)
+        public void button4_Click(object sender, EventArgs e) //Ryd knap i Panel1
         {
             textBox1.Text = "";
             textBox2.Text = "";
