@@ -199,6 +199,7 @@
             button8.TabIndex = 9;
             button8.Text = "Ny booking";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -230,6 +231,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(188, 33);
             comboBox1.TabIndex = 6;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dateTimePicker1
             // 
@@ -238,6 +240,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(228, 31);
             dateTimePicker1.TabIndex = 5;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // label6
             // 
@@ -279,6 +282,7 @@
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(564, 204);
             listBox2.TabIndex = 0;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // button1
             // 

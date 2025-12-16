@@ -33,7 +33,6 @@ namespace FitHubManagement.DataAccess
 	                ActivityID,
 	                CAST(StartDateTime AS DATE) AS ActivityDate,
 	                CAST(StartDateTime AS TIME) AS StartTime,
-	                CAST (EndDateTime AS TIME) AS EndTime,
 	                a.ActivityLocation,
 	                at.ActivityTypeName,
 	                i.FirstName + ' ' + i.LastName AS InstructorName
@@ -77,11 +76,11 @@ namespace FitHubManagement.DataAccess
                 command.Parameters.AddWithValue("@StartTime", filterModel.StartTime.Value);
             }
 
-            if (filterModel.EndTime.HasValue)
-            {
-                filterQuery += " AND CAST(EndDateTime AS TIME) <= @EndTime";
-                command.Parameters.AddWithValue("@EndTime", filterModel.EndTime.Value);
-            }
+            //if (filterModel.EndTime.HasValue)
+            //{
+            //    filterQuery += " AND CAST(EndDateTime AS TIME) <= @EndTime";
+            //    command.Parameters.AddWithValue("@EndTime", filterModel.EndTime.Value);
+            //}
 
             command.CommandText = filterQuery;
 
@@ -94,7 +93,7 @@ namespace FitHubManagement.DataAccess
                 activity.ActivityId = (int)reader["ActivityID"];
                 activity.ActivityDate = DateOnly.FromDateTime((DateTime)reader["ActivityDate"]);
                 activity.StartTime = TimeOnly.FromTimeSpan((TimeSpan)reader["StartTime"]);
-                activity.EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]);
+                //activity.EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]); // Ikke i brug pt.pga.Booking holdtype
                 activity.ActivityLocation = reader["ActivityLocation"].ToString();
                 activity.ActivityTypeName = reader["ActivityTypeName"].ToString();
                 activity.InstructorName = reader["InstructorName"].ToString();
@@ -293,7 +292,7 @@ namespace FitHubManagement.DataAccess
 
             return activityDuration;
         }
-        
+
 
         //UPDATE
         public void UpdateActivityType(int activityId, int newValue)
@@ -402,4 +401,4 @@ namespace FitHubManagement.DataAccess
 
 
 
-
+
