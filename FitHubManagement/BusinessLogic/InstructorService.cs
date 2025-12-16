@@ -42,4 +42,18 @@ namespace FitHubManagement.BusinessLogic
         }
 
     }
+
+    public class NewInstructorBLL
+    {
+        private InstructorDAL _dal;
+        public NewInstructorBLL()
+        {
+            _dal = new InstructorDAL();
+        }
+        public void CreateNewInstructor(InstructorModel newinstructor)
+        {
+            if (string.IsNullOrWhiteSpace(newinstructor.FirstName))
+                throw new ArgumentException("Fornavn må ikke være tomt");
+        }
+    }
 }

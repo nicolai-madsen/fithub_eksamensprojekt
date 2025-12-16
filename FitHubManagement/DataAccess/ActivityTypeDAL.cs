@@ -52,7 +52,7 @@ namespace FitHubManagement.DataAccess
 
             string query =
                 "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription" +
-                "FROM ActivityType";
+                " FROM ActivityType";
 
 
             using SqlCommand command = new SqlCommand(query, connection);
@@ -65,7 +65,7 @@ namespace FitHubManagement.DataAccess
                 {
                     // Håndterer nullable Description (kan være NULL i databasen)
                     string description = null;
-                    int descriptionIndex = reader.GetOrdinal("Description");
+                    int descriptionIndex = reader.GetOrdinal("ActivityTypeDescription");
                     if (!reader.IsDBNull(descriptionIndex))
                     {
                         description = reader.GetString(descriptionIndex);

@@ -20,9 +20,11 @@ namespace FitHubManagement.UI.Instructor
         public CreateInstructorForm()
         {
             InitializeComponent();
-            panel1.Visible = true;
-            GetAll.Visible = false;
-
+            panel1.Visible = false;
+            GetAll.Visible = true;
+            panelcreate.Visible = false;
+            LoadInstructors();
+            LoadComboBoxData();
         }
 
         private void FirstNameTxt_TextChanged(object sender, EventArgs e)
@@ -39,13 +41,16 @@ namespace FitHubManagement.UI.Instructor
         {
             GetAll.Visible = true;
             panel1.Visible = false;
+            panelcreate.Visible = false;
             LoadInstructors();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            panel1.Visible = true;
+            panelcreate.Visible = true; 
+            panel1.Visible = false;
             GetAll.Visible = false;
+
         }
 
         private void GetAll_Paint(object sender, PaintEventArgs e)
@@ -117,12 +122,7 @@ namespace FitHubManagement.UI.Instructor
 
                 if (activity != null)
                 {
-                    txtCert.Text = selectedInstructor.FirstName + " har certifikat til at undervise: " + activity.ActivityTypeName;
-                }
-                else
-                {
-                    txtCert.Text = "";
-                    MessageBox.Show("Ingen aktivitetstype fundet for denne instruktør.");
+                    cmbCert.Text = activity.ActivityTypeName;
                 }
             }
             else
@@ -145,6 +145,11 @@ namespace FitHubManagement.UI.Instructor
                 selectedInstructor.Email = txtEmail.Text;
                 selectedInstructor.PhoneNumber = txtPhone.Text;
 
+                if (cmbCert.SelectedValue != null)
+                {
+                    selectedInstructor.ActivityTypeId = (int)cmbCert.SelectedValue;
+                }
+
                 // Kald BLL
                 InstructorService instructorBLL = new InstructorService();
                 instructorBLL.SaveInstructor(selectedInstructor);
@@ -156,6 +161,30 @@ namespace FitHubManagement.UI.Instructor
             {
                 MessageBox.Show("Ingen instruktør valgt.");
             }
+        }
+
+        private void LoadComboBoxData()
+        {
+            ActivityTypeService activityBLL = new ActivityTypeService();
+            var activities = activityBLL.GetAllActivityTypes();
+
+            cmbCert.DisplayMember = "ActivityTypeName"; // Navnet på egenskaben i din model der skal vises
+            cmbCert.ValueMember = "ActivityTypeId";     // ID'et på aktiviteten
+            cmbCert.DataSource = activities;
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void FillCertificateComboBox()
+        {
+            // Hent listen fra din BLL/Service
+            ActivityService activityBLL = new ActivityService();
+            var activities = activityBLL.GetAllActivityTypes();
+
+            cmbCert.DataSource = activities;
+            cmbCert.DisplayMember = "ActivityTypeName"; // Det tekst brugeren ser (f.eks. "Yoga" eller "Crossfit")
+            cmbCert.ValueMember = "ActivityTypeID";      // Den værdi du gemmer i baggrunden (ID'et)
         }
     }
 }

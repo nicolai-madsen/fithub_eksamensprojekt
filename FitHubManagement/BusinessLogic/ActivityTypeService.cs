@@ -44,5 +44,12 @@ namespace FitHubManagement.BusinessLogic
             type.ActivityTypeId = id;
             return type;
         }
+
+        public List<ActivityTypeModel> GetAllActivityTypes()
+        {
+            ActivityTypeDAL dal = new ActivityTypeDAL();
+            return dal.GetAllActivityTypes();
+        }
     }
+
 }

@@ -10,7 +10,7 @@ using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
-    internal class InstructorDAL
+    public class InstructorDAL
     {
         public static void CreateInstructor(string firstName, string lastName, string email, string phone, string Certifications) //Metoden
         {
@@ -96,6 +96,8 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+
+
         public void UpdateInstructor(InstructorModel instructor)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
@@ -108,6 +110,7 @@ namespace FitHubManagement.DataAccess
                                  Email = @Email,
                                  Phone = @Phone
                              WHERE InstructorID = @InstructorID";
+                
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@FirstName", instructor.FirstName);
@@ -115,8 +118,17 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@Email", instructor.Email);
                 cmd.Parameters.AddWithValue("@Phone", instructor.PhoneNumber);
                 cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
-
+                
                 cmd.ExecuteNonQuery();
+
+                string queryActivityType = @"update ActivityType
+                             set InstructorID = @InstructorId
+                             where ActivityTypeID = @ActivityTypeId";
+
+                SqlCommand cmdActivityType = new SqlCommand(queryActivityType, connection);
+                cmdActivityType.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
+                cmdActivityType.Parameters.AddWithValue("@ActivityTypeId", instructor.ActivityTypeId);
+                cmdActivityType.ExecuteNonQuery();
             }
         }
 
