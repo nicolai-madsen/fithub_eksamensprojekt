@@ -20,6 +20,7 @@ namespace FitHubManagement.Models
         public DateTime CreatedDate { get; set; }
         public bool Inactive { get; set; } // true = bruger er aktiv, false betyder at bruger inaktiv.
         // Ændret fra Active til Inactive - svarer til databasen
+
     }
 
 }
