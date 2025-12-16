@@ -33,7 +33,6 @@ namespace FitHubManagement.UI.Activity
         //Panel create activity
         //---------------------------------------------MONA--------------------------------
         private List<string> locations;
-        private List<string> certifiedInstructors;
         private List<string> GetAllActivityTypeNames;
         private List<ActivityTypeModel> activityType;
         private List<string> duration;
@@ -53,6 +52,9 @@ namespace FitHubManagement.UI.Activity
 
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
+
+            List<ActivityTypeModel> activityTypes =
+                activityTypeService.GetAllActivityTypes();
 
             comboBox2.DisplayMember = "ActivityTypeName";
             comboBox2.ValueMember = "ActivityTypeID";
@@ -158,7 +160,7 @@ namespace FitHubManagement.UI.Activity
 
             // Activity type via index
             int activityTypeIndex = comboBox2.SelectedIndex;
-            string activityTypeName = activityType[activityTypeIndex];
+            ActivityTypeModel selectedActivityType = (ActivityTypeModel)comboBox2.SelectedItem;
 
             //Duration via index
             int durationIndex = comboBox1.SelectedIndex;
@@ -213,7 +215,7 @@ namespace FitHubManagement.UI.Activity
         {
             int selectActivityTypeID = (int)comboBox2.SelectedValue;
             
-            label10.Text = certifiedInstructors = activityTypeService.GetCertifiedInstructor(activityTypeId);
+            label10.Text = activityTypeService.GetCertifiedInstructor(selectActivityTypeID);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

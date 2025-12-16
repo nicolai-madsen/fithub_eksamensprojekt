@@ -6,6 +6,7 @@ namespace FitHubManagement.BusinessLogic
     public class ActivityService
     {
         private readonly ActivityDAL _activityDal = new ActivityDAL();
+        private readonly ActivityTypeDAL _activityTypeDal = new ActivityTypeDAL();
 
         public ActivityModel CreateActivity(
             int activityTypeId,
@@ -47,9 +48,10 @@ namespace FitHubManagement.BusinessLogic
             return _activityDal.GetAllLocations();
         }
 
-        public List<string> GetAllActivityTypes()
+        // Kommer fra ActivityType 
+        public List<ActivityTypeModel> GetAllActivityTypes()
         {
-            return _activityDal.GetAllActivityTypes();
+            return _activityTypeDal.GetAllActivityTypes();
         }
 
         public List<string> GetAllDuration()

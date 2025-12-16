@@ -40,7 +40,7 @@ namespace FitHubManagement.DataAccess
         //________________________________________________________________________________________________________
 
         // Metode der henter alle aktiviteter fra databasen
-        public List<ActivityTypeModel> GetAllActivityType()
+        public List<ActivityTypeModel> GetAllActivityTypes()
         {
             // Liste til at gemme alle Activity-objekter
             List<ActivityTypeModel> activityTypeList = new List<ActivityTypeModel>();
@@ -51,8 +51,7 @@ namespace FitHubManagement.DataAccess
 
 
             string query =
-                "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription" +
-                "FROM ActivityType";
+                "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription FROM ActivityType";
 
 
             using SqlCommand command = new SqlCommand(query, connection);
@@ -67,9 +66,10 @@ namespace FitHubManagement.DataAccess
                     string description = null;
                     int descriptionIndex = reader.GetOrdinal("Description");
                     if (!reader.IsDBNull(descriptionIndex))
-                    {
-                        description = reader.GetString(descriptionIndex);
-                    }
+                        if (!reader.IsDBNull(descriptionIndex))
+                        {
+                            description = reader.GetString(descriptionIndex);
+                        }
 
                     // Opretter et ActivityType-objekt og mapper kolonnerne til properties
                     ActivityTypeModel a = new ActivityTypeModel
@@ -77,7 +77,7 @@ namespace FitHubManagement.DataAccess
                         ActivityTypeId = reader.GetInt32(reader.GetOrdinal("ActivityTypeID")),
                         InstructorId = reader.GetInt32(reader.GetOrdinal("InstructorID")),
                         ActivityTypeName = reader.GetString(reader.GetOrdinal("ActivityTypeName")),
-                        ActivityTypeDescription = reader.GetString(reader.GetOrdinal("ActivityTypeDescription"))
+                        ActivityTypeDescription = description
                     };
 
                     // Lægger Activity-objektet i listen

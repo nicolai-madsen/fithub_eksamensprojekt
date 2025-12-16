@@ -45,9 +45,9 @@ namespace FitHubManagement.BusinessLogic
             return type;
         }
 
-        public List<ActivityTypeModel> GetAllActivityType()
+        public List<ActivityTypeModel> GetAllActivityTypes()
         {
-            return _activityTypeDAL.GetAllActivityType();
+            return _activityTypeDAL.GetAllActivityTypes();
         }
 
         public string GetCertifiedInstructor(int activityTypeId)
