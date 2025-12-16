@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            label29 = new Label();
+            count = new TextBox();
             CustomerInfoBtn = new Button();
             ShowActiveBtn = new Button();
             ShowInactiveBtn = new Button();
@@ -55,6 +57,7 @@
             label16 = new Label();
             EditCustomerTitle = new Label();
             NewCustomerPanel = new Panel();
+            label27 = new Label();
             label23 = new Label();
             label28 = new Label();
             label26 = new Label();
@@ -100,7 +103,6 @@
             label20 = new Label();
             label21 = new Label();
             Kundeinformation = new Label();
-            label27 = new Label();
             ListPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
@@ -109,6 +111,8 @@
             // 
             // ListPanel
             // 
+            ListPanel.Controls.Add(label29);
+            ListPanel.Controls.Add(count);
             ListPanel.Controls.Add(CustomerInfoBtn);
             ListPanel.Controls.Add(ShowActiveBtn);
             ListPanel.Controls.Add(ShowInactiveBtn);
@@ -121,6 +125,22 @@
             ListPanel.Size = new Size(578, 564);
             ListPanel.TabIndex = 8;
             // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(373, 85);
+            label29.Name = "label29";
+            label29.Size = new Size(93, 20);
+            label29.TabIndex = 49;
+            label29.Text = "Medlemmer:";
+            // 
+            // count
+            // 
+            count.Location = new Point(466, 82);
+            count.Name = "count";
+            count.Size = new Size(33, 27);
+            count.TabIndex = 21;
+            // 
             // CustomerInfoBtn
             // 
             CustomerInfoBtn.Location = new Point(63, 423);
@@ -129,11 +149,11 @@
             CustomerInfoBtn.TabIndex = 20;
             CustomerInfoBtn.Text = "Information";
             CustomerInfoBtn.UseVisualStyleBackColor = true;
-            CustomerInfoBtn.Click += CustomerInfoBtn_Click;
+            CustomerInfoBtn.Click += CustomerInfoBtn_Click_1;
             // 
             // ShowActiveBtn
             // 
-            ShowActiveBtn.Location = new Point(195, 82);
+            ShowActiveBtn.Location = new Point(173, 82);
             ShowActiveBtn.Name = "ShowActiveBtn";
             ShowActiveBtn.Size = new Size(94, 29);
             ShowActiveBtn.TabIndex = 19;
@@ -143,7 +163,7 @@
             // 
             // ShowInactiveBtn
             // 
-            ShowInactiveBtn.Location = new Point(320, 82);
+            ShowInactiveBtn.Location = new Point(273, 82);
             ShowInactiveBtn.Name = "ShowInactiveBtn";
             ShowInactiveBtn.Size = new Size(94, 29);
             ShowInactiveBtn.TabIndex = 18;
@@ -169,6 +189,7 @@
             EditBtn.TabIndex = 15;
             EditBtn.Text = "Rediger";
             EditBtn.UseVisualStyleBackColor = true;
+            EditBtn.Click += EditBtn_Click;
             // 
             // ChooseCustomerTitle
             // 
@@ -387,6 +408,17 @@
             NewCustomerPanel.Name = "NewCustomerPanel";
             NewCustomerPanel.Size = new Size(584, 426);
             NewCustomerPanel.TabIndex = 9;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 11F);
+            label27.ForeColor = Color.Red;
+            label27.Location = new Point(150, 262);
+            label27.Name = "label27";
+            label27.Size = new Size(20, 25);
+            label27.TabIndex = 48;
+            label27.Text = "*";
             // 
             // label23
             // 
@@ -806,17 +838,6 @@
             Kundeinformation.TabIndex = 13;
             Kundeinformation.Text = "Kundeinformation";
             // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 11F);
-            label27.ForeColor = Color.Red;
-            label27.Location = new Point(150, 262);
-            label27.Name = "label27";
-            label27.Size = new Size(20, 25);
-            label27.TabIndex = 48;
-            label27.Text = "*";
-            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -919,5 +940,7 @@
         private Label label28;
         private Label label23;
         private Label label27;
+        private TextBox count;
+        private Label label29;
     }
 }
