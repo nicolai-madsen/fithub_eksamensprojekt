@@ -162,12 +162,10 @@
             lblDateActivity = new Label();
             label4 = new Label();
             nmrUpDwnMaxPartisipant = new NumericUpDown();
-            cmbInstructorCreateActivity = new ComboBox();
             label1 = new Label();
             dateTimePicker2 = new DateTimePicker();
             comboBox2 = new ComboBox();
             btnCreateActivityPanel = new Button();
-            label2 = new Label();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -362,12 +360,10 @@
             panel1.Controls.Add(lblDateActivity);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(nmrUpDwnMaxPartisipant);
-            panel1.Controls.Add(cmbInstructorCreateActivity);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnCreateActivityPanel);
-            panel1.Controls.Add(label2);
             panel1.Location = new Point(0, 30);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
@@ -483,16 +479,6 @@
             nmrUpDwnMaxPartisipant.TabIndex = 5;
             nmrUpDwnMaxPartisipant.ValueChanged += nmrUpDwnMaxPartisipant_ValueChanged;
             // 
-            // cmbInstructorCreateActivity
-            // 
-            cmbInstructorCreateActivity.FormattingEnabled = true;
-            cmbInstructorCreateActivity.Location = new Point(366, 377);
-            cmbInstructorCreateActivity.Margin = new Padding(6, 8, 6, 8);
-            cmbInstructorCreateActivity.Name = "cmbInstructorCreateActivity";
-            cmbInstructorCreateActivity.Size = new Size(134, 23);
-            cmbInstructorCreateActivity.TabIndex = 22;
-            cmbInstructorCreateActivity.SelectedIndexChanged += cmbInstructorCreateActivity_SelectedIndexChanged;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -533,16 +519,6 @@
             btnCreateActivityPanel.Text = "Opret hold";
             btnCreateActivityPanel.UseVisualStyleBackColor = true;
             btnCreateActivityPanel.Click += btnCreateActivityPanel_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(305, 380);
-            label2.Margin = new Padding(6, 0, 6, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 7;
-            label2.Text = "Instruktør";
             // 
             // CreateActivityForm
             // 
@@ -605,12 +581,10 @@
         private Label lblDateActivity;
         private Label label4;
         private NumericUpDown nmrUpDwnMaxPartisipant;
-        private ComboBox cmbInstructorCreateActivity;
         private Label label1;
         private DateTimePicker dateTimePicker2;
         private ComboBox comboBox2;
         private Button btnCreateActivityPanel;
-        private Label label2;
         private Label label11;
         private Label label10;
 
