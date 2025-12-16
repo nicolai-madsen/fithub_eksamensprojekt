@@ -15,48 +15,55 @@ namespace FitHubManagement.UI.BookingUI
             panel1.Visible = true;
             panel2.Visible = true;
             panel1.BringToFront();
-
-            // Anbefaling: brug samme TextChanged event på begge textBoxe i Designer
-            // textBox1.TextChanged += textBox_Search_TextChanged;
-            // textBox2.TextChanged += textBox_Search_TextChanged;
         }
+
+
+        private CustomerModel selectedCustomer; // Gemt valgt medlem fra Panel1 til Panel2
+
 
         // Panel1 Fortsæt knap
         private void button3_Click(object sender, EventArgs e)
         {
-            CustomerModel selectedCustomer = GetSelectedCustomer();
 
-            if (selectedCustomer == null)
+            CustomerModel customer = GetSelectedCustomer();
+
+            if (customer == null)
             {
                 MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            if (selectedCustomer.Inactive)
+            if (customer.Inactive)
             {
                 MessageBox.Show("Du kan ikke vælge et inaktivt medlem.");
                 return;
             }
 
+            // ✅ GEM kunden til brug i Panel2
+            selectedCustomer = customer;
+
             panel1.Visible = false;
             panel2.Visible = true;
         }
 
-        // Henter valgt medlem (virker både med wrapper og uden)
+
+
+        // Henter valgt medlem (virker for både navn-item og detail-item)
         private CustomerModel GetSelectedCustomer()
         {
             if (listBox1.SelectedIndex == -1)
                 return null;
 
-            // Hvis du bruger wrapper (som vi gør), så henter vi Customer her
-            if (listBox1.SelectedItem is CustomerListItem item)
-                return item.Customer;
+            if (listBox1.SelectedItem is CustomerNameItem nameItem)
+                return nameItem.Customer;
 
-            // Hvis du en dag går tilbage til at gemme direkte CustomerModel
+            if (listBox1.SelectedItem is CustomerDetailItem detailItem)
+                return detailItem.Customer;
+
             return listBox1.SelectedItem as CustomerModel;
         }
 
-        // Panel1 Vis knap: vis kun den valgte person
+        // Panel1 Vis knap: vis detaljer for den valgte person
         private void button2_Click(object sender, EventArgs e)
         {
             CustomerModel selectedCustomer = GetSelectedCustomer();
@@ -67,8 +74,11 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
+            // Vis KUN den valgte - med detaljer
+            listBox1.DataSource = null;
             listBox1.Items.Clear();
-            listBox1.Items.Add(new CustomerListItem(selectedCustomer));
+            listBox1.Items.Add(new CustomerDetailItem(selectedCustomer));
+            listBox1.ClearSelected();
         }
 
         // Tilbage knap
@@ -89,7 +99,7 @@ namespace FitHubManagement.UI.BookingUI
             // TODO: tilmeld booking
         }
 
-        // Søgning (kald fra textBox1 og textBox2)
+        // Søgning (forslag) - viser kun NAVNE mens du skriver
         private void textBox_Search_TextChanged(object sender, EventArgs e)
         {
             string name = textBox1.Text.Trim();
@@ -98,39 +108,35 @@ namespace FitHubManagement.UI.BookingUI
             CustomerDAL customerDL = new CustomerDAL();
             List<CustomerModel> customers = customerDL.GetAllCustomer();
 
+            listBox1.DataSource = null;
             listBox1.Items.Clear();
 
             foreach (CustomerModel customer in customers)
             {
-                // match navn hvis name ikke er tom
                 bool matchName =
                     name == "" ||
-                    (customer.FirstName ?? "").Contains(name, StringComparison.OrdinalIgnoreCase) ||
-                    (customer.LastName ?? "").Contains(name, StringComparison.OrdinalIgnoreCase);
+                    (customer.FirstName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase) ||
+                    (customer.LastName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase);
 
-                // match telefon hvis phone ikke er tom (ignorer mellemrum)
                 bool matchPhone =
                     phone == "" ||
                     (customer.Phone ?? "").Replace(" ", "").Contains(phone);
 
                 if (matchName && matchPhone)
                 {
-                    // Wrapper sørger for " (Inaktiv)" i teksten uden at ændre model
-                    listBox1.Items.Add(new CustomerListItem(customer));
+                    // Her viser vi KUN navne som forslag
+                    listBox1.Items.Add(new CustomerNameItem(customer));
                 }
             }
 
-            // Forhindrer auto-valg efter søgning
             listBox1.ClearSelected();
         }
 
-        // Hvis du stadig har textBox1_TextChanged fra Designer, kan du bare kalde metoden:
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textBox_Search_TextChanged(sender, e);
         }
 
-        // Og for textBox2 (lav denne event i Designer)
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             textBox_Search_TextChanged(sender, e);
@@ -141,32 +147,88 @@ namespace FitHubManagement.UI.BookingUI
         {
             textBox1.Text = "";
             textBox2.Text = "";
+            listBox1.DataSource = null;
             listBox1.Items.Clear();
             textBox1.Focus();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Lad denne være tom - ingen MessageBox her (ellers spammer den)
+            // hold tom - ingen MessageBox her
         }
 
-        // ✅ Lille wrapper-klasse: styrer visning i ListBox uden at ændre CustomerModel
-        private class CustomerListItem
+        // ---------- WRAPPERS ----------En lille klasse, der pakker et andet objekt ind.
+        //Hvorfor bruger vi wrappers her?
+        //Fordi du vil have to forskellige visninger af samme kunde:
+
+        //1.Når du skriver → kun navn
+        //2️. Når du trykker Vis → alle detaljer
+
+        // Forslag mens man skriver: kun navn (+ evt inaktiv)
+        private class CustomerNameItem
         {
             public CustomerModel Customer { get; }
 
-            public CustomerListItem(CustomerModel customer)
+            public CustomerNameItem(CustomerModel customer)
             {
                 Customer = customer;
             }
 
             public override string ToString()
             {
-                if (Customer.Inactive)
-                    return $"{Customer.FirstName} {Customer.LastName} (Inaktiv)";
-
-                return $"{Customer.FirstName} {Customer.LastName}";
+                string status = Customer.Inactive ? " (Inaktiv)" : "";
+                return $"{Customer.FirstName} {Customer.LastName}{status}";
             }
         }
+
+        // Når man trykker "Vis": detaljer
+        private class CustomerDetailItem
+        {
+            public CustomerModel Customer { get; }
+
+            public CustomerDetailItem(CustomerModel customer)
+            {
+                Customer = customer;
+            }
+
+            public override string ToString()
+            {
+                string status = Customer.Inactive ? " (Inaktiv)" : "";
+
+                // Henter medlemskab via eksisterende GetMembership-metode
+                MembershipDAL membershipDAL = new MembershipDAL();
+                MembershipModel membership =
+                    membershipDAL.GetMembership(Customer.MembershipId);
+
+                string membershipName =
+                    membership != null ? membership.MembershipName : "Ukendt";
+
+                return $"ID: {Customer.CustomerId} | " +
+                       $"Medlem: {membershipName} | " +
+                       $"{Customer.FirstName} {Customer.LastName} | " +
+                       $"Tlf: {Customer.Phone}{status}";
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Ingen medlem valgt fra panel 1.");
+                return;
+            }
+
+            listBox2.Items.Clear();
+
+            // Hvis du vil vise detaljer:
+            listBox2.Items.Add(new CustomerDetailItem(selectedCustomer));
+
+            // Hvis du kun vil vise navn, kan du i stedet bruge:
+            // listBox2.Items.Add(new CustomerNameItem(selectedCustomer));
+        }
+
     }
 }
+
+

@@ -56,21 +56,22 @@ namespace FitHubManagement.DataAccess
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
-            string selectSql = "SELECT MembershipID, MembershipName, MembershipDescription, MonthlyPrice" +
-                               "FROM Membership WHERE MembershipID = @MembershipId";
+            string selectSql = $"SELECT MembershipID, MembershipName FROM Membership WHERE MembershipID = @MembershipId";
+
             using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
             {
                 selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
 
                 using (SqlDataReader reader = selectCmd.ExecuteReader())
                 {
-                    MembershipModel membership = new MembershipModel
+                    MembershipModel membership = new MembershipModel();
+                    if (reader.Read())
                     {
-                        MembershipId = reader.GetInt32(0),
-                        MembershipName = reader.GetString(1),
-                        MembershipDescription = reader.GetString(2),
-                        MonthlyPrice = reader.GetDecimal(3),
-                    };
+                        membership.MembershipId = reader.GetInt32(0);
+                        membership.MembershipName = reader.GetString(1);
+
+                    }
+                    ;
                     return membership;
                 }
             }
@@ -82,7 +83,9 @@ namespace FitHubManagement.DataAccess
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
-            string selectSql = "SELECT MembershipID, MembershipName, MembershipDescription, MonthlyPrice FROM Membership";
+            string selectSql = "SELECT * FROM Membership WHERE MembershipID = @MembershipID";
+
+
             using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
             using SqlDataReader reader = selectCmd.ExecuteReader();
 
