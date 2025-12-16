@@ -136,6 +136,17 @@
             toolTip1 = new ToolTip(components);
             LblDuration = new Label();
             pnlSearchActivity = new Panel();
+            label2 = new Label();
+            cmbSearchLocation = new ComboBox();
+            btnSearchGet = new Button();
+            chkFilterByDate = new CheckBox();
+            dTPSearchDate = new DateTimePicker();
+            lstbxSearchGet = new ListBox();
+            cmbSearchActivity = new ComboBox();
+            lblSearchLocation = new Label();
+            lblSearchDate = new Label();
+            lblSearchActivity = new Label();
+            lblSearchCriteria = new Label();
             panel1 = new Panel();
             label11 = new Label();
             label10 = new Label();
@@ -152,21 +163,11 @@
             dateTimePicker2 = new DateTimePicker();
             comboBox2 = new ComboBox();
             btnCreateActivityPanel = new Button();
-            chkFilterByDate = new CheckBox();
-            btnSearchGet = new Button();
-            cmbSearchLocation = new ComboBox();
-            dTPSearchDate = new DateTimePicker();
-            cmbSearchActivity = new ComboBox();
-            lstbxSearchGet = new ListBox();
-            lblSearchLocation = new Label();
-            lblSearchDate = new Label();
-            lblSearchActivity = new Label();
-            lblSearchCriteria = new Label();
-            label2 = new Label();
             btnActivityCreate = new Button();
             label3 = new Label();
             btnSearchActivity = new Button();
             button4 = new Button();
+            button1 = new Button();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -202,6 +203,117 @@
             pnlSearchActivity.Size = new Size(509, 443);
             pnlSearchActivity.TabIndex = 20;
             pnlSearchActivity.Paint += pnlSearcActivity_Paint;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(1, 82);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Instruktør";
+            // 
+            // cmbSearchLocation
+            // 
+            cmbSearchLocation.FormattingEnabled = true;
+            cmbSearchLocation.Location = new Point(59, 123);
+            cmbSearchLocation.Margin = new Padding(1);
+            cmbSearchLocation.Name = "cmbSearchLocation";
+            cmbSearchLocation.Size = new Size(166, 23);
+            cmbSearchLocation.TabIndex = 14;
+            cmbSearchLocation.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+            // 
+            // btnSearchGet
+            // 
+            btnSearchGet.Location = new Point(380, 124);
+            btnSearchGet.Margin = new Padding(2, 3, 2, 3);
+            btnSearchGet.Name = "btnSearchGet";
+            btnSearchGet.Size = new Size(120, 30);
+            btnSearchGet.TabIndex = 19;
+            btnSearchGet.Text = "Vis søgeresultater";
+            btnSearchGet.UseVisualStyleBackColor = true;
+            btnSearchGet.Click += btnSearchGet_Click;
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(300, 84);
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(79, 19);
+            chkFilterByDate.TabIndex = 20;
+            chkFilterByDate.Text = "Brug Dato";
+            chkFilterByDate.UseVisualStyleBackColor = true;
+            // 
+            // dTPSearchDate
+            // 
+            dTPSearchDate.Location = new Point(300, 55);
+            dTPSearchDate.Margin = new Padding(2, 3, 2, 3);
+            dTPSearchDate.Name = "dTPSearchDate";
+            dTPSearchDate.Size = new Size(166, 23);
+            dTPSearchDate.TabIndex = 6;
+            // 
+            // lstbxSearchGet
+            // 
+            lstbxSearchGet.FormattingEnabled = true;
+            lstbxSearchGet.ItemHeight = 15;
+            lstbxSearchGet.Location = new Point(0, 156);
+            lstbxSearchGet.Margin = new Padding(1);
+            lstbxSearchGet.Name = "lstbxSearchGet";
+            lstbxSearchGet.Size = new Size(500, 139);
+            lstbxSearchGet.TabIndex = 4;
+            lstbxSearchGet.SelectedIndexChanged += lstbxSearchGet_SelectedIndexChanged;
+            // 
+            // cmbSearchActivity
+            // 
+            cmbSearchActivity.FormattingEnabled = true;
+            cmbSearchActivity.Location = new Point(59, 55);
+            cmbSearchActivity.Margin = new Padding(1);
+            cmbSearchActivity.Name = "cmbSearchActivity";
+            cmbSearchActivity.Size = new Size(166, 23);
+            cmbSearchActivity.TabIndex = 5;
+            // 
+            // lblSearchLocation
+            // 
+            lblSearchLocation.AutoSize = true;
+            lblSearchLocation.Location = new Point(1, 126);
+            lblSearchLocation.Margin = new Padding(1, 0, 1, 0);
+            lblSearchLocation.Name = "lblSearchLocation";
+            lblSearchLocation.Size = new Size(53, 15);
+            lblSearchLocation.TabIndex = 3;
+            lblSearchLocation.Text = "Lokation";
+            lblSearchLocation.Click += label9_Click;
+            // 
+            // lblSearchDate
+            // 
+            lblSearchDate.AutoSize = true;
+            lblSearchDate.Location = new Point(265, 59);
+            lblSearchDate.Margin = new Padding(1, 0, 1, 0);
+            lblSearchDate.Name = "lblSearchDate";
+            lblSearchDate.Size = new Size(32, 15);
+            lblSearchDate.TabIndex = 2;
+            lblSearchDate.Text = "Dato";
+            lblSearchDate.Click += label8_Click;
+            // 
+            // lblSearchActivity
+            // 
+            lblSearchActivity.AutoSize = true;
+            lblSearchActivity.Location = new Point(1, 59);
+            lblSearchActivity.Margin = new Padding(1, 0, 1, 0);
+            lblSearchActivity.Name = "lblSearchActivity";
+            lblSearchActivity.Size = new Size(56, 15);
+            lblSearchActivity.TabIndex = 1;
+            lblSearchActivity.Text = "Holdtype";
+            // 
+            // lblSearchCriteria
+            // 
+            lblSearchCriteria.AutoSize = true;
+            lblSearchCriteria.Font = new Font("Segoe UI", 9.900001F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSearchCriteria.Location = new Point(156, 14);
+            lblSearchCriteria.Margin = new Padding(1, 0, 1, 0);
+            lblSearchCriteria.Name = "lblSearchCriteria";
+            lblSearchCriteria.Size = new Size(177, 19);
+            lblSearchCriteria.TabIndex = 0;
+            lblSearchCriteria.Text = "Søg på ét eller flere kriterier";
             // 
             // panel1
             // 
@@ -378,117 +490,6 @@
             btnCreateActivityPanel.UseVisualStyleBackColor = true;
             btnCreateActivityPanel.Click += btnCreateActivityPanel_Click;
             // 
-            // chkFilterByDate
-            // 
-            chkFilterByDate.AutoSize = true;
-            chkFilterByDate.Location = new Point(300, 84);
-            chkFilterByDate.Name = "chkFilterByDate";
-            chkFilterByDate.Size = new Size(79, 19);
-            chkFilterByDate.TabIndex = 20;
-            chkFilterByDate.Text = "Brug Dato";
-            chkFilterByDate.UseVisualStyleBackColor = true;
-            // 
-            // btnSearchGet
-            // 
-            btnSearchGet.Location = new Point(380, 124);
-            btnSearchGet.Margin = new Padding(2, 3, 2, 3);
-            btnSearchGet.Name = "btnSearchGet";
-            btnSearchGet.Size = new Size(120, 30);
-            btnSearchGet.TabIndex = 19;
-            btnSearchGet.Text = "Vis søgeresultater";
-            btnSearchGet.UseVisualStyleBackColor = true;
-            btnSearchGet.Click += btnSearchGet_Click;
-            // 
-            // cmbSearchLocation
-            // 
-            cmbSearchLocation.FormattingEnabled = true;
-            cmbSearchLocation.Location = new Point(59, 123);
-            cmbSearchLocation.Margin = new Padding(1);
-            cmbSearchLocation.Name = "cmbSearchLocation";
-            cmbSearchLocation.Size = new Size(166, 23);
-            cmbSearchLocation.TabIndex = 14;
-            cmbSearchLocation.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
-            // 
-            // dTPSearchDate
-            // 
-            dTPSearchDate.Location = new Point(300, 55);
-            dTPSearchDate.Margin = new Padding(2, 3, 2, 3);
-            dTPSearchDate.Name = "dTPSearchDate";
-            dTPSearchDate.Size = new Size(166, 23);
-            dTPSearchDate.TabIndex = 6;
-            // 
-            // cmbSearchActivity
-            // 
-            cmbSearchActivity.FormattingEnabled = true;
-            cmbSearchActivity.Location = new Point(59, 55);
-            cmbSearchActivity.Margin = new Padding(1);
-            cmbSearchActivity.Name = "cmbSearchActivity";
-            cmbSearchActivity.Size = new Size(166, 23);
-            cmbSearchActivity.TabIndex = 5;
-            // 
-            // lstbxSearchGet
-            // 
-            lstbxSearchGet.FormattingEnabled = true;
-            lstbxSearchGet.ItemHeight = 15;
-            lstbxSearchGet.Location = new Point(0, 156);
-            lstbxSearchGet.Margin = new Padding(1);
-            lstbxSearchGet.Name = "lstbxSearchGet";
-            lstbxSearchGet.Size = new Size(500, 139);
-            lstbxSearchGet.TabIndex = 4;
-            lstbxSearchGet.SelectedIndexChanged += lstbxSearchGet_SelectedIndexChanged;
-            // 
-            // lblSearchLocation
-            // 
-            lblSearchLocation.AutoSize = true;
-            lblSearchLocation.Location = new Point(1, 126);
-            lblSearchLocation.Margin = new Padding(1, 0, 1, 0);
-            lblSearchLocation.Name = "lblSearchLocation";
-            lblSearchLocation.Size = new Size(53, 15);
-            lblSearchLocation.TabIndex = 3;
-            lblSearchLocation.Text = "Lokation";
-            lblSearchLocation.Click += label9_Click;
-            // 
-            // lblSearchDate
-            // 
-            lblSearchDate.AutoSize = true;
-            lblSearchDate.Location = new Point(265, 59);
-            lblSearchDate.Margin = new Padding(1, 0, 1, 0);
-            lblSearchDate.Name = "lblSearchDate";
-            lblSearchDate.Size = new Size(32, 15);
-            lblSearchDate.TabIndex = 2;
-            lblSearchDate.Text = "Dato";
-            lblSearchDate.Click += label8_Click;
-            // 
-            // lblSearchActivity
-            // 
-            lblSearchActivity.AutoSize = true;
-            lblSearchActivity.Location = new Point(1, 59);
-            lblSearchActivity.Margin = new Padding(1, 0, 1, 0);
-            lblSearchActivity.Name = "lblSearchActivity";
-            lblSearchActivity.Size = new Size(56, 15);
-            lblSearchActivity.TabIndex = 1;
-            lblSearchActivity.Text = "Holdtype";
-            // 
-            // lblSearchCriteria
-            // 
-            lblSearchCriteria.AutoSize = true;
-            lblSearchCriteria.Font = new Font("Segoe UI", 9.900001F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSearchCriteria.Location = new Point(156, 14);
-            lblSearchCriteria.Margin = new Padding(1, 0, 1, 0);
-            lblSearchCriteria.Name = "lblSearchCriteria";
-            lblSearchCriteria.Size = new Size(177, 19);
-            lblSearchCriteria.TabIndex = 0;
-            lblSearchCriteria.Text = "Søg på ét eller flere kriterier";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(1, 82);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Instruktør";
-            // 
             // btnActivityCreate
             // 
             btnActivityCreate.Location = new Point(1446, 141);
@@ -533,11 +534,23 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(602, 172);
+            button1.Margin = new Padding(2, 3, 2, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 22;
+            button1.Text = "Opret Hold";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // CreateActivityForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(863, 502);
+            Controls.Add(button1);
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(label3);
@@ -603,6 +616,7 @@
         private Button btnCreateActivityPanel;
         private Label label11;
         private Label label10;
+        private Button button1;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 

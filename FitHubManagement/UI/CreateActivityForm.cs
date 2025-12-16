@@ -115,11 +115,19 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSearchActivity_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
 
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            pnlSearchActivity.Visible=false;
+            panel1.Visible = true;
 
         }
 
@@ -247,6 +255,11 @@ namespace FitHubManagement.UI.Activity
         }
 
         private void lstbxSearchGet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }
