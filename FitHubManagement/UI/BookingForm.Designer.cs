@@ -78,7 +78,7 @@
             button4.Name = "button4";
             button4.Size = new Size(118, 36);
             button4.TabIndex = 8;
-            button4.Text = "Annuller";
+            button4.Text = "Ryd";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -95,12 +95,12 @@
             // 
             // button2
             // 
-            button2.Location = new Point(528, 165);
+            button2.Location = new Point(418, 184);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(69, 36);
+            button2.Size = new Size(177, 36);
             button2.TabIndex = 6;
-            button2.Text = "Vis";
+            button2.Text = "Vælg medlem";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -119,7 +119,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 31);
             textBox1.TabIndex = 4;
-            textBox1.Text = "Peter";
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // listBox1
@@ -269,6 +268,7 @@
             button5.TabIndex = 1;
             button5.Text = "Vis";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // listBox2
             // 
