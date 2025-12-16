@@ -1,5 +1,7 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
+using FitHubManagement.DataAccess;
+
 
 
 namespace FitHubManagement.UI.BookingUI
@@ -19,61 +21,60 @@ namespace FitHubManagement.UI.BookingUI
         private void button3_Click(object sender, EventArgs e) //Panel1 Fortsæt knap
         {
 
+            CustomerModel selectedCustomer = GetSelectedCustomer();
 
-            // 1. Tjek om der er valgt et medlem
-            if (listBox1.SelectedIndex == -1)
+            if (selectedCustomer == null)
             {
-                MessageBox.Show("Vælg et medlem før du fortsætter.");
+                MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            // 2. Hent det valgte medlem
-            CustomerModel selectedCustomer = (CustomerModel)listBox1.SelectedItem;
-
-            // 3. Tjek om medlemmet er inaktiv
-            if (selectedCustomer.Inactive == true)
+            if (selectedCustomer.Inactive)
             {
                 MessageBox.Show("Du kan ikke vælge et inaktivt medlem.");
                 return;
             }
 
-            // 4. Gå videre til næste panel
             panel1.Visible = false;
             panel2.Visible = true;
         }
+
+        
+
+        private CustomerModel GetSelectedCustomer() // Hent den valgte kunde fra listBox
+        {
+            if (listBox1.SelectedIndex == -1)
+                return null;
+
+            return (CustomerModel)listBox1.SelectedItem;
+        }
+
+
+
 
         //LENA
         private void button2_Click(object sender, EventArgs e) // Panel1 Vis knap
         {
 
-            // 1. Hent det, brugeren har skrevet i tekstfelterne
-            string name = textBox1.Text;
-            string phone = textBox2.Text;
-
-            // 2. Ryd ListBox, så gamle resultater ikke bliver vist
-            listBox1.Items.Clear();
-
-            // 3. Opret DAL-objekt og hent alle kunder fra databasen
-            CustomerDAL dal = new CustomerDAL();
-            List<CustomerModel> customers = dal.GetAllCustomer();
-
-            // 4. Gennemgå alle kunder én ad gangen
-            foreach (CustomerModel customer in customers)
+            // Tjek om der er valgt et medlem
+            if (listBox1.SelectedIndex == -1)
             {
-                // 5. Lav en tekst, som skal vises i ListBox
-                string text = customer.FirstName + " " + customer.LastName;
-
-                // 6. Hvis kunden er inaktiv, så vis det i teksten
-                if (customer.Inactive)
-                {
-                    text += " (Inaktiv)";
-                }
-
-                // 7. Tilføj teksten til ListBox
-                listBox1.Items.Add(text);
+                MessageBox.Show("Vælg et medlem først.");
+                return;
             }
 
+            // Hent den valgte kunde fra listBox
+            CustomerModel selectedCustomer =
+                (CustomerModel)listBox1.SelectedItem;
+
+            // Ryd listen og vis KUN den valgte kunde
+            listBox1.Items.Clear();
+            listBox1.Items.Add(selectedCustomer);
         }
+
+
+
+        
 
 
         private void button1_Click(object sender, EventArgs e) //tilbage knap
@@ -100,43 +101,34 @@ namespace FitHubManagement.UI.BookingUI
         private void textBox1_TextChanged(object sender, EventArgs e) //Søg knap i panel1
         {
 
-            // Henter det, brugeren har skrevet i navn-TextBoxen
             string name = textBox1.Text;
-
-            // Henter det, brugeren har skrevet i telefon-TextBoxen
             string phone = textBox2.Text;
 
-            // Opretter forbindelse til databasen via DAL
             CustomerDAL customerDL = new CustomerDAL();
-
-            // Henter alle kunder fra databasen
             List<CustomerModel> customers = customerDL.GetAllCustomer();
 
-            // Rydder listBox før nye søgeresultater vises
             listBox1.Items.Clear();
 
-            // Gennemgår alle kunder én ad gangen
             foreach (CustomerModel customer in customers)
             {
-                // Tjekker om navnet matcher (eller hvis navnefeltet er tomt)
                 bool matchName =
                     name == "" ||
                     customer.FirstName.Contains(name) ||
                     customer.LastName.Contains(name);
 
-                // Tjekker om telefonnummeret matcher (eller hvis telefonfeltet er tomt)
                 bool matchPhone =
                     phone == "" ||
                     customer.Phone.Contains(phone);
 
-                // Kunden vises kun, hvis begge betingelser er opfyldt
                 if (matchName && matchPhone)
                 {
-                    // Viser kundens fulde navn i listBox
-                    listBox1.Items.Add(customer.FirstName + " " + customer.LastName);
+                    // Vis medlemmet (aktiv eller inaktiv). INGEN MessageBox her.
+                    listBox1.Items.Add(customer);
                 }
             }
         }
+
+        
 
         //LENA
         public void button4_Click(object sender, EventArgs e) //Nulstil knap i panel1
@@ -166,6 +158,8 @@ namespace FitHubManagement.UI.BookingUI
             //    "WHERE (@Name = '' OR FirstName LIKE '%' + @Name + '%' OR LastName LIKE '%' + @Name + '%') " +
             //    "AND (@Phone = '' OR REPLACE(Phone, ' ', '') = REPLACE(@Phone, ' ', ''))";
         }
+
+
     }
 }
     

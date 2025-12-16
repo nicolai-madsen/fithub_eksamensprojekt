@@ -91,7 +91,7 @@ namespace FitHubManagement.UI.CustomerUI
             {
 
                 CustomerDAL customerDL = new CustomerDAL();
-                List<CustomerModel> customers = customerDL.GetIactiveCustomer();
+                List<CustomerModel> customers = customerDL.GetInactiveCustomer();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Inaktive kunder");

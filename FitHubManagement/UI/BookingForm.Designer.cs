@@ -119,6 +119,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 31);
             textBox1.TabIndex = 4;
+            textBox1.Text = "Peter";
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // listBox1

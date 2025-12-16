@@ -221,7 +221,7 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
-          public List<CustomerModel> GetIactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+          public List<CustomerModel> GetInactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
             {
                 List<CustomerModel> customerList = new List<CustomerModel>();
 
