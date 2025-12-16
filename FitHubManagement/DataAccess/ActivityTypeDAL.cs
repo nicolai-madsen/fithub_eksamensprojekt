@@ -51,8 +51,7 @@ namespace FitHubManagement.DataAccess
 
 
             string query =
-                "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription" +
-                "FROM ActivityType";
+                "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription FROM ActivityType";
 
 
             using SqlCommand command = new SqlCommand(query, connection);
@@ -64,12 +63,12 @@ namespace FitHubManagement.DataAccess
                 while (reader.Read())
                 {
                     // Håndterer nullable Description (kan være NULL i databasen)
+                    int descriptionIndex = reader.GetOrdinal("ActivityTypeDescription");
                     string description = null;
-                    int descriptionIndex = reader.GetOrdinal("Description");
-                    if (!reader.IsDBNull(descriptionIndex))
-                    {
-                        description = reader.GetString(descriptionIndex);
-                    }
+                        if (!reader.IsDBNull(descriptionIndex))
+                        {
+                            description = reader.GetString(descriptionIndex);
+                        }
 
                     // Opretter et ActivityType-objekt og mapper kolonnerne til properties
                     ActivityTypeModel a = new ActivityTypeModel
@@ -77,7 +76,7 @@ namespace FitHubManagement.DataAccess
                         ActivityTypeId = reader.GetInt32(reader.GetOrdinal("ActivityTypeID")),
                         InstructorId = reader.GetInt32(reader.GetOrdinal("InstructorID")),
                         ActivityTypeName = reader.GetString(reader.GetOrdinal("ActivityTypeName")),
-                        ActivityTypeDescription = reader.GetString(reader.GetOrdinal("ActivityTypeDescription"))
+                        ActivityTypeDescription = description
                     };
 
                     // Lægger Activity-objektet i listen
@@ -118,9 +117,29 @@ namespace FitHubManagement.DataAccess
                     return null;
                 }
             }
-        
-        //________________________________________________________________________________________________________
 
+        //________________________________________________________________________________________________________
+        public string GetCertifiedInstructor(int activityTypeId) //Henter certificeret instruktør til relatede holdtype
+        {
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            // query henter First -og LastName fra Instructor via Instructor FK i ActivityType (JOIN)
+            string selectSql = @"
+                SELECT i.FirstName + ' ' + i.LastName AS CertifiedInstructorName 
+                FROM ActivityType at 
+                INNER JOIN Instructor i ON at.InstructorID = i.InstructorID
+                WHERE at.ActivityTypeID = @ActivityTypeID
+            ";
+
+            using (SqlCommand cmd = new SqlCommand(selectSql, connection))
+            {
+                cmd.Parameters.AddWithValue("@ActivityTypeID", activityTypeId);
+
+                var result = cmd.ExecuteScalar();
+                return result.ToString();
+            }
+        }
 
 
     }
