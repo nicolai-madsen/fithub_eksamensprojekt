@@ -242,7 +242,19 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void BtnSaveHoldType(object sender, EventArgs e)
+       
+
+        private void txtHoldTypeName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHoldTypeBeskrivelse_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveHoldType_Click_1(object sender, EventArgs e)
         {
             // Validering: navn må ikke være tomt
             if (string.IsNullOrWhiteSpace(txtHoldTypeName.Text))

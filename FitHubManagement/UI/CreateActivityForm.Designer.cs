@@ -170,12 +170,12 @@
             pnlHoldType = new Panel();
             cmbHoldTypeInstruktor = new ComboBox();
             btnCancelHoldType = new Button();
-            btnSaveHoldType.Click += new EventHandler(this.btnSaveHoldType_Click);
             label8 = new Label();
             txtHoldTypeBeskrivelse = new TextBox();
             lblHoldTypeDescription = new Label();
             txtHoldTypeName = new TextBox();
             lblHoldTypeNavn = new Label();
+            btnSaveHoldType = new Button();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -550,15 +550,15 @@
             // 
             pnlHoldType.BackColor = Color.White;
             pnlHoldType.BorderStyle = BorderStyle.FixedSingle;
+            pnlHoldType.Controls.Add(btnSaveHoldType);
             pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
             pnlHoldType.Controls.Add(btnCancelHoldType);
-            pnlHoldType.Controls.Add(btnSaveHoldType);
             pnlHoldType.Controls.Add(label8);
             pnlHoldType.Controls.Add(txtHoldTypeBeskrivelse);
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(605, 68);
+            pnlHoldType.Location = new Point(622, 40);
             pnlHoldType.Name = "pnlHoldType";
             pnlHoldType.Size = new Size(455, 400);
             pnlHoldType.TabIndex = 22;
@@ -583,21 +583,6 @@
             btnCancelHoldType.UseVisualStyleBackColor = true;
             btnCancelHoldType.Click += btnCancelHoldType_ckick;
             // 
-            // btnSaveHoldType
-            // 
-            btnSaveHoldType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnSaveHoldType.Location = new Point(50, 281);
-            btnSaveHoldType.Name = "btnSaveHoldType";
-            btnSaveHoldType.Size = new Size(94, 29);
-            btnSaveHoldType.TabIndex = 6;
-            btnSaveHoldType.Text = "Gem";
-            btnSaveHoldType.UseVisualStyleBackColor = true;
-            btnSaveHoldType.Click += this.btnSaveHoldType_Click;
-            this.Controls.Add(btnSaveHoldType);
-
-
-
-            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -614,6 +599,7 @@
             txtHoldTypeBeskrivelse.Name = "txtHoldTypeBeskrivelse";
             txtHoldTypeBeskrivelse.Size = new Size(125, 27);
             txtHoldTypeBeskrivelse.TabIndex = 3;
+            txtHoldTypeBeskrivelse.TextChanged += txtHoldTypeBeskrivelse_TextChanged;
             // 
             // lblHoldTypeDescription
             // 
@@ -630,6 +616,7 @@
             txtHoldTypeName.Name = "txtHoldTypeName";
             txtHoldTypeName.Size = new Size(125, 27);
             txtHoldTypeName.TabIndex = 1;
+            txtHoldTypeName.TextChanged += txtHoldTypeName_TextChanged;
             // 
             // lblHoldTypeNavn
             // 
@@ -640,6 +627,16 @@
             lblHoldTypeNavn.TabIndex = 0;
             lblHoldTypeNavn.Text = "Navn";
             lblHoldTypeNavn.Click += label6_Click;
+            // 
+            // btnSaveHoldType
+            // 
+            btnSaveHoldType.Location = new Point(61, 275);
+            btnSaveHoldType.Name = "btnSaveHoldType";
+            btnSaveHoldType.Size = new Size(94, 29);
+            btnSaveHoldType.TabIndex = 9;
+            btnSaveHoldType.Text = "Gem";
+            btnSaveHoldType.UseVisualStyleBackColor = true;
+            btnSaveHoldType.Click += btnSaveHoldType_Click_1;
             // 
             // CreateActivityForm
             // 
