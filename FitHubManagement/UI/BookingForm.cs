@@ -17,26 +17,36 @@ namespace FitHubManagement.UI.BookingUI
             panel1.BringToFront();
         }
 
+
+        private CustomerModel selectedCustomer; // Gemt valgt medlem fra Panel1 til Panel2
+
+
         // Panel1 Fortsæt knap
         private void button3_Click(object sender, EventArgs e)
         {
-            CustomerModel selectedCustomer = GetSelectedCustomer();
 
-            if (selectedCustomer == null)
+            CustomerModel customer = GetSelectedCustomer();
+
+            if (customer == null)
             {
                 MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            if (selectedCustomer.Inactive)
+            if (customer.Inactive)
             {
                 MessageBox.Show("Du kan ikke vælge et inaktivt medlem.");
                 return;
             }
 
+            // ✅ GEM kunden til brug i Panel2
+            selectedCustomer = customer;
+
             panel1.Visible = false;
             panel2.Visible = true;
         }
+
+
 
         // Henter valgt medlem (virker for både navn-item og detail-item)
         private CustomerModel GetSelectedCustomer()
@@ -147,7 +157,12 @@ namespace FitHubManagement.UI.BookingUI
             // hold tom - ingen MessageBox her
         }
 
-        // ---------- WRAPPERS ----------
+        // ---------- WRAPPERS ----------En lille klasse, der pakker et andet objekt ind.
+        //Hvorfor bruger vi wrappers her?
+        //Fordi du vil have to forskellige visninger af samme kunde:
+
+        //1.Når du skriver → kun navn
+        //2️. Når du trykker Vis → alle detaljer
 
         // Forslag mens man skriver: kun navn (+ evt inaktiv)
         private class CustomerNameItem
@@ -180,11 +195,40 @@ namespace FitHubManagement.UI.BookingUI
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
 
+                // Henter medlemskab via eksisterende GetMembership-metode
+                MembershipDAL membershipDAL = new MembershipDAL();
+                MembershipModel membership =
+                    membershipDAL.GetMembership(Customer.MembershipId);
+
+                string membershipName =
+                    membership != null ? membership.MembershipName : "Ukendt";
+
                 return $"ID: {Customer.CustomerId} | " +
-                       $"Medlem: {Customer.MembershipId} | " +
+                       $"Medlem: {membershipName} | " +
                        $"{Customer.FirstName} {Customer.LastName} | " +
                        $"Tlf: {Customer.Phone}{status}";
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Ingen medlem valgt fra panel 1.");
+                return;
+            }
+
+            listBox2.Items.Clear();
+
+            // Hvis du vil vise detaljer:
+            listBox2.Items.Add(new CustomerDetailItem(selectedCustomer));
+
+            // Hvis du kun vil vise navn, kan du i stedet bruge:
+            // listBox2.Items.Add(new CustomerNameItem(selectedCustomer));
+        }
+
     }
 }
+
+
