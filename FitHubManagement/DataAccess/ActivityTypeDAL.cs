@@ -63,9 +63,8 @@ namespace FitHubManagement.DataAccess
                 while (reader.Read())
                 {
                     // Håndterer nullable Description (kan være NULL i databasen)
+                    int descriptionIndex = reader.GetOrdinal("ActivityTypeDescription");
                     string description = null;
-                    int descriptionIndex = reader.GetOrdinal("Description");
-                    if (!reader.IsDBNull(descriptionIndex))
                         if (!reader.IsDBNull(descriptionIndex))
                         {
                             description = reader.GetString(descriptionIndex);

@@ -26,16 +26,31 @@ namespace FitHubManagement.BusinessLogic
             if (string.IsNullOrWhiteSpace(activityLocation))
                 throw new ArgumentException("Oplys hvor holdet afholdes", nameof(activityLocation));
 
-            // 2. Model
-            var activity = new ActivityModel
+            // opret variabel til at holde minutter, konverteret og omregnet fra string Duration
+            int minutes = 0;
+            var match = System.Text.RegularExpressions.Regex.Match(duration, @"\d+");
+            if (match.Success)
             {
-                ActivityTypeId = activityTypeId,
-                InstructorId = instructorId,
-                StartDateTime = startDateTime,
-                Duration = duration,
-                ActivityLocation = activityLocation,
-                MaxParticipant = maxParticipants
-            };
+                minutes = int.Parse(match.Value);
+            }
+            else
+            {
+                throw new ArgumentException("Indtastet varighed er ugyldig");
+            }
+
+            DateTime endDateTime = startDateTime.AddMinutes(minutes);
+
+                // 2. Model
+                var activity = new ActivityModel
+                {
+                    ActivityTypeId = activityTypeId,
+                    InstructorId = instructorId,
+                    StartDateTime = startDateTime,
+                    EndDateTime = endDateTime,
+                    Duration = duration,
+                    ActivityLocation = activityLocation,
+                    MaxParticipant = maxParticipants
+                };
 
             // 3. DAL-kald (INSTANS!)
             activity.ActivityId = _activityDal.CreateActivity(activity);

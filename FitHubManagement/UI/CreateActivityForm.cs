@@ -35,6 +35,7 @@ namespace FitHubManagement.UI.Activity
         private List<string> locations;
         private List<string> GetAllActivityTypeNames;
         private List<ActivityTypeModel> activityType;
+        
         private List<string> duration;
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
@@ -58,7 +59,7 @@ namespace FitHubManagement.UI.Activity
 
             comboBox2.DisplayMember = "ActivityTypeName";
             comboBox2.ValueMember = "ActivityTypeID";
-            comboBox2.DataSource = activityType;
+            comboBox2.DataSource = activityTypes;
             comboBox2.SelectedIndex = -1;
 
             label10.Text = "";
@@ -151,29 +152,32 @@ namespace FitHubManagement.UI.Activity
             if (!ValidateComboBox(comboBox2)) return;
             if (!ValidateComboBox(comboBox1)) return;
 
-            // NumericUpDown
-            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; // Læser input og konverterer numericUpDpwn til int, da det default er decimal
+            try
+            {
+                ActivityTypeModel selectedType =(ActivityTypeModel)comboBox2.SelectedItem;
+                int activityTypeId = selectedType.ActivityTypeId;
+                int instructorId = selectedType.InstructorId;
 
-            // Location via index
-            int locationIndex = cmbLocationActivity.SelectedIndex;
-            string activityLocation = locations[locationIndex];
+                string activityLocation = locations[cmbLocationActivity.SelectedIndex];
+                string activityDuration = duration[comboBox1.SelectedIndex];
+                int maxParticipants = (int)nmrUpDwnMaxPartisipant.Value;
+                DateTime startDateTime = dateTimePicker1.Value;
 
-            // Activity type via index
-            int activityTypeIndex = comboBox2.SelectedIndex;
-            ActivityTypeModel selectedActivityType = (ActivityTypeModel)comboBox2.SelectedItem;
+                ActivityModel newActivity = activityService.CreateActivity(
+                        activityTypeId,
+                        instructorId,
+                        dateTimePicker1.Value, // StartTime, halvdelen af StartDateTime
+                        duration[comboBox1.SelectedIndex],
+                        locations[cmbLocationActivity.SelectedIndex],
+                        (int)nmrUpDwnMaxPartisipant.Value
+                );
 
-            //Duration via index
-            int durationIndex = comboBox1.SelectedIndex;
-            string activityDuration = duration[durationIndex];
-
-            // Date
-            DateTime chosenDate = dateTimePicker1.Value;
-
-            string certifiedInstructor = label10.Text;
-
-
-
-
+                MessageBox.Show($"Nyt hold oprettet d. {startDateTime}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl: " + ex.Message);
+            }
         }
 
         //Panel søgning
@@ -195,8 +199,6 @@ namespace FitHubManagement.UI.Activity
                 filterModel.ActivityDate = null;
             }
 
-
-
             var service = new ActivityFilterService();
             var activities = service.GetFilteredActivities(filterModel);
 
@@ -210,13 +212,23 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.SelectedItem = null;
             cmbSearchActivity.Text = "";
         }
-
+        
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectActivityTypeID = (int)comboBox2.SelectedValue;
-            
-            label10.Text = activityTypeService.GetCertifiedInstructor(selectActivityTypeID);
+           // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
+           // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
+           if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
+           {
+                   // 1. Kald metoden i din Service (som kalder DAL)
+                   // Her antager jeg, du har lavet metoden i Service-laget også:
+               string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
+
+                   // 2. Vis navnet i labelen
+                   // Vi tjekker for null, hvis nu databasen ikke fandt nogen
+               label10.Text = instructorName ?? "Ingen instruktør fundet"; 
+           }
         }
+         
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

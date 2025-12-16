@@ -116,8 +116,8 @@ namespace FitHubManagement.DataAccess
 
 
             // string indeholder den kommando der sendes til databasen. String er en Sql kommando, der indsætter en ny Activity i databasen
-            string insertSql = @"INSERT INTO Activity (ActivityTypeID, InstructorID, StartDateTime, Duration, ActivityLocation, MaxParticipants)
-                                VALUES (@ActivityTypeID, @InstructorID, @StartDateTime, @Duration, @ActivityLocation, @MaxParticipants)
+            string insertSql = @"INSERT INTO Activity (ActivityTypeID, InstructorID, StartDateTime, EndDateTime, Duration, ActivityLocation, MaxParticipants)
+                                VALUES (@ActivityTypeID, @InstructorID, @StartDateTime, @EndDateTime, @Duration, @ActivityLocation, @MaxParticipants)
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);
                                 ";
             Console.WriteLine($"SQL Command: {insertSql}");
@@ -126,6 +126,7 @@ namespace FitHubManagement.DataAccess
                 insertCmd.Parameters.AddWithValue("@ActivityTypeID", activity.ActivityTypeId); // Properties i Activity objektet har data. Det data lagres i databasen
                 insertCmd.Parameters.AddWithValue("@InstructorID", activity.InstructorId);
                 insertCmd.Parameters.AddWithValue("@StartDateTime", activity.StartDateTime);
+                insertCmd.Parameters.AddWithValue("@EndDateTime", activity.EndDateTime);
                 insertCmd.Parameters.AddWithValue("@Duration", activity.Duration);
                 insertCmd.Parameters.AddWithValue("@ActivityLocation", activity.ActivityLocation);
                 insertCmd.Parameters.AddWithValue("@MaxParticipants", activity.MaxParticipant);
@@ -158,7 +159,7 @@ namespace FitHubManagement.DataAccess
         }
         #endregion
 
-            #region GET METHODS
+        #region GET METHODS
         //READ
 
 

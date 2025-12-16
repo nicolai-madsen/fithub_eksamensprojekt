@@ -176,12 +176,12 @@
             // LblDuration
             // 
             LblDuration.AutoSize = true;
-            LblDuration.Location = new Point(19, 154);
+            LblDuration.Location = new Point(18, 159);
             LblDuration.Margin = new Padding(6, 0, 6, 0);
             LblDuration.Name = "LblDuration";
-            LblDuration.Size = new Size(53, 15);
+            LblDuration.Size = new Size(56, 15);
             LblDuration.TabIndex = 8;
-            LblDuration.Text = "Varighed";
+            LblDuration.Text = "Varighed:";
             toolTip1.SetToolTip(LblDuration, "t = time og min = minutter. Skriv f.eks. 1 t eller 45 min");
             // 
             // pnlSearchActivity
@@ -381,9 +381,9 @@
             label11.Location = new Point(18, 86);
             label11.Margin = new Padding(6, 0, 6, 0);
             label11.Name = "label11";
-            label11.Size = new Size(58, 15);
+            label11.Size = new Size(61, 15);
             label11.TabIndex = 24;
-            label11.Text = "Instruktør";
+            label11.Text = "Instruktør:";
             // 
             // label10
             // 
@@ -396,7 +396,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(80, 151);
+            comboBox1.Location = new Point(79, 156);
             comboBox1.Margin = new Padding(2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(134, 23);
@@ -418,7 +418,7 @@
             // 
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(305, 41);
+            dateTimePicker1.Location = new Point(334, 41);
             dateTimePicker1.Margin = new Padding(6, 8, 6, 8);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(104, 23);
@@ -436,7 +436,7 @@
             // lblTimeActivity
             // 
             lblTimeActivity.AutoSize = true;
-            lblTimeActivity.Location = new Point(303, 77);
+            lblTimeActivity.Location = new Point(334, 72);
             lblTimeActivity.Margin = new Padding(2, 0, 2, 0);
             lblTimeActivity.Name = "lblTimeActivity";
             lblTimeActivity.Size = new Size(26, 15);
@@ -446,17 +446,17 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(303, 134);
+            label5.Location = new Point(18, 206);
             label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
-            label5.Size = new Size(57, 15);
+            label5.Size = new Size(91, 15);
             label5.TabIndex = 10;
-            label5.Text = "Deltagere";
+            label5.Text = "Antal Deltagere:";
             // 
             // lblDateActivity
             // 
             lblDateActivity.AutoSize = true;
-            lblDateActivity.Location = new Point(305, 18);
+            lblDateActivity.Location = new Point(336, 18);
             lblDateActivity.Margin = new Padding(6, 0, 6, 0);
             lblDateActivity.Name = "lblDateActivity";
             lblDateActivity.Size = new Size(35, 15);
@@ -469,13 +469,13 @@
             label4.Location = new Point(18, 119);
             label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
-            label4.Size = new Size(53, 15);
+            label4.Size = new Size(56, 15);
             label4.TabIndex = 9;
-            label4.Text = "Lokation";
+            label4.Text = "Lokation:";
             // 
             // nmrUpDwnMaxPartisipant
             // 
-            nmrUpDwnMaxPartisipant.Location = new Point(303, 157);
+            nmrUpDwnMaxPartisipant.Location = new Point(109, 204);
             nmrUpDwnMaxPartisipant.Margin = new Padding(6, 8, 6, 8);
             nmrUpDwnMaxPartisipant.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             nmrUpDwnMaxPartisipant.Name = "nmrUpDwnMaxPartisipant";
@@ -499,15 +499,15 @@
             label1.Location = new Point(18, 44);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(56, 15);
+            label1.Size = new Size(59, 15);
             label1.TabIndex = 6;
-            label1.Text = "Holdtype";
+            label1.Text = "Holdtype:";
             // 
             // dateTimePicker2
             // 
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(303, 94);
+            dateTimePicker2.Location = new Point(334, 94);
             dateTimePicker2.Margin = new Padding(2);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.ShowUpDown = true;
