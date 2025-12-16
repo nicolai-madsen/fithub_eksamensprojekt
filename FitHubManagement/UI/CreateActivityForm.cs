@@ -35,9 +35,20 @@ namespace FitHubManagement.UI.Activity
         private List<string> locations;
         private List<string> activityType;
         private List<string> duration;
+        private object cmbHoldTypeInstructor;
+
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
+            List<string> instructors = new List<string> { "Peter", "Maria", "Sofie" };
+
+            ComboBox comboBoxInstructor = this.Controls["comboBoxInstructor"] as ComboBox;
+            if (comboBoxInstructor != null)
+            {
+                comboBoxInstructor.DataSource = instructors;
+                comboBoxInstructor.SelectedIndex = 0;
+            }
+
             locations = activityService.GetAllLocations();
 
             cmbLocationActivity.DataSource = locations;
@@ -186,7 +197,7 @@ namespace FitHubManagement.UI.Activity
 
 
 
-                var service = new ActivityFilterService();
+            var service = new ActivityFilterService();
             var activities = service.GetFilteredActivities(filterModel);
 
             lstbxSearchGet.DataSource = activities;
@@ -198,6 +209,57 @@ namespace FitHubManagement.UI.Activity
 
             cmbSearchLocation.SelectedItem = null;
             cmbSearchActivity.Text = "";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditHoldType_Click(object sender, EventArgs e)
+        {
+            pnlHoldType.Visible = true;
+            pnlHoldType.BringToFront();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelHoldType_ckick(object sender, EventArgs e)
+        {
+            pnlHoldType.Visible = false;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSaveHoldType(object sender, EventArgs e)
+        {
+            // Validering: navn må ikke være tomt
+            if (string.IsNullOrWhiteSpace(txtHoldTypeName.Text))
+            {
+                MessageBox.Show(
+                    "Navn må ikke være tomt",
+                    "Valideringsfejl",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtHoldTypeName.Focus(); // markér feltet
+                return; // STOP – gem ikke
+            }
+
+            // ✅ Hvis vi kommer hertil, er navnet udfyldt
+            // Her gemmer du data
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FitHubManagement.DataAccess
 {
     public class ActivityDAL
     {
-
+ 
         //Activity filter
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
