@@ -136,20 +136,6 @@
             toolTip1 = new ToolTip(components);
             LblDuration = new Label();
             pnlSearchActivity = new Panel();
-            chkFilterByDate = new CheckBox();
-            btnSearchGet = new Button();
-            cmbSearchLocation = new ComboBox();
-            dTPSearchDate = new DateTimePicker();
-            cmbSearchActivity = new ComboBox();
-            lstbxSearchGet = new ListBox();
-            lblSearchLocation = new Label();
-            lblSearchDate = new Label();
-            lblSearchActivity = new Label();
-            lblSearchCriteria = new Label();
-            btnActivityCreate = new Button();
-            label3 = new Label();
-            btnSearchActivity = new Button();
-            button4 = new Button();
             panel1 = new Panel();
             label11 = new Label();
             label10 = new Label();
@@ -166,6 +152,21 @@
             dateTimePicker2 = new DateTimePicker();
             comboBox2 = new ComboBox();
             btnCreateActivityPanel = new Button();
+            label2 = new Label();
+            chkFilterByDate = new CheckBox();
+            btnSearchGet = new Button();
+            cmbSearchLocation = new ComboBox();
+            dTPSearchDate = new DateTimePicker();
+            cmbSearchActivity = new ComboBox();
+            lstbxSearchGet = new ListBox();
+            lblSearchLocation = new Label();
+            lblSearchDate = new Label();
+            lblSearchActivity = new Label();
+            lblSearchCriteria = new Label();
+            btnActivityCreate = new Button();
+            label3 = new Label();
+            btnSearchActivity = new Button();
+            button4 = new Button();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -184,6 +185,7 @@
             // 
             // pnlSearchActivity
             // 
+            pnlSearchActivity.Controls.Add(panel1);
             pnlSearchActivity.Controls.Add(chkFilterByDate);
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(cmbSearchLocation);
@@ -419,6 +421,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(104, 23);
             dateTimePicker1.TabIndex = 2;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // cmbLocationActivity
             // 
@@ -479,6 +482,16 @@
             nmrUpDwnMaxPartisipant.TabIndex = 5;
             nmrUpDwnMaxPartisipant.ValueChanged += nmrUpDwnMaxPartisipant_ValueChanged;
             // 
+            // cmbInstructorCreateActivity
+            // 
+            cmbInstructorCreateActivity.FormattingEnabled = true;
+            cmbInstructorCreateActivity.Location = new Point(109, 85); // Tilpasset dit layout
+            cmbInstructorCreateActivity.Margin = new Padding(6, 8, 6, 8); // Tilpasset dine margins
+            cmbInstructorCreateActivity.Name = "cmbInstructorCreateActivity";
+            cmbInstructorCreateActivity.Size = new Size(121, 23); // Standard størrelse
+            cmbInstructorCreateActivity.TabIndex = 22;
+            cmbInstructorCreateActivity.SelectedIndexChanged += cmbInstructorCreateActivity_SelectedIndexChanged;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -520,12 +533,62 @@
             btnCreateActivityPanel.UseVisualStyleBackColor = true;
             btnCreateActivityPanel.Click += btnCreateActivityPanel_Click;
             // 
-            // CreateActivityForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(863, 502);
-            Controls.Add(panel1);
+            // label2 (Instruktør)
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(18, 150); // Justeret fra 462
+            label2.Name = "label2";
+            label2.Size = new Size(59, 15);
+            label2.Text = "Instruktør";
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(250, 44); // Justeret fra 631
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(80, 19);
+            chkFilterByDate.Text = "Brug Dato";
+            chkFilterByDate.UseVisualStyleBackColor = true;
+            // 
+            // btnSearchGet
+            // 
+            btnSearchGet.Location = new Point(350, 140); // Justeret fra 899
+            btnSearchGet.Name = "btnSearchGet";
+            btnSearchGet.Size = new Size(120, 30);
+            btnSearchGet.TabIndex = 19;
+            btnSearchGet.Text = "Vis søgeresultater";
+            btnSearchGet.Click += btnSearchGet_Click;
+            // 
+            // lstbxSearchGet
+            // 
+            lstbxSearchGet.FormattingEnabled = true;
+            lstbxSearchGet.ItemHeight = 15;
+            lstbxSearchGet.Location = new Point(15, 200); // Justeret fra 533
+            lstbxSearchGet.Name = "lstbxSearchGet";
+            lstbxSearchGet.Size = new Size(500, 150); // Justeret fra 1187
+            lstbxSearchGet.TabIndex = 4;
+            // 
+            // label3 (Overskrift)
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F);
+            label3.Location = new Point(150, 8);
+            label3.Name = "label3";
+            label3.Size = new Size(225, 32);
+            label3.Text = "Holdadministration";
+            // 
+            // CreateActivityForm (Vindues-indstillinger)
+            // 
+            this.AutoScaleDimensions = new SizeF(7F, 15F); // DIN STANDARD
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(863, 502); // DIN STØRRELSE
+            this.Controls.Add(panel1);
+            this.Controls.Add(label2);
+            this.Controls.Add(chkFilterByDate);
+            this.Controls.Add(btnSearchGet);
+            this.Controls.Add(lstbxSearchGet);
+            this.Controls.Add(label3);
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(label3);

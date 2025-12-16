@@ -1,5 +1,6 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
+using FitHubManagement.Models.FilterModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,13 @@ namespace FitHubManagement.BusinessLogic
             _dal.UpdateInstructor(instructor);
         }
 
+        public List<ActivityFilterModel> GetFilteredActivitiesByInstructor(int? instructorID, DateOnly? activityDate) //Liste med filtrering instrucot + datetime
+        {
+            return InstructorDAL.GetActivitiesByInstructorAndDate(instructorID, activityDate);
+        }
 
     }
-    public class ActivityTypeBLL
+    public class ActivityTypeBLL //Skal denne ikke ligge i InstructorService klassen?
     {
         private ActivityTypeDAL _dal;
         public ActivityTypeBLL()
@@ -41,5 +46,7 @@ namespace FitHubManagement.BusinessLogic
             return _dal.ReadActivityByInstructorID(instructorID);
         }
 
+
     }
+
 }
