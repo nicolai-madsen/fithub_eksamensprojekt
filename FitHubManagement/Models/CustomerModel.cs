@@ -25,9 +25,12 @@ namespace FitHubManagement.Models
         {
             return $"{FirstName} {LastName}";
         }
+       
+
     }
-
-
-
 }
+
+
+
+
 
