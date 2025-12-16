@@ -11,12 +11,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitHubManagement.Models;
 using System.Linq.Expressions;
+using Microsoft.Identity.Client;
 
 namespace FitHubManagement.UI.CustomerUI
 {
     public partial class CustomerForm : Form
     {
-        private readonly CustomerService service = new();  //Jeg bliver nødt at endre på denne, så logikk er i bsuinessn layer
+
+        private readonly CustomerService service = new();  //Businesslogic lag
         public CustomerForm()
         {
             InitializeComponent();
@@ -38,8 +40,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerDAL customerRead = new CustomerDAL();
-                List<CustomerModel> customers = customerRead.GetAllCustomer();
+                List<CustomerModel> customers = service.GetAllCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Alle kunder");
@@ -49,9 +50,9 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
-
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
                     CustomerListBox.Items.Add(infoLine);
+                    customerCounter();
                 }
             }
             catch (Exception)
@@ -64,8 +65,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerDAL customerDL = new CustomerDAL();
-                List<CustomerModel> customers = customerDL.GetActiveCustomer();
+                List<CustomerModel> customers = service.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Aktive kunder");
@@ -74,8 +74,9 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string line = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
-                    CustomerListBox.Items.Add(line);
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
+                    CustomerListBox.Items.Add(infoLine);
+                    customerCounter();
                 }
 
             }
@@ -89,19 +90,19 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-
-                CustomerDAL customerDL = new CustomerDAL();
-                List<CustomerModel> customers = customerDL.GetIactiveCustomer();
+                List<CustomerModel> customers = service.GetInactiveCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Inaktive kunder");
-                CustomerListBox.Items.Add("------------------------------------------------------------------");
+                CustomerListBox.Items.Add("-------------------------------------------------------------------");
 
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string line = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
-                    CustomerListBox.Items.Add(line);
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
+
+                    CustomerListBox.Items.Add(infoLine);
+                    customerCounter();
                 }
             }
             catch (Exception)
@@ -110,28 +111,6 @@ namespace FitHubManagement.UI.CustomerUI
             }
         }
 
-        private void CustomerInfoBtn_Click(object sender, EventArgs e) //SENERE
-        {
-            try
-            {
-                if (CustomerListBox.SelectedItem == null)
-                {
-                    MessageBox.Show("Vælg kunde");
-                }
-                else
-                {
-                    //Kode for at fremheve infoPanel :)
-
-
-
-
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Fejl med indlasting af medlem");
-            }
-        }
         private void NewCustomerCancelBtn_Click(object sender, EventArgs e)
         {
             FirstName.Clear();
@@ -148,10 +127,10 @@ namespace FitHubManagement.UI.CustomerUI
             customer.LastName = LastName.Text;
             customer.Email = Email.Text;
             customer.Phone = Phone.Text;
-            customer.MembershipId = Convert.ToInt32(memberType.SelectedItem); 
+            customer.MembershipId = Convert.ToInt32(memberType.SelectedItem);
             customer.Birthday = BirthdayValue.Value;
             customer.PersonalNote = Notes.Text;
-            
+
             try
             {
                 service.CreateCustomerBLL(customer);
@@ -166,6 +145,42 @@ namespace FitHubManagement.UI.CustomerUI
             catch (Exception)
             {
                 MessageBox.Show("Fejl med indtasting af medlem, husket at fylde alle nødvendige felter?");
+            }
+        }
+
+
+
+        #region
+        public void customerCounter()
+        {
+            int totalItems = CustomerListBox.Items.Count;
+            int totalCustomer = totalItems - 2;
+            count.Text = totalCustomer.ToString();
+        }
+        #endregion
+
+
+
+        private void InfoBtn_Click(object sender, EventArgs e)
+        {
+            string phone = PhoneText.Text;
+            CustomerModel customer = service.GetIndividualCustomer(phone);
+            if (customer != null)
+            {
+                //Kode for at gå til panel
+                NameInfoTxt.Text = customer.FirstName;
+                lastNameInfoTxt.Text = customer.LastName;
+                emailInfoTxt.Text = customer.Email;
+                phoneInfoTxt.Text = customer.Phone;
+                birthdayInfoTxt.Text += customer.Birthday;
+                noteInfoTxt.Text += customer.PersonalNote;
+                statusInfoTxt.Text = customer.MembershipId.ToString();
+                IDtxt.Text = customer.CustomerId.ToString();
+                memberTypetxt.Text = customer.MembershipId.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Indtast gyldig mobilnummer");
             }
         }
     }

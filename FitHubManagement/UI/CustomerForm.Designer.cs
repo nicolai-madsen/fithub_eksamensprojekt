@@ -29,18 +29,26 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            panel1 = new Panel();
+            InfoBtn = new Button();
+            EditBtn = new Button();
+            PhoneText = new TextBox();
+            label30 = new Label();
+            label29 = new Label();
+            count = new TextBox();
             CustomerInfoBtn = new Button();
             ShowActiveBtn = new Button();
             ShowInactiveBtn = new Button();
             ShowAllBtn = new Button();
-            EditBtn = new Button();
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
             EditCustomerPanel = new Panel();
+            label34 = new Label();
+            comboBox1 = new ComboBox();
             EditCustomerCancelBtn = new Button();
             EditCustomerConfirmBtn = new Button();
             label17 = new Label();
-            comboBox2 = new ComboBox();
+            statusComboBox = new ComboBox();
             NotesEdit = new TextBox();
             BirthdayEdit = new TextBox();
             PhoneEdit = new TextBox();
@@ -55,6 +63,7 @@
             label16 = new Label();
             EditCustomerTitle = new Label();
             NewCustomerPanel = new Panel();
+            label27 = new Label();
             label23 = new Label();
             label28 = new Label();
             label26 = new Label();
@@ -82,6 +91,12 @@
             NewCustomerBtn = new Button();
             BackBtn = new Button();
             CustomerInformationPanel = new Panel();
+            label36 = new Label();
+            memberTypetxt = new TextBox();
+            label33 = new Label();
+            label32 = new Label();
+            IDtxt = new TextBox();
+            label31 = new Label();
             statusInfoTxt = new TextBox();
             activityInfoList = new ListBox();
             label2 = new Label();
@@ -100,8 +115,8 @@
             label20 = new Label();
             label21 = new Label();
             Kundeinformation = new Label();
-            label27 = new Label();
             ListPanel.SuspendLayout();
+            panel1.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
             CustomerInformationPanel.SuspendLayout();
@@ -109,31 +124,95 @@
             // 
             // ListPanel
             // 
+            ListPanel.Controls.Add(panel1);
+            ListPanel.Controls.Add(label29);
+            ListPanel.Controls.Add(count);
             ListPanel.Controls.Add(CustomerInfoBtn);
             ListPanel.Controls.Add(ShowActiveBtn);
             ListPanel.Controls.Add(ShowInactiveBtn);
             ListPanel.Controls.Add(ShowAllBtn);
-            ListPanel.Controls.Add(EditBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
-            ListPanel.Location = new Point(772, 12);
+            ListPanel.Location = new Point(734, 12);
             ListPanel.Name = "ListPanel";
-            ListPanel.Size = new Size(578, 564);
+            ListPanel.Size = new Size(578, 563);
             ListPanel.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(InfoBtn);
+            panel1.Controls.Add(EditBtn);
+            panel1.Controls.Add(PhoneText);
+            panel1.Controls.Add(label30);
+            panel1.Location = new Point(306, 221);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(250, 125);
+            panel1.TabIndex = 50;
+            // 
+            // InfoBtn
+            // 
+            InfoBtn.Location = new Point(13, 89);
+            InfoBtn.Name = "InfoBtn";
+            InfoBtn.Size = new Size(116, 29);
+            InfoBtn.TabIndex = 51;
+            InfoBtn.Text = "Information";
+            InfoBtn.UseVisualStyleBackColor = true;
+            InfoBtn.Click += InfoBtn_Click;
+            // 
+            // EditBtn
+            // 
+            EditBtn.Location = new Point(144, 89);
+            EditBtn.Name = "EditBtn";
+            EditBtn.Size = new Size(94, 29);
+            EditBtn.TabIndex = 51;
+            EditBtn.Text = "Rediger";
+            EditBtn.UseVisualStyleBackColor = true;
+            // 
+            // PhoneText
+            // 
+            PhoneText.Location = new Point(57, 43);
+            PhoneText.Name = "PhoneText";
+            PhoneText.Size = new Size(125, 27);
+            PhoneText.TabIndex = 1;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(13, 9);
+            label30.Name = "label30";
+            label30.Size = new Size(225, 20);
+            label30.TabIndex = 0;
+            label30.Text = "Indtast medlems telefonnummer";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(373, 85);
+            label29.Name = "label29";
+            label29.Size = new Size(93, 20);
+            label29.TabIndex = 49;
+            label29.Text = "Medlemmer:";
+            // 
+            // count
+            // 
+            count.Location = new Point(466, 82);
+            count.Name = "count";
+            count.ReadOnly = true;
+            count.Size = new Size(33, 27);
+            count.TabIndex = 21;
             // 
             // CustomerInfoBtn
             // 
             CustomerInfoBtn.Location = new Point(63, 423);
             CustomerInfoBtn.Name = "CustomerInfoBtn";
-            CustomerInfoBtn.Size = new Size(116, 29);
+            CustomerInfoBtn.Size = new Size(171, 29);
             CustomerInfoBtn.TabIndex = 20;
-            CustomerInfoBtn.Text = "Information";
+            CustomerInfoBtn.Text = "Information/Rediger";
             CustomerInfoBtn.UseVisualStyleBackColor = true;
-            CustomerInfoBtn.Click += CustomerInfoBtn_Click;
             // 
             // ShowActiveBtn
             // 
-            ShowActiveBtn.Location = new Point(195, 82);
+            ShowActiveBtn.Location = new Point(173, 82);
             ShowActiveBtn.Name = "ShowActiveBtn";
             ShowActiveBtn.Size = new Size(94, 29);
             ShowActiveBtn.TabIndex = 19;
@@ -143,7 +222,7 @@
             // 
             // ShowInactiveBtn
             // 
-            ShowInactiveBtn.Location = new Point(320, 82);
+            ShowInactiveBtn.Location = new Point(273, 82);
             ShowInactiveBtn.Name = "ShowInactiveBtn";
             ShowInactiveBtn.Size = new Size(94, 29);
             ShowInactiveBtn.TabIndex = 18;
@@ -161,24 +240,15 @@
             ShowAllBtn.UseVisualStyleBackColor = true;
             ShowAllBtn.Click += ShowBtn_Click;
             // 
-            // EditBtn
-            // 
-            EditBtn.Location = new Point(405, 423);
-            EditBtn.Name = "EditBtn";
-            EditBtn.Size = new Size(94, 29);
-            EditBtn.TabIndex = 15;
-            EditBtn.Text = "Rediger";
-            EditBtn.UseVisualStyleBackColor = true;
-            // 
             // ChooseCustomerTitle
             // 
             ChooseCustomerTitle.AutoSize = true;
             ChooseCustomerTitle.Font = new Font("Segoe UI", 12F);
             ChooseCustomerTitle.Location = new Point(63, 25);
             ChooseCustomerTitle.Name = "ChooseCustomerTitle";
-            ChooseCustomerTitle.Size = new Size(116, 28);
+            ChooseCustomerTitle.Size = new Size(139, 28);
             ChooseCustomerTitle.TabIndex = 11;
-            ChooseCustomerTitle.Text = "Vælg kunde";
+            ChooseCustomerTitle.Text = "Kundeoversigt";
             // 
             // CustomerListBox
             // 
@@ -190,10 +260,12 @@
             // 
             // EditCustomerPanel
             // 
+            EditCustomerPanel.Controls.Add(label34);
+            EditCustomerPanel.Controls.Add(comboBox1);
             EditCustomerPanel.Controls.Add(EditCustomerCancelBtn);
             EditCustomerPanel.Controls.Add(EditCustomerConfirmBtn);
             EditCustomerPanel.Controls.Add(label17);
-            EditCustomerPanel.Controls.Add(comboBox2);
+            EditCustomerPanel.Controls.Add(statusComboBox);
             EditCustomerPanel.Controls.Add(NotesEdit);
             EditCustomerPanel.Controls.Add(BirthdayEdit);
             EditCustomerPanel.Controls.Add(PhoneEdit);
@@ -211,6 +283,26 @@
             EditCustomerPanel.Name = "EditCustomerPanel";
             EditCustomerPanel.Size = new Size(613, 451);
             EditCustomerPanel.TabIndex = 12;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new Point(355, 145);
+            label34.Name = "label34";
+            label34.Size = new Size(99, 20);
+            label34.TabIndex = 38;
+            label34.Text = "Medlemstype";
+            // 
+            // comboBox1
+            // 
+            comboBox1.AutoCompleteCustomSource.AddRange(new string[] { "Aktiv", "Inaktiv" });
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Aktiv", "Inaktiv" });
+            comboBox1.Location = new Point(472, 138);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(94, 28);
+            comboBox1.TabIndex = 37;
             // 
             // EditCustomerCancelBtn
             // 
@@ -233,22 +325,22 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(373, 97);
+            label17.Location = new Point(355, 98);
             label17.Name = "label17";
             label17.Size = new Size(49, 20);
             label17.TabIndex = 31;
             label17.Text = "Status";
             // 
-            // comboBox2
+            // statusComboBox
             // 
-            comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Aktiv", "Inaktiv" });
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Aktiv", "Inaktiv" });
-            comboBox2.Location = new Point(428, 90);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(94, 28);
-            comboBox2.TabIndex = 30;
+            statusComboBox.AutoCompleteCustomSource.AddRange(new string[] { "Aktiv", "Inaktiv" });
+            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusComboBox.FormattingEnabled = true;
+            statusComboBox.Items.AddRange(new object[] { "Aktiv", "Inaktiv" });
+            statusComboBox.Location = new Point(472, 89);
+            statusComboBox.Name = "statusComboBox";
+            statusComboBox.Size = new Size(94, 28);
+            statusComboBox.TabIndex = 30;
             // 
             // NotesEdit
             // 
@@ -387,6 +479,17 @@
             NewCustomerPanel.Name = "NewCustomerPanel";
             NewCustomerPanel.Size = new Size(584, 426);
             NewCustomerPanel.TabIndex = 9;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 11F);
+            label27.ForeColor = Color.Red;
+            label27.Location = new Point(150, 262);
+            label27.Name = "label27";
+            label27.Size = new Size(20, 25);
+            label27.TabIndex = 48;
+            label27.Text = "*";
             // 
             // label23
             // 
@@ -627,6 +730,12 @@
             // 
             // CustomerInformationPanel
             // 
+            CustomerInformationPanel.Controls.Add(label36);
+            CustomerInformationPanel.Controls.Add(memberTypetxt);
+            CustomerInformationPanel.Controls.Add(label33);
+            CustomerInformationPanel.Controls.Add(label32);
+            CustomerInformationPanel.Controls.Add(IDtxt);
+            CustomerInformationPanel.Controls.Add(label31);
             CustomerInformationPanel.Controls.Add(statusInfoTxt);
             CustomerInformationPanel.Controls.Add(activityInfoList);
             CustomerInformationPanel.Controls.Add(label2);
@@ -650,9 +759,61 @@
             CustomerInformationPanel.Size = new Size(613, 451);
             CustomerInformationPanel.TabIndex = 37;
             // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new Point(434, 105);
+            label36.Name = "label36";
+            label36.Size = new Size(157, 20);
+            label36.TabIndex = 49;
+            label36.Text = "1 = Aktiv     2 = Inaktiv\r\n";
+            // 
+            // memberTypetxt
+            // 
+            memberTypetxt.Location = new Point(434, 137);
+            memberTypetxt.Name = "memberTypetxt";
+            memberTypetxt.ReadOnly = true;
+            memberTypetxt.Size = new Size(125, 27);
+            memberTypetxt.TabIndex = 47;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new Point(329, 140);
+            label33.Name = "label33";
+            label33.Size = new Size(99, 20);
+            label33.TabIndex = 46;
+            label33.Text = "Medlemstype";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new Point(465, 168);
+            label32.Name = "label32";
+            label32.Size = new Size(94, 60);
+            label32.TabIndex = 45;
+            label32.Text = "1 = Basic\r\n2 = Premium\r\n3 = VIP";
+            // 
+            // IDtxt
+            // 
+            IDtxt.Location = new Point(188, 75);
+            IDtxt.Name = "IDtxt";
+            IDtxt.ReadOnly = true;
+            IDtxt.Size = new Size(125, 27);
+            IDtxt.TabIndex = 42;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new Point(50, 78);
+            label31.Name = "label31";
+            label31.Size = new Size(24, 20);
+            label31.TabIndex = 41;
+            label31.Text = "ID";
+            // 
             // statusInfoTxt
             // 
-            statusInfoTxt.Location = new Point(428, 94);
+            statusInfoTxt.Location = new Point(434, 75);
             statusInfoTxt.Name = "statusInfoTxt";
             statusInfoTxt.ReadOnly = true;
             statusInfoTxt.Size = new Size(125, 27);
@@ -661,15 +822,15 @@
             // activityInfoList
             // 
             activityInfoList.FormattingEnabled = true;
-            activityInfoList.Location = new Point(373, 182);
+            activityInfoList.Location = new Point(331, 246);
             activityInfoList.Name = "activityInfoList";
-            activityInfoList.Size = new Size(187, 104);
+            activityInfoList.Size = new Size(225, 84);
             activityInfoList.TabIndex = 39;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(373, 153);
+            label2.Location = new Point(331, 216);
             label2.Name = "label2";
             label2.Size = new Size(102, 20);
             label2.TabIndex = 38;
@@ -677,7 +838,7 @@
             // 
             // InfoBackBtn
             // 
-            InfoBackBtn.Location = new Point(481, 377);
+            InfoBackBtn.Location = new Point(481, 395);
             InfoBackBtn.Name = "InfoBackBtn";
             InfoBackBtn.Size = new Size(94, 29);
             InfoBackBtn.TabIndex = 36;
@@ -687,7 +848,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(373, 97);
+            label1.Location = new Point(329, 78);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 31;
@@ -695,7 +856,7 @@
             // 
             // noteInfoTxt
             // 
-            noteInfoTxt.Location = new Point(198, 309);
+            noteInfoTxt.Location = new Point(188, 336);
             noteInfoTxt.Multiline = true;
             noteInfoTxt.Name = "noteInfoTxt";
             noteInfoTxt.ReadOnly = true;
@@ -704,7 +865,7 @@
             // 
             // birthdayInfoTxt
             // 
-            birthdayInfoTxt.Location = new Point(198, 266);
+            birthdayInfoTxt.Location = new Point(188, 293);
             birthdayInfoTxt.Name = "birthdayInfoTxt";
             birthdayInfoTxt.ReadOnly = true;
             birthdayInfoTxt.Size = new Size(125, 27);
@@ -712,7 +873,7 @@
             // 
             // phoneInfoTxt
             // 
-            phoneInfoTxt.Location = new Point(198, 228);
+            phoneInfoTxt.Location = new Point(188, 255);
             phoneInfoTxt.Name = "phoneInfoTxt";
             phoneInfoTxt.ReadOnly = true;
             phoneInfoTxt.Size = new Size(125, 27);
@@ -720,7 +881,7 @@
             // 
             // emailInfoTxt
             // 
-            emailInfoTxt.Location = new Point(198, 184);
+            emailInfoTxt.Location = new Point(188, 211);
             emailInfoTxt.Name = "emailInfoTxt";
             emailInfoTxt.ReadOnly = true;
             emailInfoTxt.Size = new Size(125, 27);
@@ -728,7 +889,7 @@
             // 
             // lastNameInfoTxt
             // 
-            lastNameInfoTxt.Location = new Point(198, 141);
+            lastNameInfoTxt.Location = new Point(188, 168);
             lastNameInfoTxt.Name = "lastNameInfoTxt";
             lastNameInfoTxt.ReadOnly = true;
             lastNameInfoTxt.Size = new Size(125, 27);
@@ -737,7 +898,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(60, 309);
+            label3.Location = new Point(50, 336);
             label3.Name = "label3";
             label3.Size = new Size(47, 20);
             label3.TabIndex = 23;
@@ -745,7 +906,7 @@
             // 
             // NameInfoTxt
             // 
-            NameInfoTxt.Location = new Point(198, 90);
+            NameInfoTxt.Location = new Point(188, 117);
             NameInfoTxt.Name = "NameInfoTxt";
             NameInfoTxt.ReadOnly = true;
             NameInfoTxt.Size = new Size(125, 27);
@@ -754,7 +915,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(60, 231);
+            label10.Location = new Point(50, 258);
             label10.Name = "label10";
             label10.Size = new Size(50, 20);
             label10.TabIndex = 21;
@@ -763,7 +924,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(60, 266);
+            label18.Location = new Point(50, 293);
             label18.Name = "label18";
             label18.Size = new Size(84, 20);
             label18.TabIndex = 20;
@@ -772,7 +933,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(60, 187);
+            label19.Location = new Point(50, 214);
             label19.Name = "label19";
             label19.Size = new Size(46, 20);
             label19.TabIndex = 19;
@@ -781,7 +942,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(60, 141);
+            label20.Location = new Point(50, 168);
             label20.Name = "label20";
             label20.Size = new Size(71, 20);
             label20.TabIndex = 18;
@@ -790,7 +951,7 @@
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(60, 93);
+            label21.Location = new Point(50, 120);
             label21.Name = "label21";
             label21.Size = new Size(61, 20);
             label21.TabIndex = 17;
@@ -805,17 +966,6 @@
             Kundeinformation.Size = new Size(171, 28);
             Kundeinformation.TabIndex = 13;
             Kundeinformation.Text = "Kundeinformation";
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 11F);
-            label27.ForeColor = Color.Red;
-            label27.Location = new Point(150, 262);
-            label27.Name = "label27";
-            label27.Size = new Size(20, 25);
-            label27.TabIndex = 48;
-            label27.Text = "*";
             // 
             // CustomerForm
             // 
@@ -833,6 +983,8 @@
             Text = "CustomerForm";
             ListPanel.ResumeLayout(false);
             ListPanel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             EditCustomerPanel.ResumeLayout(false);
             EditCustomerPanel.PerformLayout();
             NewCustomerPanel.ResumeLayout(false);
@@ -875,10 +1027,9 @@
         private Label label16;
         private Label EditCustomerTitle;
         private Label label17;
-        private ComboBox comboBox2;
+        private ComboBox statusComboBox;
         private Button ShowListBtn;
         private Button NewCustomerBtn;
-        private Button EditBtn;
         private Button BackBtn;
         private Button EditCustomerConfirmBtn;
         private Button NewCustomerCancelBtn;
@@ -890,7 +1041,7 @@
         private Button ShowInactiveBtn;
         private Button CustomerInfoBtn;
         private Panel CustomerInformationPanel;
-        private Button button1;
+        private Button InfoBtn;
         private Button InfoBackBtn;
         private Label label1;
         private ComboBox comboBox1;
@@ -919,5 +1070,18 @@
         private Label label28;
         private Label label23;
         private Label label27;
+        private TextBox count;
+        private Label label29;
+        private Panel panel1;
+        private Button EditBtn;
+        private TextBox PhoneText;
+        private Label label30;
+        private Label label31;
+        private TextBox IDtxt;
+        private Label label34;
+        private TextBox memberTypetxt;
+        private Label label33;
+        private Label label32;
+        private Label label36;
     }
 }

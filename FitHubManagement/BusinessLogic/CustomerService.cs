@@ -13,8 +13,8 @@ namespace FitHubManagement.BusinessLogic
     {
         private readonly CustomerDAL repo = new(); //Repo refererer til DAL
 
-        //Create customer :))) 
-        public void CreateCustomerBLL(CustomerModel customer)
+        
+        public void CreateCustomerBLL(CustomerModel customer)  // Har brugt Per sin Winformsapp19 kode som skabelion
         {
 
 
@@ -23,24 +23,41 @@ namespace FitHubManagement.BusinessLogic
                 string.IsNullOrWhiteSpace(customer.Email) ||
                 string.IsNullOrWhiteSpace(customer.Phone))
 
-
-
                 throw new Exception ();
 
             if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
 
                 throw new Exception();
 
-            if (customer.Birthday.Date == DateTime.Now.Date) //Denne må endres, tenk om nogen tilmelder sig på sin bursdag!!
+
+            if (customer.Birthday.Date == DateTime.Now.Date)
+
                 throw new Exception ();
 
 
             repo.CreateCustomer(customer);
         }  
 
-       
+        public CustomerModel GetIndividualCustomer (string phone)
+        {
+            return repo.GetSingleCustomer(phone);
+        }
+
+        public List<CustomerModel> GetAllCustomerBLL()
+        {
+            return repo.GetAllCustomer();
+        }
+
+        public List<CustomerModel> GetInactiveCustomerBLL()
+        {
+            return repo.GetInactiveCustomer();
+        }
+
+        public List<CustomerModel> GetActiveCustomer()
+        {
+            return repo.GetActiveCustomer();
+        }
 
         
-     
     }
 }
