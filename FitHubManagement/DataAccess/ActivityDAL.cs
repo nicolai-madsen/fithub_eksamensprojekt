@@ -30,13 +30,13 @@ namespace FitHubManagement.DataAccess
             //INNER JOIN fordi LEFT JOIN giver tomme rækker, og rækker kan ikke være tomme. En Activity har altid en ActivityType osv. ActivityType har Instructor
             string filterQuery = @"
                 SELECT
-	                ActivityID,
-	                CAST(StartDateTime AS DATE) AS ActivityDate,
-	                CAST(StartDateTime AS TIME) AS StartTime,
-	                CAST (EndDateTime AS TIME) AS EndTime,
-	                a.ActivityLocation,
-	                at.ActivityTypeName,
-	                i.FirstName + ' ' + i.LastName AS InstructorName
+                    ActivityID,
+                    CAST(StartDateTime AS DATE) AS ActivityDate,
+                    CAST(StartDateTime AS TIME) AS StartTime,
+                    CAST (EndDateTime AS TIME) AS EndTime,
+                    a.ActivityLocation,
+                    at.ActivityTypeName,
+                    i.FirstName + ' ' + i.LastName AS InstructorName
                 FROM Activity a
                 INNER JOIN ActivityType at ON a.ActivityTypeID = at.ActivityTypeID 
                 INNER JOIN Instructor i ON at.InstructorID = i.InstructorID
@@ -220,7 +220,7 @@ namespace FitHubManagement.DataAccess
             return activityList;
         }
 
-        
+
         public List<string> GetAllLocations() //Viser forskellige lokationer, der er i databasen
         {
 
@@ -299,7 +299,7 @@ namespace FitHubManagement.DataAccess
             return activityDuration;
         }
 
- 
+
         #endregion
 
         #region UPDATE METHODS
@@ -407,6 +407,8 @@ namespace FitHubManagement.DataAccess
         #endregion
     }
 }
+
+
 
 
 

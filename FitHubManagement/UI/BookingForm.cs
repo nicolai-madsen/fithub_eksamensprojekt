@@ -175,7 +175,9 @@ namespace FitHubManagement.UI.BookingUI
         // Tilbage til Panel1 (find medlem igen)
         private void button7_Click(object sender, EventArgs e)
         {
-            panel1.BringToFront();
+            panel1.Visible = true; //Vis Panel1 igen
+            panel2.Visible = false; //Skjul Panel2
+            panel1.BringToFront(); //Læg Panel1 øverst
         }
 
         // Panel2 Vis knap: hent hold baseret på dato + holdtype
@@ -300,10 +302,14 @@ namespace FitHubManagement.UI.BookingUI
         // Ny booking knap i Panel2: nulstil Panel2
         private void button8_Click(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Today;
-            comboBox1.SelectedIndex = -1;
-            listBox2.Items.Clear();
-            selectedActivityId = -1;
+            dateTimePicker1.Value = DateTime.Today; // nulstil dato
+            comboBox1.SelectedIndex = -1; // nulstil holdtype
+            listBox2.Items.Clear(); // ryd holdliste
+            selectedActivityId = -1; // nulstil valgt hold
+            panel1.Visible = true; //Vis Panel1 igen
+            panel2.Visible = false; //Skjul Panel2
+            panel1.BringToFront(); //Læg Panel1 øverst
+            textBox1.Focus(); // fokus til søgefelt
         }
 
         // ComboBox ændret: ryd listen og nulstil valgt hold
@@ -361,7 +367,7 @@ namespace FitHubManagement.UI.BookingUI
 
         private void label7_Click(object sender, EventArgs e)
         {
-
+           //Bruges ikke som klik.
         }
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
