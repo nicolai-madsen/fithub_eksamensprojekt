@@ -51,6 +51,7 @@
             button5 = new Button();
             listBox2 = new ListBox();
             button1 = new Button();
+            btnRydP2 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -166,6 +167,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnRydP2);
             panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(button8);
@@ -216,7 +218,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(363, 456);
+            button7.Location = new Point(477, 463);
             button7.Margin = new Padding(4);
             button7.Name = "button7";
             button7.Size = new Size(118, 36);
@@ -228,10 +230,10 @@
             // button6
             // 
             button6.BackColor = SystemColors.ActiveCaption;
-            button6.Location = new Point(489, 456);
+            button6.Location = new Point(452, 507);
             button6.Margin = new Padding(4);
             button6.Name = "button6";
-            button6.Size = new Size(118, 36);
+            button6.Size = new Size(155, 72);
             button6.TabIndex = 7;
             button6.Text = "Tilmeld";
             button6.UseVisualStyleBackColor = false;
@@ -309,6 +311,16 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnRydP2
+            // 
+            btnRydP2.Location = new Point(358, 464);
+            btnRydP2.Name = "btnRydP2";
+            btnRydP2.Size = new Size(112, 35);
+            btnRydP2.TabIndex = 13;
+            btnRydP2.Text = "Ryd";
+            btnRydP2.UseVisualStyleBackColor = true;
+            btnRydP2.Click += btnRydP2_Click;
+            // 
             // BookingForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -352,5 +364,6 @@
         private Label label5;
         private Label lbl_MedlemsNavn;
         protected internal Button button6;
+        private Button btnRydP2;
     }
 }

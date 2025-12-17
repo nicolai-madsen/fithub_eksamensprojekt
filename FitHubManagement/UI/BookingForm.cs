@@ -42,6 +42,13 @@ namespace FitHubManagement.UI.BookingUI
             {
                 MessageBox.Show("Kunne ikke hente holdtyper: " + ex.Message);
             }
+
+            // Ryd søgefelter
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            // Sørg for at cursor står klar
+            textBox1.Focus();
         }
 
         // ---------------- Panel1 ----------------
@@ -285,7 +292,7 @@ namespace FitHubManagement.UI.BookingUI
             MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
 
             listBox1.Items.Clear();
-           
+
 
         }
 
@@ -360,6 +367,18 @@ namespace FitHubManagement.UI.BookingUI
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRydP2_Click(object sender, EventArgs e) //Ryd knap Panel2
+        {
+           //Ryd kun Panel2
+           listBox2.DataSource = null; // fjern datakilde, hvis der er en
+            listBox2.Items.Clear(); // ryd alle items
+            comboBox1.SelectedIndex = -1; // nulstil combobox valg
+            selectedActivityId = -1; // nulstil valgt ActivityId
+            dateTimePicker1.Value = DateTime.Today;
+
+            comboBox1.Focus();
         }
     }
 }
