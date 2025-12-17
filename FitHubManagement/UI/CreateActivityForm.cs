@@ -35,7 +35,7 @@ namespace FitHubManagement.UI.Activity
         private List<string> locations;
         private List<string> GetAllActivityTypeNames;
         private List<ActivityTypeModel> activityType;
-        
+
         private List<string> duration;
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
@@ -49,7 +49,7 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.SelectedIndex = -1;
 
             activityType = activityService.GetAllActivityTypes();
-          
+
 
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
@@ -63,7 +63,7 @@ namespace FitHubManagement.UI.Activity
             comboBox2.SelectedIndex = -1;
 
             label10.Text = "";
-            
+
 
             duration = activityService.GetAllDuration();
 
@@ -115,11 +115,19 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSearchActivity_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
 
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            pnlSearchActivity.Visible=false;
+            panel1.Visible = true;
 
         }
 
@@ -154,7 +162,7 @@ namespace FitHubManagement.UI.Activity
 
             try
             {
-                ActivityTypeModel selectedType =(ActivityTypeModel)comboBox2.SelectedItem;
+                ActivityTypeModel selectedType = (ActivityTypeModel)comboBox2.SelectedItem;
                 int activityTypeId = selectedType.ActivityTypeId;
                 int instructorId = selectedType.InstructorId;
 
@@ -179,6 +187,9 @@ namespace FitHubManagement.UI.Activity
                 MessageBox.Show("Fejl: " + ex.Message);
             }
         }
+        // Monas stuff goes here 
+
+
 
         //Panel søgning
         private void btnSearchGet_Click(object sender, EventArgs e)
@@ -212,23 +223,23 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.SelectedItem = null;
             cmbSearchActivity.Text = "";
         }
-        
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
-           // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
-           if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
-           {
-                   // 1. Kald metoden i din Service (som kalder DAL)
-                   // Her antager jeg, du har lavet metoden i Service-laget også:
-               string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
+            // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
+            // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
+            if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
+            {
+                // 1. Kald metoden i din Service (som kalder DAL)
+                // Her antager jeg, du har lavet metoden i Service-laget også:
+                string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
 
-                   // 2. Vis navnet i labelen
-                   // Vi tjekker for null, hvis nu databasen ikke fandt nogen
-               label10.Text = instructorName ?? "Ingen instruktør fundet"; 
-           }
+                // 2. Vis navnet i labelen
+                // Vi tjekker for null, hvis nu databasen ikke fandt nogen
+                label10.Text = instructorName ?? "Ingen instruktør fundet";
+            }
         }
-         
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -238,5 +249,21 @@ namespace FitHubManagement.UI.Activity
         {
 
         }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // Lad den være tom for nu, så fejlen forsvinder
+        }
+
+        private void lstbxSearchGet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }

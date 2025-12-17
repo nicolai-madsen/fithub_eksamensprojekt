@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.Models;
+using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -208,6 +209,76 @@ namespace FitHubManagement.DataAccess
             return instructors;
         }
 
+        public static List<ActivityFilterModel> GetActivitiesByInstructorAndDate(int? instructorID, DateOnly? activityDate) //Parametre kan være nullable, da det er et søgefilter
+        {
+            List<ActivityFilterModel> activities = new List<ActivityFilterModel>();
+
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            // JOIN tabeller for at få alle data. CAST splitter StartDateTime op i dato og tid
+            string filterQuery = @"
+            SELECT ActivityID,
+            CAST(StartDateTime AS DATE) AS ActivityDate,
+            CAST(StartDateTime AS TIME) AS StartTime,
+            CAST(EndDateTime AS TIME) AS EndTime,
+            a.ActivityLocation,
+            at.ActivityTypeName,
+            i.FirstName + ' ' + i.LastName AS InstructorName
+            FROM Activity a
+            INNER JOIN ActivityType at ON a.ActivityTypeID = at.ActivityTypeID 
+            INNER JOIN Instructor i ON at.InstructorID = i.InstructorID
+            WHERE 1=1
+             ";
+
+            using SqlCommand command = new SqlCommand(filterQuery, connection);
+
+            // Tilføj InstructorID filter hvis valgt
+            if (instructorID.HasValue)
+            {
+                filterQuery += " AND i.InstructorID = @InstructorID";
+                command.Parameters.AddWithValue("@InstructorID", instructorID.Value);
+            }
+
+            // Tilføj dato filter
+            if (activityDate.HasValue)
+            {
+                // Hvis dato er valgt, søg på den specifikke dato
+                filterQuery += " AND CAST(StartDateTime AS DATE) = @ActivityDate";
+                command.Parameters.AddWithValue("@ActivityDate", activityDate.Value.ToDateTime(TimeOnly.MinValue));
+            }
+            else
+            {
+                // Hvis ingen dato valgt, søg fra i dag og fremefter
+                filterQuery += " AND CAST(StartDateTime AS DATE) >= @TodayDate";
+                command.Parameters.AddWithValue("@TodayDate", DateTime.Today);
+            }
+
+            
+
+            filterQuery += " ORDER BY StartDateTime"; // Sorter efter dato og tid
+
+            command.CommandText = filterQuery;
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                ActivityFilterModel activity = new ActivityFilterModel();
+
+                activity.ActivityId = (int)reader["ActivityID"];
+                activity.ActivityDate = DateOnly.FromDateTime((DateTime)reader["ActivityDate"]);
+                activity.StartTime = TimeOnly.FromTimeSpan((TimeSpan)reader["StartTime"]);
+                activity.EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]);
+                activity.ActivityLocation = reader["ActivityLocation"].ToString();
+                activity.ActivityTypeName = reader["ActivityTypeName"].ToString();
+                activity.InstructorName = reader["InstructorName"].ToString();
+
+                activities.Add(activity);
+            }
+
+            return activities;
+        }
         // Opret ny instructor med ny activitytype ---- Er lavet som "stored procedure" i databasen"
         public void CreateInstructorWithActivity
             (string firstName,
@@ -217,6 +288,7 @@ namespace FitHubManagement.DataAccess
             string activityName,
             string activityDescription)
         {
+            Console.WriteLine("Det her er Monas kode, GET IN THERE");
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
