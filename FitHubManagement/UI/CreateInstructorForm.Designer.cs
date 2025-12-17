@@ -413,13 +413,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(807, 515);
+            Controls.Add(newInstructorpanel);
             Controls.Add(label1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
             Controls.Add(panel1);
             Controls.Add(GetAll);
-            Controls.Add(newInstructorpanel);
             Margin = new Padding(2);
             Name = "CreateInstructorForm";
             Text = "Form1";
