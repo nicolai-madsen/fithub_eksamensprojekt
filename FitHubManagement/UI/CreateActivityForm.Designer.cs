@@ -168,6 +168,7 @@
             btnCreateActivityPanel = new Button();
             label2 = new Label();
             pnlHoldType = new Panel();
+            lblHoldTypeTitle = new Label();
             btnSaveHoldType = new Button();
             cmbHoldTypeInstruktor = new ComboBox();
             btnCancelHoldType = new Button();
@@ -176,7 +177,6 @@
             lblHoldTypeDescription = new Label();
             txtHoldTypeName = new TextBox();
             lblHoldTypeNavn = new Label();
-            lblHoldTypeTitle = new Label();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -562,14 +562,24 @@
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
             pnlHoldType.Location = new Point(620, 99);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(392, 373);
+            pnlHoldType.Size = new Size(392, 360);
             pnlHoldType.TabIndex = 22;
             pnlHoldType.Visible = false;
+            // 
+            // lblHoldTypeTitle
+            // 
+            lblHoldTypeTitle.AutoSize = true;
+            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHoldTypeTitle.Location = new Point(128, 18);
+            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
+            lblHoldTypeTitle.Size = new Size(126, 31);
+            lblHoldTypeTitle.TabIndex = 10;
+            lblHoldTypeTitle.Text = "HOLDTYPE";
             // 
             // btnSaveHoldType
             // 
             btnSaveHoldType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnSaveHoldType.Location = new Point(60, 310);
+            btnSaveHoldType.Location = new Point(60, 297);
             btnSaveHoldType.Name = "btnSaveHoldType";
             btnSaveHoldType.Size = new Size(94, 29);
             btnSaveHoldType.TabIndex = 9;
@@ -589,7 +599,7 @@
             // btnCancelHoldType
             // 
             btnCancelHoldType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelHoldType.Location = new Point(258, 310);
+            btnCancelHoldType.Location = new Point(258, 297);
             btnCancelHoldType.Name = "btnCancelHoldType";
             btnCancelHoldType.Size = new Size(94, 29);
             btnCancelHoldType.TabIndex = 7;
@@ -643,16 +653,6 @@
             lblHoldTypeNavn.TabIndex = 0;
             lblHoldTypeNavn.Text = "Navn";
             lblHoldTypeNavn.Click += label6_Click;
-            // 
-            // lblHoldTypeTitle
-            // 
-            lblHoldTypeTitle.AutoSize = true;
-            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHoldTypeTitle.Location = new Point(128, 18);
-            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
-            lblHoldTypeTitle.Size = new Size(126, 31);
-            lblHoldTypeTitle.TabIndex = 10;
-            lblHoldTypeTitle.Text = "HOLDTYPE";
             // 
             // CreateActivityForm
             // 
