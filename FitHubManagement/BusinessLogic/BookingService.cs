@@ -10,13 +10,32 @@ namespace FitHubManagement.BusinessLogic
 {
     internal class BookingService
     {
-        private readonly BookingDAL _bookingRepo = new BookingDAL();
-        private readonly CustomerDAL _customerRepo = new CustomerDAL();
+        private readonly BookingDAL _bookingDAL = new BookingDAL();
+        private readonly CustomerDAL _customerDAL = new CustomerDAL();
+        private readonly ActivityDAL _activityDAL = new ActivityDAL();
+
+        public void CreateBooking(int activityId, int customerId, string note)
+        {
+           
+
+           
+
+            BookingModel newBooking = new BookingModel
+            {
+                ActivityId = activityId,
+                CustomerId = customerId,
+                PersonalNote = note,
+            };
+
+          
+
+            _bookingDAL.CreateBooking(newBooking);
+        }
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
         {
             // Hent medlem via DAL
-            CustomerModel customer = _customerRepo.GetIndividualCustomer(customerId);
+            CustomerModel customer = _customerDAL.GetIndividualCustomer(customerId);
 
             // Hvis medlem er inaktiv, kan de ikke booke hold
             if (customer.Inactive) return false;
@@ -28,7 +47,7 @@ namespace FitHubManagement.BusinessLogic
                 DateTime weekStart = GetStartOfWeek(activityDate).Date;
 
                 // Hent antallet af bookinger fra for medlem. Kald DAL via BLL instans _bookingRepo
-                int bookingCount = _bookingRepo.GetBookingCountForCustomer(customerId, weekStart);
+                int bookingCount = _bookingDAL.GetBookingCountForCustomer(customerId, weekStart);
 
                 if (bookingCount >= 2)
                 {
@@ -38,6 +57,12 @@ namespace FitHubManagement.BusinessLogic
 
             return true;
         }
+
+        public int GetAvailableSpots(int activityId)
+        {
+            return _bookingDAL.GetAvailableSpots(activityId);
+        }
+
         // Helper Method, gets start of week
         private DateTime GetStartOfWeek(DateTime dt)
         {

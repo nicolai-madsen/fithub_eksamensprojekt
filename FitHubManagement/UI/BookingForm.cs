@@ -1,4 +1,5 @@
-﻿using FitHubManagement.DataAccess;
+﻿using FitHubManagement.BusinessLogic;
+using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
@@ -10,6 +11,12 @@ namespace FitHubManagement.UI.BookingUI
 {
     public partial class BookingForm : Form
     {
+        // Business Logic-klasse instanser
+        private readonly ActivityService _activityService = new ActivityService();
+        private readonly BookingService _bookingService = new BookingService();
+        private readonly CustomerService _customerService = new CustomerService();
+        private readonly MembershipService _membershipService = new MembershipService();
+
         // Gemmer det valgte medlem fra Panel1 til Panel2
         private CustomerModel selectedCustomer;
 
@@ -24,17 +31,17 @@ namespace FitHubManagement.UI.BookingUI
             panel2.Visible = true;
             panel1.BringToFront();
 
-            // (Valgfrit men smart) Fyld comboBox1 når formen åbner
+            // Fyld comboBox1 når formen åbner
             Load += BookingForm_Load;
         }
 
-        // Fylder holdtype-combobox med navne (begynder-venligt)
+        // Fylder holdtype-combobox med navne
         private void BookingForm_Load(object sender, EventArgs e)
         {
             try
             {
-                ActivityDAL dal = new ActivityDAL();
-                List<string> types = dal.GetAllActivityTypes(); // du har allerede denne metode
+                
+                List<string> types = _activityService.GetAllActivityTypeNames(); 
 
                 comboBox1.DataSource = types;
                 comboBox1.SelectedIndex = -1;
@@ -127,8 +134,8 @@ namespace FitHubManagement.UI.BookingUI
             string name = textBox1.Text.Trim();
             string phone = textBox2.Text.Trim().Replace(" ", "");
 
-            CustomerDAL customerDL = new CustomerDAL();
-            List<CustomerModel> customers = customerDL.GetAllCustomer();
+            
+            List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
 
             listBox1.DataSource = null;
             listBox1.Items.Clear();
@@ -236,7 +243,7 @@ namespace FitHubManagement.UI.BookingUI
             {
                 selectedActivityId = a.ActivityId;
 
-                int spots = BookingDAL.GetAvailableSpots(selectedActivityId);
+                int spots = _bookingService.GetAvailableSpots(selectedActivityId);
 
                 MessageBox.Show(
                     $"Du har valgt: {a.ActivityTypeName}\n" +
@@ -262,14 +269,32 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // AC1: Tjek ledige pladser
-            int availableSpots = BookingDAL.GetAvailableSpots(selectedActivityId);
+            // Hold fyldt -validering
+            int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
+            if (availableSpots <= 0)
+            {
+                throw new Exception("Holdet er fyldt");
+            }
 
             if (availableSpots <= 0)
             {
                 MessageBox.Show("Der er ikke flere ledige pladser på holdet.");
                 return;
             }
+
+            // Hent dato for ugenlig booking validering (max 2 i ugen for "Standard" medlemsskabstype)
+            DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
+
+            // Max 2 bookinger pr uge for "Standard" -validering
+            if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
+            {
+                MessageBox.Show("Medlem kan bookes på max 2 hold i ugen.",
+                                "Begrænsning nået",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
 
             // Bekræft før vi gemmer booking
             DialogResult answer = MessageBox.Show(
@@ -284,21 +309,19 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
+          
             // AC2: Registrer booking i databasen (KUN ÉN GANG)
             try
             {
-                BookingDAL.CreateBooking(
-                    selectedActivityId,
-                    selectedCustomer.CustomerId,
-                    null
-                );
+                _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, ""); // _bookingService objekt kalder Service metode, som kalder tilsvarende DAL metode
+                                                                                                    // Først behandles input i Business Logic 
             }
             catch (SqlException)
             {
                 MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
                 return;
             }
-
+            
             // AC3: Vis at deltagerlisten er opdateret
             int participants = BookingDAL.GetAllBookings()
                 .FindAll(b => b.ActivityId == selectedActivityId)
