@@ -26,6 +26,8 @@ namespace FitHubManagement.UI.Instructor
             LoadInstructors();
             GetAll.Visible = true;
             panel1.Visible = false;
+            pnlSearchActivity.Visible = false;
+            newInstructorpanel.Visible = false;
         }
 
         private void FirstNameTxt_TextChanged(object sender, EventArgs e)
@@ -51,6 +53,10 @@ namespace FitHubManagement.UI.Instructor
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void savenewInstructor_Click(object sender, EventArgs e)
         {
             newInstructorpanel.Visible = true;
             panel1.Visible = false;
@@ -285,9 +291,9 @@ namespace FitHubManagement.UI.Instructor
             // Vis antal tilmeldinger i label
             lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
         }
-        
 
-        
+
+
         private void ClearTextBoxes()
         {
             newtxtFirstName.Text = "";
@@ -320,6 +326,11 @@ namespace FitHubManagement.UI.Instructor
         }
         private void test()
         { }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pnlSearchActivity.Visible = true;
+        }
     }
 }
 
