@@ -196,7 +196,6 @@
             // panel1
             // 
             panel1.Controls.Add(txtLastName);
-            panel1.Controls.Add(pnlSearchActivity);
             panel1.Controls.Add(btnCancelCreateIns);
             panel1.Controls.Add(lblFirstName);
             panel1.Controls.Add(btnSaveIns);
@@ -224,7 +223,7 @@
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(dTPSearchDate);
             pnlSearchActivity.Controls.Add(lblSearchActivity);
-            pnlSearchActivity.Location = new Point(8, 6);
+            pnlSearchActivity.Location = new Point(0, 0);
             pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
             pnlSearchActivity.Size = new Size(528, 471);
@@ -536,6 +535,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(807, 515);
+            Controls.Add(pnlSearchActivity);
             Controls.Add(button3);
             Controls.Add(label1);
             Controls.Add(btnBackToFront);
