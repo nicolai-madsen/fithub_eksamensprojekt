@@ -23,9 +23,10 @@ namespace FitHubManagement.UI.Instructor
         public CreateInstructorForm()
         {
             InitializeComponent();
-            LoadInstructors();
-            GetAll.Visible = true;
-            panel1.Visible = false;
+            panel1.Visible = true;
+            GetAll.Visible = false;
+            pnlSearchActivity.Visible = false;
+
         }
 
         private void FirstNameTxt_TextChanged(object sender, EventArgs e)
@@ -38,22 +39,17 @@ namespace FitHubManagement.UI.Instructor
 
         }
 
-        private void GetAllPanel()
+        private void button2_Click(object sender, EventArgs e)
         {
             GetAll.Visible = true;
             panel1.Visible = false;
             pnlSearchActivity.Visible = false;
             LoadInstructors();
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            GetAllPanel();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            newInstructorpanel.Visible = true;
-            panel1.Visible = false;
+            panel1.Visible = true;
             GetAll.Visible = false;
             pnlSearchActivity.Visible = false;
         }
@@ -124,7 +120,7 @@ namespace FitHubManagement.UI.Instructor
 
                 if (activity != null)
                 {
-                    txtCert.Text = activity.ActivityTypeName;
+                    txtCert.Text = selectedInstructor.FirstName + " har certifikat til at undervise: " + activity.ActivityTypeName;
                 }
                 else
                 {
@@ -307,37 +303,7 @@ namespace FitHubManagement.UI.Instructor
                 MessageBox.Show("Fejl: " + ex.Message);
             }
         }
-
-        private void ClearTextBoxes()
-        {
-            newtxtFirstName.Text = "";
-            newtxtLastName.Text = "";
-            newtxtEmail.Text = "";
-            newtxtPhone.Text = "";
-            newtxtActivityName.Text = "";
-            newtxtActivityDescription.Text = "";
-        }
-
-        private void ClearAlltxtPanel1()
-        {
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            txtEmail.Text = "";
-            txtPhone.Text = "";
-            txtCert.Text = "";
-
-        }
-        private void btnCancelCreateIns_Click(object sender, EventArgs e)
-        {
-            GetAllPanel();
-            ClearAlltxtPanel1();
-
-        }
-
-        private void txtCert_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }
 
