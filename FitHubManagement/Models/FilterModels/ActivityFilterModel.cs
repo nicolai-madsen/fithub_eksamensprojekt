@@ -18,8 +18,12 @@ namespace FitHubManagement.Models.FilterModels
 
         public override string ToString()
         {
-            return $"{ActivityTypeName} - {InstructorName} - {ActivityDate:dd/MM/yyyy} {StartTime:hh\\:mm}-{EndTime:hh\\:mm} @ {ActivityLocation}";
+            return
+       $"Hold: {ActivityTypeName}\n" +
+       $"Instruktør: {InstructorName}\n" +
+       $"Dato: {ActivityDate:dd/MM/yyyy}\n" +
+       $"Tid: {StartTime:HH\\:mm}\n" +
+       $"Sted: {ActivityLocation}";
         }
-
     }
 }

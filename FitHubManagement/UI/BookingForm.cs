@@ -63,11 +63,15 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // GEM kunden til brug i Panel2
+            // GEM den valgte medlem til brug i Panel2
             selectedCustomer = customer;
 
             panel1.Visible = false;
             panel2.Visible = true;
+
+            // Vis den valgte medlem i Panel2 
+            lbl_MedlemsNavn.Text = $"Valgt medlem: {selectedCustomer.FirstName} {selectedCustomer.LastName}"; //label navn
+
         }
 
         // Henter valgt medlem (virker for både navn-item og detail-item)
@@ -257,7 +261,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // ✅ Bekræft før vi gemmer booking (brugervenligt)
+            // Bekræft før vi gemmer booking (brugervenligt)
             DialogResult answer = MessageBox.Show(
                 $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
                 "Bekræft booking",
@@ -279,6 +283,10 @@ namespace FitHubManagement.UI.BookingUI
                 .Count;
 
             MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
+
+            listBox1.Items.Clear();
+           
+
         }
 
 
@@ -326,6 +334,8 @@ namespace FitHubManagement.UI.BookingUI
 
             public CustomerDetailItem(CustomerModel customer) => Customer = customer;
 
+
+
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
@@ -340,6 +350,16 @@ namespace FitHubManagement.UI.BookingUI
                        $"{Customer.FirstName} {Customer.LastName} | " +
                        $"Tlf: {Customer.Phone}{status}";
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

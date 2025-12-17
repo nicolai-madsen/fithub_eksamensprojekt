@@ -39,6 +39,7 @@
             label1 = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            lbl_MedlemsNavn = new Label();
             label5 = new Label();
             button8 = new Button();
             button7 = new Button();
@@ -95,21 +96,21 @@
             // 
             // button2
             // 
-            button2.Location = new Point(418, 184);
+            button2.Location = new Point(337, 214);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(177, 36);
+            button2.Size = new Size(260, 43);
             button2.TabIndex = 6;
-            button2.Text = "Vælg medlem";
+            button2.Text = "Vis medlemsoplysninger";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(149, 165);
+            textBox2.Location = new Point(149, 142);
             textBox2.Margin = new Padding(4);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(155, 31);
+            textBox2.Size = new Size(254, 31);
             textBox2.TabIndex = 5;
             // 
             // textBox1
@@ -117,25 +118,26 @@
             textBox1.Location = new Point(149, 98);
             textBox1.Margin = new Padding(4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(155, 31);
+            textBox1.Size = new Size(254, 31);
             textBox1.TabIndex = 4;
+            textBox1.Text = "e";
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(31, 228);
+            listBox1.Location = new Point(33, 265);
             listBox1.Margin = new Padding(4);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(564, 204);
+            listBox1.Size = new Size(564, 179);
             listBox1.TabIndex = 3;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(31, 165);
+            label3.Location = new Point(31, 148);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(68, 25);
@@ -164,6 +166,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(button8);
             panel2.Controls.Add(button7);
@@ -180,6 +183,16 @@
             panel2.Size = new Size(671, 622);
             panel2.TabIndex = 2;
             // 
+            // lbl_MedlemsNavn
+            // 
+            lbl_MedlemsNavn.AutoSize = true;
+            lbl_MedlemsNavn.Location = new Point(31, 257);
+            lbl_MedlemsNavn.Name = "lbl_MedlemsNavn";
+            lbl_MedlemsNavn.Size = new Size(128, 25);
+            lbl_MedlemsNavn.TabIndex = 12;
+            lbl_MedlemsNavn.Text = "Medlems navn";
+            lbl_MedlemsNavn.Click += label7_Click;
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -192,7 +205,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(54, 456);
+            button8.Location = new Point(31, 463);
             button8.Margin = new Padding(4);
             button8.Name = "button8";
             button8.Size = new Size(118, 36);
@@ -203,7 +216,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(340, 456);
+            button7.Location = new Point(363, 456);
             button7.Margin = new Padding(4);
             button7.Name = "button7";
             button7.Size = new Size(118, 36);
@@ -214,13 +227,14 @@
             // 
             // button6
             // 
+            button6.BackColor = SystemColors.ActiveCaption;
             button6.Location = new Point(489, 456);
             button6.Margin = new Padding(4);
             button6.Name = "button6";
             button6.Size = new Size(118, 36);
             button6.TabIndex = 7;
             button6.Text = "Tilmeld";
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
             // comboBox1
@@ -264,10 +278,10 @@
             // 
             // button5
             // 
-            button5.Location = new Point(528, 162);
+            button5.Location = new Point(489, 184);
             button5.Margin = new Padding(4);
             button5.Name = "button5";
-            button5.Size = new Size(69, 36);
+            button5.Size = new Size(106, 36);
             button5.TabIndex = 1;
             button5.Text = "Vis";
             button5.UseVisualStyleBackColor = true;
@@ -277,10 +291,10 @@
             // 
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 25;
-            listBox2.Location = new Point(31, 228);
+            listBox2.Location = new Point(31, 294);
             listBox2.Margin = new Padding(4);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(564, 204);
+            listBox2.Size = new Size(576, 154);
             listBox2.TabIndex = 0;
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
@@ -327,7 +341,6 @@
         private Button button3;
         private Button button4;
         private Panel panel2;
-        private Button button6;
         private ComboBox comboBox1;
         private DateTimePicker dateTimePicker1;
         private Label label6;
@@ -337,5 +350,7 @@
         private Button button8;
         private Button button7;
         private Label label5;
+        private Label lbl_MedlemsNavn;
+        protected internal Button button6;
     }
 }
