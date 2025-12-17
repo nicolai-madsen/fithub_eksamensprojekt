@@ -251,13 +251,11 @@ namespace FitHubManagement.UI.CustomerUI
 
         }
 
-        private void MarkActive_Click(object sender, EventArgs e)
+        private void ChangeStatus_Click(object sender, EventArgs e)
         {
+         
+           
 
-        }
-
-        private void MarkInactive_Click(object sender, EventArgs e)
-        {
 
         }
     }
