@@ -26,7 +26,7 @@ namespace FitHubManagement.DataAccess
             {
                 insertCmd.Parameters.AddWithValue("@ActivityID", activityId);
                 insertCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                insertCmd.Parameters.AddWithValue("@PersonalNote", personalNote);
+                insertCmd.Parameters.AddWithValue("@PersonalNote", (object)personalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
                 insertCmd.ExecuteNonQuery();
             }
         }
@@ -82,7 +82,7 @@ namespace FitHubManagement.DataAccess
                         BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
                         ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
                         CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
-                        PersonalNote = reader.GetString(reader.GetOrdinal("PersonalNote"))
+                        PersonalNote = personalNote //Sætter personalNote til objektet, da det kan være null
 
                     };
 

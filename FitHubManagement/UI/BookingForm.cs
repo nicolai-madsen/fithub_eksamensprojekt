@@ -221,8 +221,17 @@ namespace FitHubManagement.UI.BookingUI
             if (listBox2.SelectedItem is ActivityFilterModel a)
             {
                 selectedActivityId = a.ActivityId;
+
+                int spots = BookingDAL.GetAvailableSpots(selectedActivityId);
+
+                MessageBox.Show(
+                    $"Du har valgt: {a.ActivityTypeName}\n" +
+                    $"Dato: {a.ActivityDate:dd-MM-yyyy} Kl: {a.StartTime:HH\\:mm}\n" +
+                    $"Ledige pladser: {spots}"
+                );
             }
         }
+
 
         // Tilmeld knap i Panel2
         private void button6_Click(object sender, EventArgs e)
@@ -248,6 +257,19 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
+            // ✅ Bekræft før vi gemmer booking (brugervenligt)
+            DialogResult answer = MessageBox.Show(
+                $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
+                "Bekræft booking",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (answer != DialogResult.Yes)
+            {
+                return; // brugeren fortryder
+            }
+
             // AC2: Registrer booking i databasen
             BookingDAL.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, null);
 
@@ -258,6 +280,7 @@ namespace FitHubManagement.UI.BookingUI
 
             MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
         }
+
 
         // Ny booking knap i Panel2: nulstil Panel2
         private void button8_Click(object sender, EventArgs e)
