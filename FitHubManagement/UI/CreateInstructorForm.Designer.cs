@@ -58,26 +58,11 @@
             btnBackToFront = new Button();
             label1 = new Label();
             button1 = new Button();
-            newInstructorpanel = new Panel();
-            savenewInstructor = new Button();
-            newtxtActivityDescription = new TextBox();
-            newtxtActivityName = new TextBox();
-            newtxtEmail = new TextBox();
-            newtxtLastName = new TextBox();
-            newtxtPhone = new TextBox();
-            label7 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            newtxtFirstName = new TextBox();
             btnShowCustomerBooking = new Button();
             toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
             GetAll.SuspendLayout();
-            newInstructorpanel.SuspendLayout();
             SuspendLayout();
             // 
             // lblFirstName
@@ -356,8 +341,8 @@
             // 
             // btnBackToFront
             // 
-            btnBackToFront.Location = new Point(644, 415);
-            btnBackToFront.Margin = new Padding(1);
+            btnBackToFront.Location = new Point(1350, 914);
+            btnBackToFront.Margin = new Padding(2);
             btnBackToFront.Name = "btnBackToFront";
             btnBackToFront.Size = new Size(187, 57);
             btnBackToFront.TabIndex = 20;
@@ -388,138 +373,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
-            // newInstructorpanel
-            // 
-            newInstructorpanel.Controls.Add(savenewInstructor);
-            newInstructorpanel.Controls.Add(newtxtActivityDescription);
-            newInstructorpanel.Controls.Add(newtxtActivityName);
-            newInstructorpanel.Controls.Add(newtxtEmail);
-            newInstructorpanel.Controls.Add(newtxtLastName);
-            newInstructorpanel.Controls.Add(newtxtPhone);
-            newInstructorpanel.Controls.Add(label7);
-            newInstructorpanel.Controls.Add(label2);
-            newInstructorpanel.Controls.Add(label3);
-            newInstructorpanel.Controls.Add(label4);
-            newInstructorpanel.Controls.Add(label5);
-            newInstructorpanel.Controls.Add(label6);
-            newInstructorpanel.Controls.Add(newtxtFirstName);
-            newInstructorpanel.Location = new Point(850, 45);
-            newInstructorpanel.Name = "newInstructorpanel";
-            newInstructorpanel.Size = new Size(421, 444);
-            newInstructorpanel.TabIndex = 24;
-            // 
-            // savenewInstructor
-            // 
-            savenewInstructor.Location = new Point(123, 389);
-            savenewInstructor.Name = "savenewInstructor";
-            savenewInstructor.Size = new Size(166, 29);
-            savenewInstructor.TabIndex = 20;
-            savenewInstructor.Text = "Gem Ny Instruktør";
-            savenewInstructor.UseVisualStyleBackColor = true;
-            savenewInstructor.Click += savenewInstructor_Click;
-            // 
-            // newtxtActivityDescription
-            // 
-            newtxtActivityDescription.Location = new Point(151, 288);
-            newtxtActivityDescription.Multiline = true;
-            newtxtActivityDescription.Name = "newtxtActivityDescription";
-            newtxtActivityDescription.Size = new Size(240, 72);
-            newtxtActivityDescription.TabIndex = 19;
-            // 
-            // newtxtActivityName
-            // 
-            newtxtActivityName.Location = new Point(151, 243);
-            newtxtActivityName.Name = "newtxtActivityName";
-            newtxtActivityName.Size = new Size(240, 27);
-            newtxtActivityName.TabIndex = 18;
-            // 
-            // newtxtEmail
-            // 
-            newtxtEmail.Location = new Point(151, 148);
-            newtxtEmail.Name = "newtxtEmail";
-            newtxtEmail.Size = new Size(240, 27);
-            newtxtEmail.TabIndex = 16;
-            // 
-            // newtxtLastName
-            // 
-            newtxtLastName.Location = new Point(151, 96);
-            newtxtLastName.Name = "newtxtLastName";
-            newtxtLastName.Size = new Size(240, 27);
-            newtxtLastName.TabIndex = 15;
-            // 
-            // newtxtPhone
-            // 
-            newtxtPhone.Location = new Point(151, 198);
-            newtxtPhone.Name = "newtxtPhone";
-            newtxtPhone.Size = new Size(240, 27);
-            newtxtPhone.TabIndex = 17;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(30, 288);
-            label7.Margin = new Padding(2, 0, 2, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(81, 20);
-            label7.TabIndex = 14;
-            label7.Text = "Beskrivelse";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(30, 46);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 20);
-            label2.TabIndex = 9;
-            label2.Text = "Fornavn";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(30, 94);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(71, 20);
-            label3.TabIndex = 10;
-            label3.Text = "Efternavn";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(30, 148);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(46, 20);
-            label4.TabIndex = 11;
-            label4.Text = "Email";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(30, 198);
-            label5.Margin = new Padding(2, 0, 2, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(58, 20);
-            label5.TabIndex = 12;
-            label5.Text = "Telefon";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(30, 246);
-            label6.Margin = new Padding(2, 0, 2, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(69, 20);
-            label6.TabIndex = 13;
-            label6.Text = "Certifikat";
-            // 
-            // newtxtFirstName
-            // 
-            newtxtFirstName.Location = new Point(151, 39);
-            newtxtFirstName.Name = "newtxtFirstName";
-            newtxtFirstName.Size = new Size(240, 27);
-            newtxtFirstName.TabIndex = 0;
             // btnShowCustomerBooking
             // 
             btnShowCustomerBooking.Location = new Point(1350, 695);
@@ -534,9 +387,7 @@
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1360, 515);
-            Controls.Add(newInstructorpanel);
-            Controls.Add(label1);
+            ClientSize = new Size(3089, 1725);
             Controls.Add(panel1);
             Controls.Add(pnlSearchActivity);
             Controls.Add(btnShowCustomerBooking);
@@ -555,8 +406,6 @@
             pnlSearchActivity.ResumeLayout(false);
             pnlSearchActivity.PerformLayout();
             GetAll.ResumeLayout(false);
-            newInstructorpanel.ResumeLayout(false);
-            newInstructorpanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -582,20 +431,6 @@
         private Label label1;
         private ListBox lstbxGetAllIns;
         private Button button1;
-        private Panel newInstructorpanel;
-        private Label label7;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private TextBox newtxtFirstName;
-        private TextBox newtxtActivityDescription;
-        private TextBox newtxtActivityName;
-        private TextBox newtxtEmail;
-        private TextBox newtxtLastName;
-        private TextBox newtxtPhone;
-        private Button savenewInstructor;
         private Button btnShowCustomerBooking;
         private Panel pnlSearchActivity;
         private CheckBox chkFilterByDate;
