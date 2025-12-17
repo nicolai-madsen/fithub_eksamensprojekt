@@ -147,11 +147,7 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void pnlCreateActivity_Paint(object sender, PaintEventArgs e) //Knap til opret hold i panelet
-        {
-
-
-        }
+       
 
         private void btnCreateActivityPanel_Click(object sender, EventArgs e)
         {
@@ -236,7 +232,7 @@ namespace FitHubManagement.UI.Activity
 
                 // 2. Vis navnet i labelen
                 // Vi tjekker for null, hvis nu databasen ikke fandt nogen
-                label10.Text = instructorName ?? "Ingen instruktør fundet";
+                label10.Text = instructorName ?? "Ingen instruktør fundet"; //Men hvorfor, da en holdtype SKAL have tilknyttet en instruktør?
             }
         }
 
