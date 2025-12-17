@@ -38,9 +38,9 @@ namespace FitHubManagement.BusinessLogic
             repo.CreateCustomer(customer);
         }  
 
-        public CustomerModel GetIndividualCustomer (string phone)
+        public CustomerModel GetIndividualCustomer (string IdCustomer)
         {
-            return repo.GetSingleCustomer(phone);
+            return repo.GetSingleCustomer(IdCustomer);
         }
 
         public List<CustomerModel> GetAllCustomerBLL()
@@ -58,6 +58,15 @@ namespace FitHubManagement.BusinessLogic
             return repo.GetActiveCustomer();
         }
 
+        public void UpdateCustomer(CustomerModel customer)
+        {
+            repo.UpdateCustomer(customer);
+            
+
+        }
         
+
+
+
     }
 }

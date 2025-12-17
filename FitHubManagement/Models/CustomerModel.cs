@@ -27,6 +27,7 @@ namespace FitHubManagement.Models
 
             return $"ID: {CustomerId} | Medlem: {MembershipId} | {FirstName} {LastName} | Tlf: {Phone}{status}";
         }
+
     }
 
 
