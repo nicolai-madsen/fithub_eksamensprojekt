@@ -58,7 +58,8 @@ namespace FitHubManagement.DataAccess
                                 LastName = @LastName,
                                 Email = @Email,
                                 Phone = @Phone,
-                                PersonalNote = @PersonalNote
+                                PersonalNote = @PersonalNote,
+                                MembershipID = @MembershipID
                                 WHERE CustomerID = @CustomerID";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -68,6 +69,7 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@Phone", customer.Phone);
                 cmd.Parameters.AddWithValue("@CustomerID", customer.CustomerId);
                 cmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
+                cmd.Parameters.AddWithValue("@MembershipID", customer.MembershipId);
 
                 cmd.ExecuteNonQuery();
             }
@@ -78,7 +80,7 @@ namespace FitHubManagement.DataAccess
 
 
         #region
-          /*  public void UpdateMembership(CustomerModel customer, string newValue)
+          /*public void UpdateMembership(CustomerModel customer, string newValue)
               {
                   using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
                   connection.Open();

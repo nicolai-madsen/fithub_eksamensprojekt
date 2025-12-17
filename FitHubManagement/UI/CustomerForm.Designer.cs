@@ -933,6 +933,7 @@
             MarkInactive.TabIndex = 55;
             MarkInactive.Text = "Inaktiv";
             MarkInactive.UseVisualStyleBackColor = true;
+            MarkInactive.Click += MarkInactive_Click;
             // 
             // label36
             // 
@@ -985,6 +986,7 @@
             MarkActive.TabIndex = 51;
             MarkActive.Text = "Aktiv";
             MarkActive.UseVisualStyleBackColor = true;
+            MarkActive.Click += MarkActive_Click;
             // 
             // CustomerForm
             // 

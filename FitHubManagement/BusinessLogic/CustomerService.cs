@@ -23,16 +23,19 @@ namespace FitHubManagement.BusinessLogic
                 string.IsNullOrWhiteSpace(customer.Email) ||
                 string.IsNullOrWhiteSpace(customer.Phone))
 
-                throw new Exception ();
+                throw new Exception ("Alle felter skal fyldes");
 
             if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
 
-                throw new Exception();
+                throw new Exception("Vælg valid værdi");
+
+            if (customer.Phone.Length != 11) 
+                throw new Exception ("Venligst brug format 00 00 00 00");
 
 
             if (customer.Birthday.Date == DateTime.Now.Date)
 
-                throw new Exception ();
+                throw new Exception ("Vælg fødselsdag");
 
 
             repo.CreateCustomer(customer);

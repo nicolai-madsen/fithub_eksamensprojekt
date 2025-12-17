@@ -224,6 +224,7 @@ namespace FitHubManagement.UI.CustomerUI
                     customer.Email = EditMail.Text;
                     customer.Phone = EditPhone.Text;
                     customer.PersonalNote = EditNote.Text;
+                    customer.MembershipId = int.Parse(EditType.Text);
                 }
                 service.UpdateCustomer(customer);
                 MessageBox.Show("Medlem redigerert");
@@ -247,7 +248,17 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void EditType_TextChanged(object sender, EventArgs e)
         {
-          
+
+        }
+
+        private void MarkActive_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MarkInactive_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
