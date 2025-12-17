@@ -1,6 +1,7 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -175,7 +176,9 @@ namespace FitHubManagement.UI.BookingUI
         // Tilbage til Panel1 (find medlem igen)
         private void button7_Click(object sender, EventArgs e)
         {
-            panel1.BringToFront();
+            panel1.Visible = true; //Vis Panel1 igen
+            panel2.Visible = false; //Skjul Panel2
+            panel1.BringToFront(); //Læg Panel1 øverst
         }
 
         // Panel2 Vis knap: hent hold baseret på dato + holdtype
@@ -268,7 +271,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // Bekræft før vi gemmer booking (brugervenligt)
+            // Bekræft før vi gemmer booking
             DialogResult answer = MessageBox.Show(
                 $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
                 "Bekræft booking",
@@ -278,32 +281,47 @@ namespace FitHubManagement.UI.BookingUI
 
             if (answer != DialogResult.Yes)
             {
-                return; // brugeren fortryder
+                return;
             }
 
-            // AC2: Registrer booking i databasen
-            BookingDAL.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, null);
+            // AC2: Registrer booking i databasen (KUN ÉN GANG)
+            try
+            {
+                BookingDAL.CreateBooking(
+                    selectedActivityId,
+                    selectedCustomer.CustomerId,
+                    null
+                );
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
+                return;
+            }
 
-            // AC3 (simpel): vis at deltagerlisten er opdateret via count
+            // AC3: Vis at deltagerlisten er opdateret
             int participants = BookingDAL.GetAllBookings()
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
 
-            MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
-
-            listBox1.Items.Clear();
-
-
+            MessageBox.Show(
+                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
+            );
         }
+
 
 
         // Ny booking knap i Panel2: nulstil Panel2
         private void button8_Click(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Today;
-            comboBox1.SelectedIndex = -1;
-            listBox2.Items.Clear();
-            selectedActivityId = -1;
+            dateTimePicker1.Value = DateTime.Today; // nulstil dato
+            comboBox1.SelectedIndex = -1; // nulstil holdtype
+            listBox2.Items.Clear(); // ryd holdliste
+            selectedActivityId = -1; // nulstil valgt hold
+            panel1.Visible = true; //Vis Panel1 igen
+            panel2.Visible = false; //Skjul Panel2
+            panel1.BringToFront(); //Læg Panel1 øverst
+            textBox1.Focus(); // fokus til søgefelt
         }
 
         // ComboBox ændret: ryd listen og nulstil valgt hold
@@ -361,7 +379,7 @@ namespace FitHubManagement.UI.BookingUI
 
         private void label7_Click(object sender, EventArgs e)
         {
-
+           //Bruges ikke som klik.
         }
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
