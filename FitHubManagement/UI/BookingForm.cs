@@ -1,5 +1,6 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
+using FitHubManagement.Models.FilterModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,6 +9,12 @@ namespace FitHubManagement.UI.BookingUI
 {
     public partial class BookingForm : Form
     {
+        // Gemmer det valgte medlem fra Panel1 til Panel2
+        private CustomerModel selectedCustomer;
+
+        // Gemmer ActivityID (det konkrete hold) valgt i listBox2
+        private int selectedActivityId = -1;
+
         public BookingForm()
         {
             InitializeComponent();
@@ -15,16 +22,40 @@ namespace FitHubManagement.UI.BookingUI
             panel1.Visible = true;
             panel2.Visible = true;
             panel1.BringToFront();
+
+            // (Valgfrit men smart) Fyld comboBox1 når formen åbner
+            Load += BookingForm_Load;
         }
 
+        // Fylder holdtype-combobox med navne (begynder-venligt)
+        private void BookingForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ActivityDAL dal = new ActivityDAL();
+                List<string> types = dal.GetAllActivityTypes(); // du har allerede denne metode
 
-        private CustomerModel selectedCustomer; // Gemt valgt medlem fra Panel1 til Panel2
+                comboBox1.DataSource = types;
+                comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Kunne ikke hente holdtyper: " + ex.Message);
+            }
 
+            // Ryd søgefelter
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            // Sørg for at cursor står klar
+            textBox1.Focus();
+        }
+
+        // ---------------- Panel1 ----------------
 
         // Panel1 Fortsæt knap
         private void button3_Click(object sender, EventArgs e)
         {
-
             CustomerModel customer = GetSelectedCustomer();
 
             if (customer == null)
@@ -39,14 +70,16 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // ✅ GEM kunden til brug i Panel2
+            // GEM den valgte medlem til brug i Panel2
             selectedCustomer = customer;
 
             panel1.Visible = false;
             panel2.Visible = true;
+
+            // Vis den valgte medlem i Panel2 
+            lbl_MedlemsNavn.Text = $"Valgt medlem: {selectedCustomer.FirstName} {selectedCustomer.LastName}"; //label navn
+
         }
-
-
 
         // Henter valgt medlem (virker for både navn-item og detail-item)
         private CustomerModel GetSelectedCustomer()
@@ -66,37 +99,25 @@ namespace FitHubManagement.UI.BookingUI
         // Panel1 Vis knap: vis detaljer for den valgte person
         private void button2_Click(object sender, EventArgs e)
         {
-            CustomerModel selectedCustomer = GetSelectedCustomer();
+            CustomerModel selected = GetSelectedCustomer();
 
-            if (selectedCustomer == null)
+            if (selected == null)
             {
                 MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            // Vis KUN den valgte - med detaljer
             listBox1.DataSource = null;
             listBox1.Items.Clear();
-            listBox1.Items.Add(new CustomerDetailItem(selectedCustomer));
+            listBox1.Items.Add(new CustomerDetailItem(selected));
             listBox1.ClearSelected();
         }
 
-        // Tilbage knap
+        // Tilbage knap (lukker formen)
         private void button1_Click(object sender, EventArgs e)
         {
             this.Owner.Show();
             this.Close();
-        }
-
-        // Tilbage på "find booking"
-        private void button7_Click(object sender, EventArgs e)
-        {
-            panel1.BringToFront();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            // TODO: tilmeld booking
         }
 
         // Søgning (forslag) - viser kun NAVNE mens du skriver
@@ -124,7 +145,6 @@ namespace FitHubManagement.UI.BookingUI
 
                 if (matchName && matchPhone)
                 {
-                    // Her viser vi KUN navne som forslag
                     listBox1.Items.Add(new CustomerNameItem(customer));
                 }
             }
@@ -132,17 +152,10 @@ namespace FitHubManagement.UI.BookingUI
             listBox1.ClearSelected();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            textBox_Search_TextChanged(sender, e);
-        }
+        private void textBox1_TextChanged(object sender, EventArgs e) => textBox_Search_TextChanged(sender, e);
+        private void textBox2_TextChanged(object sender, EventArgs e) => textBox_Search_TextChanged(sender, e);
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            textBox_Search_TextChanged(sender, e);
-        }
-
-        // Nulstil knap
+        // Nulstil knap Panel1
         public void button4_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -157,22 +170,163 @@ namespace FitHubManagement.UI.BookingUI
             // hold tom - ingen MessageBox her
         }
 
-        // ---------- WRAPPERS ----------En lille klasse, der pakker et andet objekt ind.
-        //Hvorfor bruger vi wrappers her?
-        //Fordi du vil have to forskellige visninger af samme kunde:
+        // ---------------- Panel2 ----------------
 
-        //1.Når du skriver → kun navn
-        //2️. Når du trykker Vis → alle detaljer
+        // Tilbage til Panel1 (find medlem igen)
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel1.BringToFront();
+        }
 
-        // Forslag mens man skriver: kun navn (+ evt inaktiv)
+        // Panel2 Vis knap: hent hold baseret på dato + holdtype
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Vælg et medlem først.");
+                return;
+            }
+
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Vælg en holdtype først.");
+                return;
+            }
+
+            // Læs filters fra UI
+            DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
+            string activityTypeName = comboBox1.SelectedItem.ToString();
+
+            // Byg filter model
+            ActivityFilterModel filter = new ActivityFilterModel
+            {
+                ActivityDate = date,
+                ActivityTypeName = activityTypeName
+            };
+
+            // Hent fra DAL
+            ActivityDAL dal = new ActivityDAL();
+            List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
+
+            // Vis i listBox2
+            listBox2.Items.Clear();
+            selectedActivityId = -1;
+
+            if (activities.Count == 0)
+            {
+                MessageBox.Show("Ingen hold fundet på den valgte dato.");
+                return;
+            }
+
+            foreach (var a in activities)
+            {
+                listBox2.Items.Add(a); // kræver at ActivityFilterModel.ToString() viser pænt
+            }
+        }
+
+        // Når man vælger et hold i listBox2, gemmer vi ActivityId
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedActivityId = -1;
+
+            if (listBox2.SelectedItem is ActivityFilterModel a)
+            {
+                selectedActivityId = a.ActivityId;
+
+                int spots = BookingDAL.GetAvailableSpots(selectedActivityId);
+
+                MessageBox.Show(
+                    $"Du har valgt: {a.ActivityTypeName}\n" +
+                    $"Dato: {a.ActivityDate:dd-MM-yyyy} Kl: {a.StartTime:HH\\:mm}\n" +
+                    $"Ledige pladser: {spots}"
+                );
+            }
+        }
+
+
+        // Tilmeld knap i Panel2
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Vælg et medlem først.");
+                return;
+            }
+
+            if (selectedActivityId == -1)
+            {
+                MessageBox.Show("Vælg et hold først.");
+                return;
+            }
+
+            // AC1: Tjek ledige pladser
+            int availableSpots = BookingDAL.GetAvailableSpots(selectedActivityId);
+
+            if (availableSpots <= 0)
+            {
+                MessageBox.Show("Der er ikke flere ledige pladser på holdet.");
+                return;
+            }
+
+            // Bekræft før vi gemmer booking (brugervenligt)
+            DialogResult answer = MessageBox.Show(
+                $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
+                "Bekræft booking",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (answer != DialogResult.Yes)
+            {
+                return; // brugeren fortryder
+            }
+
+            // AC2: Registrer booking i databasen
+            BookingDAL.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, null);
+
+            // AC3 (simpel): vis at deltagerlisten er opdateret via count
+            int participants = BookingDAL.GetAllBookings()
+                .FindAll(b => b.ActivityId == selectedActivityId)
+                .Count;
+
+            MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
+
+            listBox1.Items.Clear();
+
+
+        }
+
+
+        // Ny booking knap i Panel2: nulstil Panel2
+        private void button8_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = DateTime.Today;
+            comboBox1.SelectedIndex = -1;
+            listBox2.Items.Clear();
+            selectedActivityId = -1;
+        }
+
+        // ComboBox ændret: ryd listen og nulstil valgt hold
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            selectedActivityId = -1;
+        }
+
+        // DateTimePicker ændret: ryd listen og nulstil valgt hold
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            selectedActivityId = -1;
+        }
+
+        // ---------------- WRAPPERS (Panel1) ----------------
+
         private class CustomerNameItem
         {
             public CustomerModel Customer { get; }
 
-            public CustomerNameItem(CustomerModel customer)
-            {
-                Customer = customer;
-            }
+            public CustomerNameItem(CustomerModel customer) => Customer = customer;
 
             public override string ToString()
             {
@@ -181,27 +335,22 @@ namespace FitHubManagement.UI.BookingUI
             }
         }
 
-        // Når man trykker "Vis": detaljer
         private class CustomerDetailItem
         {
             public CustomerModel Customer { get; }
 
-            public CustomerDetailItem(CustomerModel customer)
-            {
-                Customer = customer;
-            }
+            public CustomerDetailItem(CustomerModel customer) => Customer = customer;
+
+
 
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
 
-                // Henter medlemskab via eksisterende GetMembership-metode
                 MembershipDAL membershipDAL = new MembershipDAL();
-                MembershipModel membership =
-                    membershipDAL.GetMembership(Customer.MembershipId);
+                MembershipModel membership = membershipDAL.GetMembership(Customer.MembershipId);
 
-                string membershipName =
-                    membership != null ? membership.MembershipName : "Ukendt";
+                string membershipName = membership != null ? membership.MembershipName : "Ukendt";
 
                 return $"ID: {Customer.CustomerId} | " +
                        $"Medlem: {membershipName} | " +
@@ -210,25 +359,26 @@ namespace FitHubManagement.UI.BookingUI
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void label7_Click(object sender, EventArgs e)
         {
-           
-            if (selectedCustomer == null)
-            {
-                MessageBox.Show("Ingen medlem valgt fra panel 1.");
-                return;
-            }
 
-            listBox2.Items.Clear();
-
-            // Hvis du vil vise detaljer:
-            listBox2.Items.Add(new CustomerDetailItem(selectedCustomer));
-
-            // Hvis du kun vil vise navn, kan du i stedet bruge:
-            // listBox2.Items.Add(new CustomerNameItem(selectedCustomer));
         }
 
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRydP2_Click(object sender, EventArgs e) //Ryd knap Panel2
+        {
+           //Ryd kun Panel2
+           listBox2.DataSource = null; // fjern datakilde, hvis der er en
+            listBox2.Items.Clear(); // ryd alle items
+            comboBox1.SelectedIndex = -1; // nulstil combobox valg
+            selectedActivityId = -1; // nulstil valgt ActivityId
+            dateTimePicker1.Value = DateTime.Today;
+
+            comboBox1.Focus();
+        }
     }
 }
-
-

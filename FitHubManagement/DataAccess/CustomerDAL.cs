@@ -47,148 +47,176 @@ namespace FitHubManagement.DataAccess
 
         //UPDATE
 
-        #region
-        public void UpdateMembership(CustomerModel customer, string newValue)
+        public void UpdateCustomer(CustomerModel customer)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
+
             {
-                string updateSql = $"UPDATE Customer SET Membership = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+                string query = @"UPDATE Customer
+                                SET FirstName = @FirstName,
+                                LastName = @LastName,
+                                Email = @Email,
+                                Phone = @Phone,
+                                PersonalNote = @PersonalNote
+                                WHERE CustomerID = @CustomerID";
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@FirstName", customer.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", customer.LastName);
+                cmd.Parameters.AddWithValue("@Email", customer.Email);
+                cmd.Parameters.AddWithValue("@Phone", customer.Phone);
+                cmd.Parameters.AddWithValue("@CustomerID", customer.CustomerId);
+                cmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
+
+                cmd.ExecuteNonQuery();
             }
-
-
         }
         
 
-        public void UpdateFirstName(CustomerModel customer, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET FirstName = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
-
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
-        }
-
-        public void UpdateLastName(CustomerModel customer, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET LastName = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
-
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
 
 
-        }
 
-        public void UpdateEmail(CustomerModel customer, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+        #region
+          /*  public void UpdateMembership(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET Membership = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
 
-        }
 
-        public void UpdatePhone(CustomerModel customer, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET Phone = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+              }
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
-        }
 
-        public void UpdateBirthday(CustomerModel customer, DateTime newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET Birthday = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+              public void UpdateFirstName(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET FirstName = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
-        }
+                          int updated = updateCmd.ExecuteNonQuery();
+                      }
+                  }
+              }
 
-        public void UpdatePersonalNote(CustomerModel customer, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET PersonalNote = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+              public void UpdateLastName(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET LastName = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
-        }
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
 
-        public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
-                string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
-                using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-                {
-                    updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                    updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
 
-                    int updated = updateCmd.ExecuteNonQuery();
-                    Console.WriteLine($"{updated} rows updated.");
-                }
-            }
-        }
+              }
+
+              public void UpdateEmail(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET Email = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
+
+              }
+
+              public void UpdatePhone(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET Phone = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
+              }
+
+              public void UpdateBirthday(CustomerModel customer, DateTime newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET Birthday = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
+              }
+
+              public void UpdatePersonalNote(CustomerModel customer, string newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET PersonalNote = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                          Console.WriteLine($"{updated} rows updated.");
+                      }
+                  }
+              }
+
+              public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
+                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                      }
+                  }
+              }*/
 
         #endregion
 
@@ -232,7 +260,7 @@ namespace FitHubManagement.DataAccess
             }
         }
 
-        public List<CustomerModel> GetInactiveCustomer() // I våres SQL, er 1 = Inactive, mens 0 = Active 
+        public List<CustomerModel> GetInactiveCustomer() 
         {
             List<CustomerModel> customerList = new List<CustomerModel>();
 
@@ -308,16 +336,16 @@ namespace FitHubManagement.DataAccess
             }
         }
             
-        public CustomerModel GetSingleCustomer(string phone) //For filtrering, slik at kunde kan finnes via telefon
+        public CustomerModel GetSingleCustomer(string IdCustomer) //For filtrering, slik at kunde kan finnes via telefon
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
-            string query = $"SELECT CustomerID, MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote,Inactive FROM Customer WHERE Phone = @phone";
+            string query = $"SELECT CustomerID, MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote,Inactive FROM Customer WHERE CustomerID = @customerId";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@phone", phone);
-                using (SqlDataReader reader = command.ExecuteReader())
+                command.Parameters.AddWithValue("@customerId", IdCustomer);
+                using (SqlDataReader reader = command.ExecuteReader())  
                 {
                     if (reader.Read())
                     {
