@@ -435,7 +435,7 @@
             lblTimeActivity.Location = new Point(334, 72);
             lblTimeActivity.Margin = new Padding(2, 0, 2, 0);
             lblTimeActivity.Name = "lblTimeActivity";
-            lblTimeActivity.Size = new Size(26, 15);
+            lblTimeActivity.Size = new Size(27, 15);
             lblTimeActivity.TabIndex = 15;
             lblTimeActivity.Text = "Tid:";
             // 
@@ -522,8 +522,7 @@
             // 
             // CreateActivityForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(863, 502);
             Controls.Add(panel1);
             Controls.Add(btnActivityCreate);
