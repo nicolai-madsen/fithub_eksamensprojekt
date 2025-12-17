@@ -179,7 +179,7 @@ namespace FitHubManagement.DataAccess
             }
         }
 
-        public static List<InstructorModel> ReadAllInstructors()
+        public List<InstructorModel> ReadAllInstructors()
         {
             List<InstructorModel> instructors = new List<InstructorModel>();
 

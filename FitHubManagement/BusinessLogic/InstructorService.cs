@@ -73,4 +73,13 @@ namespace FitHubManagement.BusinessLogic
             _dal.CreateInstructorWithActivity(firstName, lastName, email, phone, activityName, activityDescription);
         }
     }
+    public class LoadInstructor
+    {
+        private InstructorDAL _dal = new InstructorDAL();
+
+        public List<InstructorModel> Instructors()
+        {             
+            return _dal.ReadAllInstructors(); 
+        }
+    }
 }

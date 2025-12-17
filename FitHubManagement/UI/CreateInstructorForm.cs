@@ -1,6 +1,6 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.BusinessLogic.ActivityBL;
 using FitHubManagement.DataAccess;
+using FitHubManagement.BusinessLogic.ActivityBL;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using System;
@@ -108,7 +108,8 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructors()
         {
-            List<InstructorModel> instructors = InstructorDAL.ReadAllInstructors();
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
 
             lstbxGetAllIns.DataSource = instructors;
             lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
@@ -204,7 +205,8 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructorsComboBox() //Laver en metode til at fylde en combobox
         {
-            List<InstructorModel> instructors = InstructorDAL.ReadAllInstructors();
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
 
             // Opret en tom instruktør som placeholder
             InstructorModel emptyInstructor = new InstructorModel //"Tom" instruktør, altså en tom plads i comboboxen
