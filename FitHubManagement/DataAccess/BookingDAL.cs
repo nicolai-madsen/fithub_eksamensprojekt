@@ -146,6 +146,54 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+
+
+        public static List<BookingModel> GetBookingsByActivityID(int activityID)  // Henter alle bookinger for en specifik aktivitet
+        {
+            List<BookingModel> bookings = new List<BookingModel>();
+
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            // JOIN med Customer for at få kundens navn via CustomerID
+            string query = @"
+            SELECT 
+            b.BookingID,
+            b.ActivityID,
+            b.CustomerID,
+            b.PersonalNote,
+            c.FirstName + ' ' + c.LastName AS FullName
+            FROM Booking b
+            INNER JOIN Customer c ON b.CustomerID = c.CustomerID
+            WHERE b.ActivityID = @ActivityID
+            ";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ActivityID", activityID);
+
+            using SqlDataReader reader = command.ExecuteReader();
+            {
+                while (reader.Read())
+                {
+                    BookingModel booking = new BookingModel
+                    {
+                        BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
+                        ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
+                        CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                        PersonalNote = reader.IsDBNull(reader.GetOrdinal("PersonalNote"))
+                            ? ""
+                            : reader.GetString(reader.GetOrdinal("PersonalNote")),
+                        FullName = reader.GetString(reader.GetOrdinal("FullName"))
+                    };
+
+                    bookings.Add(booking);
+                }
+            }
+
+            return bookings;
+        }
     }
+
 }
+
 

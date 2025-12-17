@@ -17,7 +17,8 @@ namespace FitHubManagement.UI.CustomerUI
 {
     public partial class CustomerForm : Form
     {
-        private readonly CustomerService service = new();  //Jeg bliver nødt at endre på denne, så logikk er i bsuinessn layer
+
+        private readonly CustomerService service = new();  //Businesslogic lag
         public CustomerForm()
         {
             InitializeComponent();
@@ -39,8 +40,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerDAL customerRead = new CustomerDAL();
-                List<CustomerModel> customers = customerRead.GetAllCustomer();
+                List<CustomerModel> customers = service.GetAllCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Alle kunder");
@@ -50,7 +50,7 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
                     CustomerListBox.Items.Add(infoLine);
                     customerCounter();
                 }
@@ -65,8 +65,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerDAL customerDL = new CustomerDAL();
-                List<CustomerModel> customers = customerDL.GetActiveCustomer();
+                List<CustomerModel> customers = service.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Aktive kunder");
@@ -75,7 +74,7 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
                     CustomerListBox.Items.Add(infoLine);
                     customerCounter();
                 }
@@ -91,9 +90,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-
-                CustomerDAL customerDL = new CustomerDAL();
-                List<CustomerModel> customers = customerDL.GetInactiveCustomer();
+                List<CustomerModel> customers = service.GetInactiveCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Inaktive kunder");
@@ -102,7 +99,8 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId}, Navn: {customer.FirstName} {customer.LastName} Medlems-Type: {customer.MembershipId} Inaktiv: {customer.Inactive}";
+                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
+
                     CustomerListBox.Items.Add(infoLine);
                     customerCounter();
                 }
@@ -113,27 +111,6 @@ namespace FitHubManagement.UI.CustomerUI
             }
         }
 
-        private void CustomerInfoBtn_Click(object sender, EventArgs e) //SENERE
-        {
-
-            try
-            {
-                CustomerModel selectedCustomer = CustomerListBox.SelectedItem as CustomerModel;
-
-                if (selectedCustomer != null)
-                {
-                    MessageBox.Show("Vælg kunde");
-                }
-                else
-                {
-                    //Kode for at fremheve infoPanel :)                    
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Fejl med indlasting af medlem");
-            }
-        }
         private void NewCustomerCancelBtn_Click(object sender, EventArgs e)
         {
             FirstName.Clear();
@@ -172,6 +149,7 @@ namespace FitHubManagement.UI.CustomerUI
         }
 
 
+
         #region
         public void customerCounter()
         {
@@ -181,16 +159,29 @@ namespace FitHubManagement.UI.CustomerUI
         }
         #endregion
 
-        private void EditBtn_Click(object sender, EventArgs e)
+
+
+        private void InfoBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-
-        private void CustomerInfoBtn_Click_1(object sender, EventArgs e)
-        {
-   
+            string phone = PhoneText.Text;
+            CustomerModel customer = service.GetIndividualCustomer(phone);
+            if (customer != null)
+            {
+                //Kode for at gå til panel
+                NameInfoTxt.Text = customer.FirstName;
+                lastNameInfoTxt.Text = customer.LastName;
+                emailInfoTxt.Text = customer.Email;
+                phoneInfoTxt.Text = customer.Phone;
+                birthdayInfoTxt.Text += customer.Birthday;
+                noteInfoTxt.Text += customer.PersonalNote;
+                statusInfoTxt.Text = customer.MembershipId.ToString();
+                IDtxt.Text = customer.CustomerId.ToString();
+                memberTypetxt.Text = customer.MembershipId.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Indtast gyldig mobilnummer");
+            }
         }
     }
 }
