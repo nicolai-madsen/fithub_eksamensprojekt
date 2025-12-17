@@ -1,5 +1,6 @@
 ﻿
 
+using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace FitHubManagement.Models
         public int InstructorId { get; set; }
         public string ActivityTypeName { get; set; }
         public string ActivityTypeDescription { get; set; }
+        
+
     }
 }
