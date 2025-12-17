@@ -318,6 +318,8 @@ namespace FitHubManagement.UI.Instructor
         {
 
         }
+        private void test()
+        { }
     }
 }
 
