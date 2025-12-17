@@ -57,13 +57,29 @@ namespace FitHubManagement.UI.Instructor
         {
             newInstructorpanel.Visible = true;
             pnlSearchActivity.Visible = false;
+            GetAll.Visible = false;
         }
         private void savenewInstructor_Click(object sender, EventArgs e)
         {
-            newInstructorpanel.Visible = true;
-            panel1.Visible = false;
-            GetAll.Visible = false;
-            pnlSearchActivity.Visible = false;
+            CreateNewInstructorWithActivityBLL NewInstructor = new CreateNewInstructorWithActivityBLL();
+
+            try
+            {
+                NewInstructor.CreateInstructorWithActivity(
+                    newtxtFirstName.Text,
+                    newtxtLastName.Text,
+                    newtxtEmail.Text,
+                    newtxtPhone.Text,
+                    newtxtActivityName.Text,
+                    newtxtActivityDescription.Text
+                );
+
+                MessageBox.Show("Instruktør og aktivitet oprettet!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl: " + ex.Message);
+            }
         }
 
         private void GetAll_Paint(object sender, PaintEventArgs e)
