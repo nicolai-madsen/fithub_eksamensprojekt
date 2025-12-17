@@ -40,10 +40,10 @@
             // 
             // btnActivityFront
             // 
-            btnActivityFront.Location = new Point(87, 502);
-            btnActivityFront.Margin = new Padding(6, 8, 6, 8);
+            btnActivityFront.Location = new Point(36, 184);
+            btnActivityFront.Margin = new Padding(2, 3, 2, 3);
             btnActivityFront.Name = "btnActivityFront";
-            btnActivityFront.Size = new Size(278, 64);
+            btnActivityFront.Size = new Size(114, 23);
             btnActivityFront.TabIndex = 3;
             btnActivityFront.Text = "Hold";
             btnActivityFront.UseVisualStyleBackColor = true;
@@ -51,10 +51,10 @@
             // 
             // btnRapportFront
             // 
-            btnRapportFront.Location = new Point(87, 795);
-            btnRapportFront.Margin = new Padding(6);
+            btnRapportFront.Location = new Point(36, 291);
+            btnRapportFront.Margin = new Padding(2, 2, 2, 2);
             btnRapportFront.Name = "btnRapportFront";
-            btnRapportFront.Size = new Size(278, 59);
+            btnRapportFront.Size = new Size(114, 22);
             btnRapportFront.TabIndex = 6;
             btnRapportFront.Text = "Rapport";
             btnRapportFront.UseVisualStyleBackColor = true;
@@ -62,10 +62,10 @@
             // 
             // btnBookingFront
             // 
-            btnBookingFront.Location = new Point(87, 357);
-            btnBookingFront.Margin = new Padding(6);
+            btnBookingFront.Location = new Point(36, 131);
+            btnBookingFront.Margin = new Padding(2, 2, 2, 2);
             btnBookingFront.Name = "btnBookingFront";
-            btnBookingFront.Size = new Size(278, 59);
+            btnBookingFront.Size = new Size(114, 22);
             btnBookingFront.TabIndex = 7;
             btnBookingFront.Text = "Booking";
             btnBookingFront.UseVisualStyleBackColor = true;
@@ -73,10 +73,10 @@
             // 
             // btnInsFront
             // 
-            btnInsFront.Location = new Point(87, 642);
-            btnInsFront.Margin = new Padding(6);
+            btnInsFront.Location = new Point(36, 235);
+            btnInsFront.Margin = new Padding(2, 2, 2, 2);
             btnInsFront.Name = "btnInsFront";
-            btnInsFront.Size = new Size(278, 68);
+            btnInsFront.Size = new Size(114, 25);
             btnInsFront.TabIndex = 8;
             btnInsFront.Text = "Personale";
             btnInsFront.UseVisualStyleBackColor = true;
@@ -85,20 +85,20 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(291, -78);
-            pictureBox1.Margin = new Padding(6);
+            pictureBox1.Location = new Point(120, -29);
+            pictureBox1.Margin = new Padding(2, 2, 2, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1473, 1332);
+            pictureBox1.Size = new Size(607, 487);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
             // button2
             // 
-            button2.Location = new Point(87, 226);
-            button2.Margin = new Padding(6);
+            button2.Location = new Point(36, 83);
+            button2.Margin = new Padding(2, 2, 2, 2);
             button2.Name = "button2";
-            button2.Size = new Size(278, 59);
+            button2.Size = new Size(114, 22);
             button2.TabIndex = 10;
             button2.Text = "Medlemmer";
             button2.UseVisualStyleBackColor = true;
@@ -106,10 +106,9 @@
             // 
             // FrontPageForm
             // 
-            AutoScaleDimensions = new SizeF(17F, 41F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(1817, 1023);
+            ClientSize = new Size(634, 309);
             Controls.Add(button2);
             Controls.Add(btnInsFront);
             Controls.Add(btnBookingFront);
@@ -117,9 +116,9 @@
             Controls.Add(btnActivityFront);
             Controls.Add(pictureBox1);
             DoubleBuffered = true;
-            Margin = new Padding(6);
-            MaximumSize = new Size(1849, 1111);
-            MinimumSize = new Size(1849, 1111);
+            Margin = new Padding(2, 2, 2, 2);
+            MaximumSize = new Size(771, 431);
+            MinimumSize = new Size(641, 323);
             Name = "FrontPageForm";
             Text = "FrontPage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

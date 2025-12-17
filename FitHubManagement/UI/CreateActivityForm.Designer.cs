@@ -547,8 +547,7 @@
             // 
             // CreateActivityForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(863, 502);
             Controls.Add(button1);
             Controls.Add(btnActivityCreate);
