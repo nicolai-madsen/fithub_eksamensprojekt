@@ -168,6 +168,7 @@
             btnCreateActivityPanel = new Button();
             label2 = new Label();
             pnlHoldType = new Panel();
+            btnSaveHoldType = new Button();
             cmbHoldTypeInstruktor = new ComboBox();
             btnCancelHoldType = new Button();
             label8 = new Label();
@@ -175,7 +176,7 @@
             lblHoldTypeDescription = new Label();
             txtHoldTypeName = new TextBox();
             lblHoldTypeNavn = new Label();
-            btnSaveHoldType = new Button();
+            lblHoldTypeTitle = new Label();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
@@ -337,7 +338,7 @@
             // 
             // btnSearchActivity
             // 
-            btnSearchActivity.Location = new Point(483, 173);
+            btnSearchActivity.Location = new Point(330, 464);
             btnSearchActivity.Margin = new Padding(2, 4, 2, 4);
             btnSearchActivity.Name = "btnSearchActivity";
             btnSearchActivity.Size = new Size(86, 31);
@@ -348,7 +349,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(464, 368);
+            button4.Location = new Point(483, 464);
             button4.Margin = new Padding(2, 4, 2, 4);
             button4.Name = "button4";
             button4.Size = new Size(86, 31);
@@ -381,7 +382,7 @@
             panel1.Location = new Point(0, 40);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(601, 554);
+            panel1.Size = new Size(577, 554);
             panel1.TabIndex = 21;
             // 
             // btnEditHoldType
@@ -406,7 +407,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(402, 477);
+            button3.Location = new Point(181, 464);
             button3.Margin = new Padding(7, 11, 7, 11);
             button3.Name = "button3";
             button3.Size = new Size(86, 31);
@@ -527,7 +528,7 @@
             // 
             // btnCreateActivityPanel
             // 
-            btnCreateActivityPanel.Location = new Point(102, 482);
+            btnCreateActivityPanel.Location = new Point(20, 455);
             btnCreateActivityPanel.Margin = new Padding(3, 4, 3, 4);
             btnCreateActivityPanel.Name = "btnCreateActivityPanel";
             btnCreateActivityPanel.Size = new Size(121, 49);
@@ -550,6 +551,7 @@
             // 
             pnlHoldType.BackColor = Color.White;
             pnlHoldType.BorderStyle = BorderStyle.FixedSingle;
+            pnlHoldType.Controls.Add(lblHoldTypeTitle);
             pnlHoldType.Controls.Add(btnSaveHoldType);
             pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
             pnlHoldType.Controls.Add(btnCancelHoldType);
@@ -558,24 +560,36 @@
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(622, 40);
+            pnlHoldType.Location = new Point(620, 99);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(455, 400);
+            pnlHoldType.Size = new Size(392, 373);
             pnlHoldType.TabIndex = 22;
             pnlHoldType.Visible = false;
+            // 
+            // btnSaveHoldType
+            // 
+            btnSaveHoldType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnSaveHoldType.Location = new Point(60, 310);
+            btnSaveHoldType.Name = "btnSaveHoldType";
+            btnSaveHoldType.Size = new Size(94, 29);
+            btnSaveHoldType.TabIndex = 9;
+            btnSaveHoldType.Text = "Gem";
+            btnSaveHoldType.UseVisualStyleBackColor = true;
+            btnSaveHoldType.Click += btnSaveHoldType_Click_1;
             // 
             // cmbHoldTypeInstruktor
             // 
             cmbHoldTypeInstruktor.FormattingEnabled = true;
-            cmbHoldTypeInstruktor.Location = new Point(193, 143);
+            cmbHoldTypeInstruktor.Location = new Point(223, 222);
             cmbHoldTypeInstruktor.Name = "cmbHoldTypeInstruktor";
             cmbHoldTypeInstruktor.Size = new Size(151, 28);
             cmbHoldTypeInstruktor.TabIndex = 8;
+            cmbHoldTypeInstruktor.SelectedIndexChanged += cmbHoldTypeInstruktor_SelectedIndexChanged;
             // 
             // btnCancelHoldType
             // 
             btnCancelHoldType.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelHoldType.Location = new Point(222, 273);
+            btnCancelHoldType.Location = new Point(258, 310);
             btnCancelHoldType.Name = "btnCancelHoldType";
             btnCancelHoldType.Size = new Size(94, 29);
             btnCancelHoldType.TabIndex = 7;
@@ -586,7 +600,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(50, 142);
+            label8.Location = new Point(60, 230);
             label8.Name = "label8";
             label8.Size = new Size(71, 20);
             label8.TabIndex = 4;
@@ -595,16 +609,18 @@
             // 
             // txtHoldTypeBeskrivelse
             // 
-            txtHoldTypeBeskrivelse.Location = new Point(191, 100);
+            txtHoldTypeBeskrivelse.Location = new Point(174, 116);
+            txtHoldTypeBeskrivelse.Multiline = true;
             txtHoldTypeBeskrivelse.Name = "txtHoldTypeBeskrivelse";
-            txtHoldTypeBeskrivelse.Size = new Size(125, 27);
+            txtHoldTypeBeskrivelse.ScrollBars = ScrollBars.Vertical;
+            txtHoldTypeBeskrivelse.Size = new Size(200, 80);
             txtHoldTypeBeskrivelse.TabIndex = 3;
             txtHoldTypeBeskrivelse.TextChanged += txtHoldTypeBeskrivelse_TextChanged;
             // 
             // lblHoldTypeDescription
             // 
             lblHoldTypeDescription.AutoSize = true;
-            lblHoldTypeDescription.Location = new Point(50, 96);
+            lblHoldTypeDescription.Location = new Point(50, 106);
             lblHoldTypeDescription.Name = "lblHoldTypeDescription";
             lblHoldTypeDescription.Size = new Size(81, 20);
             lblHoldTypeDescription.TabIndex = 2;
@@ -612,7 +628,7 @@
             // 
             // txtHoldTypeName
             // 
-            txtHoldTypeName.Location = new Point(188, 57);
+            txtHoldTypeName.Location = new Point(189, 63);
             txtHoldTypeName.Name = "txtHoldTypeName";
             txtHoldTypeName.Size = new Size(125, 27);
             txtHoldTypeName.TabIndex = 1;
@@ -621,22 +637,22 @@
             // lblHoldTypeNavn
             // 
             lblHoldTypeNavn.AutoSize = true;
-            lblHoldTypeNavn.Location = new Point(50, 53);
+            lblHoldTypeNavn.Location = new Point(60, 69);
             lblHoldTypeNavn.Name = "lblHoldTypeNavn";
             lblHoldTypeNavn.Size = new Size(43, 20);
             lblHoldTypeNavn.TabIndex = 0;
             lblHoldTypeNavn.Text = "Navn";
             lblHoldTypeNavn.Click += label6_Click;
             // 
-            // btnSaveHoldType
+            // lblHoldTypeTitle
             // 
-            btnSaveHoldType.Location = new Point(61, 275);
-            btnSaveHoldType.Name = "btnSaveHoldType";
-            btnSaveHoldType.Size = new Size(94, 29);
-            btnSaveHoldType.TabIndex = 9;
-            btnSaveHoldType.Text = "Gem";
-            btnSaveHoldType.UseVisualStyleBackColor = true;
-            btnSaveHoldType.Click += btnSaveHoldType_Click_1;
+            lblHoldTypeTitle.AutoSize = true;
+            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHoldTypeTitle.Location = new Point(128, 18);
+            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
+            lblHoldTypeTitle.Size = new Size(126, 31);
+            lblHoldTypeTitle.TabIndex = 10;
+            lblHoldTypeTitle.Text = "HOLDTYPE";
             // 
             // CreateActivityForm
             // 
@@ -719,6 +735,6 @@
             // Her skriver du hvad der skal ske når man klikker
             MessageBox.Show("Gem-knappen blev trykket!");
         }
-
+        private Label lblHoldTypeTitle;
     }
 }

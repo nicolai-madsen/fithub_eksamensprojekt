@@ -1,5 +1,6 @@
 ﻿using FitHubManagement.BusinessLogic; //Importerer/reference til BLL
 using FitHubManagement.BusinessLogic.ActivityBL;
+using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.IdentityModel.Tokens;
@@ -35,19 +36,23 @@ namespace FitHubManagement.UI.Activity
         private List<string> locations;
         private List<string> activityType;
         private List<string> duration;
-        private object cmbHoldTypeInstructor;
+
+        private object cmbInstructor;
 
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
-            List<string> instructors = new List<string> { "Peter", "Maria", "Sofie" };
+            InstructorDAL instructorDAL = new InstructorDAL();
 
-            ComboBox comboBoxInstructor = this.Controls["comboBoxInstructor"] as ComboBox;
-            if (comboBoxInstructor != null)
-            {
-                comboBoxInstructor.DataSource = instructors;
-                comboBoxInstructor.SelectedIndex = 0;
-            }
+            List<InstructorModel> instructors = instructorDAL.GetAllInstructors();
+
+            cmbHoldTypeInstruktor.DataSource = instructors;
+            cmbHoldTypeInstruktor.DisplayMember = "FullName";   // eller Name
+            cmbHoldTypeInstruktor.ValueMember = "InstructorID";
+            cmbHoldTypeInstruktor.SelectedIndex = -1;
+
+            // resten af din eksisterende kode må gerne blive
+
 
             locations = activityService.GetAllLocations();
 
@@ -242,7 +247,7 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-       
+
 
         private void txtHoldTypeName_TextChanged(object sender, EventArgs e)
         {
@@ -252,6 +257,14 @@ namespace FitHubManagement.UI.Activity
         private void txtHoldTypeBeskrivelse_TextChanged(object sender, EventArgs e)
         {
 
+            if (txtHoldTypeBeskrivelse.Text.Length > 255)
+            {
+                MessageBox.Show("Beskrivelsen må max være 255 tegn");
+                txtHoldTypeBeskrivelse.Text =
+                    txtHoldTypeBeskrivelse.Text.Substring(0, 255);
+                txtHoldTypeBeskrivelse.SelectionStart =
+                    txtHoldTypeBeskrivelse.Text.Length;
+            }
         }
 
         private void btnSaveHoldType_Click_1(object sender, EventArgs e)
@@ -272,6 +285,18 @@ namespace FitHubManagement.UI.Activity
 
             // ✅ Hvis vi kommer hertil, er navnet udfyldt
             // Her gemmer du data
+        }
+
+        private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbHoldTypeInstruktor.SelectedItem == null)
+                return;
+
+            InstructorModel selectedInstructor =
+                (InstructorModel)cmbHoldTypeInstruktor.SelectedItem;
+
+            // EKSEMPEL: hvis du vil teste
+            // MessageBox.Show(selectedInstructor.FullName);
         }
     }
 }

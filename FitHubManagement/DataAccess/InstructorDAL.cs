@@ -206,5 +206,11 @@ namespace FitHubManagement.DataAccess
 
             return instructors;
         }
+
+        internal List<InstructorModel> GetAllInstructors()
+        {
+            List<InstructorModel> instructors = new List<InstructorModel>();
+            return instructors;
+        }
     }
 }
