@@ -39,6 +39,11 @@
             CustomerListBox = new ListBox();
             NewCustomerPanel = new Panel();
             label27 = new Label();
+            LookupPanel = new Panel();
+            IDinfo = new TextBox();
+            button3 = new Button();
+            InfoBtn = new Button();
+            label30 = new Label();
             label23 = new Label();
             label28 = new Label();
             label26 = new Label();
@@ -62,11 +67,6 @@
             label5 = new Label();
             label4 = new Label();
             NewCustomerTitle = new Label();
-            LookupPanel = new Panel();
-            IDinfo = new TextBox();
-            button3 = new Button();
-            InfoBtn = new Button();
-            label30 = new Label();
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
             BackBtn = new Button();
@@ -117,6 +117,7 @@
             label35 = new Label();
             label17 = new Label();
             ChangeStatus = new Button();
+            label37 = new Label();
             ListPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
             LookupPanel.SuspendLayout();
@@ -127,6 +128,7 @@
             // ListPanel
             // 
             ListPanel.Controls.Add(ShowActiveBtn);
+            ListPanel.Controls.Add(LookupPanel);
             ListPanel.Controls.Add(label29);
             ListPanel.Controls.Add(count);
             ListPanel.Controls.Add(CustomerInfoBtn);
@@ -223,8 +225,8 @@
             // 
             // NewCustomerPanel
             // 
+            NewCustomerPanel.Controls.Add(label37);
             NewCustomerPanel.Controls.Add(label27);
-            NewCustomerPanel.Controls.Add(LookupPanel);
             NewCustomerPanel.Controls.Add(label23);
             NewCustomerPanel.Controls.Add(label28);
             NewCustomerPanel.Controls.Add(label26);
@@ -264,6 +266,57 @@
             label27.Size = new Size(15, 20);
             label27.TabIndex = 48;
             label27.Text = "*";
+            // 
+            // LookupPanel
+            // 
+            LookupPanel.Controls.Add(IDinfo);
+            LookupPanel.Controls.Add(button3);
+            LookupPanel.Controls.Add(InfoBtn);
+            LookupPanel.Controls.Add(label30);
+            LookupPanel.Location = new Point(133, 204);
+            LookupPanel.Margin = new Padding(3, 2, 3, 2);
+            LookupPanel.Name = "LookupPanel";
+            LookupPanel.Size = new Size(219, 94);
+            LookupPanel.TabIndex = 50;
+            // 
+            // IDinfo
+            // 
+            IDinfo.Location = new Point(59, 32);
+            IDinfo.Margin = new Padding(3, 2, 3, 2);
+            IDinfo.Name = "IDinfo";
+            IDinfo.Size = new Size(110, 23);
+            IDinfo.TabIndex = 53;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(126, 67);
+            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(82, 22);
+            button3.TabIndex = 38;
+            button3.Text = "Rediger";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // InfoBtn
+            // 
+            InfoBtn.Location = new Point(11, 67);
+            InfoBtn.Margin = new Padding(3, 2, 3, 2);
+            InfoBtn.Name = "InfoBtn";
+            InfoBtn.Size = new Size(102, 22);
+            InfoBtn.TabIndex = 51;
+            InfoBtn.Text = "Information";
+            InfoBtn.UseVisualStyleBackColor = true;
+            InfoBtn.Click += InfoBtn_Click;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(48, 6);
+            label30.Name = "label30";
+            label30.Size = new Size(109, 15);
+            label30.TabIndex = 0;
+            label30.Text = "Indtast medlems ID";
             // 
             // label23
             // 
@@ -482,57 +535,6 @@
             NewCustomerTitle.Size = new Size(207, 42);
             NewCustomerTitle.TabIndex = 0;
             NewCustomerTitle.Text = "Opret ny medlem\r\nVenligst fyld ind information\r\n";
-            // 
-            // LookupPanel
-            // 
-            LookupPanel.Controls.Add(IDinfo);
-            LookupPanel.Controls.Add(button3);
-            LookupPanel.Controls.Add(InfoBtn);
-            LookupPanel.Controls.Add(label30);
-            LookupPanel.Location = new Point(53, 275);
-            LookupPanel.Margin = new Padding(3, 2, 3, 2);
-            LookupPanel.Name = "LookupPanel";
-            LookupPanel.Size = new Size(219, 94);
-            LookupPanel.TabIndex = 50;
-            // 
-            // IDinfo
-            // 
-            IDinfo.Location = new Point(59, 32);
-            IDinfo.Margin = new Padding(3, 2, 3, 2);
-            IDinfo.Name = "IDinfo";
-            IDinfo.Size = new Size(110, 23);
-            IDinfo.TabIndex = 53;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(126, 67);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(82, 22);
-            button3.TabIndex = 38;
-            button3.Text = "Rediger";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // InfoBtn
-            // 
-            InfoBtn.Location = new Point(11, 67);
-            InfoBtn.Margin = new Padding(3, 2, 3, 2);
-            InfoBtn.Name = "InfoBtn";
-            InfoBtn.Size = new Size(102, 22);
-            InfoBtn.TabIndex = 51;
-            InfoBtn.Text = "Information";
-            InfoBtn.UseVisualStyleBackColor = true;
-            InfoBtn.Click += InfoBtn_Click;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Location = new Point(48, 6);
-            label30.Name = "label30";
-            label30.Size = new Size(109, 15);
-            label30.TabIndex = 0;
-            label30.Text = "Indtast medlems ID";
             // 
             // ShowListBtn
             // 
@@ -977,7 +979,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(391, 204);
+            label13.Location = new Point(391, 201);
             label13.Name = "label13";
             label13.Size = new Size(113, 15);
             label13.TabIndex = 55;
@@ -1038,6 +1040,15 @@
             ChangeStatus.Text = "Bytt status";
             ChangeStatus.UseVisualStyleBackColor = true;
             ChangeStatus.Click += ChangeStatus_Click;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new Point(286, 174);
+            label37.Name = "label37";
+            label37.Size = new Size(113, 15);
+            label37.TabIndex = 56;
+            label37.Text = "\"00 00 00 00\" format";
             // 
             // CustomerForm
             // 
@@ -1158,5 +1169,6 @@
         private Button ShowActiveBtn;
         private TextBox IDinfo;
         private Label label13;
+        private Label label37;
     }
 }

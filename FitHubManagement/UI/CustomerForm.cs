@@ -1,5 +1,4 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

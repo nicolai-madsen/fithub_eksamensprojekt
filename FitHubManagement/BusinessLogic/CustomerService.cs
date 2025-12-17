@@ -69,10 +69,6 @@ namespace FitHubManagement.BusinessLogic
         public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
         {
             repo.ChangeCustomerActiveStatus(customer, newValue);
-        }
-        
-
-
-
+        }        
     }
 }
