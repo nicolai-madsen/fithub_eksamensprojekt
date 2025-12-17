@@ -254,6 +254,8 @@ namespace FitHubManagement.DataAccess
                 command.Parameters.AddWithValue("@TodayDate", DateTime.Today);
             }
 
+            
+
             filterQuery += " ORDER BY StartDateTime"; // Sorter efter dato og tid
 
             command.CommandText = filterQuery;
@@ -286,6 +288,7 @@ namespace FitHubManagement.DataAccess
             string activityName,
             string activityDescription)
         {
+            Console.WriteLine("Det her er Monas kode, GET IN THERE");
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
