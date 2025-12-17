@@ -26,7 +26,7 @@ namespace FitHubManagement.DataAccess
             {
                 insertCmd.Parameters.AddWithValue("@ActivityID", activityId);
                 insertCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                insertCmd.Parameters.AddWithValue("@PersonalNote", personalNote);
+                insertCmd.Parameters.AddWithValue("@PersonalNote", (object)personalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
                 insertCmd.ExecuteNonQuery();
             }
         }
@@ -57,8 +57,8 @@ namespace FitHubManagement.DataAccess
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
+            string query = "SELECT BookingID, ActivityID, CustomerID, PersonalNote FROM Booking"; //Redigeret af LENA
 
-            string query = "SELECT BookingID, ClassID, MemberID, PersonalNote FROM Booking";
 
             using SqlCommand command = new SqlCommand(query, connection);
 
@@ -82,7 +82,7 @@ namespace FitHubManagement.DataAccess
                         BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
                         ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
                         CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
-                        PersonalNote = reader.GetString(reader.GetOrdinal("PersonalNote"))
+                        PersonalNote = personalNote //Sætter personalNote til objektet, da det kan være null
 
                     };
 
@@ -146,6 +146,47 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+
+
+        //LENA
+        // Denne metode finder ud af, hvor mange ledige pladser der er på et hold
+        // Den bruges til acceptkriterium 1: tjek om der er ledige pladser
+        public static int GetAvailableSpots(int activityId) //En static metode, der tager et activityId som parameter og returnerer et heltal?
+        {
+            // Opretter forbindelse til databasen
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+
+            // Åbner forbindelsen
+            connection.Open();
+
+            // SQL-forespørgsel:
+            // Vi tager MaxParticipants fra Activity
+            // og trækker antallet af bookinger (COUNT) fra Booking
+            string sql = @"
+        SELECT (a.MaxParticipants - COUNT(b.BookingID)) AS AvailableSpots
+        FROM Activity a
+        LEFT JOIN Booking b ON b.ActivityID = a.ActivityID
+        WHERE a.ActivityID = @ActivityID
+        GROUP BY a.MaxParticipants";
+
+            // Opretter SQL-kommandoen med forespørgslen og forbindelsen
+            using SqlCommand cmd = new SqlCommand(sql, connection);
+
+            // Tilføjer parameteren ActivityID for at undgå SQL injection
+            cmd.Parameters.AddWithValue("@ActivityID", activityId);
+
+            // ExecuteScalar bruges, fordi vi kun forventer ét tal tilbage
+            object result = cmd.ExecuteScalar();
+
+            // Hvis der ikke kommer noget resultat tilbage, returnerer vi 0
+            if (result == null)
+                return 0;
+
+            // Konverterer resultatet til int og returnerer antallet af ledige pladser
+            return Convert.ToInt32(result);
+        }
+
+
     }
 }
 
