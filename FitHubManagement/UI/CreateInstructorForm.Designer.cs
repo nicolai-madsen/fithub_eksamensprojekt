@@ -41,6 +41,15 @@
             btnSaveIns = new Button();
             btnCancelCreateIns = new Button();
             panel1 = new Panel();
+            pnlSearchActivity = new Panel();
+            lblBookingCount = new Label();
+            cmbShowInstructors = new ComboBox();
+            button2 = new Button();
+            listBox1 = new ListBox();
+            chkFilterByDate = new CheckBox();
+            btnSearchGet = new Button();
+            dTPSearchDate = new DateTimePicker();
+            lblSearchActivity = new Label();
             GetAll = new Panel();
             lstbxGetAllIns = new ListBox();
             button1 = new Button();
@@ -62,7 +71,9 @@
             label5 = new Label();
             label6 = new Label();
             newtxtFirstName = new TextBox();
+            button3 = new Button();
             panel1.SuspendLayout();
+            pnlSearchActivity.SuspendLayout();
             GetAll.SuspendLayout();
             newInstructorpanel.SuspendLayout();
             SuspendLayout();
@@ -203,6 +214,103 @@
             panel1.TabIndex = 16;
             panel1.Paint += panel1_Paint;
             // 
+            // pnlSearchActivity
+            // 
+            pnlSearchActivity.Controls.Add(lblBookingCount);
+            pnlSearchActivity.Controls.Add(cmbShowInstructors);
+            pnlSearchActivity.Controls.Add(button2);
+            pnlSearchActivity.Controls.Add(listBox1);
+            pnlSearchActivity.Controls.Add(chkFilterByDate);
+            pnlSearchActivity.Controls.Add(btnSearchGet);
+            pnlSearchActivity.Controls.Add(dTPSearchDate);
+            pnlSearchActivity.Controls.Add(lblSearchActivity);
+            pnlSearchActivity.Location = new Point(0, 0);
+            pnlSearchActivity.Margin = new Padding(1);
+            pnlSearchActivity.Name = "pnlSearchActivity";
+            pnlSearchActivity.Size = new Size(528, 471);
+            pnlSearchActivity.TabIndex = 25;
+            // 
+            // lblBookingCount
+            // 
+            lblBookingCount.AutoSize = true;
+            lblBookingCount.Location = new Point(396, 240);
+            lblBookingCount.Margin = new Padding(1, 0, 1, 0);
+            lblBookingCount.Name = "lblBookingCount";
+            lblBookingCount.Size = new Size(114, 15);
+            lblBookingCount.TabIndex = 26;
+            lblBookingCount.Text = "Antal tilmeldinger: 0";
+            // 
+            // cmbShowInstructors
+            // 
+            cmbShowInstructors.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbShowInstructors.Location = new Point(117, 58);
+            cmbShowInstructors.Margin = new Padding(1);
+            cmbShowInstructors.Name = "cmbShowInstructors";
+            cmbShowInstructors.Size = new Size(128, 23);
+            cmbShowInstructors.TabIndex = 0;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(400, 196);
+            button2.Margin = new Padding(2, 3, 2, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(110, 23);
+            button2.TabIndex = 22;
+            button2.Text = "Vis tilmeldinger";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(9, 197);
+            listBox1.Margin = new Padding(1);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(380, 259);
+            listBox1.TabIndex = 21;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(21, 101);
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(51, 19);
+            chkFilterByDate.TabIndex = 20;
+            chkFilterByDate.Text = "Dato";
+            chkFilterByDate.UseVisualStyleBackColor = true;
+            chkFilterByDate.CheckedChanged += chkFilterByDate_CheckedChanged;
+            // 
+            // btnSearchGet
+            // 
+            btnSearchGet.Location = new Point(117, 122);
+            btnSearchGet.Margin = new Padding(2, 3, 2, 3);
+            btnSearchGet.Name = "btnSearchGet";
+            btnSearchGet.Size = new Size(110, 23);
+            btnSearchGet.TabIndex = 19;
+            btnSearchGet.Text = "Vis søgeresultater";
+            btnSearchGet.UseVisualStyleBackColor = true;
+            btnSearchGet.Click += btnSearchGet_Click;
+            // 
+            // dTPSearchDate
+            // 
+            dTPSearchDate.Location = new Point(117, 93);
+            dTPSearchDate.Margin = new Padding(2, 3, 2, 3);
+            dTPSearchDate.Name = "dTPSearchDate";
+            dTPSearchDate.Size = new Size(166, 23);
+            dTPSearchDate.TabIndex = 6;
+            // 
+            // lblSearchActivity
+            // 
+            lblSearchActivity.AutoSize = true;
+            lblSearchActivity.Location = new Point(15, 56);
+            lblSearchActivity.Margin = new Padding(1, 0, 1, 0);
+            lblSearchActivity.Name = "lblSearchActivity";
+            lblSearchActivity.Size = new Size(58, 15);
+            lblSearchActivity.TabIndex = 1;
+            lblSearchActivity.Text = "Instruktør";
+            // 
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
@@ -231,7 +339,7 @@
             button1.Name = "button1";
             button1.Size = new Size(205, 22);
             button1.TabIndex = 23;
-            button1.Text = "Rediger Instruktør";
+            button1.Text = "Rediger";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
@@ -421,6 +529,16 @@
             newtxtFirstName.Size = new Size(210, 23);
             newtxtFirstName.TabIndex = 0;
             // 
+            // button3
+            // 
+            button3.Location = new Point(565, 244);
+            button3.Name = "button3";
+            button3.Size = new Size(149, 23);
+            button3.TabIndex = 27;
+            button3.Text = "Vis tilmeldinger";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // CreateInstructorForm
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -438,6 +556,8 @@
             Load += CreateInstructorForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            pnlSearchActivity.ResumeLayout(false);
+            pnlSearchActivity.PerformLayout();
             GetAll.ResumeLayout(false);
             newInstructorpanel.ResumeLayout(false);
             newInstructorpanel.PerformLayout();
@@ -466,19 +586,37 @@
         private Label label1;
         private ListBox lstbxGetAllIns;
         private Button button1;
+        private Button btnShowCustomerBooking;
+        private Panel pnlSearchActivity;
+        private CheckBox chkFilterByDate;
+        private Button btnSearchGet;
+        private DateTimePicker dTPSearchDate;
+        private Label lblSearchActivity;
+        private ListBox listBox1;
+        private Button button2;
+        private ComboBox cmbShowInstructors;
+        private ToolTip toolTip1;
+        private Label lblBookingCount;
+
+        // --- Controls referenced in code-behind ---
         private Panel newInstructorpanel;
-        private Label label7;
+
+        private TextBox newtxtFirstName;
+        private TextBox newtxtLastName;
+        private TextBox newtxtEmail;
+        private TextBox newtxtPhone;
+
+        private TextBox newtxtActivityName;
+        private TextBox newtxtActivityDescription;
+
+        private Button savenewInstructor;
+
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox newtxtFirstName;
-        private TextBox newtxtActivityDescription;
-        private TextBox newtxtActivityName;
-        private TextBox newtxtEmail;
-        private TextBox newtxtLastName;
-        private TextBox newtxtPhone;
-        private Button savenewInstructor;
+        private Label label7;
+        private Button button3;
     }
 }
