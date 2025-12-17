@@ -166,7 +166,7 @@ namespace FitHubManagement.UI.Instructor
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
             GetAll.Visible = false;
-            
+
         }
 
 
@@ -255,23 +255,23 @@ namespace FitHubManagement.UI.Instructor
 
         }
 
-      
+
 
         private void button2_Click_1(object sender, EventArgs e)
 
 
         {
-            
+
             if (listBox1.SelectedItem == null) // Tjek om der er valgt/markeret et hold i listboxen
             {
                 MessageBox.Show("Vælg venligst et hold først.");
                 return;
             }
 
-            
+
             ActivityFilterModel selectedActivity = (ActivityFilterModel)listBox1.SelectedItem; // Hent det valgte hold
 
-            
+
             List<BookingModel> bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId); // Hent bookinger for dette hold
 
             // Clear listBox og vis bookinger
@@ -281,29 +281,9 @@ namespace FitHubManagement.UI.Instructor
             // Vis antal tilmeldinger i label
             lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
         }
-        private void savenewInstructor_Click(object sender, EventArgs e)
-        {
-            CreateNewInstructorWithActivityBLL NewInstructor = new CreateNewInstructorWithActivityBLL();
+        
 
-            try
-            {
-                NewInstructor.CreateInstructorWithActivity(
-                    newtxtFirstName.Text,
-                    newtxtLastName.Text,
-                    newtxtEmail.Text,
-                    newtxtPhone.Text,
-                    newtxtActivityName.Text,
-                    newtxtActivityDescription.Text
-                );
-
-                MessageBox.Show("Instruktør og aktivitet oprettet!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl: " + ex.Message);
-            }
-        }
-    
+        
     }
 }
 
