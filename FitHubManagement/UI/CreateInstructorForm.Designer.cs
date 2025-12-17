@@ -43,11 +43,11 @@
             panel1 = new Panel();
             GetAll = new Panel();
             lstbxGetAllIns = new ListBox();
+            button1 = new Button();
             btnCreateIns = new Button();
             btnGetAllIns = new Button();
             btnBackToFront = new Button();
             label1 = new Label();
-            button1 = new Button();
             newInstructorpanel = new Panel();
             savenewInstructor = new Button();
             newtxtActivityDescription = new TextBox();
@@ -113,9 +113,9 @@
             lblCert.Location = new Point(8, 266);
             lblCert.Margin = new Padding(2, 0, 2, 0);
             lblCert.Name = "lblCert";
-            lblCert.Size = new Size(69, 20);
+            lblCert.Size = new Size(76, 20);
             lblCert.TabIndex = 8;
-            lblCert.Text = "Certifikat";
+            lblCert.Text = "HoldNavn";
             // 
             // txtFirstName
             // 
@@ -156,8 +156,9 @@
             txtCert.Location = new Point(107, 266);
             txtCert.Margin = new Padding(2);
             txtCert.Name = "txtCert";
-            txtCert.Size = new Size(344, 27);
+            txtCert.Size = new Size(278, 27);
             txtCert.TabIndex = 13;
+            txtCert.TextChanged += txtCert_TextChanged;
             // 
             // btnSaveIns
             // 
@@ -179,6 +180,7 @@
             btnCancelCreateIns.TabIndex = 15;
             btnCancelCreateIns.Text = "Annuller";
             btnCancelCreateIns.UseVisualStyleBackColor = true;
+            btnCancelCreateIns.Click += btnCancelCreateIns_Click;
             // 
             // panel1
             // 
@@ -194,7 +196,7 @@
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(lblCert);
             panel1.Controls.Add(txtFirstName);
-            panel1.Location = new Point(10, 25);
+            panel1.Location = new Point(3, 45);
             panel1.Name = "panel1";
             panel1.Size = new Size(483, 584);
             panel1.TabIndex = 16;
@@ -203,10 +205,11 @@
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
-            GetAll.Location = new Point(10, 4);
+            GetAll.Controls.Add(button1);
+            GetAll.Location = new Point(11, 4);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
-            GetAll.Size = new Size(478, 512);
+            GetAll.Size = new Size(485, 512);
             GetAll.TabIndex = 21;
             // 
             // lstbxGetAllIns
@@ -215,17 +218,27 @@
             lstbxGetAllIns.Location = new Point(1, 41);
             lstbxGetAllIns.Margin = new Padding(1);
             lstbxGetAllIns.Name = "lstbxGetAllIns";
-            lstbxGetAllIns.Size = new Size(450, 444);
+            lstbxGetAllIns.Size = new Size(450, 364);
             lstbxGetAllIns.TabIndex = 0;
             lstbxGetAllIns.SelectedIndexChanged += lstbxGetAllIns_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(108, 444);
+            button1.Name = "button1";
+            button1.Size = new Size(234, 29);
+            button1.TabIndex = 23;
+            button1.Text = "Rediger Instruktør";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // btnCreateIns
             // 
             btnCreateIns.Location = new Point(544, 70);
             btnCreateIns.Name = "btnCreateIns";
-            btnCreateIns.Size = new Size(127, 29);
+            btnCreateIns.Size = new Size(158, 29);
             btnCreateIns.TabIndex = 17;
-            btnCreateIns.Text = "Opret";
+            btnCreateIns.Text = "Opret Ny Instruktør";
             btnCreateIns.UseVisualStyleBackColor = true;
             btnCreateIns.Click += button1_Click;
             // 
@@ -233,7 +246,7 @@
             // 
             btnGetAllIns.Location = new Point(544, 139);
             btnGetAllIns.Name = "btnGetAllIns";
-            btnGetAllIns.Size = new Size(127, 29);
+            btnGetAllIns.Size = new Size(158, 29);
             btnGetAllIns.TabIndex = 18;
             btnGetAllIns.Text = "Vis alle";
             btnGetAllIns.UseVisualStyleBackColor = true;
@@ -241,12 +254,12 @@
             // 
             // btnBackToFront
             // 
-            btnBackToFront.Location = new Point(644, 415);
+            btnBackToFront.Location = new Point(544, 415);
             btnBackToFront.Margin = new Padding(1);
             btnBackToFront.Name = "btnBackToFront";
-            btnBackToFront.Size = new Size(88, 28);
+            btnBackToFront.Size = new Size(158, 28);
             btnBackToFront.TabIndex = 20;
-            btnBackToFront.Text = "Tilbage";
+            btnBackToFront.Text = "Tilbage Til Forsiden";
             btnBackToFront.UseVisualStyleBackColor = true;
             btnBackToFront.Click += btnBackToFront_Click;
             // 
@@ -254,23 +267,13 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(366, 4);
+            label1.Location = new Point(244, 1);
             label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
             label1.Size = new Size(336, 41);
             label1.TabIndex = 22;
             label1.Text = "Personaleadministration";
             label1.Click += label1_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(544, 207);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 29);
-            button1.TabIndex = 23;
-            button1.Text = "Rediger";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
             // 
             // newInstructorpanel
             // 
@@ -287,9 +290,9 @@
             newInstructorpanel.Controls.Add(label5);
             newInstructorpanel.Controls.Add(label6);
             newInstructorpanel.Controls.Add(newtxtFirstName);
-            newInstructorpanel.Location = new Point(850, 45);
+            newInstructorpanel.Location = new Point(3, 12);
             newInstructorpanel.Name = "newInstructorpanel";
-            newInstructorpanel.Size = new Size(421, 444);
+            newInstructorpanel.Size = new Size(466, 491);
             newInstructorpanel.TabIndex = 24;
             // 
             // savenewInstructor
@@ -394,9 +397,9 @@
             label6.Location = new Point(30, 246);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(69, 20);
+            label6.Size = new Size(76, 20);
             label6.TabIndex = 13;
-            label6.Text = "Certifikat";
+            label6.Text = "HoldNavn";
             // 
             // newtxtFirstName
             // 
@@ -409,15 +412,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1360, 515);
-            Controls.Add(newInstructorpanel);
+            ClientSize = new Size(807, 515);
             Controls.Add(label1);
-            Controls.Add(panel1);
-            Controls.Add(button1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
+            Controls.Add(panel1);
             Controls.Add(GetAll);
+            Controls.Add(newInstructorpanel);
             Margin = new Padding(2);
             Name = "CreateInstructorForm";
             Text = "Form1";
