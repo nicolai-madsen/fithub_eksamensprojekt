@@ -18,9 +18,21 @@ namespace FitHubManagement.Models
         public string PersonalNote { get; set; }
         public DateTime Birthday { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool Inactive { get; set; } // true = bruger er aktiv, false betyder at bruger inaktiv.
+        public bool Inactive { get; set; } //true = medlem er inaktiv, false = medlem er aktiv
         // Ændret fra Active til Inactive - svarer til databasen
-    }
 
+        public override string ToString()
+        {
+            string status = Inactive ? " (Inaktiv)" : "";
+
+            return $"ID: {CustomerId} | Medlem: {MembershipId} | {FirstName} {LastName} | Tlf: {Phone}{status}";
+        }
+       
+
+    }
 }
+
+
+
+
 

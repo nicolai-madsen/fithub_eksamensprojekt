@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata.Ecma335; // ????
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +20,7 @@ namespace FitHubManagement.UI.Activity
     public partial class CreateActivityForm : Form
     {
         private readonly ActivityService activityService = new ActivityService(); //Et objekt bliver oprettet af klassen ActivityService, så metoder i BLL kan bruges. Readonly sikrer, at objektet aldrig ændres
-
+        private readonly ActivityTypeService activityTypeService = new ActivityTypeService();
 
         public CreateActivityForm()
         {
@@ -33,7 +33,9 @@ namespace FitHubManagement.UI.Activity
         //Panel create activity
         //---------------------------------------------MONA--------------------------------
         private List<string> locations;
-        private List<string> activityType;
+        private List<string> GetAllActivityTypeNames;
+        private List<ActivityTypeModel> activityType;
+
         private List<string> duration;
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
@@ -48,11 +50,20 @@ namespace FitHubManagement.UI.Activity
 
             activityType = activityService.GetAllActivityTypes();
 
+
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
 
-            comboBox2.DataSource = activityType;
+            List<ActivityTypeModel> activityTypes =
+                activityTypeService.GetAllActivityTypes();
+
+            comboBox2.DisplayMember = "ActivityTypeName";
+            comboBox2.ValueMember = "ActivityTypeID";
+            comboBox2.DataSource = activityTypes;
             comboBox2.SelectedIndex = -1;
+
+            label10.Text = "";
+
 
             duration = activityService.GetAllDuration();
 
@@ -104,11 +115,19 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSearchActivity_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
 
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            pnlSearchActivity.Visible=false;
+            panel1.Visible = true;
 
         }
 
@@ -141,29 +160,36 @@ namespace FitHubManagement.UI.Activity
             if (!ValidateComboBox(comboBox2)) return;
             if (!ValidateComboBox(comboBox1)) return;
 
-            // NumericUpDown
-            int maxParticipant = (int)nmrUpDwnMaxPartisipant.Value; // Læser input og konverterer numericUpDpwn til int, da det default er decimal
+            try
+            {
+                ActivityTypeModel selectedType = (ActivityTypeModel)comboBox2.SelectedItem;
+                int activityTypeId = selectedType.ActivityTypeId;
+                int instructorId = selectedType.InstructorId;
 
-            // Location via index
-            int locationIndex = cmbLocationActivity.SelectedIndex;
-            string activityLocation = locations[locationIndex];
+                string activityLocation = locations[cmbLocationActivity.SelectedIndex];
+                string activityDuration = duration[comboBox1.SelectedIndex];
+                int maxParticipants = (int)nmrUpDwnMaxPartisipant.Value;
+                DateTime startDateTime = dateTimePicker1.Value;
 
-            // Activity type via index
-            int activityTypeIndex = comboBox2.SelectedIndex;
-            string activityTypeName = activityType[activityTypeIndex];
+                ActivityModel newActivity = activityService.CreateActivity(
+                        activityTypeId,
+                        instructorId,
+                        dateTimePicker1.Value, // StartTime, halvdelen af StartDateTime
+                        duration[comboBox1.SelectedIndex],
+                        locations[cmbLocationActivity.SelectedIndex],
+                        (int)nmrUpDwnMaxPartisipant.Value
+                );
 
-            //Duration via index
-            int durationIndex = comboBox1.SelectedIndex;
-            string activityDuration = duration[durationIndex];
-
-            // Date
-            DateTime chosenDate = dateTimePicker1.Value;
+                MessageBox.Show($"Nyt hold oprettet d. {startDateTime}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl: " + ex.Message);
+            }
         }
+        // Monas stuff goes here 
 
-        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         //Panel søgning
         private void btnSearchGet_Click(object sender, EventArgs e)
@@ -184,9 +210,7 @@ namespace FitHubManagement.UI.Activity
                 filterModel.ActivityDate = null;
             }
 
-
-
-                var service = new ActivityFilterService();
+            var service = new ActivityFilterService();
             var activities = service.GetFilteredActivities(filterModel);
 
             lstbxSearchGet.DataSource = activities;
@@ -199,5 +223,47 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.SelectedItem = null;
             cmbSearchActivity.Text = "";
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
+            // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
+            if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
+            {
+                // 1. Kald metoden i din Service (som kalder DAL)
+                // Her antager jeg, du har lavet metoden i Service-laget også:
+                string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
+
+                // 2. Vis navnet i labelen
+                // Vi tjekker for null, hvis nu databasen ikke fandt nogen
+                label10.Text = instructorName ?? "Ingen instruktør fundet";
+            }
+        }
+
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e) // Sorryyy
+        {
+
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // Lad den være tom for nu, så fejlen forsvinder
+        }
+
+        private void lstbxSearchGet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }
