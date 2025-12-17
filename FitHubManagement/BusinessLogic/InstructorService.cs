@@ -48,29 +48,5 @@ namespace FitHubManagement.BusinessLogic
 
 
     }
-    public class CreateNewInstructorWithActivityBLL
-    {
-        private InstructorDAL _dal = new InstructorDAL();
 
-        public void CreateInstructorWithActivity(
-            string firstName,
-            string lastName,
-            string email,
-            string phone,
-            string activityName,
-            string activityDescription)
-        {
-            if (string.IsNullOrWhiteSpace(firstName) ||
-                string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(phone) ||
-                string.IsNullOrWhiteSpace(activityName))
-            {
-                throw new ArgumentException("Alle felter skal udfyldes.");
-            }
-
-            // Send videre til DAL
-            _dal.CreateInstructorWithActivity(firstName, lastName, email, phone, activityName, activityDescription);
-        }
-    }
 }

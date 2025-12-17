@@ -4,7 +4,6 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -209,31 +208,6 @@ namespace FitHubManagement.DataAccess
             return instructors;
         }
 
-        // Opret ny instructor med ny activitytype ---- Er lavet som "stored procedure" i databasen"
-        public void CreateInstructorWithActivity
-            (string firstName,
-            string lastName,
-            string email,
-            string phone,
-            string activityName,
-            string activityDescription)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            using (SqlCommand cmd = new SqlCommand("CreateInstructorWithActivity", connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@LastName", lastName);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@ActivityTypeName", activityName);
-                cmd.Parameters.AddWithValue("@ActivityTypeDescription", activityDescription);
-
-                cmd.ExecuteNonQuery();
-            }
         public static List<ActivityFilterModel> GetActivitiesByInstructorAndDate(int? instructorID, DateOnly? activityDate) //Parametre kan være nullable, da det er et søgefilter
         {
             List<ActivityFilterModel> activities = new List<ActivityFilterModel>();

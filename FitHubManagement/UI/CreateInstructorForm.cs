@@ -161,29 +161,6 @@ namespace FitHubManagement.UI.Instructor
             }
         }
 
-        private void savenewInstructor_Click(object sender, EventArgs e)
-        {
-            CreateNewInstructorWithActivityBLL NewInstructor = new CreateNewInstructorWithActivityBLL();
-
-            try
-            {
-                NewInstructor.CreateInstructorWithActivity(
-                    newtxtFirstName.Text,
-                    newtxtLastName.Text,
-                    newtxtEmail.Text,
-                    newtxtPhone.Text,
-                    newtxtActivityName.Text,
-                    newtxtActivityDescription.Text
-                );
-
-                MessageBox.Show("Instruktør og aktivitet oprettet!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fejl: " + ex.Message);
-            }
-        }
-    
         private void btnShowCustomerBooking_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
