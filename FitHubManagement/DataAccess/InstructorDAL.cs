@@ -276,6 +276,7 @@ namespace FitHubManagement.DataAccess
             }
 
             return activities;
+        }
         // Opret ny instructor med ny activitytype ---- Er lavet som "stored procedure" i databasen"
         public void CreateInstructorWithActivity
             (string firstName,
