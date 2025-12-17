@@ -112,7 +112,8 @@ namespace FitHubManagement.DataAccess
                     JOIN Activities a ON b.ActivityId = a.Id 
                     WHERE b.CustomerId = @CustomerId 
                     AND a.StartDateTime >= @WeekStart 
-                    AND a.StartDateTime < DATEADD(days, 7, @WeekStart)";
+                    AND a.StartDateTime < DATEADD(day, 7, @WeekStart)
+                ";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

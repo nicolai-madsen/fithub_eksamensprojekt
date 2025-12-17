@@ -15,19 +15,19 @@ namespace FitHubManagement.BusinessLogic
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
         {
-            // 1. Hent kunden via DAL
+            // Hent medlem via DAL
             CustomerModel customer = _customerRepo.GetIndividualCustomer(customerId);
 
-            // 2. Hvis kunden er inaktiv, må de slet ikke booke
+            // Hvis medlem er inaktiv, kan de ikke booke hold
             if (customer.Inactive) return false;
 
-            // 3. Hvis kunden har MembershipId for "Standard" (lad os antage det er 1)
+            // Hvis medlem har MembershipId = "1" (Standard)
             if (customer.MembershipId == 1)
             {
                 // Find mandag i den uge hvor holdet ligger
                 DateTime weekStart = GetStartOfWeek(activityDate).Date;
 
-                // Hent antallet af eksisterende bookinger fra DAL
+                // Hent antallet af bookinger fra for medlem. Kald DAL via BLL instans _bookingRepo
                 int bookingCount = _bookingRepo.GetBookingCountForCustomer(customerId, weekStart);
 
                 if (bookingCount >= 2)
