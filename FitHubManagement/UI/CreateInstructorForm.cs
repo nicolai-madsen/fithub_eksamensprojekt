@@ -330,6 +330,9 @@ namespace FitHubManagement.UI.Instructor
         private void button3_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
+            GetAll.Visible = false;
+            panel1.Visible = false;
+            newInstructorpanel.Visible = false;
         }
     }
 }

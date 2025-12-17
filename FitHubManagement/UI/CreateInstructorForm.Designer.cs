@@ -196,6 +196,7 @@
             // panel1
             // 
             panel1.Controls.Add(txtLastName);
+            panel1.Controls.Add(pnlSearchActivity);
             panel1.Controls.Add(btnCancelCreateIns);
             panel1.Controls.Add(lblFirstName);
             panel1.Controls.Add(btnSaveIns);
@@ -223,7 +224,7 @@
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(dTPSearchDate);
             pnlSearchActivity.Controls.Add(lblSearchActivity);
-            pnlSearchActivity.Location = new Point(19, 40);
+            pnlSearchActivity.Location = new Point(8, 6);
             pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
             pnlSearchActivity.Size = new Size(528, 471);
@@ -313,6 +314,7 @@
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
+            GetAll.Controls.Add(button1);
             GetAll.Location = new Point(11, 4);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
@@ -332,7 +334,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(556, 204);
+            button1.Location = new Point(359, 484);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(111, 22);
@@ -525,7 +527,7 @@
             button3.Name = "button3";
             button3.Size = new Size(149, 23);
             button3.TabIndex = 27;
-            button3.Text = "button3";
+            button3.Text = "Vis tilmeldinger";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -535,8 +537,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(807, 515);
             Controls.Add(button3);
-            Controls.Add(pnlSearchActivity);
-            Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
