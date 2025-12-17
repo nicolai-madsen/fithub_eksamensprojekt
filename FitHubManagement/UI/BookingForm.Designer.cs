@@ -185,7 +185,7 @@
             // btnRydP2
             // 
             btnRydP2.Location = new Point(251, 278);
-            btnRydP2.Margin = new Padding(2, 2, 2, 2);
+            btnRydP2.Margin = new Padding(2);
             btnRydP2.Name = "btnRydP2";
             btnRydP2.Size = new Size(78, 21);
             btnRydP2.TabIndex = 13;
@@ -313,7 +313,7 @@
             button1.Name = "button1";
             button1.Size = new Size(83, 22);
             button1.TabIndex = 1;
-            button1.Text = "Tilbage";
+            button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 

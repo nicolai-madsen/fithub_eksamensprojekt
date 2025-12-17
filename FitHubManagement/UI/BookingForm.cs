@@ -1,6 +1,7 @@
 ﻿using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -270,7 +271,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // Bekræft før vi gemmer booking (brugervenligt)
+            // Bekræft før vi gemmer booking
             DialogResult answer = MessageBox.Show(
                 $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
                 "Bekræft booking",
@@ -280,23 +281,34 @@ namespace FitHubManagement.UI.BookingUI
 
             if (answer != DialogResult.Yes)
             {
-                return; // brugeren fortryder
+                return;
             }
 
-            // AC2: Registrer booking i databasen
-            BookingDAL.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, null);
+            // AC2: Registrer booking i databasen (KUN ÉN GANG)
+            try
+            {
+                BookingDAL.CreateBooking(
+                    selectedActivityId,
+                    selectedCustomer.CustomerId,
+                    null
+                );
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
+                return;
+            }
 
-            // AC3 (simpel): vis at deltagerlisten er opdateret via count
+            // AC3: Vis at deltagerlisten er opdateret
             int participants = BookingDAL.GetAllBookings()
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
 
-            MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}");
-
-            listBox1.Items.Clear();
-
-
+            MessageBox.Show(
+                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
+            );
         }
+
 
 
         // Ny booking knap i Panel2: nulstil Panel2
