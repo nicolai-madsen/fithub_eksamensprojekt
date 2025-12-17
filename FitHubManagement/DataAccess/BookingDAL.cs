@@ -98,6 +98,35 @@ namespace FitHubManagement.DataAccess
             return bookings;
         }
 
+        public int GetBookingCountForCustomer(int customerId, DateTime weekStart)
+        {
+            DateTime weekEnd = weekStart.AddDays(7);
+
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
+            {
+                connection.Open();
+
+                string query = @" 
+                    SELECT COUNT(*)
+                    FROM Bookings b 
+                    JOIN Activities a ON b.ActivityId = a.Id 
+                    WHERE b.CustomerId = @CustomerId 
+                    AND a.StartDateTime >= @WeekStart 
+                    AND a.StartDateTime < DATEADD(day, 7, @WeekStart)
+                ";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+                    command.Parameters.AddWithValue("@WeekStart", weekStart.Date);
+
+                    int count = (int)command.ExecuteScalar();
+                    return count;
+                }
+            }
+        }
+
+        #region UPDATE METHODS
         public static void UpdateActivity(int bookingId, int newValue)
         {
             // Open connection first
@@ -146,6 +175,7 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+        #endregion
 
 
         //LENA

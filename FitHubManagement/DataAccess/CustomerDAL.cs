@@ -45,6 +45,49 @@ namespace FitHubManagement.DataAccess
 
         #endregion
 
+        #region
+        public CustomerModel GetIndividualCustomer(int customerId)
+        {
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+
+            // Read instructor from database
+            string selectSql = "SELECT CustomerID, FirstName, LastName, Email, Phone" +
+                       "FROM Customer WHERE CustomerID = @CustomerId";
+            using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
+            {
+                selectCmd.Parameters.AddWithValue("@CustomerId", customerId);
+
+                using (SqlDataReader reader = selectCmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        CustomerModel customer = new CustomerModel
+                        {
+                            CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerId")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            Phone = reader.IsDBNull(reader.GetOrdinal("Phone")) ? null : reader.GetString(reader.GetOrdinal("Phone")),
+                            MembershipId = reader.GetInt32(reader.GetOrdinal("MembershipId")),
+                            PersonalNote = reader.IsDBNull(reader.GetOrdinal("PersonalNote")) ? null : reader.GetString(reader.GetOrdinal("PersonalNote")),
+                            Birthday = reader.GetDateTime(reader.GetOrdinal("Birthday")),
+                            CreatedDate = reader.GetDateTime(reader.GetOrdinal("CreatedDate")),
+                            Inactive = reader.GetBoolean(reader.GetOrdinal("Inactive"))
+
+                        };
+                        return customer;
+                    }
+                    return null;
+                }
+                
+            }
+        }
+        
+        
+        #endregion
+
         //UPDATE
 
         public void UpdateCustomer(CustomerModel customer)
