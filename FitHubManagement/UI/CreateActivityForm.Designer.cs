@@ -405,7 +405,7 @@
             lblTimeActivity.Location = new Point(334, 72);
             lblTimeActivity.Margin = new Padding(2, 0, 2, 0);
             lblTimeActivity.Name = "lblTimeActivity";
-            lblTimeActivity.Size = new Size(26, 15);
+            lblTimeActivity.Size = new Size(27, 15);
             lblTimeActivity.TabIndex = 15;
             lblTimeActivity.Text = "Tid:";
             // 
@@ -521,7 +521,7 @@
             btnSearchActivity.TabIndex = 18;
             btnSearchActivity.Text = "Søgning";
             btnSearchActivity.UseVisualStyleBackColor = true;
-            btnSearchActivity.Click += button1_Click;
+            btnSearchActivity.Click += this.btnSearchActivity_Click;
             // 
             // button4
             // 
@@ -543,7 +543,7 @@
             button1.TabIndex = 22;
             button1.Text = "Opret Hold";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            button1.Click += button1_Click;
             // 
             // CreateActivityForm
             // 
