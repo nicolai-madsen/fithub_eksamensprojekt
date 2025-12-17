@@ -12,6 +12,7 @@ namespace FitHubManagement.Models
         public int ActivityTypeId { get; set; } 
         public int InstructorId { get; set; }
         public DateTime StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
         public string  Duration { get; set; }
         public string ActivityLocation { get; set; }
 

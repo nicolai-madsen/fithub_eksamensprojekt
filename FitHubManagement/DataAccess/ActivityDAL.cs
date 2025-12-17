@@ -13,7 +13,7 @@ namespace FitHubManagement.DataAccess
 {
     public class ActivityDAL
     {
-
+        #region FILTER METHODS
         //Activity filter
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
@@ -33,6 +33,7 @@ namespace FitHubManagement.DataAccess
 	                ActivityID,
 	                CAST(StartDateTime AS DATE) AS ActivityDate,
 	                CAST(StartDateTime AS TIME) AS StartTime,
+	                CAST (EndDateTime AS TIME) AS EndTime,
 	                a.ActivityLocation,
 	                at.ActivityTypeName,
 	                i.FirstName + ' ' + i.LastName AS InstructorName
@@ -76,11 +77,11 @@ namespace FitHubManagement.DataAccess
                 command.Parameters.AddWithValue("@StartTime", filterModel.StartTime.Value);
             }
 
-            //if (filterModel.EndTime.HasValue)
-            //{
-            //    filterQuery += " AND CAST(EndDateTime AS TIME) <= @EndTime";
-            //    command.Parameters.AddWithValue("@EndTime", filterModel.EndTime.Value);
-            //}
+            if (filterModel.EndTime.HasValue)
+            {
+                filterQuery += " AND CAST(EndDateTime AS TIME) <= @EndTime";
+                command.Parameters.AddWithValue("@EndTime", filterModel.EndTime.Value);
+            }
 
             command.CommandText = filterQuery;
 
@@ -93,7 +94,7 @@ namespace FitHubManagement.DataAccess
                 activity.ActivityId = (int)reader["ActivityID"];
                 activity.ActivityDate = DateOnly.FromDateTime((DateTime)reader["ActivityDate"]);
                 activity.StartTime = TimeOnly.FromTimeSpan((TimeSpan)reader["StartTime"]);
-                //activity.EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]); // Ikke i brug pt.pga.Booking holdtype
+                activity.EndTime = TimeOnly.FromTimeSpan((TimeSpan)reader["EndTime"]);
                 activity.ActivityLocation = reader["ActivityLocation"].ToString();
                 activity.ActivityTypeName = reader["ActivityTypeName"].ToString();
                 activity.InstructorName = reader["InstructorName"].ToString();
@@ -102,8 +103,9 @@ namespace FitHubManagement.DataAccess
             }
             return activities;
         }
+        #endregion
 
-
+        #region CREATE METHOD
         //Create activity
 
         public int CreateActivity(ActivityModel activity) // Metoden der laver en Activity tager et helt Activity objekt, som har properties med vores data
@@ -114,8 +116,8 @@ namespace FitHubManagement.DataAccess
 
 
             // string indeholder den kommando der sendes til databasen. String er en Sql kommando, der indsætter en ny Activity i databasen
-            string insertSql = @"INSERT INTO Activity (ActivityTypeID, InstructorID, StartDateTime, Duration, ActivityLocation, MaxParticipants)
-                                VALUES (@ActivityTypeID, @InstructorID, @StartDateTime, @Duration, @ActivityLocation, @MaxParticipants)
+            string insertSql = @"INSERT INTO Activity (ActivityTypeID, InstructorID, StartDateTime, EndDateTime, Duration, ActivityLocation, MaxParticipants)
+                                VALUES (@ActivityTypeID, @InstructorID, @StartDateTime, @EndDateTime, @Duration, @ActivityLocation, @MaxParticipants)
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);
                                 ";
             Console.WriteLine($"SQL Command: {insertSql}");
@@ -124,6 +126,7 @@ namespace FitHubManagement.DataAccess
                 insertCmd.Parameters.AddWithValue("@ActivityTypeID", activity.ActivityTypeId); // Properties i Activity objektet har data. Det data lagres i databasen
                 insertCmd.Parameters.AddWithValue("@InstructorID", activity.InstructorId);
                 insertCmd.Parameters.AddWithValue("@StartDateTime", activity.StartDateTime);
+                insertCmd.Parameters.AddWithValue("@EndDateTime", activity.EndDateTime);
                 insertCmd.Parameters.AddWithValue("@Duration", activity.Duration);
                 insertCmd.Parameters.AddWithValue("@ActivityLocation", activity.ActivityLocation);
                 insertCmd.Parameters.AddWithValue("@MaxParticipants", activity.MaxParticipant);
@@ -135,8 +138,9 @@ namespace FitHubManagement.DataAccess
             }
 
         }
+        #endregion
 
-
+        #region DELETE METHODS
         //DELETE
         public void DeleteActivity(int activityId)
         {
@@ -153,7 +157,9 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{deleted} rows deleted."); // deleted holder antal rækker der blev ændret af SQL kommando.
             }
         }
+        #endregion
 
+        #region GET METHODS
         //READ
 
 
@@ -214,7 +220,7 @@ namespace FitHubManagement.DataAccess
             return activityList;
         }
 
-
+        
         public List<string> GetAllLocations() //Viser forskellige lokationer, der er i databasen
         {
 
@@ -293,7 +299,10 @@ namespace FitHubManagement.DataAccess
             return activityDuration;
         }
 
+ 
+        #endregion
 
+        #region UPDATE METHODS
         //UPDATE
         public void UpdateActivityType(int activityId, int newValue)
         {
@@ -395,10 +404,11 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+        #endregion
     }
 }
 
 
 
 
-
+
