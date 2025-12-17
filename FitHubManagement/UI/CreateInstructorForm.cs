@@ -45,6 +45,7 @@ namespace FitHubManagement.UI.Instructor
             GetAll.Visible = true;
             panel1.Visible = false;
             pnlSearchActivity.Visible = false;
+            newInstructorpanel.Visible = false;
             LoadInstructors();
         }
         private void button2_Click(object sender, EventArgs e)
@@ -54,7 +55,8 @@ namespace FitHubManagement.UI.Instructor
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            newInstructorpanel.Visible = true;
+            pnlSearchActivity.Visible = false;
         }
         private void savenewInstructor_Click(object sender, EventArgs e)
         {
@@ -279,17 +281,29 @@ namespace FitHubManagement.UI.Instructor
             }
 
 
-            ActivityFilterModel selectedActivity = (ActivityFilterModel)listBox1.SelectedItem; // Hent det valgte hold
+            
+            if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
+            {
+                // Hent bookinger for aktivitet
+                var bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId);
+                listBox1.DataSource = bookings;
+                listBox1.DisplayMember = "DisplayInfo";
+                lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
+            }
+            else
+            {
+                MessageBox.Show("Vælg venligst et hold først.");
+            }
 
 
-            List<BookingModel> bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId); // Hent bookinger for dette hold
+           /* List<BookingModel> bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId); // Hent bookinger for dette hold
 
             // Clear listBox og vis bookinger
             listBox1.DataSource = bookings;
             listBox1.DisplayMember = "DisplayInfo";
 
             // Vis antal tilmeldinger i label
-            lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
+            lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";*/
         }
 
 
@@ -331,8 +345,7 @@ namespace FitHubManagement.UI.Instructor
         {
             pnlSearchActivity.Visible = true;
             GetAll.Visible = false;
-            panel1.Visible = false;
-            newInstructorpanel.Visible = false;
+
         }
     }
 }
