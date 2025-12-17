@@ -17,7 +17,7 @@ namespace FitHubManagement.UI.CustomerUI
 {
     public partial class CustomerForm : Form
     {
-
+       
         private readonly CustomerService service = new();  //Businesslogic lag
         public CustomerForm()
         {
@@ -28,7 +28,13 @@ namespace FitHubManagement.UI.CustomerUI
             ListPanel.Visible = true;
             NewCustomerPanel.Visible = true;
             EditCustomerPanel.Visible = true;
-            ListPanel.BringToFront();
+            ListPanel.Show();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+            LookupPanel.Hide();
+            CustomerInformationPanel.Hide();
+
+
         }
 
 
@@ -253,12 +259,30 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void ChangeStatus_Click(object sender, EventArgs e)
         {
-         
-           
+
+
 
 
         }
+
+        private void ShowListBtn_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void NewCustomerBtn_Click(object sender, EventArgs e)
+        {
+            NewCustomerPanel.Show();
+            ListPanel.Hide();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+            LookupPanel.Hide();
+            CustomerInformationPanel.Hide();
+        }
+
     }
 }
+//PANELS   ListPanel  NewCustomerPanel   EditCustomerPanel   ListPanel
+
 
 
