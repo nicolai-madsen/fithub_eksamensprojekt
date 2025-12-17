@@ -281,6 +281,29 @@ namespace FitHubManagement.UI.Instructor
             // Vis antal tilmeldinger i label
             lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
         }
+        private void savenewInstructor_Click(object sender, EventArgs e)
+        {
+            CreateNewInstructorWithActivityBLL NewInstructor = new CreateNewInstructorWithActivityBLL();
+
+            try
+            {
+                NewInstructor.CreateInstructorWithActivity(
+                    newtxtFirstName.Text,
+                    newtxtLastName.Text,
+                    newtxtEmail.Text,
+                    newtxtPhone.Text,
+                    newtxtActivityName.Text,
+                    newtxtActivityDescription.Text
+                );
+
+                MessageBox.Show("Instruktør og aktivitet oprettet!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fejl: " + ex.Message);
+            }
+        }
+    
     }
 }
 
