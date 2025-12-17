@@ -23,7 +23,13 @@ namespace FitHubManagement.Models
         public int InstructorId { get; set; }
         public string ActivityTypeName { get; set; }
         public string ActivityTypeDescription { get; set; }
-        
+
+        public override string ToString()
+        {
+            return ActivityTypeName;
+        }
+
+
 
     }
 }
