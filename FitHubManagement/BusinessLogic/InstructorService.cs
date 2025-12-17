@@ -27,13 +27,24 @@ namespace FitHubManagement.BusinessLogic
             _dal.UpdateInstructor(instructor);
         }
 
-        public List<ActivityFilterModel> GetFilteredActivitiesByInstructor(int? instructorID, DateOnly? activityDate) //Liste med filtrering instrucot + datetime
+        /*public List<ActivityFilterModel> GetFilteredActivitiesByInstructor(int? instructorID, DateOnly? activityDate) //Liste med filtrering instrucor + datetime
         {
             return InstructorDAL.GetActivitiesByInstructorAndDate(instructorID, activityDate);
+        }*/ //Er ens med metoden nedenunder.
+        public List<ActivityFilterModel> GetFilteredActivities(int? instructorID, DateOnly? activityDate)
+        {
+            {
+                return InstructorDAL.GetActivitiesByInstructorAndDate(instructorID, activityDate); // Kald DAL-laget
+            }
+        }
+       
+        public List<BookingModel> GetBookingsByActivityID(int activityId)
+        {
+            return BookingDAL.GetBookingsByActivityID(activityId);
         }
 
     }
-    public class ActivityTypeBLL //Skal denne ikke ligge i InstructorService klassen?
+    public class ActivityTypeBLL 
     {
         private ActivityTypeDAL _dal;
         public ActivityTypeBLL()
@@ -78,8 +89,14 @@ namespace FitHubManagement.BusinessLogic
         private InstructorDAL _dal = new InstructorDAL();
 
         public List<InstructorModel> Instructors()
-        {             
-            return _dal.ReadAllInstructors(); 
+        {
+            return _dal.ReadAllInstructors();
         }
+
+        
     }
+
+
+
 }
+

@@ -263,10 +263,9 @@ namespace FitHubManagement.UI.Instructor
             {
                 activityDate = DateOnly.FromDateTime(dTPSearchDate.Value);
             }
-
-
-            // Kald DAL
-            List<ActivityFilterModel> activities = InstructorDAL.GetActivitiesByInstructorAndDate(instructorID, activityDate);
+            // Linje 266 i din form:
+            InstructorService instructorService = new InstructorService();
+            List<ActivityFilterModel> activities = instructorService.GetFilteredActivities(instructorID, activityDate);
 
             // Clear listBox1 og vis hold
             listBox1.DataSource = activities;
@@ -303,7 +302,8 @@ namespace FitHubManagement.UI.Instructor
             if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
             {
                 // Hent bookinger for aktivitet
-                var bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId);
+                BookingService1 bookingService = new BookingService1();
+                var bookings = bookingService.GetBookingsByActivityID(selectedActivity.ActivityId);
                 listBox1.DataSource = bookings;
                 listBox1.DisplayMember = "DisplayInfo";
                 lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
@@ -312,16 +312,6 @@ namespace FitHubManagement.UI.Instructor
             {
                 MessageBox.Show("Vælg venligst et hold først.");
             }
-
-
-           /* List<BookingModel> bookings = BookingDAL.GetBookingsByActivityID(selectedActivity.ActivityId); // Hent bookinger for dette hold
-
-            // Clear listBox og vis bookinger
-            listBox1.DataSource = bookings;
-            listBox1.DisplayMember = "DisplayInfo";
-
-            // Vis antal tilmeldinger i label
-            lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";*/
         }
 
 
@@ -356,8 +346,7 @@ namespace FitHubManagement.UI.Instructor
         {
 
         }
-        private void test()
-        { }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {
