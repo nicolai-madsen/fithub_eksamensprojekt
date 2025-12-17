@@ -39,6 +39,8 @@
             label1 = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            btnRydP2 = new Button();
+            lbl_MedlemsNavn = new Label();
             label5 = new Label();
             button8 = new Button();
             button7 = new Button();
@@ -65,18 +67,18 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(15, 15);
-            panel1.Margin = new Padding(4);
+            panel1.Location = new Point(10, 9);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(671, 532);
+            panel1.Size = new Size(430, 384);
             panel1.TabIndex = 0;
             // 
             // button4
             // 
-            button4.Location = new Point(339, 452);
-            button4.Margin = new Padding(4);
+            button4.Location = new Point(237, 271);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(118, 36);
+            button4.Size = new Size(83, 22);
             button4.TabIndex = 8;
             button4.Text = "Ryd";
             button4.UseVisualStyleBackColor = true;
@@ -84,10 +86,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(479, 452);
-            button3.Margin = new Padding(4);
+            button3.Location = new Point(335, 271);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(118, 36);
+            button3.Size = new Size(83, 22);
             button3.TabIndex = 7;
             button3.Text = "Fortsæt";
             button3.UseVisualStyleBackColor = true;
@@ -95,75 +97,75 @@
             // 
             // button2
             // 
-            button2.Location = new Point(418, 184);
-            button2.Margin = new Padding(4);
+            button2.Location = new Point(236, 128);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(177, 36);
+            button2.Size = new Size(182, 26);
             button2.TabIndex = 6;
-            button2.Text = "Vælg medlem";
+            button2.Text = "Vis medlemsoplysninger";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(149, 165);
-            textBox2.Margin = new Padding(4);
+            textBox2.Location = new Point(104, 85);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(155, 31);
+            textBox2.Size = new Size(179, 23);
             textBox2.TabIndex = 5;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(149, 98);
-            textBox1.Margin = new Padding(4);
+            textBox1.Location = new Point(104, 59);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(155, 31);
+            textBox1.Size = new Size(179, 23);
             textBox1.TabIndex = 4;
+            textBox1.Text = "e";
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(31, 228);
-            listBox1.Margin = new Padding(4);
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(23, 159);
+            listBox1.Margin = new Padding(3, 2, 3, 2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(564, 204);
+            listBox1.Size = new Size(396, 109);
             listBox1.TabIndex = 3;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(31, 165);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(22, 89);
             label3.Name = "label3";
-            label3.Size = new Size(68, 25);
+            label3.Size = new Size(46, 15);
             label3.TabIndex = 2;
             label3.Text = "Telefon";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 101);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(22, 61);
             label1.Name = "label1";
-            label1.Size = new Size(53, 25);
+            label1.Size = new Size(35, 15);
             label1.TabIndex = 1;
             label1.Text = "Navn";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(31, 36);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(22, 22);
             label2.Name = "label2";
-            label2.Size = new Size(114, 25);
+            label2.Size = new Size(74, 15);
             label2.TabIndex = 0;
             label2.Text = "Søg medlem";
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnRydP2);
+            panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(button8);
             panel2.Controls.Add(button7);
@@ -174,38 +176,60 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(listBox2);
-            panel2.Location = new Point(858, 4);
-            panel2.Margin = new Padding(4);
+            panel2.Location = new Point(535, 2);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(671, 622);
+            panel2.Size = new Size(536, 373);
             panel2.TabIndex = 2;
+            // 
+            // btnRydP2
+            // 
+            btnRydP2.Location = new Point(251, 278);
+            btnRydP2.Margin = new Padding(2);
+            btnRydP2.Name = "btnRydP2";
+            btnRydP2.Size = new Size(78, 21);
+            btnRydP2.TabIndex = 13;
+            btnRydP2.Text = "Ryd";
+            btnRydP2.UseVisualStyleBackColor = true;
+            btnRydP2.Click += btnRydP2_Click;
+            // 
+            // lbl_MedlemsNavn
+            // 
+            lbl_MedlemsNavn.AutoSize = true;
+            lbl_MedlemsNavn.Location = new Point(22, 154);
+            lbl_MedlemsNavn.Margin = new Padding(2, 0, 2, 0);
+            lbl_MedlemsNavn.Name = "lbl_MedlemsNavn";
+            lbl_MedlemsNavn.Size = new Size(85, 15);
+            lbl_MedlemsNavn.TabIndex = 12;
+            lbl_MedlemsNavn.Text = "Medlems navn";
+            lbl_MedlemsNavn.Click += label7_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(31, 165);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(22, 99);
             label5.Name = "label5";
-            label5.Size = new Size(86, 25);
+            label5.Size = new Size(56, 15);
             label5.TabIndex = 10;
             label5.Text = "Holdtype";
             // 
             // button8
             // 
-            button8.Location = new Point(54, 456);
-            button8.Margin = new Padding(4);
+            button8.Location = new Point(22, 278);
+            button8.Margin = new Padding(3, 2, 3, 2);
             button8.Name = "button8";
-            button8.Size = new Size(118, 36);
+            button8.Size = new Size(83, 22);
             button8.TabIndex = 9;
             button8.Text = "Ny booking";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(340, 456);
-            button7.Margin = new Padding(4);
+            button7.Location = new Point(334, 278);
+            button7.Margin = new Padding(3, 2, 3, 2);
             button7.Name = "button7";
-            button7.Size = new Size(118, 36);
+            button7.Size = new Size(83, 22);
             button7.TabIndex = 8;
             button7.Text = "Tilbage";
             button7.UseVisualStyleBackColor = true;
@@ -213,58 +237,59 @@
             // 
             // button6
             // 
-            button6.Location = new Point(489, 456);
-            button6.Margin = new Padding(4);
+            button6.BackColor = SystemColors.ActiveCaption;
+            button6.Location = new Point(316, 304);
+            button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
-            button6.Size = new Size(118, 36);
+            button6.Size = new Size(108, 43);
             button6.TabIndex = 7;
             button6.Text = "Tilmeld";
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(149, 159);
-            comboBox1.Margin = new Padding(4);
+            comboBox1.Location = new Point(104, 95);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(188, 33);
+            comboBox1.Size = new Size(133, 23);
             comboBox1.TabIndex = 6;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(149, 99);
-            dateTimePicker1.Margin = new Padding(4);
+            dateTimePicker1.Location = new Point(104, 59);
+            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(228, 31);
+            dateTimePicker1.Size = new Size(161, 23);
             dateTimePicker1.TabIndex = 5;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(31, 36);
-            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Location = new Point(22, 22);
             label6.Name = "label6";
-            label6.Size = new Size(85, 25);
+            label6.Size = new Size(54, 15);
             label6.TabIndex = 4;
             label6.Text = "Søg hold";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(31, 101);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(22, 61);
             label4.Name = "label4";
-            label4.Size = new Size(51, 25);
+            label4.Size = new Size(32, 15);
             label4.TabIndex = 2;
             label4.Text = "Dato";
             // 
             // button5
             // 
-            button5.Location = new Point(528, 162);
-            button5.Margin = new Padding(4);
+            button5.Location = new Point(342, 110);
+            button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(69, 36);
+            button5.Size = new Size(74, 22);
             button5.TabIndex = 1;
             button5.Text = "Vis";
             button5.UseVisualStyleBackColor = true;
@@ -273,33 +298,34 @@
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 25;
-            listBox2.Location = new Point(31, 228);
-            listBox2.Margin = new Padding(4);
+            listBox2.ItemHeight = 15;
+            listBox2.Location = new Point(22, 176);
+            listBox2.Margin = new Padding(3, 2, 3, 2);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(564, 204);
+            listBox2.Size = new Size(404, 94);
             listBox2.TabIndex = 0;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(706, 468);
-            button1.Margin = new Padding(4);
+            button1.Location = new Point(446, 280);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(118, 36);
+            button1.Size = new Size(83, 22);
             button1.TabIndex = 1;
-            button1.Text = "Tilbage";
+            button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // BookingForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1640, 954);
+            ClientSize = new Size(899, 469);
             Controls.Add(panel2);
             Controls.Add(button1);
             Controls.Add(panel1);
-            Margin = new Padding(4);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "BookingForm";
             Text = "BookingForm";
             panel1.ResumeLayout(false);
@@ -323,7 +349,6 @@
         private Button button3;
         private Button button4;
         private Panel panel2;
-        private Button button6;
         private ComboBox comboBox1;
         private DateTimePicker dateTimePicker1;
         private Label label6;
@@ -333,5 +358,8 @@
         private Button button8;
         private Button button7;
         private Label label5;
+        private Label lbl_MedlemsNavn;
+        protected internal Button button6;
+        private Button btnRydP2;
     }
 }
