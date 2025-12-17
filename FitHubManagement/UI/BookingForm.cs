@@ -115,9 +115,12 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
+            string membershipName = _membershipService.GetMembershipName(selected.MembershipId);
+
             listBox1.DataSource = null;
             listBox1.Items.Clear();
-            listBox1.Items.Add(new CustomerDetailItem(selected));
+
+            listBox1.Items.Add(new CustomerDetailItem(selected, membershipName));
             listBox1.ClearSelected();
         }
 
@@ -379,22 +382,27 @@ namespace FitHubManagement.UI.BookingUI
         private class CustomerDetailItem
         {
             public CustomerModel Customer { get; }
+            private readonly string _membershipName;
 
-            public CustomerDetailItem(CustomerModel customer) => Customer = customer;
+            public CustomerDetailItem(CustomerModel customer, string membershipName)
+            {
+                Customer = customer;
+                _membershipName = membershipName;
+            }
 
 
-
+            // Integration fra UI -> DAL her
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
-
+                /*
                 MembershipDAL membershipDAL = new MembershipDAL();
                 MembershipModel membership = membershipDAL.GetMembership(Customer.MembershipId);
-
-                string membershipName = membership != null ? membership.MembershipName : "Ukendt";
+                
+                string membershipName = membership != null ? membership.MembershipName : "Ukendt"; */
 
                 return $"ID: {Customer.CustomerId} | " +
-                       $"Medlem: {membershipName} | " +
+                       $"Medlem: {_membershipName} | " +
                        $"{Customer.FirstName} {Customer.LastName} | " +
                        $"Tlf: {Customer.Phone}{status}";
             }
