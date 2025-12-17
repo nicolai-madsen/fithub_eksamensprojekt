@@ -98,49 +98,31 @@ namespace FitHubManagement.DataAccess
             return bookings;
         }
 
-        public List<BookingModel> GetBookingCountForCustomer(int customerId, DateTime weekStart)
+        public int GetBookingCountForCustomer(int customerId, DateTime weekStart)
         {
-            // Liste hvor vi samler alle booking-objekter
-            List<BookingModel> customerBookings = new List<BookingModel>();
+            DateTime weekEnd = weekStart.AddDays(7);
 
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string query = @" 
-                SELECT COUNT(*)
-                FROM Bookings b 
-                JOIN Activities a ON b.ActivityId = a.Id 
-                WHERE b.CustomerId = @CustomerId 
-                AND a.Date >= @WeekStart 
-                AND a.Date <= @WeekEnd;
-            ";
-
-            using SqlCommand command = new SqlCommand(query, connection);
-            using SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
-                
-                string personalNote = null; //Vi laver variabel her fordi feltet kan være Null i databasen.
+                connection.Open();
 
-                if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
+                string query = @" 
+                    SELECT COUNT(*)
+                    FROM Bookings b 
+                    JOIN Activities a ON b.ActivityId = a.Id 
+                    WHERE b.CustomerId = @CustomerId 
+                    AND a.StartDateTime >= @WeekStart 
+                    AND a.StartDateTime < DATEADD(days, 7, @WeekStart)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+                    command.Parameters.AddWithValue("@WeekStart", weekStart.Date);
+
+                    int count = (int)command.ExecuteScalar();
+                    return count;
                 }
-
-                // Opretter et Booking-objekt 
-                BookingModel booking = new BookingModel
-                {
-                    BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
-                    ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
-                    CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
-                    PersonalNote = reader.GetString(reader.GetOrdinal("PersonalNote"))
-
-                };
-
-                // Tilføjer booking-objektet til listen
-                customerBookings.Add(booking);
             }
-            return customerBookings;
         }
 
         #region UPDATE METHODS
