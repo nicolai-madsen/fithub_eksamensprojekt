@@ -98,6 +98,52 @@ namespace FitHubManagement.DataAccess
             return bookings;
         }
 
+        public List<BookingModel> GetBookingCountForCustomer(int customerId, DateTime weekStart)
+        {
+            // Liste hvor vi samler alle booking-objekter
+            List<BookingModel> customerBookings = new List<BookingModel>();
+
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            string query = @" 
+                SELECT COUNT(*)
+                FROM Bookings b 
+                JOIN Activities a ON b.ActivityId = a.Id 
+                WHERE b.CustomerId = @CustomerId 
+                AND a.Date >= @WeekStart 
+                AND a.Date <= @WeekEnd;
+            ";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                
+                string personalNote = null; //Vi laver variabel her fordi feltet kan være Null i databasen.
+
+                if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
+                {
+                    personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
+                }
+
+                // Opretter et Booking-objekt 
+                BookingModel booking = new BookingModel
+                {
+                    BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
+                    CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                    PersonalNote = reader.GetString(reader.GetOrdinal("PersonalNote"))
+
+                };
+
+                // Tilføjer booking-objektet til listen
+                customerBookings.Add(booking);
+            }
+            return customerBookings;
+        }
+
+        #region UPDATE METHODS
         public static void UpdateActivity(int bookingId, int newValue)
         {
             // Open connection first
@@ -146,6 +192,7 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+        #endregion
     }
 }
 

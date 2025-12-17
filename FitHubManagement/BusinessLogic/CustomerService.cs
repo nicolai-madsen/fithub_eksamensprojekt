@@ -38,6 +38,11 @@ namespace FitHubManagement.BusinessLogic
             repo.CreateCustomer(customer);
         }  
 
+        public MembershipModel GetCustomerMembership (int customerId)
+        {
+            
+        }
+
         public CustomerModel GetIndividualCustomer (string phone)
         {
             return repo.GetSingleCustomer(phone);
