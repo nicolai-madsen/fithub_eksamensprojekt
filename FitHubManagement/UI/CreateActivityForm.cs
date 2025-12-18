@@ -75,7 +75,6 @@ namespace FitHubManagement.UI.Activity
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
 
-            LoadActivityTypes();
 
             label10.Text = "";
 
@@ -132,6 +131,7 @@ namespace FitHubManagement.UI.Activity
 
         private void btnSearchActivity_Click(object sender, EventArgs e)
         {
+
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
 

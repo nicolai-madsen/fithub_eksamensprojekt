@@ -678,6 +678,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1057, 502);
+            Controls.Add(pnlSearchActivity);
             Controls.Add(CreateActivityType);
             Controls.Add(pnlHoldType);
             Controls.Add(button1);
@@ -686,7 +687,6 @@
             Controls.Add(label3);
             Controls.Add(btnSearchActivity);
             Controls.Add(panel1);
-            Controls.Add(pnlSearchActivity);
             Margin = new Padding(2, 3, 2, 3);
             MinimumSize = new Size(790, 373);
             Name = "CreateActivityForm";
