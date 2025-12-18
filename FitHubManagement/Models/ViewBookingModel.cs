@@ -13,5 +13,8 @@ namespace FitHubManagement.Models
         public string Name { get; set; }    
         public DateTime StartDateTime { get; set; }
         public string ActivityTypeName { get; set; }
+
+        public string DisplayInfo => $"Aktivitet: {ActivityTypeName} - Instruktør: {Name} - Start: {StartDateTime}"; 
+
     }
 }

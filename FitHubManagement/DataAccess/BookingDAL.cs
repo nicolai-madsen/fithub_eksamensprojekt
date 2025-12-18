@@ -120,7 +120,7 @@ namespace FitHubManagement.DataAccess
 
         #region UPDATE METHODS
 
-        public  List<ViewBookingModel> GetCustomerBookings(int customerId)
+        public List<ViewBookingModel> GetCustomerBookings(int customerId)
         {
             // Liste hvor vi samler alle booking-objekter
             List<ViewBookingModel> bookings = new List<ViewBookingModel>();
@@ -135,7 +135,7 @@ namespace FitHubManagement.DataAccess
                            "INNER JOIN Activity ON Booking.ActivityID = Activity.ActivityID) " +
                            "INNER JOIN ActivityType ON Activity.ActivityTypeID = ActivityType.ActivityTypeID) " +
                            "INNER JOIN Instructor ON Activity.InstructorID = Instructor.InstructorID) " +
-                           "WHERE CustomerID = @customerId";
+                           "WHERE Customer.CustomerID = @customerId";
 
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@customerId", customerId);
@@ -147,14 +147,7 @@ namespace FitHubManagement.DataAccess
                 // Går gennem hver række i resultatet
                 while (reader.Read())
                 {
-                    // 
-                    string personalNote = null; //Vi laver variabel her for feltet kan være Null i databasen.
-
-                    if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
-                    {
-                        personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
-                    } 
-                    // Opretter et Booking-objekt baseret på værdierne i rækken
+                    
                     ViewBookingModel customerBookings = new ViewBookingModel();                        
                     {
                         customerBookings.CustomerId = Convert.ToInt32(reader["CustomerID"]);

@@ -124,9 +124,9 @@ namespace FitHubManagement.BusinessLogic
                 DayOfWeek.Saturday => date.AddDays(-5).Date,
                 DayOfWeek.Sunday => date.AddDays(-6).Date,
                 _ => date.Date
-            };
+            };  
         }
-        public List<BookingModel> GetCustomerBooking(int customerId)
+        public List<ViewBookingModel> GetCustomerBooking(int customerId)
         {
             return _bookingDAL.GetCustomerBookings(customerId);
         }
