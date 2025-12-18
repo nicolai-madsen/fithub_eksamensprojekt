@@ -128,7 +128,7 @@ namespace FitHubManagement.BusinessLogic
         }
         public List<BookingModel> GetCustomerBooking(int customerId)
         {
-            return _bookingDAL.GetCustomerBooking(customerId);
+            return _bookingDAL.GetCustomerBookings(customerId);
         }
 
         private readonly BookingDAL b_bookingDAL = new BookingDAL();
