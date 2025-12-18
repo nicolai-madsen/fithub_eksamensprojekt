@@ -10,6 +10,7 @@ using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
+    // NICOLAI MADSEN - Hele filen
     internal class ReportsDAL
     {
         //__________________________GetAllActiveCustomer()_________________________________________
