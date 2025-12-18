@@ -95,7 +95,7 @@ namespace FitHubManagement.BusinessLogic
         }
 
 
-        public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
+        public List<ActivityFilterModel> GetFilteredActivities(DateOnly? date, string? activityTypeName)
         {
             // BLL opbygger filter-model
             ActivityFilterModel filter = new ActivityFilterModel

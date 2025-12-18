@@ -253,9 +253,9 @@ namespace FitHubManagement.UI.BookingUI
                 : null;
 
             // Hvis intet er valgt i comboboxen, sender vi 'null'
-            string filterType = (comboBox1.SelectedIndex != -1)
-                ? comboBox1.SelectedItem.ToString()
-                : null;
+            string filterType = (comboBox1.SelectedIndex != -1) 
+                ? comboBox1.SelectedItem.ToString() // Null check "?", "if comboBox1.SelectedItem.ToString() = null
+                : null; // use null instead
 
             // 2. Validering: Brugeren skal vælge mindst én af delene
             if (filteredDate == null && filterType == null)
