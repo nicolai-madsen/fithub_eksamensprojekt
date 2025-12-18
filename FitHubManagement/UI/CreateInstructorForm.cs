@@ -302,7 +302,7 @@ namespace FitHubManagement.UI.Instructor
             if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
             {
                 // Hent bookinger for aktivitet
-                BookingService1 bookingService = new BookingService1();
+                BookingService bookingService = new BookingService();
                 var bookings = bookingService.GetBookingsByActivityID(selectedActivity.ActivityId);
                 listBox1.DataSource = bookings;
                 listBox1.DisplayMember = "DisplayInfo";
