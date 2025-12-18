@@ -210,20 +210,6 @@ namespace FitHubManagement.UI.BookingUI
             DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
             string activityTypeName = comboBox1.SelectedItem.ToString();
 
-            /*
-            // Byg filter model - Modellen bygges i 
-            ActivityFilterModel filter = new ActivityFilterModel
-            {
-                ActivityDate = date,
-                ActivityTypeName = activityTypeName
-            };
-            */
-            /*
-            // Hent fra DAL
-            ActivityDAL dal = new ActivityDAL();
-            List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
-            */
-
             // Hent fra DAL via BLL instans
             List<ActivityFilterModel> activities = _bookingService.GetFilteredActivities(date, activityTypeName); // ActivityDate, ActivityTypeName params
 
@@ -262,91 +248,6 @@ namespace FitHubManagement.UI.BookingUI
             }
         }
 
-        /*
-        // Tilmeld knap i Panel2
-        private void button6_Click(object sender, EventArgs e)
-        {
-            if (selectedCustomer == null)
-            {
-                MessageBox.Show("Vælg et medlem først.");
-                return;
-            }
-
-            if (selectedActivityId == -1)
-            {
-                MessageBox.Show("Vælg et hold først.");
-                return;
-            }
-
-            // Hold fyldt -validering
-            int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
-            if (availableSpots <= 0)
-            {
-                MessageBox.Show("Holdet er fyldt");
-                return;
-            }
-
-            if (availableSpots <= 0)
-            {
-                MessageBox.Show("Der er ikke flere ledige pladser på holdet.");
-                return;
-            }
-
-            // Hent dato for ugenlig booking validering (max 2 i ugen for "Standard" medlemsskabstype)
-            DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
-
-            // Max 2 bookinger pr uge for "Standard" -validering
-            if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
-            {
-                MessageBox.Show("Medlem kan bookes på max 2 hold i ugen.",
-                                "Begrænsning nået",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-
-
-            // Bekræft før vi gemmer booking
-            DialogResult answer = MessageBox.Show(
-                $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
-                "Bekræft booking",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (answer != DialogResult.Yes)
-            {
-                return;
-            }
-
-
-            // AC2: Registrer booking i databasen (KUN ÉN GANG)
-            try
-            {
-                int participants = _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, "");
-
-                MessageBox.Show(
-                    $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
-                );
-
-                MessageBox.Show(
-                    $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
-                );
-            }
-
-            catch (SqlException)
-            {
-                MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
-                return;
-            }
-
-             FLYT NÅR PISSET VIRKER IGEN
-            // AC3: Vis at deltagerlisten er opdateret
-            int participants = _bookingService.GetAvailableSpots(selectedActivityId, selectedCustomer.CustomerId, "");
-                .FindAll(b => b.ActivityId == selectedActivityId)
-                .Count;
-            
-        }*/
         private void button6_Click(object sender, EventArgs e)
         {
             // 1. Validering af valg i UI
@@ -465,11 +366,6 @@ namespace FitHubManagement.UI.BookingUI
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
-                /*
-                MembershipDAL membershipDAL = new MembershipDAL();
-                MembershipModel membership = membershipDAL.GetMembership(Customer.MembershipId);
-                
-                string membershipName = membership != null ? membership.MembershipName : "Ukendt"; */
 
                 return $"ID: {Customer.CustomerId} | " +
                        $"Medlem: {_membershipName} | " +
