@@ -312,7 +312,63 @@ namespace FitHubManagement.DataAccess
             // Konverterer resultatet til int og returnerer antallet af ledige pladser
             return Convert.ToInt32(result);
         }
+        public List<BookingModel> GetFilteredBookings(int? activityId, DateOnly? activityDate)
+        {
+            List<BookingModel> bookings = new List<BookingModel>();
 
+            using SqlConnection connection =
+                new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            string sql = @"
+                    SELECT 
+                        b.BookingID,
+                        b.ActivityID,
+                        b.CustomerID,
+                        b.PersonalNote,
+                        c.FirstName + ' ' + c.LastName AS FullName
+                    FROM Booking b
+                    INNER JOIN Customer c ON b.CustomerID = c.CustomerID
+                    INNER JOIN Activity a ON b.ActivityID = a.ActivityID
+                    WHERE 1 = 1";
+
+            if (activityId.HasValue)
+                sql += " AND b.ActivityID = @ActivityID";
+
+            if (activityDate.HasValue)
+                sql += " AND CAST(a.StartDateTime AS date) = @ActivityDate";
+
+            using SqlCommand command = new SqlCommand(sql, connection);
+
+            if (activityId.HasValue)
+                command.Parameters.AddWithValue("@ActivityID", activityId.Value);
+
+            if (activityDate.HasValue)
+                command.Parameters.AddWithValue(
+                    "@ActivityDate",
+                    activityDate.Value.ToDateTime(TimeOnly.MinValue));
+
+            using SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                BookingModel booking = new BookingModel
+                {
+                    BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
+                    ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
+                    CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                    PersonalNote = reader.IsDBNull(reader.GetOrdinal("PersonalNote"))
+                        ? null
+                        : reader.GetString(reader.GetOrdinal("PersonalNote")),
+                    FullName = reader.GetString(reader.GetOrdinal("FullName"))
+                };
+
+                bookings.Add(booking);
+            }
+
+            return bookings;
+        }
+
+       
 
     }
 
