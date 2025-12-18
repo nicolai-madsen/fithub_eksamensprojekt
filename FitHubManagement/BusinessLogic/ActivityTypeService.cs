@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class ActivityTypeService // Hvorfor må denne ikke være public?
+    public class ActivityTypeService // Hvorfor må denne ikke være public?
     {
         /// <summary>
         /// 1. Skifter string parametere ud med et helt ActivityTypeModel objekt i stedet. 
@@ -26,7 +26,7 @@ namespace FitHubManagement.BusinessLogic
         }
         */
 
-        public ActivityTypeModel CreateActivityType(int ActivityTypeId, int InstructorId, string name, string description)
+        /*public ActivityTypeModel CreateActivityType(int ActivityTypeId, int InstructorId, string name, string description)
         {
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException("Holdtypenavn må ikke være tomt.");
             // Ved ikke om der er flere ting der skal valideres her. Nok noget med Instructors. 
@@ -43,7 +43,7 @@ namespace FitHubManagement.BusinessLogic
             int id = dal.CreateActivityType(type);
             type.ActivityTypeId = id;
             return type;
-        }
+        }*/
 
         public List<ActivityTypeModel> GetAllActivityTypes()
         {
@@ -53,6 +53,18 @@ namespace FitHubManagement.BusinessLogic
         public string GetCertifiedInstructor(int activityTypeId)
         {
             return _activityTypeDAL.GetCertifiedInstructor(activityTypeId);
+        }
+    }
+    public class ActivityTypeBLL1
+    {
+        private readonly ActivityTypeDAL _activityTypeDal = new ActivityTypeDAL();
+
+        public void CreateActivityType(ActivityTypeModel model)
+        {
+            if (string.IsNullOrWhiteSpace(model.ActivityTypeName))
+                throw new ArgumentException("ActivityTypeName må ikke være tomt");
+
+            _activityTypeDal.CreateActivityType(model);
         }
     }
 }
