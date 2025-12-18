@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic.ReportProviders
 {
+    // NICOLAI MADSEN - Hele filen
     internal class PopularActivityReportProvider
     {
         public List<PopularActivityReportModel> GetPopularActivities()
@@ -15,13 +16,6 @@ namespace FitHubManagement.BusinessLogic.ReportProviders
             ReportsDAL dal = new ReportsDAL();
             var popularActivities = dal.GetPopularActivities();
             return popularActivities;
-
-            /* SKRIVES SÅDAN UDEN "var": 
-            ReportsDAL dal = new ReportsDAL();
-            List<PopularActivityReportModel> popularActivities = dal.GetPopularActivities();
-            return popularActivities;*/
-            //Her bliver der bare defineret at det er en "list" efterfulgt af navnet på den i stedet for at c#
-            //selv finder ud af det via "var" altså "variabel"
         }
     }
 }

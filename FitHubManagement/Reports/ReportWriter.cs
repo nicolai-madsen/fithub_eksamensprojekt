@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Reports
 {
+    // NICOLAI MADSEN - Hele filen
     internal class ReportWriter
     {
         public void WriteTxtReport(string formattedReport, string fileName)
@@ -14,7 +15,12 @@ namespace FitHubManagement.Reports
             {
                 // Fil placeres i "Dokumenter" og bliver navngivet {fileName}
                 string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                string fullPath = Path.Combine(documentsPath, fileName);
+                // Fortæl hvor mappen skal oprettes og hvad den hedder
+                string folderPath = Path.Combine(documentsPath, "Rapporter");
+                // Lav mappen
+                Directory.CreateDirectory(folderPath);
+                // Kombiner til fulde fil placering, giv den til StreamWriter, så den kan skrive filen det korrekte sted
+                string fullPath = Path.Combine(folderPath, fileName);
 
                 // Brug StreamWriter til at skrive filen
                 using (StreamWriter writer = new StreamWriter(fullPath, false)) // false = overskriv hvis fil findes
