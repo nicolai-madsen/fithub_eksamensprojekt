@@ -333,6 +333,14 @@ namespace FitHubManagement.UI.Activity
                 MessageBox.Show("Navn må ikke være tomt");
                 return;
             }
+            int? instructorId = null;
+
+            if (cmbHoldTypeInstruktor.SelectedValue != null &&
+                (int)cmbHoldTypeInstruktor.SelectedValue != -1)
+            {
+                instructorId = (int)cmbHoldTypeInstruktor.SelectedValue;
+            }
+
 
             ActivityTypeModel newType = new ActivityTypeModel
             /* {
@@ -348,7 +356,7 @@ namespace FitHubManagement.UI.Activity
             };
             ActivityTypeDAL.CreateActivityType(newType);
 
-            // 🔹 VIGTIGSTE LINJE
+            // opdater søge combobox
             LoadActivityTypesIntoSearchComboBox();
 
             MessageBox.Show("Holdtype oprettet");
