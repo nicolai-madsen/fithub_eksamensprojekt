@@ -47,6 +47,14 @@ namespace FitHubManagement.UI.Activity
         {
 
 
+
+
+
+
+
+
+
+
             LoadInstructorsIntoComboBox();
 
             // 🔹 SØGNING – ActivityType (Holdtype)
