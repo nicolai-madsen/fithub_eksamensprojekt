@@ -18,10 +18,21 @@ namespace FitHubManagement.BusinessLogic
 
         public int CreateBooking(int activityId, int customerId, string note)
         {
+            // 1. Tjek om der er plads på holdet
+            int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
+            if (availableSpots <= 0)
+            {
+                throw new Exception("Der er ikke flere ledige pladser på holdet.");
+            }
 
+            // 2. Tjek uge-begrænsning (max 2 hold)
+            DateTime activityDate = _activityDAL.GetActivityDate(activityId);
+            if (!CanCustomerBook(customerId, activityDate))
+            {
+                throw new Exception("Medlemmet er allerede tilmeldt 2 hold i denne uge.");
+            }
 
-
-
+            // 3. Opret booking-objektet
             BookingModel newBooking = new BookingModel
             {
                 ActivityId = activityId,
@@ -29,9 +40,23 @@ namespace FitHubManagement.BusinessLogic
                 PersonalNote = note,
             };
 
+            try
+            {
+                // 4. Gem i databasen
+                _bookingDAL.CreateBooking(newBooking);
 
+                // 5. Tæl deltagere (Quick fix: Hent alle og tæl i C# som vi aftalte)
+                // Husk parenteser efter GetAllBookings()
+                int participantsCount = _bookingDAL.GetAllBookings()
+                                                   .Count(b => b.ActivityId == activityId);
 
-            
+                return participantsCount;
+            }
+            catch (SqlException)
+            {
+                // Hvis databasen afviser pga. Unique Constraint (allerede tilmeldt)
+                throw new Exception("Medlemmet er allerede tilmeldt dette hold.");
+            }
         }
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
