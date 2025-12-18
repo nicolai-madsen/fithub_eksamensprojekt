@@ -23,9 +23,7 @@ namespace FitHubManagement.Models
 
         public override string ToString()
         {
-            string status = Inactive ? " (Inaktiv)" : "";
-
-            return $"ID: {CustomerId} | Medlem: {MembershipId} | {FirstName} {LastName} | Tlf: {Phone}{status}";
+            return $"ID: {CustomerId} Navn: {FirstName} {LastName} Telefon: {Phone}";
         }
 
     }

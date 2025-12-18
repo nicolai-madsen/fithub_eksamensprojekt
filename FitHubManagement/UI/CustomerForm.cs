@@ -62,8 +62,7 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
-                    CustomerListBox.Items.Add(infoLine);
+                    CustomerListBox.Items.Add(customer); // tilføj hele objektet
                     customerCounter();
                 }
             }
@@ -89,9 +88,7 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
-
-                    CustomerListBox.Items.Add(infoLine);
+                    CustomerListBox.Items.Add(customer); // tilføj hele objektet
                     customerCounter();
                 }
             }
@@ -221,8 +218,7 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    string infoLine = $"ID: {customer.CustomerId} Navn: {customer.FirstName} {customer.LastName} Telefon: {customer.Phone}";
-                    CustomerListBox.Items.Add(infoLine);
+                    CustomerListBox.Items.Add(customer);
                     customerCounter();
                 }
 
@@ -236,16 +232,16 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                CustomerModel customer = new CustomerModel();
+                CustomerModel customer = new CustomerModel()
                 {
-                    customer.CustomerId = int.Parse(EditCustomerID.Text);
-                    customer.FirstName = EditFirst.Text;
-                    customer.LastName = EditLast.Text;
-                    customer.Email = EditMail.Text;
-                    customer.Phone = EditPhone.Text;
-                    customer.PersonalNote = EditNote.Text;
-                    customer.MembershipId = int.Parse(EditType.Text);
-                }
+                    CustomerId = int.Parse(EditCustomerID.Text),
+                    FirstName = EditFirst.Text,
+                    LastName = EditLast.Text,
+                    Email = EditMail.Text,
+                    Phone = EditPhone.Text,
+                    PersonalNote = EditNote.Text,
+                    MembershipId = int.Parse(EditType.Text)
+                };
                 _customerService.UpdateCustomer(customer);
 
                 MessageBox.Show("Medlem redigerert");
