@@ -78,6 +78,10 @@ namespace FitHubManagement.BusinessLogic
                 _ => date.Date
             };
         }
+        public List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            return _bookingDAL.GetCustomerBooking(customerId);
+        }
 
     }
 }
