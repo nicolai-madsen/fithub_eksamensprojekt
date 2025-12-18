@@ -16,9 +16,9 @@ namespace FitHubManagement.BusinessLogic
 
         public void CreateBooking(int activityId, int customerId, string note)
         {
-           
 
-           
+
+
 
             BookingModel newBooking = new BookingModel
             {
@@ -27,7 +27,7 @@ namespace FitHubManagement.BusinessLogic
                 PersonalNote = note,
             };
 
-          
+
 
             _bookingDAL.CreateBooking(newBooking);
         }
@@ -83,5 +83,16 @@ namespace FitHubManagement.BusinessLogic
             return _bookingDAL.GetCustomerBooking(customerId);
         }
 
+        private readonly BookingDAL b_bookingDAL = new BookingDAL();
+
+        public List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            return b_bookingDAL.GetCustomerBooking(customerId);
+        }
+        public List<BookingModel> GetBookingsByActivityID(int activityId) //Bruges i CreateInstrictorForm som et led til at vise holdtilmeldinger
+        {
+            return BookingDAL.GetBookingsByActivityID(activityId);
+        }
     }
 }
+

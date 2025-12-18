@@ -136,7 +136,7 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Fejl med indtasting af medlem, husket at fylde alle nødvendige felter?");
             }
         }
-        private void InfoBtn_Click(object sender, EventArgs e)
+      /*  private void InfoBtn_Click(object sender, EventArgs e)
         {
             SearchPanel.Hide();
             BookingPanel.Show();
@@ -163,7 +163,7 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Indtast gyldig ID");
             }
 
-        }
+        }*/
 
         private void button3_Click(object sender, EventArgs e) //Indlaster relevant information til redigering side fra kunde
         {

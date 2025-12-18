@@ -145,7 +145,7 @@ namespace FitHubManagement.UI.Instructor
 
                 // Hent aktivitetstype via BLL
                 ActivityTypeBLL activityBLL = new ActivityTypeBLL();
-                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorID);
+                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorId);
 
                 if (activity != null)
                 {
@@ -211,7 +211,7 @@ namespace FitHubManagement.UI.Instructor
             // Opret en tom instruktør som placeholder
             InstructorModel emptyInstructor = new InstructorModel //"Tom" instruktør, altså en tom plads i comboboxen
             {
-                InstructorID = -1,
+                InstructorId = -1,
                 FirstName = "-- Alle instruktører --",
                 LastName = ""
             };
@@ -252,9 +252,9 @@ namespace FitHubManagement.UI.Instructor
             if (cmbShowInstructors.SelectedIndex > 0) // Tjek om der er valgt en instruktør
             {
                 InstructorModel selectedInstructor = (InstructorModel)cmbShowInstructors.SelectedItem;
-                if (selectedInstructor.InstructorID != -1)
+                if (selectedInstructor.InstructorId != -1)
                 {
-                    instructorID = selectedInstructor.InstructorID;
+                    instructorID = selectedInstructor.InstructorId;
                 }
             }
 
@@ -302,7 +302,7 @@ namespace FitHubManagement.UI.Instructor
             if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
             {
                 // Hent bookinger for aktivitet
-                BookingService1 bookingService = new BookingService1();
+                BookingService bookingService = new BookingService();
                 var bookings = bookingService.GetBookingsByActivityID(selectedActivity.ActivityId);
                 listBox1.DataSource = bookings;
                 listBox1.DisplayMember = "DisplayInfo";

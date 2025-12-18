@@ -168,9 +168,21 @@
             btnSearchActivity = new Button();
             button4 = new Button();
             button1 = new Button();
+            pnlHoldType = new Panel();
+            btnCancelActivityType = new Button();
+            btnSaveActivityType = new Button();
+            label6 = new Label();
+            lblHoldTypeTitle = new Label();
+            cmbHoldTypeInstruktor = new ComboBox();
+            txtHoldTypeBeskrivelse = new TextBox();
+            lblHoldTypeDescription = new Label();
+            txtHoldTypeName = new TextBox();
+            lblHoldTypeNavn = new Label();
+            CreateActivityType = new Button();
             pnlSearchActivity.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
+            pnlHoldType.SuspendLayout();
             SuspendLayout();
             // 
             // LblDuration
@@ -271,6 +283,7 @@
             cmbSearchActivity.Name = "cmbSearchActivity";
             cmbSearchActivity.Size = new Size(166, 23);
             cmbSearchActivity.TabIndex = 5;
+            cmbSearchActivity.SelectedIndexChanged += cmbSearchActivity_SelectedIndexChanged;
             // 
             // lblSearchLocation
             // 
@@ -521,7 +534,7 @@
             btnSearchActivity.TabIndex = 18;
             btnSearchActivity.Text = "Søgning";
             btnSearchActivity.UseVisualStyleBackColor = true;
-            btnSearchActivity.Click += this.btnSearchActivity_Click;
+            btnSearchActivity.Click += btnSearchActivity_Click;
             // 
             // button4
             // 
@@ -545,11 +558,128 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // pnlHoldType
+            // 
+            pnlHoldType.BackColor = Color.White;
+            pnlHoldType.BorderStyle = BorderStyle.FixedSingle;
+            pnlHoldType.Controls.Add(btnCancelActivityType);
+            pnlHoldType.Controls.Add(btnSaveActivityType);
+            pnlHoldType.Controls.Add(label6);
+            pnlHoldType.Controls.Add(lblHoldTypeTitle);
+            pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
+            pnlHoldType.Controls.Add(txtHoldTypeBeskrivelse);
+            pnlHoldType.Controls.Add(lblHoldTypeDescription);
+            pnlHoldType.Controls.Add(txtHoldTypeName);
+            pnlHoldType.Controls.Add(lblHoldTypeNavn);
+            pnlHoldType.Location = new Point(692, 41);
+            pnlHoldType.Margin = new Padding(3, 2, 3, 2);
+            pnlHoldType.Name = "pnlHoldType";
+            pnlHoldType.Size = new Size(343, 332);
+            pnlHoldType.TabIndex = 23;
+            pnlHoldType.Visible = false;
+            // 
+            // btnCancelActivityType
+            // 
+            btnCancelActivityType.Location = new Point(70, 246);
+            btnCancelActivityType.Name = "btnCancelActivityType";
+            btnCancelActivityType.Size = new Size(81, 26);
+            btnCancelActivityType.TabIndex = 14;
+            btnCancelActivityType.Text = "Annuller";
+            btnCancelActivityType.UseVisualStyleBackColor = true;
+            btnCancelActivityType.Click += btnCancelActivityType_Click;
+            // 
+            // btnSaveActivityType
+            // 
+            btnSaveActivityType.Location = new Point(194, 246);
+            btnSaveActivityType.Name = "btnSaveActivityType";
+            btnSaveActivityType.Size = new Size(81, 26);
+            btnSaveActivityType.TabIndex = 13;
+            btnSaveActivityType.Text = "Gem";
+            btnSaveActivityType.UseVisualStyleBackColor = true;
+            btnSaveActivityType.Click += btnSaveActivityType_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(44, 174);
+            label6.Name = "label6";
+            label6.Size = new Size(58, 15);
+            label6.TabIndex = 11;
+            label6.Text = "Instruktør";
+            // 
+            // lblHoldTypeTitle
+            // 
+            lblHoldTypeTitle.AutoSize = true;
+            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHoldTypeTitle.Location = new Point(112, 14);
+            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
+            lblHoldTypeTitle.Size = new Size(104, 25);
+            lblHoldTypeTitle.TabIndex = 10;
+            lblHoldTypeTitle.Text = "HOLDTYPE";
+            // 
+            // cmbHoldTypeInstruktor
+            // 
+            cmbHoldTypeInstruktor.FormattingEnabled = true;
+            cmbHoldTypeInstruktor.Location = new Point(152, 166);
+            cmbHoldTypeInstruktor.Margin = new Padding(3, 2, 3, 2);
+            cmbHoldTypeInstruktor.Name = "cmbHoldTypeInstruktor";
+            cmbHoldTypeInstruktor.Size = new Size(176, 23);
+            cmbHoldTypeInstruktor.TabIndex = 8;
+            cmbHoldTypeInstruktor.SelectedIndexChanged += cmbHoldTypeInstruktor_SelectedIndexChanged;
+            // 
+            // txtHoldTypeBeskrivelse
+            // 
+            txtHoldTypeBeskrivelse.Location = new Point(152, 87);
+            txtHoldTypeBeskrivelse.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeBeskrivelse.Multiline = true;
+            txtHoldTypeBeskrivelse.Name = "txtHoldTypeBeskrivelse";
+            txtHoldTypeBeskrivelse.ScrollBars = ScrollBars.Vertical;
+            txtHoldTypeBeskrivelse.Size = new Size(176, 61);
+            txtHoldTypeBeskrivelse.TabIndex = 3;
+            // 
+            // lblHoldTypeDescription
+            // 
+            lblHoldTypeDescription.AutoSize = true;
+            lblHoldTypeDescription.Location = new Point(44, 80);
+            lblHoldTypeDescription.Name = "lblHoldTypeDescription";
+            lblHoldTypeDescription.Size = new Size(64, 15);
+            lblHoldTypeDescription.TabIndex = 2;
+            lblHoldTypeDescription.Text = "Beskrivelse";
+            // 
+            // txtHoldTypeName
+            // 
+            txtHoldTypeName.Location = new Point(165, 47);
+            txtHoldTypeName.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeName.Name = "txtHoldTypeName";
+            txtHoldTypeName.Size = new Size(110, 23);
+            txtHoldTypeName.TabIndex = 1;
+            // 
+            // lblHoldTypeNavn
+            // 
+            lblHoldTypeNavn.AutoSize = true;
+            lblHoldTypeNavn.Location = new Point(52, 52);
+            lblHoldTypeNavn.Name = "lblHoldTypeNavn";
+            lblHoldTypeNavn.Size = new Size(35, 15);
+            lblHoldTypeNavn.TabIndex = 0;
+            lblHoldTypeNavn.Text = "Navn";
+            // 
+            // CreateActivityType
+            // 
+            CreateActivityType.Location = new Point(554, 230);
+            CreateActivityType.Name = "CreateActivityType";
+            CreateActivityType.Size = new Size(123, 50);
+            CreateActivityType.TabIndex = 24;
+            CreateActivityType.Text = "Opret Holdtype";
+            CreateActivityType.UseVisualStyleBackColor = true;
+            CreateActivityType.Click += CreateActivityType_Click;
+            // 
             // CreateActivityForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(863, 502);
+            ClientSize = new Size(1057, 502);
+            Controls.Add(CreateActivityType);
+            Controls.Add(pnlHoldType);
             Controls.Add(button1);
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
@@ -567,6 +697,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).EndInit();
+            pnlHoldType.ResumeLayout(false);
+            pnlHoldType.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -588,7 +720,7 @@
         private Label label7;
         private Label label6;
         private ComboBox comboBox4;
-        private Button button5;
+        private Button btnSaveActivityType;
         private Button btnSearchGet;
         private ComboBox cmbSearchLocation;
         private DateTimePicker dTPSearchDate;
@@ -617,6 +749,15 @@
         private Label label11;
         private Label label10;
         private Button button1;
+        private Panel pnlHoldType;
+        private Label lblHoldTypeTitle;
+        private ComboBox cmbHoldTypeInstruktor;
+        private TextBox txtHoldTypeBeskrivelse;
+        private Label lblHoldTypeDescription;
+        private TextBox txtHoldTypeName;
+        private Label lblHoldTypeNavn;
+        private Button btnCancelActivityType;
+        private Button CreateActivityType;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 
