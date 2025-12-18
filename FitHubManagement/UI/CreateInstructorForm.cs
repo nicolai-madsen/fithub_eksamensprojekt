@@ -39,6 +39,13 @@ namespace FitHubManagement.UI.Instructor
         {
 
         }
+        private void HideAllPanels()
+        {
+            GetAll.Visible = false;
+            panel1.Visible = false;
+            pnlSearchActivity.Visible = false;
+            newInstructorpanel.Visible = false;
+        }
 
         private void GetAllPanel()
         {
@@ -48,17 +55,25 @@ namespace FitHubManagement.UI.Instructor
             newInstructorpanel.Visible = false;
             LoadInstructors();
         }
+
+       
         private void button2_Click(object sender, EventArgs e)
         {
             GetAllPanel();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             newInstructorpanel.Visible = true;
             pnlSearchActivity.Visible = false;
             GetAll.Visible = false;
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HideAllPanels();
+            newInstructorpanel.Visible = true;
+        }
+
         private void savenewInstructor_Click(object sender, EventArgs e)
         {
             CreateNewInstructorWithActivityBLL NewInstructor = new CreateNewInstructorWithActivityBLL();
