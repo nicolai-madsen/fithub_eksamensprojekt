@@ -32,12 +32,10 @@
             lblLastName = new Label();
             lblEmail = new Label();
             lblPhone = new Label();
-            lblCert = new Label();
             txtFirstName = new TextBox();
             txtLastName = new TextBox();
             txtEmail = new TextBox();
             txtPhone = new TextBox();
-            txtCert = new TextBox();
             btnSaveIns = new Button();
             btnCancelCreateIns = new Button();
             panel1 = new Panel();
@@ -51,6 +49,7 @@
             dTPSearchDate = new DateTimePicker();
             lblSearchActivity = new Label();
             GetAll = new Panel();
+            label8 = new Label();
             lstbxGetAllIns = new ListBox();
             button1 = new Button();
             btnCreateIns = new Button();
@@ -72,7 +71,6 @@
             label6 = new Label();
             newtxtFirstName = new TextBox();
             button3 = new Button();
-            label8 = new Label();
             panel1.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
             GetAll.SuspendLayout();
@@ -119,16 +117,6 @@
             lblPhone.TabIndex = 7;
             lblPhone.Text = "Telefon";
             // 
-            // lblCert
-            // 
-            lblCert.AutoSize = true;
-            lblCert.Location = new Point(7, 199);
-            lblCert.Margin = new Padding(2, 0, 2, 0);
-            lblCert.Name = "lblCert";
-            lblCert.Size = new Size(61, 15);
-            lblCert.TabIndex = 8;
-            lblCert.Text = "HoldNavn";
-            // 
             // txtFirstName
             // 
             txtFirstName.Location = new Point(93, 49);
@@ -162,15 +150,7 @@
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(244, 23);
             txtPhone.TabIndex = 12;
-            // 
-            // txtCert
-            // 
-            txtCert.Location = new Point(93, 199);
-            txtCert.Margin = new Padding(2, 1, 2, 1);
-            txtCert.Name = "txtCert";
-            txtCert.Size = new Size(278, 23);
-            txtCert.TabIndex = 13;
-            txtCert.TextChanged += txtCert_TextChanged;
+            txtPhone.TextChanged += txtPhone_TextChanged;
             // 
             // btnSaveIns
             // 
@@ -201,12 +181,10 @@
             panel1.Controls.Add(lblFirstName);
             panel1.Controls.Add(btnSaveIns);
             panel1.Controls.Add(lblLastName);
-            panel1.Controls.Add(txtCert);
             panel1.Controls.Add(lblEmail);
             panel1.Controls.Add(txtPhone);
             panel1.Controls.Add(lblPhone);
             panel1.Controls.Add(txtEmail);
-            panel1.Controls.Add(lblCert);
             panel1.Controls.Add(txtFirstName);
             panel1.Location = new Point(3, 45);
             panel1.Name = "panel1";
@@ -321,6 +299,16 @@
             GetAll.Name = "GetAll";
             GetAll.Size = new Size(485, 503);
             GetAll.TabIndex = 21;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(7, 14);
+            label8.Name = "label8";
+            label8.Size = new Size(133, 21);
+            label8.TabIndex = 24;
+            label8.Text = "Alle instruktører:";
             // 
             // lstbxGetAllIns
             // 
@@ -532,30 +520,20 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(7, 14);
-            label8.Name = "label8";
-            label8.Size = new Size(133, 21);
-            label8.TabIndex = 24;
-            label8.Text = "Alle instruktører:";
-            // 
             // CreateInstructorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(807, 515);
             Controls.Add(label1);
-            Controls.Add(GetAll);
-            Controls.Add(pnlSearchActivity);
             Controls.Add(button3);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
             Controls.Add(panel1);
             Controls.Add(newInstructorpanel);
+            Controls.Add(GetAll);
+            Controls.Add(pnlSearchActivity);
             Margin = new Padding(2);
             Name = "CreateInstructorForm";
             Text = "Form1";
@@ -577,12 +555,10 @@
         private Label lblLastName;
         private Label lblEmail;
         private Label lblPhone;
-        private Label lblCert;
         private TextBox txtFirstName;
         private TextBox txtLastName;
         private TextBox txtEmail;
         private TextBox txtPhone;
-        private TextBox txtCert;
         private Button btnSaveIns;
         private Button btnCancelCreateIns;
         private Panel panel1;

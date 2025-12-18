@@ -58,6 +58,8 @@ namespace FitHubManagement.UI.Instructor
             newInstructorpanel.Visible = true;
             pnlSearchActivity.Visible = false;
             GetAll.Visible = false;
+            panel1.Visible = false;
+
         }
         private void savenewInstructor_Click(object sender, EventArgs e)
         {
@@ -146,16 +148,6 @@ namespace FitHubManagement.UI.Instructor
                 // Hent aktivitetstype via BLL
                 ActivityTypeBLL activityBLL = new ActivityTypeBLL();
                 ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorId);
-
-                if (activity != null)
-                {
-                    txtCert.Text = activity.ActivityTypeName;
-                }
-                else
-                {
-                    txtCert.Text = "";
-                    MessageBox.Show("Ingen aktivitetstype fundet for denne instruktør.");
-                }
             }
             else
             {
@@ -298,7 +290,7 @@ namespace FitHubManagement.UI.Instructor
             }
 
 
-            
+
             if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
             {
                 // Hent bookinger for aktivitet
@@ -332,7 +324,7 @@ namespace FitHubManagement.UI.Instructor
             txtLastName.Text = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
-            txtCert.Text = "";
+            
 
         }
         private void btnCancelCreateIns_Click(object sender, EventArgs e)
@@ -342,16 +334,17 @@ namespace FitHubManagement.UI.Instructor
 
         }
 
-        private void txtCert_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-       
 
         private void button3_Click(object sender, EventArgs e)
         {
             pnlSearchActivity.Visible = true;
             GetAll.Visible = false;
+            panel1.Visible = false;
+            newInstructorpanel.Visible = false;
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
