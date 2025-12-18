@@ -14,7 +14,7 @@ namespace FitHubManagement.DataAccess
     {
 
         // CREATE
-        public static void CreateBooking(int activityId, int customerId, string personalNote)
+        public void CreateBooking(BookingModel newBooking)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -24,9 +24,9 @@ namespace FitHubManagement.DataAccess
             Console.WriteLine($"SQL Command: {insertSql}");
             using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
             {
-                insertCmd.Parameters.AddWithValue("@ActivityID", activityId);
-                insertCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                insertCmd.Parameters.AddWithValue("@PersonalNote", (object)personalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
+                insertCmd.Parameters.AddWithValue("@ActivityID", newBooking.ActivityId);
+                insertCmd.Parameters.AddWithValue("@CustomerID", newBooking.CustomerId);
+                insertCmd.Parameters.AddWithValue("@PersonalNote", (object)newBooking.PersonalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
                 insertCmd.ExecuteNonQuery();
             }
         }
@@ -99,6 +99,35 @@ namespace FitHubManagement.DataAccess
             return bookings;
         }
 
+        public int GetBookingCountForCustomer(int customerId, DateTime weekStart)
+        {
+            DateTime weekEnd = weekStart.AddDays(7);
+
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
+            {
+                connection.Open();
+
+                string query = @" 
+                    SELECT COUNT(*)
+                    FROM Booking b 
+                    JOIN Activity a ON b.ActivityID = a.ActivityID 
+                    WHERE b.CustomerId = @CustomerId 
+                    AND a.StartDateTime >= @WeekStart 
+                    AND a.StartDateTime < DATEADD(day, 7, @WeekStart)
+                ";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerId", customerId);
+                    command.Parameters.AddWithValue("@WeekStart", weekStart.Date);
+
+                    int count = (int)command.ExecuteScalar();
+                    return count;
+                }
+            }
+        }
+
+        #region UPDATE METHODS
 
         public  List<BookingModel> GetCustomerBooking(int customerId)
         {
@@ -198,6 +227,7 @@ namespace FitHubManagement.DataAccess
                 Console.WriteLine($"{updated} rows updated.");
             }
         }
+        #endregion
 
 
         public static List<BookingModel> GetBookingsByActivityID(int activityID)  // Henter alle bookinger for en specifik aktivitet
@@ -247,7 +277,7 @@ namespace FitHubManagement.DataAccess
         //LENA
         // Denne metode finder ud af, hvor mange ledige pladser der er på et hold
         // Den bruges til acceptkriterium 1: tjek om der er ledige pladser
-        public static int GetAvailableSpots(int activityId) //En static metode, der tager et activityId som parameter og returnerer et heltal?
+        public  int GetAvailableSpots(int activityId) //En static metode, der tager et activityId som parameter og returnerer et heltal?
         {
             // Opretter forbindelse til databasen
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
