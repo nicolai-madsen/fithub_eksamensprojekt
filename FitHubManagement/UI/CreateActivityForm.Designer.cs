@@ -198,7 +198,7 @@
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnCreateActivityPanel);
-            panel1.Location = new Point(0, 41);
+            panel1.Location = new Point(10, 40);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
             panel1.Size = new Size(501, 402);
@@ -399,10 +399,10 @@
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(3, 41);
+            pnlHoldType.Location = new Point(10, 41);
             pnlHoldType.Margin = new Padding(3, 2, 3, 2);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(498, 402);
+            pnlHoldType.Size = new Size(491, 402);
             pnlHoldType.TabIndex = 23;
             pnlHoldType.Visible = false;
             // 

@@ -137,15 +137,15 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void EditCustomerCancelBtn_Click(object sender, EventArgs e)
         {
-            CustomerModel customer = _customerService.GetIndividualCustomer();
-            EditFirst.Text = customer.FirstName;
-            EditLast.Text = customer.LastName;
-            EditMail.Text = customer.Email;
-            EditPhone.Text = customer.Phone;
-            EditNote.Text = customer.PersonalNote;
-            CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
-            EditType.Text = customer.MembershipId.ToString();
-
+            CurrentStatus.Clear();
+            EditFirst.Clear();
+            EditLast.Clear();
+            EditMail.Clear();
+            EditPhone.Clear();
+            EditNote.Clear();
+            EditType.Clear();
+            EditCustomerPanel.Hide();
+            ListPanel.Show();
         }
 
         private void ShowActiveBtn_Click_1(object sender, EventArgs e)
@@ -219,29 +219,43 @@ namespace FitHubManagement.UI.CustomerUI
         }
         private void MarkActive_Click(object sender, EventArgs e)
         {
+            // Tjek at en kunde er valgt
+            if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
+            {
+                MessageBox.Show("Vælg et medlem først.");
+                return;
+            }
+
             try
             {
-                _customerService.ChangeCustomerActiveStatus(int.Parse(EditCustomerID.Text), false);
-
-
+                // Brug ID fra den valgte kunde
+                _customerService.ChangeCustomerActiveStatus(selectedCustomer.CustomerId, false);
+                MessageBox.Show("Medlem er nu markeret som aktiv.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Fejl med statusendring");
+                MessageBox.Show("Fejl med statusændring: " + ex.Message);
             }
         }
 
         private void MarkInactive_Click(object sender, EventArgs e)
         {
+            // Tjek at en kunde er valgt
+            if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
+            {
+                MessageBox.Show("Vælg et medlem først.");
+                return;
+            }
+
             try
             {
-                _customerService.ChangeCustomerActiveStatus(int.Parse(EditCustomerID.Text), true);
-
-
+                // Brug ID fra den valgte kunde
+                _customerService.ChangeCustomerActiveStatus(selectedCustomer.CustomerId, true);
+                MessageBox.Show("Medlem er nu markeret som inaktiv.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Fejl med statusendring");
+                MessageBox.Show("Fejl med statusændring: " + ex.Message);
             }
         }
         private void ShowListBtn_Click(object sender, EventArgs e)
@@ -258,13 +272,6 @@ namespace FitHubManagement.UI.CustomerUI
             EditCustomerPanel.Hide();
             NewCustomerPanel.Show();
             ListPanel.Hide();
-        }
-
-        private void CustomerInfoBtn_Click(object sender, EventArgs e)
-        {
-            BookingPanel.Hide();
-            EditCustomerPanel.Hide();
-            NewCustomerPanel.Hide();
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -311,6 +318,8 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void EditCustomertxt_Click(object sender, EventArgs e)
         {
+            ListPanel.Hide();
+            EditCustomerPanel.Show();
             int index = CustomerListBox.SelectedIndex;
 
             if (index >= 0)
@@ -332,6 +341,16 @@ namespace FitHubManagement.UI.CustomerUI
             {
                 MessageBox.Show("Vælg en instruktør først.");
             }
+        }
+
+        private void EditFirst_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditCustomerID_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -40,7 +40,6 @@
             ShowAllBtn = new Button();
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
-            CustomerInfoBtn = new Button();
             BookingPanel = new Panel();
             label3 = new Label();
             label1 = new Label();
@@ -66,11 +65,7 @@
             label4 = new Label();
             NewCustomerTitle = new Label();
             EditCustomerPanel = new Panel();
-            textBox1 = new TextBox();
-            label13 = new Label();
             MarkInactive = new Button();
-            label36 = new Label();
-            EditCustomerID = new TextBox();
             CurrentStatus = new TextBox();
             label35 = new Label();
             label17 = new Label();
@@ -101,6 +96,7 @@
             // 
             // ListPanel
             // 
+            ListPanel.BackColor = Color.DarkSeaGreen;
             ListPanel.Controls.Add(InfoCustomerBtn);
             ListPanel.Controls.Add(EditCustomertxt);
             ListPanel.Controls.Add(label10);
@@ -112,7 +108,7 @@
             ListPanel.Controls.Add(ShowAllBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
-            ListPanel.Location = new Point(640, 344);
+            ListPanel.Location = new Point(4, 13);
             ListPanel.Margin = new Padding(3, 2, 3, 2);
             ListPanel.Name = "ListPanel";
             ListPanel.Size = new Size(536, 494);
@@ -122,7 +118,7 @@
             // 
             InfoCustomerBtn.Location = new Point(443, 118);
             InfoCustomerBtn.Name = "InfoCustomerBtn";
-            InfoCustomerBtn.Size = new Size(75, 23);
+            InfoCustomerBtn.Size = new Size(90, 23);
             InfoCustomerBtn.TabIndex = 55;
             InfoCustomerBtn.Text = "Information";
             InfoCustomerBtn.UseVisualStyleBackColor = true;
@@ -131,7 +127,7 @@
             // 
             EditCustomertxt.Location = new Point(443, 175);
             EditCustomertxt.Name = "EditCustomertxt";
-            EditCustomertxt.Size = new Size(75, 23);
+            EditCustomertxt.Size = new Size(90, 23);
             EditCustomertxt.TabIndex = 54;
             EditCustomertxt.Text = "Rediger";
             EditCustomertxt.UseVisualStyleBackColor = true;
@@ -225,26 +221,16 @@
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
             // 
-            // CustomerInfoBtn
-            // 
-            CustomerInfoBtn.Location = new Point(268, 722);
-            CustomerInfoBtn.Margin = new Padding(3, 2, 3, 2);
-            CustomerInfoBtn.Name = "CustomerInfoBtn";
-            CustomerInfoBtn.Size = new Size(150, 22);
-            CustomerInfoBtn.TabIndex = 20;
-            CustomerInfoBtn.Text = "Information/Rediger";
-            CustomerInfoBtn.UseVisualStyleBackColor = true;
-            CustomerInfoBtn.Click += CustomerInfoBtn_Click;
-            // 
             // BookingPanel
             // 
+            BookingPanel.BackColor = Color.DarkSeaGreen;
             BookingPanel.Controls.Add(label3);
             BookingPanel.Controls.Add(label1);
             BookingPanel.Controls.Add(activityInfoList);
             BookingPanel.Controls.Add(label2);
-            BookingPanel.Location = new Point(640, 11);
+            BookingPanel.Location = new Point(7, 5);
             BookingPanel.Name = "BookingPanel";
-            BookingPanel.Size = new Size(534, 328);
+            BookingPanel.Size = new Size(534, 500);
             BookingPanel.TabIndex = 17;
             // 
             // label3
@@ -287,6 +273,7 @@
             // 
             // NewCustomerPanel
             // 
+            NewCustomerPanel.BackColor = Color.DarkSeaGreen;
             NewCustomerPanel.Controls.Add(label26);
             NewCustomerPanel.Controls.Add(memberType);
             NewCustomerPanel.Controls.Add(BirthdayValue);
@@ -305,10 +292,10 @@
             NewCustomerPanel.Controls.Add(label5);
             NewCustomerPanel.Controls.Add(label4);
             NewCustomerPanel.Controls.Add(NewCustomerTitle);
-            NewCustomerPanel.Location = new Point(12, 353);
+            NewCustomerPanel.Location = new Point(7, 13);
             NewCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             NewCustomerPanel.Name = "NewCustomerPanel";
-            NewCustomerPanel.Size = new Size(536, 351);
+            NewCustomerPanel.Size = new Size(534, 490);
             NewCustomerPanel.TabIndex = 9;
             // 
             // label26
@@ -354,7 +341,7 @@
             NewCustomerCancelBtn.Name = "NewCustomerCancelBtn";
             NewCustomerCancelBtn.Size = new Size(82, 22);
             NewCustomerCancelBtn.TabIndex = 35;
-            NewCustomerCancelBtn.Text = "Annuler";
+            NewCustomerCancelBtn.Text = "Annullér";
             NewCustomerCancelBtn.UseVisualStyleBackColor = true;
             NewCustomerCancelBtn.Click += NewCustomerCancelBtn_Click;
             // 
@@ -476,11 +463,8 @@
             // 
             // EditCustomerPanel
             // 
-            EditCustomerPanel.Controls.Add(textBox1);
-            EditCustomerPanel.Controls.Add(label13);
+            EditCustomerPanel.BackColor = Color.DarkSeaGreen;
             EditCustomerPanel.Controls.Add(MarkInactive);
-            EditCustomerPanel.Controls.Add(label36);
-            EditCustomerPanel.Controls.Add(EditCustomerID);
             EditCustomerPanel.Controls.Add(CurrentStatus);
             EditCustomerPanel.Controls.Add(label35);
             EditCustomerPanel.Controls.Add(label17);
@@ -503,26 +487,8 @@
             EditCustomerPanel.Location = new Point(10, 11);
             EditCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             EditCustomerPanel.Name = "EditCustomerPanel";
-            EditCustomerPanel.Size = new Size(536, 338);
+            EditCustomerPanel.Size = new Size(531, 494);
             EditCustomerPanel.TabIndex = 12;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(173, 51);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(110, 23);
-            textBox1.TabIndex = 49;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(53, 51);
-            label13.Name = "label13";
-            label13.Size = new Size(66, 15);
-            label13.TabIndex = 48;
-            label13.Text = "Fødselsdag";
             // 
             // MarkInactive
             // 
@@ -534,24 +500,6 @@
             MarkInactive.Text = "Inaktiv";
             MarkInactive.UseVisualStyleBackColor = true;
             MarkInactive.Click += MarkInactive_Click;
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Location = new Point(421, 16);
-            label36.Name = "label36";
-            label36.Size = new Size(18, 15);
-            label36.TabIndex = 54;
-            label36.Text = "ID";
-            // 
-            // EditCustomerID
-            // 
-            EditCustomerID.Location = new Point(466, 11);
-            EditCustomerID.Margin = new Padding(3, 2, 3, 2);
-            EditCustomerID.Name = "EditCustomerID";
-            EditCustomerID.ReadOnly = true;
-            EditCustomerID.Size = new Size(30, 23);
-            EditCustomerID.TabIndex = 53;
             // 
             // CurrentStatus
             // 
@@ -679,6 +627,7 @@
             EditFirst.Name = "EditFirst";
             EditFirst.Size = new Size(110, 23);
             EditFirst.TabIndex = 22;
+            EditFirst.TextChanged += EditFirst_TextChanged;
             // 
             // label12
             // 
@@ -753,9 +702,9 @@
             BackBtn.Location = new Point(552, 290);
             BackBtn.Margin = new Padding(3, 2, 3, 2);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(82, 22);
+            BackBtn.Size = new Size(101, 42);
             BackBtn.TabIndex = 16;
-            BackBtn.Text = "Tilbage";
+            BackBtn.Text = "Tilbage til forsiden";
             BackBtn.UseVisualStyleBackColor = true;
             BackBtn.Click += BackBtn_Click;
             // 
@@ -763,15 +712,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1210, 755);
-            Controls.Add(BookingPanel);
-            Controls.Add(ListPanel);
-            Controls.Add(NewCustomerPanel);
+            ClientSize = new Size(693, 535);
             Controls.Add(BackBtn);
-            Controls.Add(CustomerInfoBtn);
             Controls.Add(NewCustomerBtn);
-            Controls.Add(EditCustomerPanel);
             Controls.Add(ShowListBtn);
+            Controls.Add(NewCustomerPanel);
+            Controls.Add(EditCustomerPanel);
+            Controls.Add(ListPanel);
+            Controls.Add(BookingPanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
@@ -812,7 +760,6 @@
         private ComboBox StatusComboBox;
         private Button ShowAllBtn;
         private Button ShowInactiveBtn;
-        private Button CustomerInfoBtn;
         private ListBox activityInfoList;
         private Label label25;
         private DateTimePicker BirthdayValue;
@@ -839,13 +786,9 @@
         private Panel EditCustomerPanel;
         private Label label17;
         private TextBox CurrentStatus;
-        private Label label36;
-        private TextBox EditCustomerID;
         private Button MarkActive;
         private Button ShowActiveBtn;
         private Button MarkInactive;
-        private TextBox textBox1;
-        private Label label13;
         private Panel BookingPanel;
         private Label label3;
         private Label label1;
