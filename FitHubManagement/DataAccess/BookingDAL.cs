@@ -29,6 +29,7 @@ namespace FitHubManagement.DataAccess
                 insertCmd.Parameters.AddWithValue("@PersonalNote", (object)newBooking.PersonalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
                 insertCmd.ExecuteNonQuery();
             }
+        
         }
 
         // DELETE

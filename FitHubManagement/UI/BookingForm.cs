@@ -1,10 +1,10 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows.Forms;
 
 namespace FitHubManagement.UI.BookingUI
@@ -210,16 +210,22 @@ namespace FitHubManagement.UI.BookingUI
             DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
             string activityTypeName = comboBox1.SelectedItem.ToString();
 
-            // Byg filter model
+            /*
+            // Byg filter model - Modellen bygges i 
             ActivityFilterModel filter = new ActivityFilterModel
             {
                 ActivityDate = date,
                 ActivityTypeName = activityTypeName
             };
-
+            */
+            /*
             // Hent fra DAL
             ActivityDAL dal = new ActivityDAL();
             List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
+            */
+
+            // Hent fra DAL via BLL instans
+            List<ActivityFilterModel> activities = _bookingService.GetFilteredActivities(date, activityTypeName); // ActivityDate, ActivityTypeName params
 
             // Vis i listBox2
             listBox2.Items.Clear();
@@ -276,7 +282,8 @@ namespace FitHubManagement.UI.BookingUI
             int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
             if (availableSpots <= 0)
             {
-                throw new Exception("Holdet er fyldt");
+                MessageBox.Show("Holdet er fyldt");
+                return;
             }
 
             if (availableSpots <= 0)
@@ -316,20 +323,24 @@ namespace FitHubManagement.UI.BookingUI
             // AC2: Registrer booking i databasen (KUN ÉN GANG)
             try
             {
-                _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, ""); // _bookingService objekt kalder Service metode, som kalder tilsvarende DAL metode
-                                                                                                    // Først behandles input i Business Logic 
+                int participants = _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, "");
+                
+                MessageBox.Show(
+                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
+                );
             }
             catch (SqlException)
             {
                 MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
                 return;
             }
-            
+
+            /* FLYT NÅR PISSET VIRKER IGEN
             // AC3: Vis at deltagerlisten er opdateret
-            int participants = BookingDAL.GetAllBookings()
+            int participants = _bookingService.GetAvailableSpots(selectedActivityId, selectedCustomer.CustomerId, "");
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
-
+            */
             MessageBox.Show(
                 $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
             );

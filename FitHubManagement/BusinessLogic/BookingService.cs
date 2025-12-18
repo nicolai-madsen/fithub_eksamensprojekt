@@ -1,24 +1,32 @@
 ﻿using FitHubManagement.Models;
 using FitHubManagement.DataAccess;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class BookingService
+    public class BookingService
     {
         private readonly BookingDAL _bookingDAL = new BookingDAL();
         private readonly CustomerDAL _customerDAL = new CustomerDAL();
         private readonly ActivityDAL _activityDAL = new ActivityDAL();
 
-        public void CreateBooking(int activityId, int customerId, string note)
+        public int CreateBooking(int activityId, int customerId, string note)
         {
-           
-
-           
+            int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
+            if (availableSpots <= 0)
+                throw new Exception("Der er ikke flere ledige pladser på holdet.");
+            
+            DateTime activityDate = _activityDAL.GetActivityDate(activityId);
+            if (!CanCustomerBook(customerId, activityDate))
+            {
+                throw new Exception("Medlem kan bookes på maks 2 hold i ugen");
+            }
 
             BookingModel newBooking = new BookingModel
             {
@@ -27,9 +35,17 @@ namespace FitHubManagement.BusinessLogic
                 PersonalNote = note,
             };
 
-          
+            try
+            {
+                _bookingDAL.CreateBooking(newBooking);
+                int participants = _bookingDAL.GetParticipantCount(activityId);
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Medlemmet er allerede tilmeldt holdet.");
+            }
 
-            _bookingDAL.CreateBooking(newBooking);
+            
         }
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
@@ -57,6 +73,20 @@ namespace FitHubManagement.BusinessLogic
 
             return true;
         }
+
+        public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
+        {
+            // BLL opbygger filter-model
+            ActivityFilterModel filter = new ActivityFilterModel
+            {
+                ActivityDate = date,
+                ActivityTypeName = activityTypeName
+            };
+
+            // BLL kalder DAL
+            return _activityDAL.GetFilteredActivities(filter);
+        }
+
 
         public int GetAvailableSpots(int activityId)
         {
