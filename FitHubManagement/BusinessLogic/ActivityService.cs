@@ -5,8 +5,8 @@ namespace FitHubManagement.BusinessLogic
 {
     public class ActivityService
     {
-        private readonly ActivityDAL _activityDal = new ActivityDAL();
-        private readonly ActivityTypeDAL _activityTypeDal = new ActivityTypeDAL();
+        private readonly ActivityDAL _activityDAL = new ActivityDAL();
+        private readonly ActivityTypeDAL _activityTypeDAL = new ActivityTypeDAL();
 
         public ActivityModel CreateActivity(
             int activityTypeId,
@@ -53,25 +53,35 @@ namespace FitHubManagement.BusinessLogic
                 };
 
             // 3. DAL-kald (INSTANS!)
-            activity.ActivityId = _activityDal.CreateActivity(activity);
+            activity.ActivityId = _activityDAL.CreateActivity(activity);
 
             return activity;
         }
 
         public List<string> GetAllLocations()
         {
-            return _activityDal.GetAllLocations();
+            return _activityDAL.GetAllLocations();
         }
 
         // Kommer fra ActivityType 
         public List<ActivityTypeModel> GetAllActivityTypes()
         {
-            return _activityTypeDal.GetAllActivityTypes();
+            return _activityTypeDAL.GetAllActivityTypes();
         }
 
         public List<string> GetAllDuration()
         {
-            return _activityDal.GetAllDuration();
+            return _activityDAL.GetAllDuration();
+        }
+
+        public List<string> GetAllActivityTypeNames()
+        {
+            return _activityDAL.GetAllActivityTypeNames();
+        }
+
+        public DateTime GetActivityDate(int activityId)
+        {
+            return _activityDAL.GetActivityDate(activityId);
         }
     }
 }

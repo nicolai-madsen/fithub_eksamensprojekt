@@ -249,7 +249,7 @@ namespace FitHubManagement.DataAccess
             return activitylocation;
         }
 
-        public List<string> GetAllActivityTypes() //En liste af alle navne på holdtyper. Metoden hører til i ActivityType, men der er ikke oprettet klasser i ActivityType endnu.
+        public List<string> GetAllActivityTypeNames() //En liste af alle navne på holdtyper. Metoden hører til i ActivityType, men der er ikke oprettet klasser i ActivityType endnu.
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -299,6 +299,28 @@ namespace FitHubManagement.DataAccess
             return activityDuration;
         }
 
+        // Tager imod hold-id og returnerer dato holdet finder sted
+        public DateTime GetActivityDate(int activityId)
+        {
+            using (SqlConnection connection = new SqlConnection( DatabaseConfig.ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT StartDateTime FROM Activity WHERE ActivityId = @ActivityID";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ActivityId", activityId);
+
+                    var resultDate = cmd.ExecuteScalar();
+
+                    if (resultDate != null) 
+                    {
+                        return (DateTime)resultDate;
+                    }
+                    throw new Exception("Hold blev ikke fundet i databasen.");
+                }
+            }
+        }
 
         #endregion
 
