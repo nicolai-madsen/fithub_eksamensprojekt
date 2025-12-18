@@ -63,11 +63,21 @@ namespace FitHubManagement.BusinessLogic
             return _bookingDAL.GetAvailableSpots(activityId);
         }
 
-        // Helper Method, gets start of week
-        private DateTime GetStartOfWeek(DateTime dt)
+        // Helper Method, gets start of week, for weekly booking restrictions on "Standard" membership
+        private DateTime GetStartOfWeek(DateTime date)
         {
-            int diff = (7 + (dt.DayOfWeek - DayOfWeek.Monday)) % 7;
-            return dt.AddDays(-1 * diff).Date;
+            return date.DayOfWeek switch
+            {
+                DayOfWeek.Monday => date.Date,
+                DayOfWeek.Tuesday => date.AddDays(-1).Date,
+                DayOfWeek.Wednesday => date.AddDays(-2).Date,
+                DayOfWeek.Thursday => date.AddDays(-3).Date,
+                DayOfWeek.Friday => date.AddDays(-4).Date,
+                DayOfWeek.Saturday => date.AddDays(-5).Date,
+                DayOfWeek.Sunday => date.AddDays(-6).Date,
+                _ => date.Date
+            };
         }
+
     }
 }
