@@ -1,20 +1,22 @@
 ﻿using FitHubManagement.Models;
 using FitHubManagement.DataAccess;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class BookingService
+    public class BookingService
     {
         private readonly BookingDAL _bookingDAL = new BookingDAL();
         private readonly CustomerDAL _customerDAL = new CustomerDAL();
         private readonly ActivityDAL _activityDAL = new ActivityDAL();
 
-        public void CreateBooking(int activityId, int customerId, string note)
+        public int CreateBooking(int activityId, int customerId, string note)
         {
 
 
@@ -29,7 +31,7 @@ namespace FitHubManagement.BusinessLogic
 
 
 
-            _bookingDAL.CreateBooking(newBooking);
+            
         }
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
@@ -57,6 +59,30 @@ namespace FitHubManagement.BusinessLogic
 
             return true;
         }
+
+        public int GetParticipantCount(int activityId)
+        {
+            // Her kalder du din DAL/Repository. 
+            // Det er meget bedre at lade databasen tælle rækkerne end at hente dem alle op i hukommelsen.
+            return _bookingDAL.GetAllBookings()
+                                     .Where(b => b.ActivityId == activityId)
+                                     .Count();
+        }
+
+
+        public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
+        {
+            // BLL opbygger filter-model
+            ActivityFilterModel filter = new ActivityFilterModel
+            {
+                ActivityDate = date,
+                ActivityTypeName = activityTypeName
+            };
+
+            // BLL kalder DAL
+            return _activityDAL.GetFilteredActivities(filter);
+        }
+
 
         public int GetAvailableSpots(int activityId)
         {
