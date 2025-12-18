@@ -182,6 +182,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.DarkSeaGreen;
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(comboBox1);
@@ -200,7 +201,7 @@
             panel1.Location = new Point(0, 41);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(526, 415);
+            panel1.Size = new Size(501, 402);
             panel1.TabIndex = 21;
             panel1.Paint += panel1_Paint;
             // 
@@ -389,7 +390,7 @@
             // 
             // pnlHoldType
             // 
-            pnlHoldType.BackColor = SystemColors.Control;
+            pnlHoldType.BackColor = Color.DarkSeaGreen;
             pnlHoldType.Controls.Add(btnCancelActivityType);
             pnlHoldType.Controls.Add(btnSaveActivityType);
             pnlHoldType.Controls.Add(label6);
@@ -398,10 +399,10 @@
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(3, 27);
+            pnlHoldType.Location = new Point(3, 41);
             pnlHoldType.Margin = new Padding(3, 2, 3, 2);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(545, 416);
+            pnlHoldType.Size = new Size(498, 402);
             pnlHoldType.TabIndex = 23;
             pnlHoldType.Visible = false;
             // 
@@ -500,8 +501,8 @@
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(label3);
-            Controls.Add(pnlHoldType);
             Controls.Add(panel1);
+            Controls.Add(pnlHoldType);
             Margin = new Padding(2, 3, 2, 3);
             MinimumSize = new Size(790, 373);
             Name = "CreateActivityForm";

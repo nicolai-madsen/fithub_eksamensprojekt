@@ -57,6 +57,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.DarkSeaGreen;
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -69,7 +70,7 @@
             panel1.Location = new Point(10, 9);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(430, 384);
+            panel1.Size = new Size(451, 373);
             panel1.TabIndex = 0;
             // 
             // button4
@@ -163,6 +164,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.DarkSeaGreen;
             panel2.Controls.Add(chkFilterByDate);
             panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
@@ -308,9 +310,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(627, 469);
-            Controls.Add(panel2);
             Controls.Add(button1);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "BookingForm";
             Text = "BookingForm";

@@ -176,6 +176,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.DarkSeaGreen;
             panel1.Controls.Add(txtLastName);
             panel1.Controls.Add(btnCancelCreateIns);
             panel1.Controls.Add(lblFirstName);
@@ -186,14 +187,15 @@
             panel1.Controls.Add(lblPhone);
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(txtFirstName);
-            panel1.Location = new Point(3, 45);
+            panel1.Location = new Point(3, 36);
             panel1.Name = "panel1";
-            panel1.Size = new Size(422, 438);
+            panel1.Size = new Size(527, 435);
             panel1.TabIndex = 16;
             panel1.Paint += panel1_Paint;
             // 
             // pnlSearchActivity
             // 
+            pnlSearchActivity.BackColor = Color.DarkSeaGreen;
             pnlSearchActivity.Controls.Add(lblBookingCount);
             pnlSearchActivity.Controls.Add(cmbShowInstructors);
             pnlSearchActivity.Controls.Add(button2);
@@ -202,10 +204,10 @@
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(dTPSearchDate);
             pnlSearchActivity.Controls.Add(lblSearchActivity);
-            pnlSearchActivity.Location = new Point(0, 1);
+            pnlSearchActivity.Location = new Point(10, 34);
             pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
-            pnlSearchActivity.Size = new Size(528, 470);
+            pnlSearchActivity.Size = new Size(520, 437);
             pnlSearchActivity.TabIndex = 25;
             // 
             // lblBookingCount
@@ -245,7 +247,7 @@
             listBox1.Location = new Point(9, 197);
             listBox1.Margin = new Padding(1);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(380, 259);
+            listBox1.Size = new Size(380, 229);
             listBox1.TabIndex = 21;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -291,13 +293,14 @@
             // 
             // GetAll
             // 
+            GetAll.BackColor = Color.DarkSeaGreen;
             GetAll.Controls.Add(label8);
             GetAll.Controls.Add(lstbxGetAllIns);
             GetAll.Controls.Add(button1);
-            GetAll.Location = new Point(11, 13);
+            GetAll.Location = new Point(11, 34);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
-            GetAll.Size = new Size(485, 503);
+            GetAll.Size = new Size(519, 437);
             GetAll.TabIndex = 21;
             // 
             // label8
@@ -314,16 +317,16 @@
             // 
             lstbxGetAllIns.FormattingEnabled = true;
             lstbxGetAllIns.ItemHeight = 15;
-            lstbxGetAllIns.Location = new Point(1, 46);
+            lstbxGetAllIns.Location = new Point(38, 51);
             lstbxGetAllIns.Margin = new Padding(1);
             lstbxGetAllIns.Name = "lstbxGetAllIns";
-            lstbxGetAllIns.Size = new Size(450, 349);
+            lstbxGetAllIns.Size = new Size(438, 319);
             lstbxGetAllIns.TabIndex = 0;
             lstbxGetAllIns.SelectedIndexChanged += lstbxGetAllIns_SelectedIndexChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(143, 430);
+            button1.Location = new Point(190, 373);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(138, 46);
@@ -368,6 +371,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(244, 1);
             label1.Margin = new Padding(1, 0, 1, 0);
@@ -379,6 +383,7 @@
             // 
             // newInstructorpanel
             // 
+            newInstructorpanel.BackColor = Color.DarkSeaGreen;
             newInstructorpanel.Controls.Add(savenewInstructor);
             newInstructorpanel.Controls.Add(newtxtActivityDescription);
             newInstructorpanel.Controls.Add(newtxtActivityName);
@@ -392,14 +397,14 @@
             newInstructorpanel.Controls.Add(label5);
             newInstructorpanel.Controls.Add(label6);
             newInstructorpanel.Controls.Add(newtxtFirstName);
-            newInstructorpanel.Location = new Point(3, 12);
+            newInstructorpanel.Location = new Point(6, 36);
             newInstructorpanel.Name = "newInstructorpanel";
-            newInstructorpanel.Size = new Size(466, 491);
+            newInstructorpanel.Size = new Size(524, 435);
             newInstructorpanel.TabIndex = 24;
             // 
             // savenewInstructor
             // 
-            savenewInstructor.Location = new Point(123, 389);
+            savenewInstructor.Location = new Point(186, 388);
             savenewInstructor.Name = "savenewInstructor";
             savenewInstructor.Size = new Size(166, 29);
             savenewInstructor.TabIndex = 20;
@@ -530,8 +535,8 @@
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
-            Controls.Add(panel1);
             Controls.Add(newInstructorpanel);
+            Controls.Add(panel1);
             Controls.Add(GetAll);
             Controls.Add(pnlSearchActivity);
             Margin = new Padding(2);
