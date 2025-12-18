@@ -165,7 +165,6 @@
             InfoBtn.TabIndex = 51;
             InfoBtn.Text = "Information";
             InfoBtn.UseVisualStyleBackColor = true;
-            InfoBtn.Click += InfoBtn_Click;
             // 
             // label30
             // 
