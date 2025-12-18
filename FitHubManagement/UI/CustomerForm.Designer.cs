@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            EditCustomertxt = new Button();
+            label10 = new Label();
             SearchBox = new TextBox();
             ShowActiveBtn = new Button();
             label29 = new Label();
@@ -49,16 +51,10 @@
             activityInfoList = new ListBox();
             label2 = new Label();
             NewCustomerPanel = new Panel();
-            label27 = new Label();
-            label23 = new Label();
-            label28 = new Label();
             label26 = new Label();
             memberType = new ComboBox();
             BirthdayValue = new DateTimePicker();
             label25 = new Label();
-            label24 = new Label();
-            label22 = new Label();
-            Required = new Label();
             NewCustomerCancelBtn = new Button();
             NewCustomerConfirmBtn = new Button();
             Notes = new TextBox();
@@ -101,6 +97,7 @@
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
             BackBtn = new Button();
+            InfoCustomerBtn = new Button();
             ListPanel.SuspendLayout();
             SearchPanel.SuspendLayout();
             BookingPanel.SuspendLayout();
@@ -110,6 +107,9 @@
             // 
             // ListPanel
             // 
+            ListPanel.Controls.Add(InfoCustomerBtn);
+            ListPanel.Controls.Add(EditCustomertxt);
+            ListPanel.Controls.Add(label10);
             ListPanel.Controls.Add(SearchBox);
             ListPanel.Controls.Add(ShowActiveBtn);
             ListPanel.Controls.Add(label29);
@@ -124,9 +124,28 @@
             ListPanel.Size = new Size(536, 494);
             ListPanel.TabIndex = 8;
             // 
+            // EditCustomertxt
+            // 
+            EditCustomertxt.Location = new Point(443, 175);
+            EditCustomertxt.Name = "EditCustomertxt";
+            EditCustomertxt.Size = new Size(75, 23);
+            EditCustomertxt.TabIndex = 54;
+            EditCustomertxt.Text = "Rediger";
+            EditCustomertxt.UseVisualStyleBackColor = true;
+            EditCustomertxt.Click += EditCustomertxt_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(55, 96);
+            label10.Name = "label10";
+            label10.Size = new Size(95, 15);
+            label10.TabIndex = 53;
+            label10.Text = "Søg alle medlem";
+            // 
             // SearchBox
             // 
-            SearchBox.Location = new Point(108, 87);
+            SearchBox.Location = new Point(169, 90);
             SearchBox.Name = "SearchBox";
             SearchBox.Size = new Size(117, 23);
             SearchBox.TabIndex = 52;
@@ -134,7 +153,7 @@
             // 
             // ShowActiveBtn
             // 
-            ShowActiveBtn.Location = new Point(55, 336);
+            ShowActiveBtn.Location = new Point(143, 338);
             ShowActiveBtn.Margin = new Padding(3, 2, 3, 2);
             ShowActiveBtn.Name = "ShowActiveBtn";
             ShowActiveBtn.Size = new Size(82, 22);
@@ -146,7 +165,7 @@
             // label29
             // 
             label29.AutoSize = true;
-            label29.Location = new Point(326, 90);
+            label29.Location = new Point(319, 340);
             label29.Name = "label29";
             label29.Size = new Size(75, 15);
             label29.TabIndex = 49;
@@ -154,7 +173,7 @@
             // 
             // count
             // 
-            count.Location = new Point(408, 88);
+            count.Location = new Point(408, 337);
             count.Margin = new Padding(3, 2, 3, 2);
             count.Name = "count";
             count.ReadOnly = true;
@@ -163,7 +182,7 @@
             // 
             // ShowInactiveBtn
             // 
-            ShowInactiveBtn.Location = new Point(153, 336);
+            ShowInactiveBtn.Location = new Point(231, 337);
             ShowInactiveBtn.Margin = new Padding(3, 2, 3, 2);
             ShowInactiveBtn.Name = "ShowInactiveBtn";
             ShowInactiveBtn.Size = new Size(82, 22);
@@ -174,7 +193,7 @@
             // 
             // ShowAllBtn
             // 
-            ShowAllBtn.Location = new Point(231, 87);
+            ShowAllBtn.Location = new Point(55, 338);
             ShowAllBtn.Margin = new Padding(3, 2, 3, 2);
             ShowAllBtn.Name = "ShowAllBtn";
             ShowAllBtn.Size = new Size(82, 22);
@@ -316,16 +335,10 @@
             // 
             // NewCustomerPanel
             // 
-            NewCustomerPanel.Controls.Add(label27);
-            NewCustomerPanel.Controls.Add(label23);
-            NewCustomerPanel.Controls.Add(label28);
             NewCustomerPanel.Controls.Add(label26);
             NewCustomerPanel.Controls.Add(memberType);
             NewCustomerPanel.Controls.Add(BirthdayValue);
             NewCustomerPanel.Controls.Add(label25);
-            NewCustomerPanel.Controls.Add(label24);
-            NewCustomerPanel.Controls.Add(label22);
-            NewCustomerPanel.Controls.Add(Required);
             NewCustomerPanel.Controls.Add(NewCustomerCancelBtn);
             NewCustomerPanel.Controls.Add(NewCustomerConfirmBtn);
             NewCustomerPanel.Controls.Add(Notes);
@@ -345,39 +358,6 @@
             NewCustomerPanel.Name = "NewCustomerPanel";
             NewCustomerPanel.Size = new Size(536, 351);
             NewCustomerPanel.TabIndex = 9;
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 11F);
-            label27.ForeColor = Color.Red;
-            label27.Location = new Point(131, 196);
-            label27.Name = "label27";
-            label27.Size = new Size(15, 20);
-            label27.TabIndex = 48;
-            label27.Text = "*";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 11F);
-            label23.ForeColor = Color.Red;
-            label23.Location = new Point(371, 66);
-            label23.Name = "label23";
-            label23.Size = new Size(15, 20);
-            label23.TabIndex = 47;
-            label23.Text = "*";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI", 11F);
-            label28.ForeColor = Color.Red;
-            label28.Location = new Point(131, 136);
-            label28.Name = "label28";
-            label28.Size = new Size(15, 20);
-            label28.TabIndex = 46;
-            label28.Text = "*";
             // 
             // label26
             // 
@@ -414,39 +394,6 @@
             label25.Size = new Size(79, 15);
             label25.TabIndex = 41;
             label25.Text = "Medlemstype";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 11F);
-            label24.ForeColor = Color.Red;
-            label24.Location = new Point(131, 166);
-            label24.Name = "label24";
-            label24.Size = new Size(15, 20);
-            label24.TabIndex = 39;
-            label24.Text = "*";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 11F);
-            label22.ForeColor = Color.Red;
-            label22.Location = new Point(131, 104);
-            label22.Name = "label22";
-            label22.Size = new Size(15, 20);
-            label22.TabIndex = 37;
-            label22.Text = "*";
-            // 
-            // Required
-            // 
-            Required.AutoSize = true;
-            Required.Font = new Font("Segoe UI", 11F);
-            Required.ForeColor = Color.Red;
-            Required.Location = new Point(131, 65);
-            Required.Name = "Required";
-            Required.Size = new Size(15, 20);
-            Required.TabIndex = 36;
-            Required.Text = "*";
             // 
             // NewCustomerCancelBtn
             // 
@@ -861,6 +808,15 @@
             BackBtn.UseVisualStyleBackColor = true;
             BackBtn.Click += BackBtn_Click;
             // 
+            // InfoCustomerBtn
+            // 
+            InfoCustomerBtn.Location = new Point(443, 118);
+            InfoCustomerBtn.Name = "InfoCustomerBtn";
+            InfoCustomerBtn.Size = new Size(75, 23);
+            InfoCustomerBtn.TabIndex = 55;
+            InfoCustomerBtn.Text = "Information";
+            InfoCustomerBtn.UseVisualStyleBackColor = true;
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -919,15 +875,9 @@
         private Button CustomerInfoBtn;
         private Button InfoBtn;
         private ListBox activityInfoList;
-        private Label Required;
-        private Label label24;
-        private Label label22;
         private Label label25;
         private DateTimePicker BirthdayValue;
         private Label label26;
-        private Label label28;
-        private Label label23;
-        private Label label27;
         private TextBox count;
         private Label label29;
         private Panel SearchPanel;
@@ -965,5 +915,8 @@
         private Label label3;
         private Label label1;
         private TextBox SearchBox;
+        private Label label10;
+        private Button EditCustomertxt;
+        private Button InfoCustomerBtn;
     }
 }

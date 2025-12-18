@@ -325,7 +325,7 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-          
+
             string name = SearchBox.Text.Trim();
 
 
@@ -349,10 +349,39 @@ namespace FitHubManagement.UI.CustomerUI
             CustomerListBox.ClearSelected();
         }
 
+        private void EditCustomertxt_Click(object sender, EventArgs e)
+        {
+            int index = CustomerListBox.SelectedIndex;
 
+            if (index >= 0)
+            {
+                CustomerModel customer = (CustomerModel)CustomerListBox.Items[index];
 
+                // Opdater med værdier fra tekstbokse
+                EditFirst.Text = customer.FirstName;
+                EditLast.Text = customer.LastName;
+                EditMail.Text = customer.Email;
+                EditPhone.Text = customer.Phone;
+                EditNote.Text = customer.PersonalNote;
+                CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
+                EditType.Text = customer.MembershipId.ToString();
+                EditCustomerID.Text = customer.CustomerId.ToString();
+
+                // Kald BLL
+                _customerService.UpdateCustomer(customer);
+
+                MessageBox.Show("Instruktør opdateret!");
+               // LoadInstructors();
+            }
+            else
+            {
+                MessageBox.Show("Ingen instruktør valgt.");
+            }
+        }
     }
+
 }
+   
 
 
 
