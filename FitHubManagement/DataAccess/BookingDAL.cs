@@ -120,22 +120,16 @@ namespace FitHubManagement.DataAccess
 
         #region UPDATE METHODS
 
-        public List<ViewBookingModel> GetCustomerBookings(int customerId)
+        public  List<BookingModel> GetCustomerBooking(int customerId)
         {
             // Liste hvor vi samler alle booking-objekter
-            List<ViewBookingModel> bookings = new List<ViewBookingModel>();
+            List<BookingModel> bookings = new List<BookingModel>();
 
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
 
-            string query = "SELECT Customer.CustomerID,  Activity.StartDateTime,  Booking.BookingID, " +
-                           "NAME = Instructor.FirstName + Instructor.LastName, ActivityType.ActivityTypeName " +
-                           "FROM ((((Booking INNER JOIN Customer ON Booking.CustomerID = Customer.CustomerID) " +
-                           "INNER JOIN Activity ON Booking.ActivityID = Activity.ActivityID) " +
-                           "INNER JOIN ActivityType ON Activity.ActivityTypeID = ActivityType.ActivityTypeID) " +
-                           "INNER JOIN Instructor ON Activity.InstructorID = Instructor.InstructorID) " +
-                           "WHERE Customer.CustomerID = @customerId";
+            string query = "SELECT BookingID, ActivityID, CustomerID, PersonalNote FROM Booking WHERE CustomerID = @customerId";
 
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@customerId", customerId);
@@ -147,18 +141,26 @@ namespace FitHubManagement.DataAccess
                 // Går gennem hver række i resultatet
                 while (reader.Read())
                 {
-                    
-                    ViewBookingModel customerBookings = new ViewBookingModel();                        
+                    // 
+                    string personalNote = null; //Vi laver variabel her for feltet kan være Null i databasen.
+
+                    if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
                     {
-                        customerBookings.CustomerId = Convert.ToInt32(reader["CustomerID"]);
-                        customerBookings.StartDateTime = Convert.ToDateTime(reader["StartDateTime"]);
-                        customerBookings.BookingId = Convert.ToInt32(reader["BookingID"]);
-                        customerBookings.Name = Convert.ToString(reader["NAME"]);
-                        customerBookings.ActivityTypeName = Convert.ToString(reader["ActivityTypeName"]);
+                        personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
                     }
-                    
+
+                    // Opretter et Booking-objekt baseret på værdierne i rækken
+                    BookingModel bookingList = new BookingModel
+                    {
+                        BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
+                        ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
+                        CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                        PersonalNote = personalNote
+
+                    };
+
                     // Tilføjer booking-objektet til listen
-                    bookings.Add(customerBookings);
+                    bookings.Add(bookingList);
                 }
                 return bookings;
             }

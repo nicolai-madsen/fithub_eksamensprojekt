@@ -122,7 +122,6 @@
             InfoCustomerBtn.TabIndex = 55;
             InfoCustomerBtn.Text = "Information";
             InfoCustomerBtn.UseVisualStyleBackColor = true;
-            InfoCustomerBtn.Click += InfoCustomerBtn_Click;
             // 
             // EditCustomertxt
             // 
@@ -717,10 +716,10 @@
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
-            Controls.Add(BookingPanel);
             Controls.Add(NewCustomerPanel);
             Controls.Add(EditCustomerPanel);
             Controls.Add(ListPanel);
+            Controls.Add(BookingPanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
