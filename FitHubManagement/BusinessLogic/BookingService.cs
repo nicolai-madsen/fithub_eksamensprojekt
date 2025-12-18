@@ -85,10 +85,7 @@ namespace FitHubManagement.BusinessLogic
 
         private readonly BookingDAL b_bookingDAL = new BookingDAL();
 
-        public List<BookingModel> GetCustomerBooking(int customerId)
-        {
-            return b_bookingDAL.GetCustomerBooking(customerId);
-        }
+       
         public List<BookingModel> GetBookingsByActivityID(int activityId) //Bruges i CreateInstrictorForm som et led til at vise holdtilmeldinger
         {
             return BookingDAL.GetBookingsByActivityID(activityId);
