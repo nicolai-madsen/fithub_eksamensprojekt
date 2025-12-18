@@ -139,7 +139,6 @@
             label11 = new Label();
             label10 = new Label();
             comboBox1 = new ComboBox();
-            button3 = new Button();
             dateTimePicker1 = new DateTimePicker();
             cmbLocationActivity = new ComboBox();
             lblTimeActivity = new Label();
@@ -159,7 +158,6 @@
             btnCancelActivityType = new Button();
             btnSaveActivityType = new Button();
             label6 = new Label();
-            lblHoldTypeTitle = new Label();
             cmbHoldTypeInstruktor = new ComboBox();
             txtHoldTypeBeskrivelse = new TextBox();
             lblHoldTypeDescription = new Label();
@@ -187,7 +185,6 @@
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(button3);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(cmbLocationActivity);
             panel1.Controls.Add(lblTimeActivity);
@@ -228,23 +225,12 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(79, 156);
+            comboBox1.Location = new Point(82, 156);
             comboBox1.Margin = new Padding(2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(134, 23);
             comboBox1.TabIndex = 20;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(255, 384);
-            button3.Margin = new Padding(6, 8, 6, 8);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 18;
-            button3.Text = "Annuller";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
             // 
             // dateTimePicker1
             // 
@@ -260,7 +246,7 @@
             // cmbLocationActivity
             // 
             cmbLocationActivity.FormattingEnabled = true;
-            cmbLocationActivity.Location = new Point(79, 116);
+            cmbLocationActivity.Location = new Point(82, 116);
             cmbLocationActivity.Margin = new Padding(2);
             cmbLocationActivity.Name = "cmbLocationActivity";
             cmbLocationActivity.Size = new Size(134, 23);
@@ -308,7 +294,7 @@
             // 
             // nmrUpDwnMaxPartisipant
             // 
-            nmrUpDwnMaxPartisipant.Location = new Point(109, 204);
+            nmrUpDwnMaxPartisipant.Location = new Point(121, 204);
             nmrUpDwnMaxPartisipant.Margin = new Padding(6, 8, 6, 8);
             nmrUpDwnMaxPartisipant.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             nmrUpDwnMaxPartisipant.Name = "nmrUpDwnMaxPartisipant";
@@ -340,7 +326,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(79, 41);
+            comboBox2.Location = new Point(85, 41);
             comboBox2.Margin = new Padding(6, 8, 6, 8);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(193, 23);
@@ -349,9 +335,9 @@
             // 
             // btnCreateActivityPanel
             // 
-            btnCreateActivityPanel.Location = new Point(171, 384);
+            btnCreateActivityPanel.Location = new Point(184, 281);
             btnCreateActivityPanel.Name = "btnCreateActivityPanel";
-            btnCreateActivityPanel.Size = new Size(75, 23);
+            btnCreateActivityPanel.Size = new Size(133, 51);
             btnCreateActivityPanel.TabIndex = 21;
             btnCreateActivityPanel.Text = "Opret hold";
             btnCreateActivityPanel.UseVisualStyleBackColor = true;
@@ -381,21 +367,21 @@
             // 
             // button4
             // 
-            button4.Location = new Point(602, 336);
+            button4.Location = new Point(597, 395);
             button4.Margin = new Padding(2, 3, 2, 3);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(135, 32);
             button4.TabIndex = 19;
-            button4.Text = "Tilbage";
+            button4.Text = "Tilbage til forsiden";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(602, 172);
+            button1.Location = new Point(554, 160);
             button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(123, 32);
             button1.TabIndex = 22;
             button1.Text = "Opret Hold";
             button1.UseVisualStyleBackColor = true;
@@ -403,21 +389,19 @@
             // 
             // pnlHoldType
             // 
-            pnlHoldType.BackColor = Color.White;
-            pnlHoldType.BorderStyle = BorderStyle.FixedSingle;
+            pnlHoldType.BackColor = SystemColors.Control;
             pnlHoldType.Controls.Add(btnCancelActivityType);
             pnlHoldType.Controls.Add(btnSaveActivityType);
             pnlHoldType.Controls.Add(label6);
-            pnlHoldType.Controls.Add(lblHoldTypeTitle);
             pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
             pnlHoldType.Controls.Add(txtHoldTypeBeskrivelse);
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(692, 41);
+            pnlHoldType.Location = new Point(3, 27);
             pnlHoldType.Margin = new Padding(3, 2, 3, 2);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(343, 332);
+            pnlHoldType.Size = new Size(545, 416);
             pnlHoldType.TabIndex = 23;
             pnlHoldType.Visible = false;
             // 
@@ -449,16 +433,6 @@
             label6.Size = new Size(58, 15);
             label6.TabIndex = 11;
             label6.Text = "Instruktør";
-            // 
-            // lblHoldTypeTitle
-            // 
-            lblHoldTypeTitle.AutoSize = true;
-            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHoldTypeTitle.Location = new Point(112, 14);
-            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
-            lblHoldTypeTitle.Size = new Size(104, 25);
-            lblHoldTypeTitle.TabIndex = 10;
-            lblHoldTypeTitle.Text = "HOLDTYPE";
             // 
             // cmbHoldTypeInstruktor
             // 
@@ -500,17 +474,17 @@
             // lblHoldTypeNavn
             // 
             lblHoldTypeNavn.AutoSize = true;
-            lblHoldTypeNavn.Location = new Point(52, 52);
+            lblHoldTypeNavn.Location = new Point(44, 50);
             lblHoldTypeNavn.Name = "lblHoldTypeNavn";
-            lblHoldTypeNavn.Size = new Size(35, 15);
+            lblHoldTypeNavn.Size = new Size(59, 15);
             lblHoldTypeNavn.TabIndex = 0;
-            lblHoldTypeNavn.Text = "Navn";
+            lblHoldTypeNavn.Text = "Holdnavn";
             // 
             // CreateActivityType
             // 
             CreateActivityType.Location = new Point(554, 230);
             CreateActivityType.Name = "CreateActivityType";
-            CreateActivityType.Size = new Size(123, 50);
+            CreateActivityType.Size = new Size(123, 32);
             CreateActivityType.TabIndex = 24;
             CreateActivityType.Text = "Opret Holdtype";
             CreateActivityType.UseVisualStyleBackColor = true;
@@ -520,13 +494,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1057, 502);
+            ClientSize = new Size(774, 473);
             Controls.Add(CreateActivityType);
-            Controls.Add(pnlHoldType);
             Controls.Add(button1);
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(label3);
+            Controls.Add(pnlHoldType);
             Controls.Add(panel1);
             Margin = new Padding(2, 3, 2, 3);
             MinimumSize = new Size(790, 373);
@@ -559,7 +533,6 @@
         private Button btnSaveActivityType;
         private Panel panel1;
         private ComboBox comboBox1;
-        private Button button3;
         private DateTimePicker dateTimePicker1;
         private ComboBox cmbLocationActivity;
         private Label lblTimeActivity;
@@ -576,7 +549,6 @@
         private Label label10;
         private Button button1;
         private Panel pnlHoldType;
-        private Label lblHoldTypeTitle;
         private ComboBox cmbHoldTypeInstruktor;
         private TextBox txtHoldTypeBeskrivelse;
         private Label lblHoldTypeDescription;

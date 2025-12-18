@@ -194,15 +194,6 @@ namespace FitHubManagement.UI.BookingUI
 
         // ---------------- Panel2 ----------------
 
-
-        // Tilbage til Panel1 (find medlem igen)
-        private void button7_Click(object sender, EventArgs e)
-        {
-            panel1.Visible = true; //Vis Panel1 igen
-            panel2.Visible = false; //Skjul Panel2
-            panel1.BringToFront(); //Læg Panel1 øverst
-        }
-
         // Panel2 Vis knap: hent hold baseret på dato + holdtype
         private void button5_Click(object sender, EventArgs e)
         {
@@ -353,7 +344,7 @@ namespace FitHubManagement.UI.BookingUI
             }
 
             // AC3: Vis at deltagerlisten er opdateret
-            int participants = BookingDAL.GetAllBookings()
+            /*int participants = BookingDAL.GetAllBookings()
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
 
@@ -363,7 +354,7 @@ namespace FitHubManagement.UI.BookingUI
             catch (Exception ex)
             {
                 MessageBox.Show("Der skete en fejl: " + ex.Message);
-            }
+            }*/
         }
 
 
@@ -456,18 +447,6 @@ namespace FitHubManagement.UI.BookingUI
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnRydP2_Click(object sender, EventArgs e) //Ryd knap Panel2
-        {
-            //Ryd kun Panel2
-            listBox2.DataSource = null; // fjern datakilde, hvis der er en
-            listBox2.Items.Clear(); // ryd alle items
-            comboBox1.SelectedIndex = -1; // nulstil combobox valg
-            selectedActivityId = -1; // nulstil valgt ActivityId
-            dateTimePicker1.Value = DateTime.Today;
-
-            comboBox1.Focus();
         }
 
         // Checkbox til dato filter

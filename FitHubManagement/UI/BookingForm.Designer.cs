@@ -40,11 +40,9 @@
             label2 = new Label();
             panel2 = new Panel();
             chkFilterByDate = new CheckBox();
-            btnRydP2 = new Button();
             lbl_MedlemsNavn = new Label();
             label5 = new Label();
             button8 = new Button();
-            button7 = new Button();
             button6 = new Button();
             comboBox1 = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
@@ -166,11 +164,9 @@
             // panel2
             // 
             panel2.Controls.Add(chkFilterByDate);
-            panel2.Controls.Add(btnRydP2);
             panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(button8);
-            panel2.Controls.Add(button7);
             panel2.Controls.Add(button6);
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(dateTimePicker1);
@@ -178,10 +174,10 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(listBox2);
-            panel2.Location = new Point(535, 2);
+            panel2.Location = new Point(10, 9);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(536, 373);
+            panel2.Size = new Size(454, 373);
             panel2.TabIndex = 2;
             // 
             // chkFilterByDate
@@ -193,17 +189,6 @@
             chkFilterByDate.TabIndex = 14;
             chkFilterByDate.UseVisualStyleBackColor = true;
             chkFilterByDate.CheckedChanged += chkFilterByDate_CheckedChanged;
-            // 
-            // btnRydP2
-            // 
-            btnRydP2.Location = new Point(251, 278);
-            btnRydP2.Margin = new Padding(2);
-            btnRydP2.Name = "btnRydP2";
-            btnRydP2.Size = new Size(78, 21);
-            btnRydP2.TabIndex = 13;
-            btnRydP2.Text = "Ryd";
-            btnRydP2.UseVisualStyleBackColor = true;
-            btnRydP2.Click += btnRydP2_Click;
             // 
             // lbl_MedlemsNavn
             // 
@@ -227,7 +212,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(22, 278);
+            button8.Location = new Point(22, 284);
             button8.Margin = new Padding(3, 2, 3, 2);
             button8.Name = "button8";
             button8.Size = new Size(83, 22);
@@ -236,21 +221,10 @@
             button8.UseVisualStyleBackColor = true;
             button8.Click += button8_Click;
             // 
-            // button7
-            // 
-            button7.Location = new Point(334, 278);
-            button7.Margin = new Padding(3, 2, 3, 2);
-            button7.Name = "button7";
-            button7.Size = new Size(83, 22);
-            button7.TabIndex = 8;
-            button7.Text = "Tilbage";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
-            // 
             // button6
             // 
             button6.BackColor = SystemColors.ActiveCaption;
-            button6.Location = new Point(316, 304);
+            button6.Location = new Point(319, 274);
             button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
             button6.Size = new Size(108, 43);
@@ -320,12 +294,12 @@
             // 
             // button1
             // 
-            button1.Location = new Point(446, 280);
+            button1.Location = new Point(470, 208);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(83, 22);
+            button1.Size = new Size(145, 22);
             button1.TabIndex = 1;
-            button1.Text = "Home";
+            button1.Text = "Tilbage til forsiden";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -333,7 +307,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(899, 469);
+            ClientSize = new Size(627, 469);
             Controls.Add(panel2);
             Controls.Add(button1);
             Controls.Add(panel1);
@@ -368,11 +342,9 @@
         private Button button5;
         private ListBox listBox2;
         private Button button8;
-        private Button button7;
         private Label label5;
         private Label lbl_MedlemsNavn;
         protected internal Button button6;
-        private Button btnRydP2;
         private CheckBox chkFilterByDate;
     }
 }

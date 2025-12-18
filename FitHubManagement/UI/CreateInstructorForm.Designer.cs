@@ -72,6 +72,7 @@
             label6 = new Label();
             newtxtFirstName = new TextBox();
             button3 = new Button();
+            label8 = new Label();
             panel1.SuspendLayout();
             pnlSearchActivity.SuspendLayout();
             GetAll.SuspendLayout();
@@ -223,10 +224,10 @@
             pnlSearchActivity.Controls.Add(btnSearchGet);
             pnlSearchActivity.Controls.Add(dTPSearchDate);
             pnlSearchActivity.Controls.Add(lblSearchActivity);
-            pnlSearchActivity.Location = new Point(0, 0);
+            pnlSearchActivity.Location = new Point(0, 1);
             pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
-            pnlSearchActivity.Size = new Size(528, 471);
+            pnlSearchActivity.Size = new Size(528, 470);
             pnlSearchActivity.TabIndex = 25;
             // 
             // lblBookingCount
@@ -312,22 +313,23 @@
             // 
             // GetAll
             // 
+            GetAll.Controls.Add(label8);
             GetAll.Controls.Add(lstbxGetAllIns);
             GetAll.Controls.Add(button1);
-            GetAll.Location = new Point(11, 4);
+            GetAll.Location = new Point(11, 13);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
-            GetAll.Size = new Size(485, 512);
+            GetAll.Size = new Size(485, 503);
             GetAll.TabIndex = 21;
             // 
             // lstbxGetAllIns
             // 
             lstbxGetAllIns.FormattingEnabled = true;
             lstbxGetAllIns.ItemHeight = 15;
-            lstbxGetAllIns.Location = new Point(1, 31);
+            lstbxGetAllIns.Location = new Point(1, 46);
             lstbxGetAllIns.Margin = new Padding(1);
             lstbxGetAllIns.Name = "lstbxGetAllIns";
-            lstbxGetAllIns.Size = new Size(450, 364);
+            lstbxGetAllIns.Size = new Size(450, 349);
             lstbxGetAllIns.TabIndex = 0;
             lstbxGetAllIns.SelectedIndexChanged += lstbxGetAllIns_SelectedIndexChanged;
             // 
@@ -338,13 +340,13 @@
             button1.Name = "button1";
             button1.Size = new Size(138, 46);
             button1.TabIndex = 23;
-            button1.Text = "Rediger Oplysninger på Instruktør";
+            button1.Text = "Rediger instruktør";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
             // btnCreateIns
             // 
-            btnCreateIns.Location = new Point(556, 90);
+            btnCreateIns.Location = new Point(556, 153);
             btnCreateIns.Margin = new Padding(2);
             btnCreateIns.Name = "btnCreateIns";
             btnCreateIns.Size = new Size(158, 29);
@@ -355,7 +357,7 @@
             // 
             // btnGetAllIns
             // 
-            btnGetAllIns.Location = new Point(556, 152);
+            btnGetAllIns.Location = new Point(556, 59);
             btnGetAllIns.Margin = new Padding(2);
             btnGetAllIns.Name = "btnGetAllIns";
             btnGetAllIns.Size = new Size(158, 29);
@@ -522,23 +524,33 @@
             // 
             // button3
             // 
-            button3.Location = new Point(565, 244);
+            button3.Location = new Point(556, 244);
             button3.Name = "button3";
-            button3.Size = new Size(149, 23);
+            button3.Size = new Size(158, 23);
             button3.TabIndex = 27;
             button3.Text = "Vis tilmeldinger";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(7, 14);
+            label8.Name = "label8";
+            label8.Size = new Size(133, 21);
+            label8.TabIndex = 24;
+            label8.Text = "Alle instruktører:";
             // 
             // CreateInstructorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(807, 515);
+            Controls.Add(label1);
             Controls.Add(GetAll);
             Controls.Add(pnlSearchActivity);
             Controls.Add(button3);
-            Controls.Add(label1);
             Controls.Add(btnBackToFront);
             Controls.Add(btnGetAllIns);
             Controls.Add(btnCreateIns);
@@ -553,6 +565,7 @@
             pnlSearchActivity.ResumeLayout(false);
             pnlSearchActivity.PerformLayout();
             GetAll.ResumeLayout(false);
+            GetAll.PerformLayout();
             newInstructorpanel.ResumeLayout(false);
             newInstructorpanel.PerformLayout();
             ResumeLayout(false);
@@ -612,5 +625,6 @@
         private Label label6;
         private Label label7;
         private Button button3;
+        private Label label8;
     }
 }

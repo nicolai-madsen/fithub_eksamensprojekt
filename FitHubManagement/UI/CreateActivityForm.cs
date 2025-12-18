@@ -73,11 +73,6 @@ namespace FitHubManagement.UI.Activity
             return true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
@@ -87,6 +82,7 @@ namespace FitHubManagement.UI.Activity
         {
             LoadActivityTypes();
             panel1.Visible = true;
+            pnlHoldType.Visible = false;
 
         }
 
@@ -227,6 +223,7 @@ namespace FitHubManagement.UI.Activity
             cmbHoldTypeInstruktor.ValueMember = "InstructorId";
 
             pnlHoldType.Visible = true;
+            panel1.Visible = false;
         }
 
         private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,6 +236,7 @@ namespace FitHubManagement.UI.Activity
             txtHoldTypeName.Clear();
             txtHoldTypeBeskrivelse.Clear();
             pnlHoldType.Visible = false;
+            panel1.Visible = true;
         }
     }
 }
