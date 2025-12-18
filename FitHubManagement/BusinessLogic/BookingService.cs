@@ -38,7 +38,7 @@ namespace FitHubManagement.BusinessLogic
             try
             {
                 _bookingDAL.CreateBooking(newBooking);
-                int participants = _bookingDAL.GetParticipantCount(activityId);
+                int participants = _bookingDAL.GetAllBookings(activityId);
             }
             catch (SqlException)
             {
@@ -73,6 +73,7 @@ namespace FitHubManagement.BusinessLogic
 
             return true;
         }
+
 
         public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
         {

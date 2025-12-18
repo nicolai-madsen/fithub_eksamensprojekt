@@ -319,16 +319,21 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-          
+
             // AC2: Registrer booking i databasen (KUN ÉN GANG)
             try
             {
                 int participants = _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, "");
-                
+
                 MessageBox.Show(
-                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
+                    $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
+                );
+
+                MessageBox.Show(
+                    $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
                 );
             }
+
             catch (SqlException)
             {
                 MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
@@ -341,9 +346,6 @@ namespace FitHubManagement.UI.BookingUI
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
             */
-            MessageBox.Show(
-                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
-            );
         }
 
 
