@@ -262,7 +262,7 @@ namespace FitHubManagement.UI.BookingUI
             }
         }
 
-
+        /*
         // Tilmeld knap i Panel2
         private void button6_Click(object sender, EventArgs e)
         {
@@ -340,12 +340,69 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            /* FLYT NÅR PISSET VIRKER IGEN
+             FLYT NÅR PISSET VIRKER IGEN
             // AC3: Vis at deltagerlisten er opdateret
             int participants = _bookingService.GetAvailableSpots(selectedActivityId, selectedCustomer.CustomerId, "");
                 .FindAll(b => b.ActivityId == selectedActivityId)
                 .Count;
-            */
+            
+        }*/
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // 1. Validering af valg i UI
+            if (selectedCustomer == null || selectedActivityId == -1)
+            {
+                MessageBox.Show("Vælg venligst både et medlem og et hold.");
+                return;
+            }
+
+            // 2. Tjek ledige pladser via BLL
+            int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
+            if (availableSpots <= 0)
+            {
+                MessageBox.Show("Holdet er fyldt. Der er ikke flere ledige pladser.");
+                return;
+            }
+
+            // 3. Forretningsregler (Max 2 bookinger) - Ligger allerede i BLL (godt!)
+            DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
+            if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
+            {
+                MessageBox.Show("Medlemmet har nået grænsen på 2 hold om ugen.", "Begrænsning nået", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 4. Brugerbekræftelse
+            DialogResult answer = MessageBox.Show(
+                $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
+                "Bekræft booking",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (answer != DialogResult.Yes) return;
+
+            // 5. Udfør handlingen
+            try
+            {
+                // Vi opretter bookingen. 
+                // Tip: Lad CreateBooking returnere det NYE antal deltagere direkte, 
+                // så slipper du for at kalde databasen igen bagefter.
+                _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, "");
+
+                // Hent det opdaterede antal deltagere via BLL-metode GetParticipantCount
+                int currentParticipants = _bookingService.GetParticipantCount(selectedActivityId);
+
+                MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {currentParticipants}");
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der skete en fejl: " + ex.Message);
+            }
         }
 
 

@@ -74,6 +74,15 @@ namespace FitHubManagement.BusinessLogic
             return true;
         }
 
+        public int GetParticipantCount(int activityId)
+        {
+            // Her kalder du din DAL/Repository. 
+            // Det er meget bedre at lade databasen tælle rækkerne end at hente dem alle op i hukommelsen.
+            return _bookingDAL.GetAllBookings()
+                                     .Where(b => b.ActivityId == activityId)
+                                     .Count();
+        }
+
 
         public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
         {
