@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            SearchPanel = new Panel();
+            IDinfo = new TextBox();
+            button3 = new Button();
+            InfoBtn = new Button();
+            label30 = new Label();
             ShowActiveBtn = new Button();
             label29 = new Label();
             count = new TextBox();
@@ -37,13 +42,14 @@
             ShowAllBtn = new Button();
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
+            BookingPanel = new Panel();
+            label3 = new Label();
+            label1 = new Label();
+            activityInfoList = new ListBox();
+            label2 = new Label();
             NewCustomerPanel = new Panel();
+            label10 = new Label();
             label27 = new Label();
-            LookupPanel = new Panel();
-            IDinfo = new TextBox();
-            button3 = new Button();
-            InfoBtn = new Button();
-            label30 = new Label();
             label23 = new Label();
             label28 = new Label();
             label26 = new Label();
@@ -67,68 +73,46 @@
             label5 = new Label();
             label4 = new Label();
             NewCustomerTitle = new Label();
-            ShowListBtn = new Button();
-            NewCustomerBtn = new Button();
-            BackBtn = new Button();
-            CustomerInformationPanel = new Panel();
-            memberTypetxt = new TextBox();
-            label33 = new Label();
-            label32 = new Label();
-            IDtxt = new TextBox();
-            label31 = new Label();
-            statusInfoTxt = new TextBox();
-            activityInfoList = new ListBox();
-            label2 = new Label();
-            InfoBackBtn = new Button();
-            label1 = new Label();
-            noteInfoTxt = new TextBox();
-            birthdayInfoTxt = new TextBox();
-            phoneInfoTxt = new TextBox();
-            emailInfoTxt = new TextBox();
-            lastNameInfoTxt = new TextBox();
-            label3 = new Label();
-            NameInfoTxt = new TextBox();
-            label10 = new Label();
-            label18 = new Label();
-            label19 = new Label();
-            label20 = new Label();
-            label21 = new Label();
-            Kundeinformation = new Label();
-            EditCustomerTitle = new Label();
-            label16 = new Label();
-            label15 = new Label();
-            label14 = new Label();
-            label12 = new Label();
-            EditFirst = new TextBox();
-            label11 = new Label();
-            EditLast = new TextBox();
-            EditMail = new TextBox();
-            EditPhone = new TextBox();
-            EditNote = new TextBox();
-            EditCustomerConfirmBtn = new Button();
-            EditCustomerCancelBtn = new Button();
-            label34 = new Label();
-            EditType = new TextBox();
             EditCustomerPanel = new Panel();
+            label18 = new Label();
+            textBox1 = new TextBox();
             label13 = new Label();
+            MarkInactive = new Button();
             label36 = new Label();
             EditCustomerID = new TextBox();
             CurrentStatus = new TextBox();
             label35 = new Label();
             label17 = new Label();
-            ChangeStatus = new Button();
-            label37 = new Label();
+            EditType = new TextBox();
+            MarkActive = new Button();
+            label34 = new Label();
+            EditCustomerCancelBtn = new Button();
+            EditCustomerConfirmBtn = new Button();
+            EditNote = new TextBox();
+            EditPhone = new TextBox();
+            EditMail = new TextBox();
+            EditLast = new TextBox();
+            label11 = new Label();
+            EditFirst = new TextBox();
+            label12 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            EditCustomerTitle = new Label();
+            ShowListBtn = new Button();
+            NewCustomerBtn = new Button();
+            BackBtn = new Button();
             ListPanel.SuspendLayout();
+            SearchPanel.SuspendLayout();
+            BookingPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
-            LookupPanel.SuspendLayout();
-            CustomerInformationPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ListPanel
             // 
+            ListPanel.Controls.Add(SearchPanel);
             ListPanel.Controls.Add(ShowActiveBtn);
-            ListPanel.Controls.Add(LookupPanel);
             ListPanel.Controls.Add(label29);
             ListPanel.Controls.Add(count);
             ListPanel.Controls.Add(CustomerInfoBtn);
@@ -136,11 +120,63 @@
             ListPanel.Controls.Add(ShowAllBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
-            ListPanel.Location = new Point(10, 379);
+            ListPanel.Location = new Point(10, 11);
             ListPanel.Margin = new Padding(3, 2, 3, 2);
             ListPanel.Name = "ListPanel";
-            ListPanel.Size = new Size(506, 352);
+            ListPanel.Size = new Size(536, 494);
             ListPanel.TabIndex = 8;
+            // 
+            // SearchPanel
+            // 
+            SearchPanel.BorderStyle = BorderStyle.FixedSingle;
+            SearchPanel.Controls.Add(IDinfo);
+            SearchPanel.Controls.Add(button3);
+            SearchPanel.Controls.Add(InfoBtn);
+            SearchPanel.Controls.Add(label30);
+            SearchPanel.Location = new Point(124, 146);
+            SearchPanel.Margin = new Padding(3, 2, 3, 2);
+            SearchPanel.Name = "SearchPanel";
+            SearchPanel.Size = new Size(219, 94);
+            SearchPanel.TabIndex = 50;
+            // 
+            // IDinfo
+            // 
+            IDinfo.Location = new Point(59, 32);
+            IDinfo.Margin = new Padding(3, 2, 3, 2);
+            IDinfo.Name = "IDinfo";
+            IDinfo.Size = new Size(110, 23);
+            IDinfo.TabIndex = 53;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(126, 67);
+            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(82, 22);
+            button3.TabIndex = 38;
+            button3.Text = "Rediger";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // InfoBtn
+            // 
+            InfoBtn.Location = new Point(11, 67);
+            InfoBtn.Margin = new Padding(3, 2, 3, 2);
+            InfoBtn.Name = "InfoBtn";
+            InfoBtn.Size = new Size(102, 22);
+            InfoBtn.TabIndex = 51;
+            InfoBtn.Text = "Information";
+            InfoBtn.UseVisualStyleBackColor = true;
+            InfoBtn.Click += InfoBtn_Click;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(48, 6);
+            label30.Name = "label30";
+            label30.Size = new Size(109, 15);
+            label30.TabIndex = 0;
+            label30.Text = "Indtast medlems ID";
             // 
             // ShowActiveBtn
             // 
@@ -180,6 +216,7 @@
             CustomerInfoBtn.TabIndex = 20;
             CustomerInfoBtn.Text = "Information/Rediger";
             CustomerInfoBtn.UseVisualStyleBackColor = true;
+            CustomerInfoBtn.Click += CustomerInfoBtn_Click;
             // 
             // ShowInactiveBtn
             // 
@@ -223,9 +260,58 @@
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
             // 
+            // BookingPanel
+            // 
+            BookingPanel.Controls.Add(label3);
+            BookingPanel.Controls.Add(label1);
+            BookingPanel.Controls.Add(activityInfoList);
+            BookingPanel.Controls.Add(label2);
+            BookingPanel.Location = new Point(9, 11);
+            BookingPanel.Name = "BookingPanel";
+            BookingPanel.Size = new Size(534, 328);
+            BookingPanel.TabIndex = 17;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(231, 69);
+            label3.Name = "label3";
+            label3.Size = new Size(175, 45);
+            label3.TabIndex = 41;
+            label3.Text = "Hold 6: Forest Dance Flow\r\nHold 7: Eco-Wellness Workshop\r\nHold 8: Hiit \r\n";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(19, 69);
+            label1.Name = "label1";
+            label1.Size = new Size(192, 75);
+            label1.TabIndex = 40;
+            label1.Text = "Hold 1: Forest Yoga\r\nHold 2: Outdoor Pilates\r\nHold 3: Mindful Hiking\r\nHold 4: Meditation and Breathwork\r\nHold 5: Community Circle Training\r\n";
+            // 
+            // activityInfoList
+            // 
+            activityInfoList.FormattingEnabled = true;
+            activityInfoList.ItemHeight = 15;
+            activityInfoList.Location = new Point(19, 209);
+            activityInfoList.Margin = new Padding(3, 2, 3, 2);
+            activityInfoList.Name = "activityInfoList";
+            activityInfoList.Size = new Size(469, 79);
+            activityInfoList.TabIndex = 39;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F);
+            label2.Location = new Point(16, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 21);
+            label2.TabIndex = 38;
+            label2.Text = "Bookede hold";
+            // 
             // NewCustomerPanel
             // 
-            NewCustomerPanel.Controls.Add(label37);
+            NewCustomerPanel.Controls.Add(label10);
             NewCustomerPanel.Controls.Add(label27);
             NewCustomerPanel.Controls.Add(label23);
             NewCustomerPanel.Controls.Add(label28);
@@ -250,11 +336,20 @@
             NewCustomerPanel.Controls.Add(label5);
             NewCustomerPanel.Controls.Add(label4);
             NewCustomerPanel.Controls.Add(NewCustomerTitle);
-            NewCustomerPanel.Location = new Point(12, 6);
+            NewCustomerPanel.Location = new Point(10, 13);
             NewCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             NewCustomerPanel.Name = "NewCustomerPanel";
-            NewCustomerPanel.Size = new Size(511, 352);
+            NewCustomerPanel.Size = new Size(536, 351);
             NewCustomerPanel.TabIndex = 9;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(293, 169);
+            label10.Name = "label10";
+            label10.Size = new Size(74, 15);
+            label10.TabIndex = 49;
+            label10.Text = "\"00 00 00 00\"";
             // 
             // label27
             // 
@@ -266,57 +361,6 @@
             label27.Size = new Size(15, 20);
             label27.TabIndex = 48;
             label27.Text = "*";
-            // 
-            // LookupPanel
-            // 
-            LookupPanel.Controls.Add(IDinfo);
-            LookupPanel.Controls.Add(button3);
-            LookupPanel.Controls.Add(InfoBtn);
-            LookupPanel.Controls.Add(label30);
-            LookupPanel.Location = new Point(133, 204);
-            LookupPanel.Margin = new Padding(3, 2, 3, 2);
-            LookupPanel.Name = "LookupPanel";
-            LookupPanel.Size = new Size(219, 94);
-            LookupPanel.TabIndex = 50;
-            // 
-            // IDinfo
-            // 
-            IDinfo.Location = new Point(59, 32);
-            IDinfo.Margin = new Padding(3, 2, 3, 2);
-            IDinfo.Name = "IDinfo";
-            IDinfo.Size = new Size(110, 23);
-            IDinfo.TabIndex = 53;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(126, 67);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(82, 22);
-            button3.TabIndex = 38;
-            button3.Text = "Rediger";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // InfoBtn
-            // 
-            InfoBtn.Location = new Point(11, 67);
-            InfoBtn.Margin = new Padding(3, 2, 3, 2);
-            InfoBtn.Name = "InfoBtn";
-            InfoBtn.Size = new Size(102, 22);
-            InfoBtn.TabIndex = 51;
-            InfoBtn.Text = "Information";
-            InfoBtn.UseVisualStyleBackColor = true;
-            InfoBtn.Click += InfoBtn_Click;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Location = new Point(48, 6);
-            label30.Name = "label30";
-            label30.Size = new Size(109, 15);
-            label30.TabIndex = 0;
-            label30.Text = "Indtast medlems ID";
             // 
             // label23
             // 
@@ -536,426 +580,19 @@
             NewCustomerTitle.TabIndex = 0;
             NewCustomerTitle.Text = "Opret ny medlem\r\nVenligst fyld ind information\r\n";
             // 
-            // ShowListBtn
-            // 
-            ShowListBtn.Location = new Point(537, 98);
-            ShowListBtn.Margin = new Padding(3, 2, 3, 2);
-            ShowListBtn.Name = "ShowListBtn";
-            ShowListBtn.Size = new Size(82, 22);
-            ShowListBtn.TabIndex = 13;
-            ShowListBtn.Text = "Vis liste";
-            ShowListBtn.UseVisualStyleBackColor = true;
-            ShowListBtn.Click += ShowListBtn_Click;
-            // 
-            // NewCustomerBtn
-            // 
-            NewCustomerBtn.Location = new Point(537, 187);
-            NewCustomerBtn.Margin = new Padding(3, 2, 3, 2);
-            NewCustomerBtn.Name = "NewCustomerBtn";
-            NewCustomerBtn.Size = new Size(82, 22);
-            NewCustomerBtn.TabIndex = 14;
-            NewCustomerBtn.Text = "Ny medlem";
-            NewCustomerBtn.UseVisualStyleBackColor = true;
-            NewCustomerBtn.Click += NewCustomerBtn_Click;
-            // 
-            // BackBtn
-            // 
-            BackBtn.Location = new Point(537, 288);
-            BackBtn.Margin = new Padding(3, 2, 3, 2);
-            BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(82, 22);
-            BackBtn.TabIndex = 16;
-            BackBtn.Text = "Tilbage";
-            BackBtn.UseVisualStyleBackColor = true;
-            // 
-            // CustomerInformationPanel
-            // 
-            CustomerInformationPanel.Controls.Add(memberTypetxt);
-            CustomerInformationPanel.Controls.Add(label33);
-            CustomerInformationPanel.Controls.Add(label32);
-            CustomerInformationPanel.Controls.Add(IDtxt);
-            CustomerInformationPanel.Controls.Add(label31);
-            CustomerInformationPanel.Controls.Add(statusInfoTxt);
-            CustomerInformationPanel.Controls.Add(activityInfoList);
-            CustomerInformationPanel.Controls.Add(label2);
-            CustomerInformationPanel.Controls.Add(InfoBackBtn);
-            CustomerInformationPanel.Controls.Add(label1);
-            CustomerInformationPanel.Controls.Add(noteInfoTxt);
-            CustomerInformationPanel.Controls.Add(birthdayInfoTxt);
-            CustomerInformationPanel.Controls.Add(phoneInfoTxt);
-            CustomerInformationPanel.Controls.Add(emailInfoTxt);
-            CustomerInformationPanel.Controls.Add(lastNameInfoTxt);
-            CustomerInformationPanel.Controls.Add(label3);
-            CustomerInformationPanel.Controls.Add(NameInfoTxt);
-            CustomerInformationPanel.Controls.Add(label10);
-            CustomerInformationPanel.Controls.Add(label18);
-            CustomerInformationPanel.Controls.Add(label19);
-            CustomerInformationPanel.Controls.Add(label20);
-            CustomerInformationPanel.Controls.Add(label21);
-            CustomerInformationPanel.Controls.Add(Kundeinformation);
-            CustomerInformationPanel.Location = new Point(625, 6);
-            CustomerInformationPanel.Margin = new Padding(3, 2, 3, 2);
-            CustomerInformationPanel.Name = "CustomerInformationPanel";
-            CustomerInformationPanel.Size = new Size(536, 350);
-            CustomerInformationPanel.TabIndex = 37;
-            // 
-            // memberTypetxt
-            // 
-            memberTypetxt.Location = new Point(380, 103);
-            memberTypetxt.Margin = new Padding(3, 2, 3, 2);
-            memberTypetxt.Name = "memberTypetxt";
-            memberTypetxt.ReadOnly = true;
-            memberTypetxt.Size = new Size(110, 23);
-            memberTypetxt.TabIndex = 47;
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Location = new Point(288, 105);
-            label33.Name = "label33";
-            label33.Size = new Size(79, 15);
-            label33.TabIndex = 46;
-            label33.Text = "Medlemstype";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Location = new Point(407, 126);
-            label32.Name = "label32";
-            label32.Size = new Size(76, 45);
-            label32.TabIndex = 45;
-            label32.Text = "1 = Basic\r\n2 = Premium\r\n3 = VIP";
-            // 
-            // IDtxt
-            // 
-            IDtxt.Location = new Point(164, 56);
-            IDtxt.Margin = new Padding(3, 2, 3, 2);
-            IDtxt.Name = "IDtxt";
-            IDtxt.ReadOnly = true;
-            IDtxt.Size = new Size(110, 23);
-            IDtxt.TabIndex = 42;
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Location = new Point(44, 58);
-            label31.Name = "label31";
-            label31.Size = new Size(18, 15);
-            label31.TabIndex = 41;
-            label31.Text = "ID";
-            // 
-            // statusInfoTxt
-            // 
-            statusInfoTxt.Location = new Point(380, 56);
-            statusInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            statusInfoTxt.Name = "statusInfoTxt";
-            statusInfoTxt.ReadOnly = true;
-            statusInfoTxt.Size = new Size(110, 23);
-            statusInfoTxt.TabIndex = 40;
-            // 
-            // activityInfoList
-            // 
-            activityInfoList.FormattingEnabled = true;
-            activityInfoList.ItemHeight = 15;
-            activityInfoList.Location = new Point(290, 184);
-            activityInfoList.Margin = new Padding(3, 2, 3, 2);
-            activityInfoList.Name = "activityInfoList";
-            activityInfoList.Size = new Size(197, 64);
-            activityInfoList.TabIndex = 39;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(290, 162);
-            label2.Name = "label2";
-            label2.Size = new Size(80, 15);
-            label2.TabIndex = 38;
-            label2.Text = "Bookede hold";
-            // 
-            // InfoBackBtn
-            // 
-            InfoBackBtn.Location = new Point(421, 296);
-            InfoBackBtn.Margin = new Padding(3, 2, 3, 2);
-            InfoBackBtn.Name = "InfoBackBtn";
-            InfoBackBtn.Size = new Size(82, 22);
-            InfoBackBtn.TabIndex = 36;
-            InfoBackBtn.Text = "Tilbage";
-            InfoBackBtn.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(288, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(48, 15);
-            label1.TabIndex = 31;
-            label1.Text = "Inactive";
-            // 
-            // noteInfoTxt
-            // 
-            noteInfoTxt.Location = new Point(164, 252);
-            noteInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            noteInfoTxt.Multiline = true;
-            noteInfoTxt.Name = "noteInfoTxt";
-            noteInfoTxt.ReadOnly = true;
-            noteInfoTxt.Size = new Size(322, 41);
-            noteInfoTxt.TabIndex = 29;
-            // 
-            // birthdayInfoTxt
-            // 
-            birthdayInfoTxt.Location = new Point(164, 220);
-            birthdayInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            birthdayInfoTxt.Name = "birthdayInfoTxt";
-            birthdayInfoTxt.ReadOnly = true;
-            birthdayInfoTxt.Size = new Size(110, 23);
-            birthdayInfoTxt.TabIndex = 28;
-            // 
-            // phoneInfoTxt
-            // 
-            phoneInfoTxt.Location = new Point(164, 191);
-            phoneInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            phoneInfoTxt.Name = "phoneInfoTxt";
-            phoneInfoTxt.ReadOnly = true;
-            phoneInfoTxt.Size = new Size(110, 23);
-            phoneInfoTxt.TabIndex = 27;
-            // 
-            // emailInfoTxt
-            // 
-            emailInfoTxt.Location = new Point(164, 158);
-            emailInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            emailInfoTxt.Name = "emailInfoTxt";
-            emailInfoTxt.ReadOnly = true;
-            emailInfoTxt.Size = new Size(110, 23);
-            emailInfoTxt.TabIndex = 26;
-            // 
-            // lastNameInfoTxt
-            // 
-            lastNameInfoTxt.Location = new Point(164, 126);
-            lastNameInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            lastNameInfoTxt.Name = "lastNameInfoTxt";
-            lastNameInfoTxt.ReadOnly = true;
-            lastNameInfoTxt.Size = new Size(110, 23);
-            lastNameInfoTxt.TabIndex = 25;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(44, 252);
-            label3.Name = "label3";
-            label3.Size = new Size(37, 15);
-            label3.TabIndex = 23;
-            label3.Text = "Notat";
-            // 
-            // NameInfoTxt
-            // 
-            NameInfoTxt.Location = new Point(164, 88);
-            NameInfoTxt.Margin = new Padding(3, 2, 3, 2);
-            NameInfoTxt.Name = "NameInfoTxt";
-            NameInfoTxt.ReadOnly = true;
-            NameInfoTxt.Size = new Size(110, 23);
-            NameInfoTxt.TabIndex = 22;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(44, 194);
-            label10.Name = "label10";
-            label10.Size = new Size(41, 15);
-            label10.TabIndex = 21;
-            label10.Text = "Phone";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(44, 220);
-            label18.Name = "label18";
-            label18.Size = new Size(66, 15);
-            label18.TabIndex = 20;
-            label18.Text = "Fødselsdag";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Location = new Point(44, 160);
-            label19.Name = "label19";
-            label19.Size = new Size(36, 15);
-            label19.TabIndex = 19;
-            label19.Text = "Email";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Location = new Point(44, 126);
-            label20.Name = "label20";
-            label20.Size = new Size(57, 15);
-            label20.TabIndex = 18;
-            label20.Text = "Efternavn";
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Location = new Point(44, 90);
-            label21.Name = "label21";
-            label21.Size = new Size(50, 15);
-            label21.TabIndex = 17;
-            label21.Text = "Fornavn";
-            // 
-            // Kundeinformation
-            // 
-            Kundeinformation.AutoSize = true;
-            Kundeinformation.Font = new Font("Segoe UI", 12F);
-            Kundeinformation.Location = new Point(52, 26);
-            Kundeinformation.Name = "Kundeinformation";
-            Kundeinformation.Size = new Size(136, 21);
-            Kundeinformation.TabIndex = 13;
-            Kundeinformation.Text = "Kundeinformation";
-            // 
-            // EditCustomerTitle
-            // 
-            EditCustomerTitle.AutoSize = true;
-            EditCustomerTitle.Font = new Font("Segoe UI", 12F);
-            EditCustomerTitle.Location = new Point(66, 20);
-            EditCustomerTitle.Name = "EditCustomerTitle";
-            EditCustomerTitle.Size = new Size(111, 21);
-            EditCustomerTitle.TabIndex = 13;
-            EditCustomerTitle.Text = "Rediger kunde";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(62, 113);
-            label16.Name = "label16";
-            label16.Size = new Size(50, 15);
-            label16.TabIndex = 17;
-            label16.Text = "Fornavn";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(66, 149);
-            label15.Name = "label15";
-            label15.Size = new Size(57, 15);
-            label15.TabIndex = 18;
-            label15.Text = "Efternavn";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(66, 182);
-            label14.Name = "label14";
-            label14.Size = new Size(36, 15);
-            label14.TabIndex = 19;
-            label14.Text = "Email";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(312, 180);
-            label12.Name = "label12";
-            label12.Size = new Size(41, 15);
-            label12.TabIndex = 21;
-            label12.Text = "Phone";
-            // 
-            // EditFirst
-            // 
-            EditFirst.Location = new Point(177, 111);
-            EditFirst.Margin = new Padding(3, 2, 3, 2);
-            EditFirst.Name = "EditFirst";
-            EditFirst.Size = new Size(110, 23);
-            EditFirst.TabIndex = 22;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(65, 208);
-            label11.Name = "label11";
-            label11.Size = new Size(37, 15);
-            label11.TabIndex = 23;
-            label11.Text = "Notat";
-            // 
-            // EditLast
-            // 
-            EditLast.Location = new Point(177, 147);
-            EditLast.Margin = new Padding(3, 2, 3, 2);
-            EditLast.Name = "EditLast";
-            EditLast.Size = new Size(110, 23);
-            EditLast.TabIndex = 25;
-            // 
-            // EditMail
-            // 
-            EditMail.Location = new Point(179, 178);
-            EditMail.Margin = new Padding(3, 2, 3, 2);
-            EditMail.Name = "EditMail";
-            EditMail.Size = new Size(110, 23);
-            EditMail.TabIndex = 26;
-            // 
-            // EditPhone
-            // 
-            EditPhone.Location = new Point(394, 176);
-            EditPhone.Margin = new Padding(3, 2, 3, 2);
-            EditPhone.Name = "EditPhone";
-            EditPhone.Size = new Size(110, 23);
-            EditPhone.TabIndex = 27;
-            // 
-            // EditNote
-            // 
-            EditNote.Location = new Point(181, 221);
-            EditNote.Margin = new Padding(3, 2, 3, 2);
-            EditNote.Multiline = true;
-            EditNote.Name = "EditNote";
-            EditNote.Size = new Size(322, 41);
-            EditNote.TabIndex = 29;
-            // 
-            // EditCustomerConfirmBtn
-            // 
-            EditCustomerConfirmBtn.Location = new Point(421, 283);
-            EditCustomerConfirmBtn.Margin = new Padding(3, 2, 3, 2);
-            EditCustomerConfirmBtn.Name = "EditCustomerConfirmBtn";
-            EditCustomerConfirmBtn.Size = new Size(82, 22);
-            EditCustomerConfirmBtn.TabIndex = 36;
-            EditCustomerConfirmBtn.Text = "Gem";
-            EditCustomerConfirmBtn.UseVisualStyleBackColor = true;
-            EditCustomerConfirmBtn.Click += EditCustomerConfirmBtn_Click_1;
-            // 
-            // EditCustomerCancelBtn
-            // 
-            EditCustomerCancelBtn.Location = new Point(326, 283);
-            EditCustomerCancelBtn.Margin = new Padding(3, 2, 3, 2);
-            EditCustomerCancelBtn.Name = "EditCustomerCancelBtn";
-            EditCustomerCancelBtn.Size = new Size(82, 22);
-            EditCustomerCancelBtn.TabIndex = 36;
-            EditCustomerCancelBtn.Text = "Annuler";
-            EditCustomerCancelBtn.UseVisualStyleBackColor = true;
-            EditCustomerCancelBtn.Click += EditCustomerCancelBtn_Click;
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Location = new Point(312, 146);
-            label34.Name = "label34";
-            label34.Size = new Size(79, 15);
-            label34.TabIndex = 38;
-            label34.Text = "Medlemstype";
-            // 
-            // EditType
-            // 
-            EditType.Location = new Point(394, 142);
-            EditType.Margin = new Padding(3, 2, 3, 2);
-            EditType.Name = "EditType";
-            EditType.Size = new Size(110, 23);
-            EditType.TabIndex = 40;
-            EditType.TextChanged += EditType_TextChanged;
-            // 
             // EditCustomerPanel
             // 
+            EditCustomerPanel.Controls.Add(label18);
+            EditCustomerPanel.Controls.Add(textBox1);
             EditCustomerPanel.Controls.Add(label13);
+            EditCustomerPanel.Controls.Add(MarkInactive);
             EditCustomerPanel.Controls.Add(label36);
             EditCustomerPanel.Controls.Add(EditCustomerID);
             EditCustomerPanel.Controls.Add(CurrentStatus);
             EditCustomerPanel.Controls.Add(label35);
             EditCustomerPanel.Controls.Add(label17);
             EditCustomerPanel.Controls.Add(EditType);
-            EditCustomerPanel.Controls.Add(ChangeStatus);
+            EditCustomerPanel.Controls.Add(MarkActive);
             EditCustomerPanel.Controls.Add(label34);
             EditCustomerPanel.Controls.Add(EditCustomerCancelBtn);
             EditCustomerPanel.Controls.Add(EditCustomerConfirmBtn);
@@ -970,25 +607,54 @@
             EditCustomerPanel.Controls.Add(label15);
             EditCustomerPanel.Controls.Add(label16);
             EditCustomerPanel.Controls.Add(EditCustomerTitle);
-            EditCustomerPanel.Location = new Point(611, 379);
+            EditCustomerPanel.Location = new Point(10, 11);
             EditCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             EditCustomerPanel.Name = "EditCustomerPanel";
             EditCustomerPanel.Size = new Size(536, 338);
             EditCustomerPanel.TabIndex = 12;
             // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(429, 201);
+            label18.Name = "label18";
+            label18.Size = new Size(74, 15);
+            label18.TabIndex = 56;
+            label18.Text = "\"00 00 00 00\"";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(173, 51);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(110, 23);
+            textBox1.TabIndex = 49;
+            // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(391, 201);
+            label13.Location = new Point(53, 51);
             label13.Name = "label13";
-            label13.Size = new Size(113, 15);
-            label13.TabIndex = 55;
-            label13.Text = "\"00 00 00 00\" format";
+            label13.Size = new Size(66, 15);
+            label13.TabIndex = 48;
+            label13.Text = "Fødselsdag";
+            // 
+            // MarkInactive
+            // 
+            MarkInactive.Location = new Point(111, 278);
+            MarkInactive.Margin = new Padding(3, 2, 3, 2);
+            MarkInactive.Name = "MarkInactive";
+            MarkInactive.Size = new Size(55, 22);
+            MarkInactive.TabIndex = 55;
+            MarkInactive.Text = "Inaktiv";
+            MarkInactive.UseVisualStyleBackColor = true;
+            MarkInactive.Click += MarkInactive_Click;
             // 
             // label36
             // 
             label36.AutoSize = true;
-            label36.Location = new Point(394, 19);
+            label36.Location = new Point(421, 16);
             label36.Name = "label36";
             label36.Size = new Size(18, 15);
             label36.TabIndex = 54;
@@ -1005,11 +671,11 @@
             // 
             // CurrentStatus
             // 
-            CurrentStatus.Location = new Point(179, 78);
+            CurrentStatus.Location = new Point(173, 78);
             CurrentStatus.Margin = new Padding(3, 2, 3, 2);
             CurrentStatus.Name = "CurrentStatus";
             CurrentStatus.ReadOnly = true;
-            CurrentStatus.Size = new Size(108, 23);
+            CurrentStatus.Size = new Size(110, 23);
             CurrentStatus.TabIndex = 49;
             // 
             // label35
@@ -1030,49 +696,208 @@
             label17.TabIndex = 41;
             label17.Text = "1 = Standard\r\n2 = Premium\r\n3 = VIP\r\n";
             // 
-            // ChangeStatus
+            // EditType
             // 
-            ChangeStatus.Location = new Point(62, 279);
-            ChangeStatus.Margin = new Padding(3, 2, 3, 2);
-            ChangeStatus.Name = "ChangeStatus";
-            ChangeStatus.Size = new Size(84, 22);
-            ChangeStatus.TabIndex = 51;
-            ChangeStatus.Text = "Bytt status";
-            ChangeStatus.UseVisualStyleBackColor = true;
-            ChangeStatus.Click += ChangeStatus_Click;
+            EditType.Location = new Point(394, 142);
+            EditType.Margin = new Padding(3, 2, 3, 2);
+            EditType.Name = "EditType";
+            EditType.Size = new Size(110, 23);
+            EditType.TabIndex = 40;
             // 
-            // label37
+            // MarkActive
             // 
-            label37.AutoSize = true;
-            label37.Location = new Point(286, 174);
-            label37.Name = "label37";
-            label37.Size = new Size(113, 15);
-            label37.TabIndex = 56;
-            label37.Text = "\"00 00 00 00\" format";
+            MarkActive.Location = new Point(62, 278);
+            MarkActive.Margin = new Padding(3, 2, 3, 2);
+            MarkActive.Name = "MarkActive";
+            MarkActive.Size = new Size(44, 22);
+            MarkActive.TabIndex = 51;
+            MarkActive.Text = "Aktiv";
+            MarkActive.UseVisualStyleBackColor = true;
+            MarkActive.Click += MarkActive_Click;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new Point(312, 146);
+            label34.Name = "label34";
+            label34.Size = new Size(79, 15);
+            label34.TabIndex = 38;
+            label34.Text = "Medlemstype";
+            // 
+            // EditCustomerCancelBtn
+            // 
+            EditCustomerCancelBtn.Location = new Point(326, 283);
+            EditCustomerCancelBtn.Margin = new Padding(3, 2, 3, 2);
+            EditCustomerCancelBtn.Name = "EditCustomerCancelBtn";
+            EditCustomerCancelBtn.Size = new Size(82, 22);
+            EditCustomerCancelBtn.TabIndex = 36;
+            EditCustomerCancelBtn.Text = "Annuler";
+            EditCustomerCancelBtn.UseVisualStyleBackColor = true;
+            EditCustomerCancelBtn.Click += EditCustomerCancelBtn_Click;
+            // 
+            // EditCustomerConfirmBtn
+            // 
+            EditCustomerConfirmBtn.Location = new Point(421, 283);
+            EditCustomerConfirmBtn.Margin = new Padding(3, 2, 3, 2);
+            EditCustomerConfirmBtn.Name = "EditCustomerConfirmBtn";
+            EditCustomerConfirmBtn.Size = new Size(82, 22);
+            EditCustomerConfirmBtn.TabIndex = 36;
+            EditCustomerConfirmBtn.Text = "Gem";
+            EditCustomerConfirmBtn.UseVisualStyleBackColor = true;
+            EditCustomerConfirmBtn.Click += EditCustomerConfirmBtn_Click_1;
+            // 
+            // EditNote
+            // 
+            EditNote.Location = new Point(181, 221);
+            EditNote.Margin = new Padding(3, 2, 3, 2);
+            EditNote.Multiline = true;
+            EditNote.Name = "EditNote";
+            EditNote.Size = new Size(322, 41);
+            EditNote.TabIndex = 29;
+            // 
+            // EditPhone
+            // 
+            EditPhone.Location = new Point(394, 176);
+            EditPhone.Margin = new Padding(3, 2, 3, 2);
+            EditPhone.Name = "EditPhone";
+            EditPhone.Size = new Size(110, 23);
+            EditPhone.TabIndex = 27;
+            // 
+            // EditMail
+            // 
+            EditMail.Location = new Point(179, 178);
+            EditMail.Margin = new Padding(3, 2, 3, 2);
+            EditMail.Name = "EditMail";
+            EditMail.Size = new Size(110, 23);
+            EditMail.TabIndex = 26;
+            // 
+            // EditLast
+            // 
+            EditLast.Location = new Point(177, 147);
+            EditLast.Margin = new Padding(3, 2, 3, 2);
+            EditLast.Name = "EditLast";
+            EditLast.Size = new Size(110, 23);
+            EditLast.TabIndex = 25;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(65, 208);
+            label11.Name = "label11";
+            label11.Size = new Size(37, 15);
+            label11.TabIndex = 23;
+            label11.Text = "Notat";
+            // 
+            // EditFirst
+            // 
+            EditFirst.Location = new Point(177, 111);
+            EditFirst.Margin = new Padding(3, 2, 3, 2);
+            EditFirst.Name = "EditFirst";
+            EditFirst.Size = new Size(110, 23);
+            EditFirst.TabIndex = 22;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(312, 180);
+            label12.Name = "label12";
+            label12.Size = new Size(41, 15);
+            label12.TabIndex = 21;
+            label12.Text = "Phone";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(66, 182);
+            label14.Name = "label14";
+            label14.Size = new Size(36, 15);
+            label14.TabIndex = 19;
+            label14.Text = "Email";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(66, 149);
+            label15.Name = "label15";
+            label15.Size = new Size(57, 15);
+            label15.TabIndex = 18;
+            label15.Text = "Efternavn";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(62, 113);
+            label16.Name = "label16";
+            label16.Size = new Size(50, 15);
+            label16.TabIndex = 17;
+            label16.Text = "Fornavn";
+            // 
+            // EditCustomerTitle
+            // 
+            EditCustomerTitle.AutoSize = true;
+            EditCustomerTitle.Font = new Font("Segoe UI", 12F);
+            EditCustomerTitle.Location = new Point(66, 20);
+            EditCustomerTitle.Name = "EditCustomerTitle";
+            EditCustomerTitle.Size = new Size(111, 21);
+            EditCustomerTitle.TabIndex = 13;
+            EditCustomerTitle.Text = "Rediger kunde";
+            // 
+            // ShowListBtn
+            // 
+            ShowListBtn.Location = new Point(552, 100);
+            ShowListBtn.Margin = new Padding(3, 2, 3, 2);
+            ShowListBtn.Name = "ShowListBtn";
+            ShowListBtn.Size = new Size(82, 22);
+            ShowListBtn.TabIndex = 13;
+            ShowListBtn.Text = "Vis liste";
+            ShowListBtn.UseVisualStyleBackColor = true;
+            ShowListBtn.Click += ShowListBtn_Click;
+            // 
+            // NewCustomerBtn
+            // 
+            NewCustomerBtn.Location = new Point(552, 189);
+            NewCustomerBtn.Margin = new Padding(3, 2, 3, 2);
+            NewCustomerBtn.Name = "NewCustomerBtn";
+            NewCustomerBtn.Size = new Size(82, 22);
+            NewCustomerBtn.TabIndex = 14;
+            NewCustomerBtn.Text = "Ny medlem";
+            NewCustomerBtn.UseVisualStyleBackColor = true;
+            NewCustomerBtn.Click += NewCustomerBtn_Click;
+            // 
+            // BackBtn
+            // 
+            BackBtn.Location = new Point(552, 290);
+            BackBtn.Margin = new Padding(3, 2, 3, 2);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(82, 22);
+            BackBtn.TabIndex = 16;
+            BackBtn.Text = "Tilbage";
+            BackBtn.UseVisualStyleBackColor = true;
+            BackBtn.Click += BackBtn_Click;
             // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1222, 747);
-            Controls.Add(CustomerInformationPanel);
+            ClientSize = new Size(665, 370);
+            Controls.Add(BookingPanel);
+            Controls.Add(ListPanel);
+            Controls.Add(NewCustomerPanel);
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
-            Controls.Add(ShowListBtn);
-            Controls.Add(ListPanel);
             Controls.Add(EditCustomerPanel);
-            Controls.Add(NewCustomerPanel);
+            Controls.Add(ShowListBtn);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
             ListPanel.ResumeLayout(false);
             ListPanel.PerformLayout();
+            SearchPanel.ResumeLayout(false);
+            SearchPanel.PerformLayout();
+            BookingPanel.ResumeLayout(false);
+            BookingPanel.PerformLayout();
             NewCustomerPanel.ResumeLayout(false);
             NewCustomerPanel.PerformLayout();
-            LookupPanel.ResumeLayout(false);
-            LookupPanel.PerformLayout();
-            CustomerInformationPanel.ResumeLayout(false);
-            CustomerInformationPanel.PerformLayout();
             EditCustomerPanel.ResumeLayout(false);
             EditCustomerPanel.PerformLayout();
             ResumeLayout(false);
@@ -1105,24 +930,7 @@
         private Button ShowAllBtn;
         private Button ShowInactiveBtn;
         private Button CustomerInfoBtn;
-        private Panel CustomerInformationPanel;
         private Button InfoBtn;
-        private Button InfoBackBtn;
-        private Label label1;
-        private TextBox noteInfoTxt;
-        private TextBox birthdayInfoTxt;
-        private TextBox phoneInfoTxt;
-        private TextBox emailInfoTxt;
-        private TextBox lastNameInfoTxt;
-        private Label label3;
-        private TextBox NameInfoTxt;
-        private Label label10;
-        private Label label18;
-        private Label label19;
-        private Label label20;
-        private Label label21;
-        private Label Kundeinformation;
-        private TextBox statusInfoTxt;
         private ListBox activityInfoList;
         private Label Required;
         private Label label24;
@@ -1135,13 +943,8 @@
         private Label label27;
         private TextBox count;
         private Label label29;
-        private Panel LookupPanel;
+        private Panel SearchPanel;
         private Label label30;
-        private Label label31;
-        private TextBox IDtxt;
-        private TextBox memberTypetxt;
-        private Label label33;
-        private Label label32;
         private ComboBox memberType;
         private Label EditCustomerTitle;
         private Label label16;
@@ -1165,10 +968,16 @@
         private TextBox CurrentStatus;
         private Label label36;
         private TextBox EditCustomerID;
-        private Button ChangeStatus;
+        private Button MarkActive;
         private Button ShowActiveBtn;
+        private Button MarkInactive;
         private TextBox IDinfo;
+        private TextBox textBox1;
         private Label label13;
-        private Label label37;
+        private Panel BookingPanel;
+        private Label label3;
+        private Label label1;
+        private Label label10;
+        private Label label18;
     }
 }

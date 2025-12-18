@@ -27,7 +27,7 @@ namespace FitHubManagement.BusinessLogic
 
             if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
 
-                throw new Exception("Vælg valid værdi");
+                throw new Exception();
 
             if (customer.Phone.Length != 11) 
                 throw new Exception ();
@@ -63,12 +63,26 @@ namespace FitHubManagement.BusinessLogic
 
         public void UpdateCustomer(CustomerModel customer)
         {
+            if (string.IsNullOrWhiteSpace(customer.FirstName) ||
+               string.IsNullOrWhiteSpace(customer.LastName) ||
+               string.IsNullOrWhiteSpace(customer.Email) ||
+               string.IsNullOrWhiteSpace(customer.Phone))
+
+                throw new Exception();
+
+            if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
+
+                throw new Exception();
+
+            if (customer.Phone.Length != 11)
+                throw new Exception();
+
             repo.UpdateCustomer(customer);        
         }
 
-        public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
+        public void ChangeCustomerActiveStatus(int customerId, bool inactive)
         {
-            repo.ChangeCustomerActiveStatus(customer, newValue);
+            repo.ChangeCustomerActiveStatus(customerId, inactive);
         }        
     }
 }

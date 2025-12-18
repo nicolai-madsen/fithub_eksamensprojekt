@@ -1,4 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic;
+using FitHubManagement.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,24 +17,32 @@ namespace FitHubManagement.UI.CustomerUI
 {
     public partial class CustomerForm : Form
     {
-       
-        private readonly CustomerService service = new();  //Businesslogic lag
+
+        private readonly CustomerService _customerService = new(); //Businesslogic lag til customer'
+        private readonly BookingService _bookingService = new();
+
+
         public CustomerForm()
         {
             InitializeComponent();
+            SearchPanel.Hide();
+            BookingPanel.Hide();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+            ListPanel.Show();
+            NewCustomerPanel.SendToBack();
+
+
+
+
+            //Legger til selection i CreateCustomer
             memberType.Items.Add("1");
             memberType.Items.Add("2");
             memberType.Items.Add("3");
             ListPanel.Visible = true;
             NewCustomerPanel.Visible = true;
             EditCustomerPanel.Visible = true;
-            ListPanel.Show();
-            EditCustomerPanel.Hide();
-            NewCustomerPanel.Hide();
-            LookupPanel.Hide();
-            CustomerInformationPanel.Hide();
-
-
+            ListPanel.BringToFront();
         }
 
 
@@ -41,7 +50,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                List<CustomerModel> customers = service.GetAllCustomerBLL();
+                List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Alle kunder");
@@ -69,7 +78,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                List<CustomerModel> customers = service.GetInactiveCustomerBLL();
+                List<CustomerModel> customers = _customerService.GetInactiveCustomerBLL();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Inaktive kunder");
@@ -99,6 +108,7 @@ namespace FitHubManagement.UI.CustomerUI
             Notes.Clear();
         }
 
+        //Information fra textbox gemmes
         private void NewCustomerConfirmBtn_Click(object sender, EventArgs e)
         {
             CustomerModel customer = new CustomerModel();
@@ -112,7 +122,7 @@ namespace FitHubManagement.UI.CustomerUI
 
             try
             {
-                service.CreateCustomerBLL(customer);
+                _customerService.CreateCustomerBLL(customer);
 
                 MessageBox.Show("Medlem opretted");
                 FirstName.Clear();
@@ -128,37 +138,40 @@ namespace FitHubManagement.UI.CustomerUI
         }
         private void InfoBtn_Click(object sender, EventArgs e)
         {
+            SearchPanel.Hide();
+            BookingPanel.Show();
+            ListPanel.Hide();
             string IdCustomer = IDinfo.Text;
-            CustomerModel customer = service.GetIndividualCustomer(IdCustomer);
+            CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
             if (customer != null)
             {
-                //Clear feltene som overlapper
-                birthdayInfoTxt.Clear();
-                noteInfoTxt.Clear();
-                //Clear for bookede hold mest sannsynlig når den kommer
+                int customerId = int.Parse(IDinfo.Text);
+                List<BookingModel> bookings = _bookingService.GetCustomerBooking(customerId);
 
+                foreach (BookingModel booking in bookings)
+                {
+                    {
+                        string infoLine = $"Booking ID: {booking.BookingId} Hold: {booking.ActivityId} Notat: {booking.PersonalNote}";
 
-                //Kode for at gå til panel
-                NameInfoTxt.Text = customer.FirstName;
-                lastNameInfoTxt.Text = customer.LastName;
-                emailInfoTxt.Text = customer.Email;
-                phoneInfoTxt.Text = customer.Phone;
-                birthdayInfoTxt.Text += customer.Birthday.ToString("dd-MM-yyyy");
-                noteInfoTxt.Text += customer.PersonalNote;
-                statusInfoTxt.Text = customer.Inactive ? "Inactive" : "Active";
-                IDtxt.Text = customer.CustomerId.ToString();
-                memberTypetxt.Text = customer.MembershipId.ToString();
+                        activityInfoList.Items.Add(infoLine);
+
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Indtast gyldig ID");
             }
+
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //Indlaster relevant information til redigering side fra kunde
         {
+            SearchPanel.Hide();
+            EditCustomerPanel.Show();
+            ListPanel.Hide();
             string IdCustomer = IDinfo.Text;
-            CustomerModel customer = service.GetIndividualCustomer(IdCustomer);
+            CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
             if (customer != null)
             {
                 //clear om det er nødvendig
@@ -182,7 +195,7 @@ namespace FitHubManagement.UI.CustomerUI
         private void EditCustomerCancelBtn_Click(object sender, EventArgs e)
         {
             string idCustomer = IDinfo.Text;
-            CustomerModel customer = service.GetIndividualCustomer(idCustomer);
+            CustomerModel customer = _customerService.GetIndividualCustomer(idCustomer);
             EditFirst.Text = customer.FirstName;
             EditLast.Text = customer.LastName;
             EditMail.Text = customer.Email;
@@ -197,7 +210,7 @@ namespace FitHubManagement.UI.CustomerUI
         {
             try
             {
-                List<CustomerModel> customers = service.GetActiveCustomer();
+                List<CustomerModel> customers = _customerService.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
                 CustomerListBox.Items.Add("Aktive kunder");
@@ -231,7 +244,7 @@ namespace FitHubManagement.UI.CustomerUI
                     customer.PersonalNote = EditNote.Text;
                     customer.MembershipId = int.Parse(EditType.Text);
                 }
-                service.UpdateCustomer(customer);
+                _customerService.UpdateCustomer(customer);
                 MessageBox.Show("Medlem redigerert");
             }
             catch (Exception)
@@ -239,8 +252,64 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Fejl med redigering af medlem");
             }
         }
+        private void MarkActive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _customerService.ChangeCustomerActiveStatus(int.Parse(EditCustomerID.Text), false);
 
 
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl med statusendring");
+            }
+        }
+
+        private void MarkInactive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _customerService.ChangeCustomerActiveStatus(int.Parse(EditCustomerID.Text), true);
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl med statusendring");
+            }
+        }
+        private void ShowListBtn_Click(object sender, EventArgs e)
+        {
+            SearchPanel.Hide();
+            BookingPanel.Hide();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+            ListPanel.Show();
+        }
+
+        private void NewCustomerBtn_Click(object sender, EventArgs e)
+        {
+            SearchPanel.Hide();
+            BookingPanel.Hide();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Show();
+            ListPanel.Hide();
+        }
+
+        private void CustomerInfoBtn_Click(object sender, EventArgs e)
+        {
+            SearchPanel.Show();
+            BookingPanel.Hide();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
 
         #region
         public void customerCounter()
@@ -250,38 +319,7 @@ namespace FitHubManagement.UI.CustomerUI
             count.Text = totalCustomer.ToString();
         }
         #endregion
-
-        private void EditType_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ChangeStatus_Click(object sender, EventArgs e)
-        {
-
-
-
-
-        }
-
-        private void ShowListBtn_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void NewCustomerBtn_Click(object sender, EventArgs e)
-        {
-            NewCustomerPanel.Show();
-            ListPanel.Hide();
-            EditCustomerPanel.Hide();
-            NewCustomerPanel.Hide();
-            LookupPanel.Hide();
-            CustomerInformationPanel.Hide();
-        }
-
     }
 }
-//PANELS   ListPanel  NewCustomerPanel   EditCustomerPanel   ListPanel
-
 
 

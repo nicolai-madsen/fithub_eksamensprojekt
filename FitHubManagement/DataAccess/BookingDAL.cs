@@ -91,12 +91,64 @@ namespace FitHubManagement.DataAccess
                 }
             }
 
+
             // Skriver i konsollen hvor mange bookinger blev hentet
             Console.WriteLine($"Loaded {bookings.Count} bookings from database.");
 
             // Returnerer listen med bookings
             return bookings;
         }
+
+
+        public  List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            // Liste hvor vi samler alle booking-objekter
+            List<BookingModel> bookings = new List<BookingModel>();
+
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+
+            string query = "SELECT BookingID, ActivityID, CustomerID, PersonalNote FROM Booking WHERE CustomerID = @customerId";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@customerId", customerId);
+
+            // Læser resultatet af SQL SELECT
+            using SqlDataReader reader = command.ExecuteReader();
+            {
+              
+                // Går gennem hver række i resultatet
+                while (reader.Read())
+                {
+                    // 
+                    string personalNote = null; //Vi laver variabel her for feltet kan være Null i databasen.
+
+                    if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
+                    {
+                        personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
+                    }
+
+                    // Opretter et Booking-objekt baseret på værdierne i rækken
+                    BookingModel bookingList = new BookingModel
+                    {
+                        BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
+                        ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
+                        CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                        PersonalNote = personalNote
+
+                    };
+
+                    // Tilføjer booking-objektet til listen
+                    bookings.Add(bookingList);
+                }
+                return bookings;
+            }
+            
+            
+        }
+
+
 
         public static void UpdateActivity(int bookingId, int newValue)
         {

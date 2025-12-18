@@ -71,22 +71,24 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
                 cmd.Parameters.AddWithValue("@MembershipID", customer.MembershipId);
 
+
+
                 cmd.ExecuteNonQuery();
             }
         }
 
         #region         
 
-              public void ChangeCustomerActiveStatus(CustomerModel customer, bool newValue)
+              public void ChangeCustomerActiveStatus(int customerId, bool Inactive)
               {
                   using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
                   connection.Open();
                   {
-                      string updateSql = $"UPDATE Customer SET IsActive = @newValue WHERE CustomerID = @customerId";
+                      string updateSql = $"UPDATE Customer SET Inactive = @Inactive WHERE CustomerID = @customerId";
                       using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
                       {
-                          updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                          updateCmd.Parameters.AddWithValue("@customerId", customer.CustomerId);
+                          updateCmd.Parameters.AddWithValue("@Inactive", Inactive);
+                          updateCmd.Parameters.AddWithValue("@customerId", customerId);
 
                           int updated = updateCmd.ExecuteNonQuery();
                       }
@@ -99,7 +101,7 @@ namespace FitHubManagement.DataAccess
 
         //READ
 
-        #region
+        #region 
         public List<CustomerModel> GetAllCustomer()
         {
             List<CustomerModel> customerList = new List<CustomerModel>();
