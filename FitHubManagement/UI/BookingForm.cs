@@ -59,10 +59,8 @@ namespace FitHubManagement.UI.BookingUI
             textBox1.Focus();
         }
 
+
         // ---------------- Panel1 ----------------
-
-
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textBox_Search_TextChanged(sender, e);
@@ -177,7 +175,7 @@ namespace FitHubManagement.UI.BookingUI
 
 
 
-        // Nulstil knap Panel1
+        // Nulstil knap til Panel1
         public void button4_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -189,75 +187,31 @@ namespace FitHubManagement.UI.BookingUI
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // hold tom - ingen MessageBox her
+
         }
 
-        // ---------------- Panel2 ----------------
+        // ---------------- Panel2 ---------------
 
         // Panel2 Vis knap: hent hold baseret på dato + holdtype, eller 1 af delene
         private void button5_Click(object sender, EventArgs e)
         {
-
-            //    if (selectedCustomer == null)
-            //    {
-            //        MessageBox.Show("Vælg et medlem først.");
-            //        return;
-            //    }
-
-            //    if (comboBox1.SelectedItem == null)
-            //    {
-            //        MessageBox.Show("Vælg en holdtype først.");
-            //        return;
-            //    }
-
-            //    // Læs filters fra UI
-            //    DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
-            //    string activityTypeName = comboBox1.SelectedItem.ToString();
-
-            //    // Byg filter model
-            //    ActivityFilterModel filter = new ActivityFilterModel
-            //    {
-            //        ActivityDate = date,
-            //        ActivityTypeName = activityTypeName
-            //    };
-
-            //    // Hent fra DAL
-            //    ActivityDAL dal = new ActivityDAL();
-            //    List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
-
-            //    // Vis i listBox2
-            //    listBox2.Items.Clear();
-            //    selectedActivityId = -1;
-
-            //    if (activities.Count == 0)
-            //    {
-            //        MessageBox.Show("Ingen hold fundet på den valgte dato.");
-            //        return;
-            //    }
-
-            //    foreach (var a in activities)
-            //    {
-            //        listBox2.Items.Add(a); // kræver at ActivityFilterModel.ToString() viser pænt
-            //    }
-
             if (selectedCustomer == null)
             {
                 MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            // 1. Hent værdier fra UI - tjek om de skal bruges
-            // Hvis checkboxen til dato ikke er valgt, sender vi 'null'
+            // Modtag værdier fra UI
+            // Hvis checkboxen for dato ikke er valgt, brug 'null'
             DateOnly? filteredDate = chkFilterByDate.Checked
                 ? DateOnly.FromDateTime(dateTimePicker1.Value.Date)
                 : null;
 
-            // Hvis intet er valgt i comboboxen, sender vi 'null'
             string filterType = (comboBox1.SelectedIndex != -1) 
                 ? comboBox1.SelectedItem.ToString() // Null check "?", "if comboBox1.SelectedItem.ToString() = null
                 : null; // use null instead
 
-            // 2. Validering: Brugeren skal vælge mindst én af delene
+            // Validering
             if (filteredDate == null && filterType == null)
             {
                 MessageBox.Show("Vælg venligst enten en dato, en holdtype eller begge dele for at søge.");
@@ -266,10 +220,9 @@ namespace FitHubManagement.UI.BookingUI
 
             try
             {
-                // 3. Hent fra BLL (bemærk: din metode skal nu kunne modtage 'null')
+                // Hent liste fra BLL
                 List<ActivityFilterModel> activities = _bookingService.GetFilteredActivities(filteredDate, filterType);
 
-                // 4. Vis i listBox2
                 listBox2.Items.Clear();
                 selectedActivityId = -1;
 
@@ -288,41 +241,6 @@ namespace FitHubManagement.UI.BookingUI
             {
                 MessageBox.Show("Der skete en fejl under hentning af hold: " + ex.Message);
             }
-            /*
-            if (selectedCustomer == null)
-            {
-                MessageBox.Show("Vælg et medlem først.");
-                return;
-            }
-
-            if (comboBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Vælg en holdtype først.");
-                return;
-            }
-
-            // Læs filters fra UI
-            DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
-            string activityTypeName = comboBox1.SelectedItem.ToString();
-
-            // Hent fra DAL via BLL instans
-            List<ActivityFilterModel> activities = _bookingService.GetFilteredActivities(date, activityTypeName); // ActivityDate, ActivityTypeName params
-
-            // Vis i resultat listBox2
-            listBox2.Items.Clear();
-            selectedActivityId = -1;
-
-            if (activities.Count == 0)
-            {
-                MessageBox.Show("Ingen hold fundet på den valgte dato.");
-                return;
-            }
-
-            foreach (var a in activities)
-            {
-                listBox2.Items.Add(a); // kræver at ActivityFilterModel.ToString() viser pænt
-            }
-            */
         }
 
         // Når man vælger et hold i listBox2, gemmer vi ActivityId
@@ -341,14 +259,14 @@ namespace FitHubManagement.UI.BookingUI
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // 1. Validering af valg i UI
+            // Validering af valg i UI
             if (selectedCustomer == null || selectedActivityId == -1)
             {
                 MessageBox.Show("Vælg venligst både et medlem og et hold.");
                 return;
             }
 
-            // 2. Tjek ledige pladser via BLL
+            // Tjek ledige pladser via BLL metode
             int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
             if (availableSpots <= 0)
             {
@@ -356,7 +274,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // 3. Forretningsregler (Max 2 bookinger) - Ligger allerede i BLL (godt!)
+            // Max 2 bookinger pr uge for standard validering
             DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
             if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
             {
@@ -364,7 +282,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-            // 4. Brugerbekræftelse
+            // Brugerbekræftelse
             DialogResult answer = MessageBox.Show(
                 $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
                 "Bekræft booking",
@@ -374,7 +292,6 @@ namespace FitHubManagement.UI.BookingUI
 
             if (answer != DialogResult.Yes) return;
 
-            // 5. Udfør handlingen
             try
             {
                 // Vi opretter bookingen. 
@@ -389,19 +306,6 @@ namespace FitHubManagement.UI.BookingUI
             {
                 MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
             }
-
-            // AC3: Vis at deltagerlisten er opdateret
-            /*int participants = BookingDAL.GetAllBookings()
-                .FindAll(b => b.ActivityId == selectedActivityId)
-                .Count;
-
-            MessageBox.Show(
-                $"Tilmelding gennemført ✅\nDeltagere på holdet nu: {participants}"
-            );
-            catch (Exception ex)
-            {
-                MessageBox.Show("Der skete en fejl: " + ex.Message);
-            }*/
         }
 
 
@@ -440,8 +344,6 @@ namespace FitHubManagement.UI.BookingUI
         {
             public CustomerModel Customer { get; }
 
-
-            //LENA
             public CustomerNameItem(CustomerModel customer)
             {
                 Customer = customer;
@@ -473,8 +375,6 @@ namespace FitHubManagement.UI.BookingUI
                 _membershipName = membershipName;
             }
 
-
-            // Integration fra UI -> DAL her
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
@@ -488,7 +388,6 @@ namespace FitHubManagement.UI.BookingUI
 
         private void label7_Click(object sender, EventArgs e)
         {
-            //Bruges ikke som klik.
         }
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
