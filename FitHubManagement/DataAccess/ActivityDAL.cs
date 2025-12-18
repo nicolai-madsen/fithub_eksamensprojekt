@@ -28,6 +28,7 @@ namespace FitHubManagement.DataAccess
             // Split StartDateTime & EndDateTime op i dato og klokkeslæt
 
             //INNER JOIN fordi LEFT JOIN giver tomme rækker, og rækker kan ikke være tomme. En Activity har altid en ActivityType osv. ActivityType har Instructor
+            // WHERE 1=1 - så kan query altid return noget (hvis tom, så tager den alle rækker
             string filterQuery = @"
                 SELECT
                     ActivityID,
