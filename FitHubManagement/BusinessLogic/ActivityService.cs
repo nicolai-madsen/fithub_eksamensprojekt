@@ -56,6 +56,11 @@ namespace FitHubManagement.BusinessLogic
         {
             return _activityDal.GetAllDuration();
         }
+
+        internal void CreateActivity(object activityTypeId, object instructorId, object chosenDateTime, string activityDuration, string activityLocation, int maxParticipant)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

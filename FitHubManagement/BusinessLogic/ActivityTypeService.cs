@@ -39,10 +39,11 @@ namespace FitHubManagement.BusinessLogic
                 ActivityTypeDescription = description,
             };
 
-            ActivityTypeDAL dal = new ActivityTypeDAL();
-            int id = dal.CreateActivityType(type);
+
+            int id = ActivityTypeDAL.CreateActivityType(type); // ✅
             type.ActivityTypeId = id;
             return type;
+
         }
     }
 }

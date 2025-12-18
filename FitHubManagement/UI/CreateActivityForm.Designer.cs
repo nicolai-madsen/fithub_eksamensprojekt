@@ -151,7 +151,6 @@
             btnSearchActivity = new Button();
             button4 = new Button();
             panel1 = new Panel();
-            btnEditHoldType = new Button();
             comboBox1 = new ComboBox();
             button3 = new Button();
             dateTimePicker1 = new DateTimePicker();
@@ -167,12 +166,13 @@
             comboBox2 = new ComboBox();
             btnCreateActivityPanel = new Button();
             label2 = new Label();
+            btnEditHoldType = new Button();
             pnlHoldType = new Panel();
             lblHoldTypeTitle = new Label();
             btnSaveHoldType = new Button();
             cmbHoldTypeInstruktor = new ComboBox();
             btnCancelHoldType = new Button();
-            label8 = new Label();
+            lblHoldTypeInstructor = new Label();
             txtHoldTypeBeskrivelse = new TextBox();
             lblHoldTypeDescription = new Label();
             txtHoldTypeName = new TextBox();
@@ -233,7 +233,7 @@
             btnSearchGet.TabIndex = 19;
             btnSearchGet.Text = "Vis søgeresultater";
             btnSearchGet.UseVisualStyleBackColor = true;
-            btnSearchGet.Click += btnSearchGet_Click;
+            btnSearchGet.Click += button1_Click;
             // 
             // cmbSearchLocation
             // 
@@ -360,7 +360,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnEditHoldType);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(dateTimePicker1);
@@ -379,21 +378,11 @@
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnCreateActivityPanel);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(0, 40);
+            panel1.Location = new Point(10, 36);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
             panel1.Size = new Size(577, 554);
             panel1.TabIndex = 21;
-            // 
-            // btnEditHoldType
-            // 
-            btnEditHoldType.Location = new Point(117, 157);
-            btnEditHoldType.Name = "btnEditHoldType";
-            btnEditHoldType.Size = new Size(123, 29);
-            btnEditHoldType.TabIndex = 23;
-            btnEditHoldType.Text = "Opret/Rediger";
-            btnEditHoldType.UseVisualStyleBackColor = true;
-            btnEditHoldType.Click += btnEditHoldType_Click;
             // 
             // comboBox1
             // 
@@ -547,6 +536,16 @@
             label2.TabIndex = 7;
             label2.Text = "Instruktør";
             // 
+            // btnEditHoldType
+            // 
+            btnEditHoldType.Location = new Point(620, 504);
+            btnEditHoldType.Name = "btnEditHoldType";
+            btnEditHoldType.Size = new Size(123, 29);
+            btnEditHoldType.TabIndex = 23;
+            btnEditHoldType.Text = "Opret/Rediger";
+            btnEditHoldType.UseVisualStyleBackColor = true;
+            btnEditHoldType.Click += btnEditHoldType_Click;
+            // 
             // pnlHoldType
             // 
             pnlHoldType.BackColor = Color.White;
@@ -555,12 +554,12 @@
             pnlHoldType.Controls.Add(btnSaveHoldType);
             pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
             pnlHoldType.Controls.Add(btnCancelHoldType);
-            pnlHoldType.Controls.Add(label8);
+            pnlHoldType.Controls.Add(lblHoldTypeInstructor);
             pnlHoldType.Controls.Add(txtHoldTypeBeskrivelse);
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(620, 99);
+            pnlHoldType.Location = new Point(676, 115);
             pnlHoldType.Name = "pnlHoldType";
             pnlHoldType.Size = new Size(392, 360);
             pnlHoldType.TabIndex = 22;
@@ -589,6 +588,7 @@
             // 
             // cmbHoldTypeInstruktor
             // 
+            cmbHoldTypeInstruktor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHoldTypeInstruktor.FormattingEnabled = true;
             cmbHoldTypeInstruktor.Location = new Point(223, 222);
             cmbHoldTypeInstruktor.Name = "cmbHoldTypeInstruktor";
@@ -607,15 +607,15 @@
             btnCancelHoldType.UseVisualStyleBackColor = true;
             btnCancelHoldType.Click += btnCancelHoldType_ckick;
             // 
-            // label8
+            // lblHoldTypeInstructor
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(60, 230);
-            label8.Name = "label8";
-            label8.Size = new Size(71, 20);
-            label8.TabIndex = 4;
-            label8.Text = "Instruktør";
-            label8.Click += label8_Click_1;
+            lblHoldTypeInstructor.AutoSize = true;
+            lblHoldTypeInstructor.Location = new Point(60, 230);
+            lblHoldTypeInstructor.Name = "lblHoldTypeInstructor";
+            lblHoldTypeInstructor.Size = new Size(71, 20);
+            lblHoldTypeInstructor.TabIndex = 4;
+            lblHoldTypeInstructor.Text = "Instruktør";
+            lblHoldTypeInstructor.Click += label8_Click_1;
             // 
             // txtHoldTypeBeskrivelse
             // 
@@ -659,6 +659,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1121, 600);
+            Controls.Add(btnEditHoldType);
             Controls.Add(pnlHoldType);
             Controls.Add(panel1);
             Controls.Add(btnActivityCreate);
@@ -690,7 +691,7 @@
         private DateTimePicker dateTimePicker3;
         private ComboBox cmbHoldTypeInstruktor;
         private Label label9;
-        private Label label8;
+        private Label lblHoldTypeInstructor;
         private Label lblHoldTypeDescription;
         private Label lblHoldTypeNavn;
         private ComboBox comboBox4;

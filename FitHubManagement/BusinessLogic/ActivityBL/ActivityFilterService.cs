@@ -19,7 +19,7 @@ namespace FitHubManagement.BusinessLogic.ActivityBL
 
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel) // Kald DAL metode
         {
-            var activities = _filterDL.GetFilteredActivities(filterModel);
+            var activities = _filterDL.GetFilteredActivities( filterModel);
 
             return activities;
         }

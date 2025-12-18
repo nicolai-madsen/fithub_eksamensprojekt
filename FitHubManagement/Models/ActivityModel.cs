@@ -18,6 +18,9 @@ namespace FitHubManagement.Models
         public int MaxParticipant { get; set; }
 
         public int MaxParticipants { get; set; } //Jeg ved godt, at disse to refererer til det samme, rename i metoder og slet den ene
+        public string ActivityTypeName { get; internal set; }
+        public string ActivityDuration { get; internal set; }
+        public DateOnly ActivityDate { get; internal set; }
 
         // Cake is good. Cake is great. 
 
