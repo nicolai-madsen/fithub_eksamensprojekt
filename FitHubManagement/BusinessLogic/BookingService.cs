@@ -82,6 +82,8 @@ namespace FitHubManagement.BusinessLogic
         {
             return BookingDAL.GetBookingsByActivityID(activityId);
         }
+
+
     }
 }
 

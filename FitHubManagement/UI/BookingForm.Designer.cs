@@ -39,6 +39,7 @@
             label1 = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            chkFilterByDate = new CheckBox();
             btnRydP2 = new Button();
             lbl_MedlemsNavn = new Label();
             label5 = new Label();
@@ -113,7 +114,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(179, 23);
             textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged; //
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -164,6 +165,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(chkFilterByDate);
             panel2.Controls.Add(btnRydP2);
             panel2.Controls.Add(lbl_MedlemsNavn);
             panel2.Controls.Add(label5);
@@ -181,6 +183,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(536, 373);
             panel2.TabIndex = 2;
+            // 
+            // chkFilterByDate
+            // 
+            chkFilterByDate.AutoSize = true;
+            chkFilterByDate.Location = new Point(295, 62);
+            chkFilterByDate.Name = "chkFilterByDate";
+            chkFilterByDate.Size = new Size(15, 14);
+            chkFilterByDate.TabIndex = 14;
+            chkFilterByDate.UseVisualStyleBackColor = true;
+            chkFilterByDate.CheckedChanged += chkFilterByDate_CheckedChanged;
             // 
             // btnRydP2
             // 
@@ -361,5 +373,6 @@
         private Label lbl_MedlemsNavn;
         protected internal Button button6;
         private Button btnRydP2;
+        private CheckBox chkFilterByDate;
     }
 }

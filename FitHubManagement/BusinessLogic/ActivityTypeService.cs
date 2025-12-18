@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class ActivityTypeService // Hvorfor må denne ikke være public?
+    public class ActivityTypeService // Hvorfor må denne ikke være public?
     {
         /// <summary>
         /// 1. Skifter string parametere ud med et helt ActivityTypeModel objekt i stedet. 

@@ -40,8 +40,8 @@ namespace FitHubManagement.UI.BookingUI
         {
             try
             {
-                
-                List<string> types = _activityService.GetAllActivityTypeNames(); 
+
+                List<string> types = _activityService.GetAllActivityTypeNames();
 
                 comboBox1.DataSource = types;
                 comboBox1.SelectedIndex = -1;
@@ -61,7 +61,7 @@ namespace FitHubManagement.UI.BookingUI
 
         // ---------------- Panel1 ----------------
 
-       
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -149,7 +149,7 @@ namespace FitHubManagement.UI.BookingUI
             string name = textBox1.Text.Trim();
             string phone = textBox2.Text.Trim().Replace(" ", "");
 
-            
+
             List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
 
             listBox1.DataSource = null;
@@ -175,7 +175,7 @@ namespace FitHubManagement.UI.BookingUI
             listBox1.ClearSelected();
         }
 
-      
+
 
         // Nulstil knap Panel1
         public void button4_Click(object sender, EventArgs e)
@@ -206,47 +206,48 @@ namespace FitHubManagement.UI.BookingUI
         // Panel2 Vis knap: hent hold baseret på dato + holdtype
         private void button5_Click(object sender, EventArgs e)
         {
-            if (selectedCustomer == null)
-            {
-                MessageBox.Show("Vælg et medlem først.");
-                return;
-            }
 
-            if (comboBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Vælg en holdtype først.");
-                return;
-            }
+            //    if (selectedCustomer == null)
+            //    {
+            //        MessageBox.Show("Vælg et medlem først.");
+            //        return;
+            //    }
 
-            // Læs filters fra UI
-            DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
-            string activityTypeName = comboBox1.SelectedItem.ToString();
+            //    if (comboBox1.SelectedItem == null)
+            //    {
+            //        MessageBox.Show("Vælg en holdtype først.");
+            //        return;
+            //    }
 
-            // Byg filter model
-            ActivityFilterModel filter = new ActivityFilterModel
-            {
-                ActivityDate = date,
-                ActivityTypeName = activityTypeName
-            };
+            //    // Læs filters fra UI
+            //    DateOnly date = DateOnly.FromDateTime(dateTimePicker1.Value.Date);
+            //    string activityTypeName = comboBox1.SelectedItem.ToString();
 
-            // Hent fra DAL
-            ActivityDAL dal = new ActivityDAL();
-            List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
+            //    // Byg filter model
+            //    ActivityFilterModel filter = new ActivityFilterModel
+            //    {
+            //        ActivityDate = date,
+            //        ActivityTypeName = activityTypeName
+            //    };
 
-            // Vis i listBox2
-            listBox2.Items.Clear();
-            selectedActivityId = -1;
+            //    // Hent fra DAL
+            //    ActivityDAL dal = new ActivityDAL();
+            //    List<ActivityFilterModel> activities = dal.GetFilteredActivities(filter);
 
-            if (activities.Count == 0)
-            {
-                MessageBox.Show("Ingen hold fundet på den valgte dato.");
-                return;
-            }
+            //    // Vis i listBox2
+            //    listBox2.Items.Clear();
+            //    selectedActivityId = -1;
 
-            foreach (var a in activities)
-            {
-                listBox2.Items.Add(a); // kræver at ActivityFilterModel.ToString() viser pænt
-            }
+            //    if (activities.Count == 0)
+            //    {
+            //        MessageBox.Show("Ingen hold fundet på den valgte dato.");
+            //        return;
+            //    }
+
+            //    foreach (var a in activities)
+            //    {
+            //        listBox2.Items.Add(a); // kræver at ActivityFilterModel.ToString() viser pænt
+            //    }
         }
 
         // Når man vælger et hold i listBox2, gemmer vi ActivityId
@@ -319,7 +320,7 @@ namespace FitHubManagement.UI.BookingUI
                 return;
             }
 
-          
+
             // AC2: Registrer booking i databasen (KUN ÉN GANG)
             try
             {
@@ -331,7 +332,7 @@ namespace FitHubManagement.UI.BookingUI
                 MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
                 return;
             }
-            
+
             // AC3: Vis at deltagerlisten er opdateret
             int participants = BookingDAL.GetAllBookings()
                 .FindAll(b => b.ActivityId == selectedActivityId)
@@ -371,6 +372,7 @@ namespace FitHubManagement.UI.BookingUI
             selectedActivityId = -1;
         }
 
+
         // ---------------- WRAPPERS (Panel1) ----------------
 
         private class CustomerNameItem
@@ -397,7 +399,7 @@ namespace FitHubManagement.UI.BookingUI
                 return $"{Customer.FirstName} {Customer.LastName}{status}";
             }
         }
-        
+
 
         private class CustomerDetailItem
         {
@@ -450,6 +452,10 @@ namespace FitHubManagement.UI.BookingUI
             comboBox1.Focus();
         }
 
-       
+        // Checkbox til dato filter
+        private void chkFilterByDate_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker1.Enabled = chkFilterByDate.Checked;
+        }
     }
 }
