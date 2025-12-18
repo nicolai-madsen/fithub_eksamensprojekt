@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic.ReportProviders
 {
+    // NICOLAI MADSEN - Hele filen
     internal class ActiveCustomerReportProvider
     {
         public List<ActiveCustomerReportModel> GetActiveCustomers()
