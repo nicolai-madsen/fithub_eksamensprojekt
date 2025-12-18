@@ -27,6 +27,7 @@ namespace FitHubManagement.UI.Activity
             InitializeComponent();
             panel1.Visible = true;
             pnlSearchActivity.Visible = false;
+            LoadInstructors();
 
         }
 
@@ -37,6 +38,26 @@ namespace FitHubManagement.UI.Activity
         private List<ActivityTypeModel> activityType;
 
         private List<string> duration;
+
+        private void LoadActivityTypes()
+        {
+            activityType = activityService.GetAllActivityTypes();
+            comboBox2.DataSource = null;
+            comboBox2.DisplayMember = "ActivityTypeName";
+            comboBox2.ValueMember = "ActivityTypeId";
+            comboBox2.DataSource = activityType;
+            comboBox2.SelectedIndex = -1;
+        }
+        private void LoadInstructors()
+        {
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
+
+            cmbHoldTypeInstruktor.DataSource = instructors;
+            cmbHoldTypeInstruktor.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
+            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+        }
+
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
@@ -48,19 +69,13 @@ namespace FitHubManagement.UI.Activity
             cmbSearchLocation.DataSource = locations;
             cmbSearchLocation.SelectedIndex = -1;
 
-            activityType = activityService.GetAllActivityTypes();
+            LoadActivityTypes();
 
 
             cmbSearchActivity.DataSource = activityType;
             cmbSearchActivity.SelectedIndex = -1;
 
-            List<ActivityTypeModel> activityTypes =
-                activityTypeService.GetAllActivityTypes();
-
-            comboBox2.DisplayMember = "ActivityTypeName";
-            comboBox2.ValueMember = "ActivityTypeID";
-            comboBox2.DataSource = activityTypes;
-            comboBox2.SelectedIndex = -1;
+            LoadActivityTypes();
 
             label10.Text = "";
 
@@ -125,8 +140,8 @@ namespace FitHubManagement.UI.Activity
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            pnlSearchActivity.Visible=false;
+            LoadActivityTypes();
+            pnlSearchActivity.Visible = false;
             panel1.Visible = true;
 
         }
@@ -147,7 +162,7 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-       
+
 
         private void btnCreateActivityPanel_Click(object sender, EventArgs e)
         {
@@ -260,6 +275,85 @@ namespace FitHubManagement.UI.Activity
 
         }
 
-      
+        private void btnSaveActivityType_Click(object sender, EventArgs e)
+        {
+            // Validering: navn må ikke være tomt
+            if (string.IsNullOrWhiteSpace(txtHoldTypeName.Text))
+            {
+                MessageBox.Show(
+                    "Navn må ikke være tomt",
+                    "Valideringsfejl",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtHoldTypeName.Focus(); // markér feltet
+                return; // STOP – gem ikke
+            }
+
+            // Hent valgt instruktør fra ComboBox
+            if (cmbHoldTypeInstruktor.SelectedItem is not InstructorModel selectedInstructor)
+            {
+                MessageBox.Show("Du skal vælge en instruktør", "Valideringsfejl",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Opret model med data fra UI
+            ActivityTypeModel model = new ActivityTypeModel
+            {
+                InstructorId = selectedInstructor.InstructorId,
+                ActivityTypeName = txtHoldTypeName.Text,
+                ActivityTypeDescription = txtHoldTypeBeskrivelse.Text
+            };
+
+            // Kald BLL for at gemme
+            ActivityTypeBLL1 bll = new ActivityTypeBLL1();
+            try
+            {
+                bll.CreateActivityType(model);
+                MessageBox.Show("Holdtype gemt!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Ryd felter efter gemning
+                txtHoldTypeName.Text = "";
+                txtHoldTypeBeskrivelse.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fejl under gemning: {ex.Message}", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void CreateActivityType_Click(object sender, EventArgs e)
+        {
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
+
+            cmbHoldTypeInstruktor.DataSource = instructors;
+            cmbHoldTypeInstruktor.DisplayMember = "FullName";
+            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+
+            pnlHoldType.Visible = true;
+        }
+
+        private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelActivityType_Click(object sender, EventArgs e)
+        {
+            txtHoldTypeName.Clear();
+            txtHoldTypeBeskrivelse.Clear();
+            pnlHoldType.Visible = false;
+        }
+
+        private void cmbSearchActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
