@@ -378,7 +378,7 @@
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnCreateActivityPanel);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(10, 36);
+            panel1.Location = new Point(572, 21);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
             panel1.Size = new Size(577, 554);
