@@ -29,6 +29,7 @@ namespace FitHubManagement.DataAccess
                 insertCmd.Parameters.AddWithValue("@PersonalNote", (object)newBooking.PersonalNote ?? DBNull.Value);//Håndterer null værdier:perosonalNote kan være null
                 insertCmd.ExecuteNonQuery();
             }
+        
         }
 
         // DELETE
@@ -49,7 +50,7 @@ namespace FitHubManagement.DataAccess
         }
 
         // Henter alle bookinger fra databasen
-        public static List<BookingModel> GetAllBookings()
+        public List<BookingModel> GetAllBookings()
         {
             // Liste hvor vi samler alle booking-objekter
             List<BookingModel> bookings = new List<BookingModel>();
