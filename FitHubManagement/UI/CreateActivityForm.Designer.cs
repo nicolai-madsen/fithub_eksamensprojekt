@@ -188,10 +188,10 @@
             // LblDuration
             // 
             LblDuration.AutoSize = true;
-            LblDuration.Location = new Point(18, 159);
-            LblDuration.Margin = new Padding(6, 0, 6, 0);
+            LblDuration.Location = new Point(21, 212);
+            LblDuration.Margin = new Padding(7, 0, 7, 0);
             LblDuration.Name = "LblDuration";
-            LblDuration.Size = new Size(56, 15);
+            LblDuration.Size = new Size(71, 20);
             LblDuration.TabIndex = 8;
             LblDuration.Text = "Varighed:";
             toolTip1.SetToolTip(LblDuration, "t = time og min = minutter. Skriv f.eks. 1 t eller 45 min");
@@ -209,38 +209,38 @@
             pnlSearchActivity.Controls.Add(lblSearchDate);
             pnlSearchActivity.Controls.Add(lblSearchActivity);
             pnlSearchActivity.Controls.Add(lblSearchCriteria);
-            pnlSearchActivity.Location = new Point(15, 41);
+            pnlSearchActivity.Location = new Point(17, 55);
             pnlSearchActivity.Margin = new Padding(1);
             pnlSearchActivity.Name = "pnlSearchActivity";
-            pnlSearchActivity.Size = new Size(509, 443);
+            pnlSearchActivity.Size = new Size(582, 591);
             pnlSearchActivity.TabIndex = 20;
             pnlSearchActivity.Paint += pnlSearcActivity_Paint;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1, 82);
+            label2.Location = new Point(1, 109);
             label2.Name = "label2";
-            label2.Size = new Size(58, 15);
+            label2.Size = new Size(71, 20);
             label2.TabIndex = 22;
             label2.Text = "Instruktør";
             // 
             // cmbSearchLocation
             // 
             cmbSearchLocation.FormattingEnabled = true;
-            cmbSearchLocation.Location = new Point(59, 123);
+            cmbSearchLocation.Location = new Point(67, 164);
             cmbSearchLocation.Margin = new Padding(1);
             cmbSearchLocation.Name = "cmbSearchLocation";
-            cmbSearchLocation.Size = new Size(166, 23);
+            cmbSearchLocation.Size = new Size(189, 28);
             cmbSearchLocation.TabIndex = 14;
             cmbSearchLocation.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             // 
             // btnSearchGet
             // 
-            btnSearchGet.Location = new Point(380, 124);
-            btnSearchGet.Margin = new Padding(2, 3, 2, 3);
+            btnSearchGet.Location = new Point(434, 165);
+            btnSearchGet.Margin = new Padding(2, 4, 2, 4);
             btnSearchGet.Name = "btnSearchGet";
-            btnSearchGet.Size = new Size(120, 30);
+            btnSearchGet.Size = new Size(137, 40);
             btnSearchGet.TabIndex = 19;
             btnSearchGet.Text = "Vis søgeresultater";
             btnSearchGet.UseVisualStyleBackColor = true;
@@ -249,49 +249,49 @@
             // chkFilterByDate
             // 
             chkFilterByDate.AutoSize = true;
-            chkFilterByDate.Location = new Point(300, 84);
+            chkFilterByDate.Location = new Point(343, 112);
+            chkFilterByDate.Margin = new Padding(3, 4, 3, 4);
             chkFilterByDate.Name = "chkFilterByDate";
-            chkFilterByDate.Size = new Size(79, 19);
+            chkFilterByDate.Size = new Size(99, 24);
             chkFilterByDate.TabIndex = 20;
             chkFilterByDate.Text = "Brug Dato";
             chkFilterByDate.UseVisualStyleBackColor = true;
             // 
             // dTPSearchDate
             // 
-            dTPSearchDate.Location = new Point(300, 55);
-            dTPSearchDate.Margin = new Padding(2, 3, 2, 3);
+            dTPSearchDate.Location = new Point(343, 73);
+            dTPSearchDate.Margin = new Padding(2, 4, 2, 4);
             dTPSearchDate.Name = "dTPSearchDate";
-            dTPSearchDate.Size = new Size(166, 23);
+            dTPSearchDate.Size = new Size(189, 27);
             dTPSearchDate.TabIndex = 6;
             // 
             // lstbxSearchGet
             // 
             lstbxSearchGet.FormattingEnabled = true;
-            lstbxSearchGet.ItemHeight = 15;
-            lstbxSearchGet.Location = new Point(0, 156);
+            lstbxSearchGet.Location = new Point(0, 208);
             lstbxSearchGet.Margin = new Padding(1);
             lstbxSearchGet.Name = "lstbxSearchGet";
-            lstbxSearchGet.Size = new Size(500, 139);
+            lstbxSearchGet.Size = new Size(571, 184);
             lstbxSearchGet.TabIndex = 4;
             lstbxSearchGet.SelectedIndexChanged += lstbxSearchGet_SelectedIndexChanged;
             // 
             // cmbSearchActivity
             // 
             cmbSearchActivity.FormattingEnabled = true;
-            cmbSearchActivity.Location = new Point(59, 55);
+            cmbSearchActivity.Location = new Point(67, 73);
             cmbSearchActivity.Margin = new Padding(1);
             cmbSearchActivity.Name = "cmbSearchActivity";
-            cmbSearchActivity.Size = new Size(166, 23);
+            cmbSearchActivity.Size = new Size(189, 28);
             cmbSearchActivity.TabIndex = 5;
             cmbSearchActivity.SelectedIndexChanged += cmbSearchActivity_SelectedIndexChanged;
             // 
             // lblSearchLocation
             // 
             lblSearchLocation.AutoSize = true;
-            lblSearchLocation.Location = new Point(1, 126);
+            lblSearchLocation.Location = new Point(1, 168);
             lblSearchLocation.Margin = new Padding(1, 0, 1, 0);
             lblSearchLocation.Name = "lblSearchLocation";
-            lblSearchLocation.Size = new Size(53, 15);
+            lblSearchLocation.Size = new Size(66, 20);
             lblSearchLocation.TabIndex = 3;
             lblSearchLocation.Text = "Lokation";
             lblSearchLocation.Click += label9_Click;
@@ -299,10 +299,10 @@
             // lblSearchDate
             // 
             lblSearchDate.AutoSize = true;
-            lblSearchDate.Location = new Point(265, 59);
+            lblSearchDate.Location = new Point(303, 79);
             lblSearchDate.Margin = new Padding(1, 0, 1, 0);
             lblSearchDate.Name = "lblSearchDate";
-            lblSearchDate.Size = new Size(32, 15);
+            lblSearchDate.Size = new Size(42, 20);
             lblSearchDate.TabIndex = 2;
             lblSearchDate.Text = "Dato";
             lblSearchDate.Click += label8_Click;
@@ -310,10 +310,10 @@
             // lblSearchActivity
             // 
             lblSearchActivity.AutoSize = true;
-            lblSearchActivity.Location = new Point(1, 59);
+            lblSearchActivity.Location = new Point(1, 79);
             lblSearchActivity.Margin = new Padding(1, 0, 1, 0);
             lblSearchActivity.Name = "lblSearchActivity";
-            lblSearchActivity.Size = new Size(56, 15);
+            lblSearchActivity.Size = new Size(71, 20);
             lblSearchActivity.TabIndex = 1;
             lblSearchActivity.Text = "Holdtype";
             // 
@@ -321,10 +321,10 @@
             // 
             lblSearchCriteria.AutoSize = true;
             lblSearchCriteria.Font = new Font("Segoe UI", 9.900001F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSearchCriteria.Location = new Point(156, 14);
+            lblSearchCriteria.Location = new Point(178, 19);
             lblSearchCriteria.Margin = new Padding(1, 0, 1, 0);
             lblSearchCriteria.Name = "lblSearchCriteria";
-            lblSearchCriteria.Size = new Size(177, 19);
+            lblSearchCriteria.Size = new Size(221, 23);
             lblSearchCriteria.TabIndex = 0;
             lblSearchCriteria.Text = "Søg på ét eller flere kriterier";
             // 
@@ -346,47 +346,47 @@
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnCreateActivityPanel);
-            panel1.Location = new Point(0, 41);
+            panel1.Location = new Point(0, 55);
             panel1.Margin = new Padding(1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(526, 415);
+            panel1.Size = new Size(601, 553);
             panel1.TabIndex = 21;
             panel1.Paint += panel1_Paint;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(18, 86);
-            label11.Margin = new Padding(6, 0, 6, 0);
+            label11.Location = new Point(21, 115);
+            label11.Margin = new Padding(7, 0, 7, 0);
             label11.Name = "label11";
-            label11.Size = new Size(61, 15);
+            label11.Size = new Size(74, 20);
             label11.TabIndex = 24;
             label11.Text = "Instruktør:";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(85, 86);
+            label10.Location = new Point(97, 115);
             label10.Name = "label10";
-            label10.Size = new Size(0, 15);
+            label10.Size = new Size(0, 20);
             label10.TabIndex = 23;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(79, 156);
-            comboBox1.Margin = new Padding(2);
+            comboBox1.Location = new Point(90, 208);
+            comboBox1.Margin = new Padding(2, 3, 2, 3);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(134, 23);
+            comboBox1.Size = new Size(153, 28);
             comboBox1.TabIndex = 20;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button3
             // 
-            button3.Location = new Point(255, 384);
-            button3.Margin = new Padding(6, 8, 6, 8);
+            button3.Location = new Point(291, 512);
+            button3.Margin = new Padding(7, 11, 7, 11);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(86, 31);
             button3.TabIndex = 18;
             button3.Text = "Annuller";
             button3.UseVisualStyleBackColor = true;
@@ -396,79 +396,79 @@
             // 
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(334, 41);
-            dateTimePicker1.Margin = new Padding(6, 8, 6, 8);
+            dateTimePicker1.Location = new Point(382, 55);
+            dateTimePicker1.Margin = new Padding(7, 11, 7, 11);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(104, 23);
+            dateTimePicker1.Size = new Size(118, 27);
             dateTimePicker1.TabIndex = 2;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // cmbLocationActivity
             // 
             cmbLocationActivity.FormattingEnabled = true;
-            cmbLocationActivity.Location = new Point(79, 116);
-            cmbLocationActivity.Margin = new Padding(2);
+            cmbLocationActivity.Location = new Point(90, 155);
+            cmbLocationActivity.Margin = new Padding(2, 3, 2, 3);
             cmbLocationActivity.Name = "cmbLocationActivity";
-            cmbLocationActivity.Size = new Size(134, 23);
+            cmbLocationActivity.Size = new Size(153, 28);
             cmbLocationActivity.TabIndex = 13;
             // 
             // lblTimeActivity
             // 
             lblTimeActivity.AutoSize = true;
-            lblTimeActivity.Location = new Point(334, 72);
+            lblTimeActivity.Location = new Point(382, 96);
             lblTimeActivity.Margin = new Padding(2, 0, 2, 0);
             lblTimeActivity.Name = "lblTimeActivity";
-            lblTimeActivity.Size = new Size(27, 15);
+            lblTimeActivity.Size = new Size(33, 20);
             lblTimeActivity.TabIndex = 15;
             lblTimeActivity.Text = "Tid:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 206);
-            label5.Margin = new Padding(6, 0, 6, 0);
+            label5.Location = new Point(21, 275);
+            label5.Margin = new Padding(7, 0, 7, 0);
             label5.Name = "label5";
-            label5.Size = new Size(91, 15);
+            label5.Size = new Size(117, 20);
             label5.TabIndex = 10;
             label5.Text = "Antal Deltagere:";
             // 
             // lblDateActivity
             // 
             lblDateActivity.AutoSize = true;
-            lblDateActivity.Location = new Point(336, 18);
-            lblDateActivity.Margin = new Padding(6, 0, 6, 0);
+            lblDateActivity.Location = new Point(384, 24);
+            lblDateActivity.Margin = new Padding(7, 0, 7, 0);
             lblDateActivity.Name = "lblDateActivity";
-            lblDateActivity.Size = new Size(35, 15);
+            lblDateActivity.Size = new Size(45, 20);
             lblDateActivity.TabIndex = 11;
             lblDateActivity.Text = "Dato:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 119);
-            label4.Margin = new Padding(6, 0, 6, 0);
+            label4.Location = new Point(21, 159);
+            label4.Margin = new Padding(7, 0, 7, 0);
             label4.Name = "label4";
-            label4.Size = new Size(56, 15);
+            label4.Size = new Size(69, 20);
             label4.TabIndex = 9;
             label4.Text = "Lokation:";
             // 
             // nmrUpDwnMaxPartisipant
             // 
-            nmrUpDwnMaxPartisipant.Location = new Point(109, 204);
-            nmrUpDwnMaxPartisipant.Margin = new Padding(6, 8, 6, 8);
+            nmrUpDwnMaxPartisipant.Location = new Point(125, 272);
+            nmrUpDwnMaxPartisipant.Margin = new Padding(7, 11, 7, 11);
             nmrUpDwnMaxPartisipant.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             nmrUpDwnMaxPartisipant.Name = "nmrUpDwnMaxPartisipant";
-            nmrUpDwnMaxPartisipant.Size = new Size(47, 23);
+            nmrUpDwnMaxPartisipant.Size = new Size(54, 27);
             nmrUpDwnMaxPartisipant.TabIndex = 5;
             nmrUpDwnMaxPartisipant.ValueChanged += nmrUpDwnMaxPartisipant_ValueChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 44);
-            label1.Margin = new Padding(6, 0, 6, 0);
+            label1.Location = new Point(21, 59);
+            label1.Margin = new Padding(7, 0, 7, 0);
             label1.Name = "label1";
-            label1.Size = new Size(59, 15);
+            label1.Size = new Size(74, 20);
             label1.TabIndex = 6;
             label1.Text = "Holdtype:";
             // 
@@ -476,28 +476,29 @@
             // 
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(334, 94);
-            dateTimePicker2.Margin = new Padding(2);
+            dateTimePicker2.Location = new Point(382, 125);
+            dateTimePicker2.Margin = new Padding(2, 3, 2, 3);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.ShowUpDown = true;
-            dateTimePicker2.Size = new Size(104, 23);
+            dateTimePicker2.Size = new Size(118, 27);
             dateTimePicker2.TabIndex = 14;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(79, 41);
-            comboBox2.Margin = new Padding(6, 8, 6, 8);
+            comboBox2.Location = new Point(90, 55);
+            comboBox2.Margin = new Padding(7, 11, 7, 11);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(193, 23);
+            comboBox2.Size = new Size(220, 28);
             comboBox2.TabIndex = 1;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // btnCreateActivityPanel
             // 
-            btnCreateActivityPanel.Location = new Point(171, 384);
+            btnCreateActivityPanel.Location = new Point(195, 512);
+            btnCreateActivityPanel.Margin = new Padding(3, 4, 3, 4);
             btnCreateActivityPanel.Name = "btnCreateActivityPanel";
-            btnCreateActivityPanel.Size = new Size(75, 23);
+            btnCreateActivityPanel.Size = new Size(86, 31);
             btnCreateActivityPanel.TabIndex = 21;
             btnCreateActivityPanel.Text = "Opret hold";
             btnCreateActivityPanel.UseVisualStyleBackColor = true;
@@ -505,10 +506,10 @@
             // 
             // btnActivityCreate
             // 
-            btnActivityCreate.Location = new Point(1446, 141);
-            btnActivityCreate.Margin = new Padding(6, 8, 6, 8);
+            btnActivityCreate.Location = new Point(1653, 188);
+            btnActivityCreate.Margin = new Padding(7, 11, 7, 11);
             btnActivityCreate.Name = "btnActivityCreate";
-            btnActivityCreate.Size = new Size(75, 23);
+            btnActivityCreate.Size = new Size(86, 31);
             btnActivityCreate.TabIndex = 17;
             btnActivityCreate.Text = "Opret";
             btnActivityCreate.UseVisualStyleBackColor = true;
@@ -518,19 +519,19 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F);
-            label3.Location = new Point(150, 8);
+            label3.Location = new Point(171, 11);
             label3.Margin = new Padding(1, 0, 1, 0);
             label3.Name = "label3";
-            label3.Size = new Size(218, 32);
+            label3.Size = new Size(272, 41);
             label3.TabIndex = 17;
             label3.Text = "Holdadministration";
             // 
             // btnSearchActivity
             // 
-            btnSearchActivity.Location = new Point(602, 141);
-            btnSearchActivity.Margin = new Padding(2, 3, 2, 3);
+            btnSearchActivity.Location = new Point(688, 188);
+            btnSearchActivity.Margin = new Padding(2, 4, 2, 4);
             btnSearchActivity.Name = "btnSearchActivity";
-            btnSearchActivity.Size = new Size(75, 23);
+            btnSearchActivity.Size = new Size(86, 31);
             btnSearchActivity.TabIndex = 18;
             btnSearchActivity.Text = "Søgning";
             btnSearchActivity.UseVisualStyleBackColor = true;
@@ -538,10 +539,10 @@
             // 
             // button4
             // 
-            button4.Location = new Point(602, 336);
-            button4.Margin = new Padding(2, 3, 2, 3);
+            button4.Location = new Point(688, 448);
+            button4.Margin = new Padding(2, 4, 2, 4);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(86, 31);
             button4.TabIndex = 19;
             button4.Text = "Tilbage";
             button4.UseVisualStyleBackColor = true;
@@ -549,10 +550,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(602, 172);
-            button1.Margin = new Padding(2, 3, 2, 3);
+            button1.Location = new Point(688, 229);
+            button1.Margin = new Padding(2, 4, 2, 4);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(86, 31);
             button1.TabIndex = 22;
             button1.Text = "Opret Hold";
             button1.UseVisualStyleBackColor = true;
@@ -571,18 +572,18 @@
             pnlHoldType.Controls.Add(lblHoldTypeDescription);
             pnlHoldType.Controls.Add(txtHoldTypeName);
             pnlHoldType.Controls.Add(lblHoldTypeNavn);
-            pnlHoldType.Location = new Point(692, 41);
-            pnlHoldType.Margin = new Padding(3, 2, 3, 2);
+            pnlHoldType.Location = new Point(791, 55);
             pnlHoldType.Name = "pnlHoldType";
-            pnlHoldType.Size = new Size(343, 332);
+            pnlHoldType.Size = new Size(392, 442);
             pnlHoldType.TabIndex = 23;
             pnlHoldType.Visible = false;
             // 
             // btnCancelActivityType
             // 
-            btnCancelActivityType.Location = new Point(70, 246);
+            btnCancelActivityType.Location = new Point(80, 328);
+            btnCancelActivityType.Margin = new Padding(3, 4, 3, 4);
             btnCancelActivityType.Name = "btnCancelActivityType";
-            btnCancelActivityType.Size = new Size(81, 26);
+            btnCancelActivityType.Size = new Size(93, 35);
             btnCancelActivityType.TabIndex = 14;
             btnCancelActivityType.Text = "Annuller";
             btnCancelActivityType.UseVisualStyleBackColor = true;
@@ -590,9 +591,10 @@
             // 
             // btnSaveActivityType
             // 
-            btnSaveActivityType.Location = new Point(194, 246);
+            btnSaveActivityType.Location = new Point(222, 328);
+            btnSaveActivityType.Margin = new Padding(3, 4, 3, 4);
             btnSaveActivityType.Name = "btnSaveActivityType";
-            btnSaveActivityType.Size = new Size(81, 26);
+            btnSaveActivityType.Size = new Size(93, 35);
             btnSaveActivityType.TabIndex = 13;
             btnSaveActivityType.Text = "Gem";
             btnSaveActivityType.UseVisualStyleBackColor = true;
@@ -601,9 +603,9 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(44, 174);
+            label6.Location = new Point(50, 232);
             label6.Name = "label6";
-            label6.Size = new Size(58, 15);
+            label6.Size = new Size(71, 20);
             label6.TabIndex = 11;
             label6.Text = "Instruktør";
             // 
@@ -611,63 +613,61 @@
             // 
             lblHoldTypeTitle.AutoSize = true;
             lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHoldTypeTitle.Location = new Point(112, 14);
+            lblHoldTypeTitle.Location = new Point(128, 19);
             lblHoldTypeTitle.Name = "lblHoldTypeTitle";
-            lblHoldTypeTitle.Size = new Size(104, 25);
+            lblHoldTypeTitle.Size = new Size(126, 31);
             lblHoldTypeTitle.TabIndex = 10;
             lblHoldTypeTitle.Text = "HOLDTYPE";
             // 
             // cmbHoldTypeInstruktor
             // 
             cmbHoldTypeInstruktor.FormattingEnabled = true;
-            cmbHoldTypeInstruktor.Location = new Point(152, 166);
-            cmbHoldTypeInstruktor.Margin = new Padding(3, 2, 3, 2);
+            cmbHoldTypeInstruktor.Location = new Point(174, 221);
             cmbHoldTypeInstruktor.Name = "cmbHoldTypeInstruktor";
-            cmbHoldTypeInstruktor.Size = new Size(176, 23);
+            cmbHoldTypeInstruktor.Size = new Size(201, 28);
             cmbHoldTypeInstruktor.TabIndex = 8;
             cmbHoldTypeInstruktor.SelectedIndexChanged += cmbHoldTypeInstruktor_SelectedIndexChanged;
             // 
             // txtHoldTypeBeskrivelse
             // 
-            txtHoldTypeBeskrivelse.Location = new Point(152, 87);
-            txtHoldTypeBeskrivelse.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeBeskrivelse.Location = new Point(174, 116);
             txtHoldTypeBeskrivelse.Multiline = true;
             txtHoldTypeBeskrivelse.Name = "txtHoldTypeBeskrivelse";
             txtHoldTypeBeskrivelse.ScrollBars = ScrollBars.Vertical;
-            txtHoldTypeBeskrivelse.Size = new Size(176, 61);
+            txtHoldTypeBeskrivelse.Size = new Size(201, 80);
             txtHoldTypeBeskrivelse.TabIndex = 3;
             // 
             // lblHoldTypeDescription
             // 
             lblHoldTypeDescription.AutoSize = true;
-            lblHoldTypeDescription.Location = new Point(44, 80);
+            lblHoldTypeDescription.Location = new Point(50, 107);
             lblHoldTypeDescription.Name = "lblHoldTypeDescription";
-            lblHoldTypeDescription.Size = new Size(64, 15);
+            lblHoldTypeDescription.Size = new Size(81, 20);
             lblHoldTypeDescription.TabIndex = 2;
             lblHoldTypeDescription.Text = "Beskrivelse";
             // 
             // txtHoldTypeName
             // 
-            txtHoldTypeName.Location = new Point(165, 47);
-            txtHoldTypeName.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeName.Location = new Point(189, 63);
             txtHoldTypeName.Name = "txtHoldTypeName";
-            txtHoldTypeName.Size = new Size(110, 23);
+            txtHoldTypeName.Size = new Size(125, 27);
             txtHoldTypeName.TabIndex = 1;
             // 
             // lblHoldTypeNavn
             // 
             lblHoldTypeNavn.AutoSize = true;
-            lblHoldTypeNavn.Location = new Point(52, 52);
+            lblHoldTypeNavn.Location = new Point(59, 69);
             lblHoldTypeNavn.Name = "lblHoldTypeNavn";
-            lblHoldTypeNavn.Size = new Size(35, 15);
+            lblHoldTypeNavn.Size = new Size(43, 20);
             lblHoldTypeNavn.TabIndex = 0;
             lblHoldTypeNavn.Text = "Navn";
             // 
             // CreateActivityType
             // 
-            CreateActivityType.Location = new Point(554, 230);
+            CreateActivityType.Location = new Point(633, 307);
+            CreateActivityType.Margin = new Padding(3, 4, 3, 4);
             CreateActivityType.Name = "CreateActivityType";
-            CreateActivityType.Size = new Size(123, 50);
+            CreateActivityType.Size = new Size(141, 67);
             CreateActivityType.TabIndex = 24;
             CreateActivityType.Text = "Opret Holdtype";
             CreateActivityType.UseVisualStyleBackColor = true;
@@ -675,9 +675,9 @@
             // 
             // CreateActivityForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1057, 502);
+            ClientSize = new Size(1208, 669);
             Controls.Add(CreateActivityType);
             Controls.Add(pnlHoldType);
             Controls.Add(button1);
@@ -685,10 +685,10 @@
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(btnSearchActivity);
-            Controls.Add(panel1);
             Controls.Add(pnlSearchActivity);
-            Margin = new Padding(2, 3, 2, 3);
-            MinimumSize = new Size(790, 373);
+            Controls.Add(panel1);
+            Margin = new Padding(2, 4, 2, 4);
+            MinimumSize = new Size(900, 482);
             Name = "CreateActivityForm";
             Text = "CreateActivityForm";
             Load += CreateActivityForm_Load;

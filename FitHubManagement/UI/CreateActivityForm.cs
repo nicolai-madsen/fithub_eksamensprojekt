@@ -48,6 +48,17 @@ namespace FitHubManagement.UI.Activity
             comboBox2.DataSource = activityType;
             comboBox2.SelectedIndex = -1;
         }
+
+        private void SearchLoadActivityTypes()
+        {
+            activityType = activityService.GetAllActivityTypes();
+            cmbSearchActivity.DataSource = null;
+            cmbSearchActivity.DisplayMember = "ActivityTypeName";
+            cmbSearchActivity.ValueMember = "ActivityTypeId";
+            cmbSearchActivity.DataSource = activityType;
+            cmbSearchActivity.SelectedIndex = -1;
+        }
+
         private void LoadInstructors()
         {
             LoadInstructor bll = new LoadInstructor();
@@ -72,10 +83,7 @@ namespace FitHubManagement.UI.Activity
             LoadActivityTypes();
 
 
-            cmbSearchActivity.DataSource = activityType;
-            cmbSearchActivity.SelectedIndex = -1;
-
-            LoadActivityTypes();
+            SearchLoadActivityTypes();
 
             label10.Text = "";
 
@@ -112,7 +120,7 @@ namespace FitHubManagement.UI.Activity
 
         private void pnlSearcActivity_Paint(object sender, PaintEventArgs e)
         {
-
+            SearchLoadActivityTypes();
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -132,6 +140,7 @@ namespace FitHubManagement.UI.Activity
 
         private void btnSearchActivity_Click(object sender, EventArgs e)
         {
+            SearchLoadActivityTypes();
             pnlSearchActivity.Visible = true;
             panel1.Visible = false;
 
