@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            InfoCustomerBtn = new Button();
             EditCustomertxt = new Button();
             label10 = new Label();
             SearchBox = new TextBox();
@@ -39,11 +40,6 @@
             ShowAllBtn = new Button();
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
-            SearchPanel = new Panel();
-            IDinfo = new TextBox();
-            button3 = new Button();
-            InfoBtn = new Button();
-            label30 = new Label();
             CustomerInfoBtn = new Button();
             BookingPanel = new Panel();
             label3 = new Label();
@@ -97,9 +93,7 @@
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
             BackBtn = new Button();
-            InfoCustomerBtn = new Button();
             ListPanel.SuspendLayout();
-            SearchPanel.SuspendLayout();
             BookingPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
             EditCustomerPanel.SuspendLayout();
@@ -123,6 +117,15 @@
             ListPanel.Name = "ListPanel";
             ListPanel.Size = new Size(536, 494);
             ListPanel.TabIndex = 8;
+            // 
+            // InfoCustomerBtn
+            // 
+            InfoCustomerBtn.Location = new Point(443, 118);
+            InfoCustomerBtn.Name = "InfoCustomerBtn";
+            InfoCustomerBtn.Size = new Size(75, 23);
+            InfoCustomerBtn.TabIndex = 55;
+            InfoCustomerBtn.Text = "Information";
+            InfoCustomerBtn.UseVisualStyleBackColor = true;
             // 
             // EditCustomertxt
             // 
@@ -221,57 +224,6 @@
             CustomerListBox.Name = "CustomerListBox";
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
-            // 
-            // SearchPanel
-            // 
-            SearchPanel.BorderStyle = BorderStyle.FixedSingle;
-            SearchPanel.Controls.Add(IDinfo);
-            SearchPanel.Controls.Add(button3);
-            SearchPanel.Controls.Add(InfoBtn);
-            SearchPanel.Controls.Add(label30);
-            SearchPanel.Location = new Point(205, 296);
-            SearchPanel.Margin = new Padding(3, 2, 3, 2);
-            SearchPanel.Name = "SearchPanel";
-            SearchPanel.Size = new Size(382, 106);
-            SearchPanel.TabIndex = 50;
-            // 
-            // IDinfo
-            // 
-            IDinfo.Location = new Point(123, 26);
-            IDinfo.Margin = new Padding(3, 2, 3, 2);
-            IDinfo.Name = "IDinfo";
-            IDinfo.Size = new Size(110, 23);
-            IDinfo.TabIndex = 53;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(190, 61);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(82, 22);
-            button3.TabIndex = 38;
-            button3.Text = "Rediger";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // InfoBtn
-            // 
-            InfoBtn.Location = new Point(75, 61);
-            InfoBtn.Margin = new Padding(3, 2, 3, 2);
-            InfoBtn.Name = "InfoBtn";
-            InfoBtn.Size = new Size(102, 22);
-            InfoBtn.TabIndex = 51;
-            InfoBtn.Text = "Information";
-            InfoBtn.UseVisualStyleBackColor = true;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Location = new Point(124, 8);
-            label30.Name = "label30";
-            label30.Size = new Size(109, 15);
-            label30.TabIndex = 0;
-            label30.Text = "Indtast medlems ID";
             // 
             // CustomerInfoBtn
             // 
@@ -524,7 +476,6 @@
             // 
             // EditCustomerPanel
             // 
-            EditCustomerPanel.Controls.Add(SearchPanel);
             EditCustomerPanel.Controls.Add(textBox1);
             EditCustomerPanel.Controls.Add(label13);
             EditCustomerPanel.Controls.Add(MarkInactive);
@@ -808,15 +759,6 @@
             BackBtn.UseVisualStyleBackColor = true;
             BackBtn.Click += BackBtn_Click;
             // 
-            // InfoCustomerBtn
-            // 
-            InfoCustomerBtn.Location = new Point(443, 118);
-            InfoCustomerBtn.Name = "InfoCustomerBtn";
-            InfoCustomerBtn.Size = new Size(75, 23);
-            InfoCustomerBtn.TabIndex = 55;
-            InfoCustomerBtn.Text = "Information";
-            InfoCustomerBtn.UseVisualStyleBackColor = true;
-            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -835,8 +777,6 @@
             Text = "CustomerForm";
             ListPanel.ResumeLayout(false);
             ListPanel.PerformLayout();
-            SearchPanel.ResumeLayout(false);
-            SearchPanel.PerformLayout();
             BookingPanel.ResumeLayout(false);
             BookingPanel.PerformLayout();
             NewCustomerPanel.ResumeLayout(false);
@@ -873,15 +813,12 @@
         private Button ShowAllBtn;
         private Button ShowInactiveBtn;
         private Button CustomerInfoBtn;
-        private Button InfoBtn;
         private ListBox activityInfoList;
         private Label label25;
         private DateTimePicker BirthdayValue;
         private Label label26;
         private TextBox count;
         private Label label29;
-        private Panel SearchPanel;
-        private Label label30;
         private ComboBox memberType;
         private Label EditCustomerTitle;
         private Label label16;
@@ -900,7 +837,6 @@
         private TextBox EditType;
         private Label label35;
         private Panel EditCustomerPanel;
-        private Button button3;
         private Label label17;
         private TextBox CurrentStatus;
         private Label label36;
@@ -908,7 +844,6 @@
         private Button MarkActive;
         private Button ShowActiveBtn;
         private Button MarkInactive;
-        private TextBox IDinfo;
         private TextBox textBox1;
         private Label label13;
         private Panel BookingPanel;

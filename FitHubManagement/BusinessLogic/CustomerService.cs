@@ -42,9 +42,9 @@ namespace FitHubManagement.BusinessLogic
             repo.CreateCustomer(customer);
         }  
 
-        public CustomerModel GetIndividualCustomer (string IdCustomer)
+        public CustomerModel GetIndividualCustomer ()
         {
-            return repo.GetSingleCustomer(IdCustomer);
+            return repo.GetSingleCustomer();
         }
 
         public List<CustomerModel> GetAllCustomerBLL()
