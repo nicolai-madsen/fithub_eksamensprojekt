@@ -93,7 +93,8 @@ namespace FitHubManagement.DataAccess
                                 LastName = @LastName,
                                 Email = @Email,
                                 Phone = @Phone,
-                                PersonalNote = @PersonalNote
+                                PersonalNote = @PersonalNote,
+                                MembershipID = @MembershipID
                                 WHERE CustomerID = @CustomerID";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -103,6 +104,9 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@Phone", customer.Phone);
                 cmd.Parameters.AddWithValue("@CustomerID", customer.CustomerId);
                 cmd.Parameters.AddWithValue("@PersonalNote", customer.PersonalNote);
+                cmd.Parameters.AddWithValue("@MembershipID", customer.MembershipId);
+
+
 
                 cmd.ExecuteNonQuery();
             }
@@ -110,6 +114,32 @@ namespace FitHubManagement.DataAccess
         #endregion
 
         #region READ METHODS
+
+        #region         
+
+              public void ChangeCustomerActiveStatus(int customerId, bool Inactive)
+              {
+                  using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                  connection.Open();
+                  {
+                      string updateSql = $"UPDATE Customer SET Inactive = @Inactive WHERE CustomerID = @customerId";
+                      using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
+                      {
+                          updateCmd.Parameters.AddWithValue("@Inactive", Inactive);
+                          updateCmd.Parameters.AddWithValue("@customerId", customerId);
+
+                          int updated = updateCmd.ExecuteNonQuery();
+                      }
+                      
+                  }
+              }
+
+        #endregion
+
+
+        //READ
+
+        #region 
         public List<CustomerModel> GetAllCustomer()
         {
             List<CustomerModel> customerList = new List<CustomerModel>();

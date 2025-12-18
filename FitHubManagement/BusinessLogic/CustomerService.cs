@@ -29,6 +29,9 @@ namespace FitHubManagement.BusinessLogic
 
                 throw new Exception();
 
+            if (customer.Phone.Length != 11) 
+                throw new Exception ();
+
 
             if (customer.Birthday.Date == DateTime.Now.Date)
 
@@ -60,13 +63,26 @@ namespace FitHubManagement.BusinessLogic
 
         public void UpdateCustomer(CustomerModel customer)
         {
-            repo.UpdateCustomer(customer);
-            
+            if (string.IsNullOrWhiteSpace(customer.FirstName) ||
+               string.IsNullOrWhiteSpace(customer.LastName) ||
+               string.IsNullOrWhiteSpace(customer.Email) ||
+               string.IsNullOrWhiteSpace(customer.Phone))
 
+                throw new Exception();
+
+            if (customer.MembershipId != 1 && customer.MembershipId != 2 && customer.MembershipId != 3)
+
+                throw new Exception();
+
+            if (customer.Phone.Length != 11)
+                throw new Exception();
+
+            repo.UpdateCustomer(customer);        
         }
-        
 
-
-
+        public void ChangeCustomerActiveStatus(int customerId, bool inactive)
+        {
+            repo.ChangeCustomerActiveStatus(customerId, inactive);
+        }        
     }
 }
