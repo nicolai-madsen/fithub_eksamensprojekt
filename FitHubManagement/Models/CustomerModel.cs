@@ -21,11 +21,13 @@ namespace FitHubManagement.Models
         public bool Inactive { get; set; } //true = medlem er inaktiv, false = medlem er aktiv
         // Ændret fra Active til Inactive - svarer til databasen
 
+
         public override string ToString()
         {
             return $"ID: {CustomerId} Navn: {FirstName} {LastName} Telefon: {Phone}";
         }
-
+        //Denne har en "reference"!! i BookingForm  ----------- Den ovenover burde også have en i CustomerForm?
+        public string DisplayText => $"{FullName} - {Phone}";
     }
 }
 

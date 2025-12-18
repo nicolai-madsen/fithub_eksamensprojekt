@@ -33,6 +33,10 @@ namespace FitHubManagement.UI.BookingUI
 
             // Fyld comboBox1 når formen åbner
             Load += BookingForm_Load;
+
+            List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
+            listBox1.DataSource = customers;
+            listBox1.DisplayMember = "DisplayText";
         }
 
         // Fylder holdtype-combobox med navne 
