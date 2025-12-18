@@ -65,6 +65,11 @@ namespace FitHubManagement.BusinessLogic
             return _membershipDAL.GetAllMembership();
         }
 
+        public string GetMembershipName(int membershipId)
+        {
+            return _membershipDAL.GetMembershipName(membershipId);
+        }
+
         // Slet Membership
         public int DeleteMembership(int membershipId)
         {

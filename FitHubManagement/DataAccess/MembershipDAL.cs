@@ -76,34 +76,50 @@ namespace FitHubManagement.DataAccess
                 }
             }
         }
-            public List<MembershipModel> GetAllMembership()
+        public List<MembershipModel> GetAllMembership()
         {
-            List<MembershipModel> memberships = new List<MembershipModel>();
+        List<MembershipModel> memberships = new List<MembershipModel>();
 
+        using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+        connection.Open();
+
+        string selectSql = "SELECT * FROM Membership WHERE MembershipID = @MembershipID";
+
+
+        using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
+        using SqlDataReader reader = selectCmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            MembershipModel membership = new MembershipModel
+            {
+                MembershipId = reader.GetInt32(0),
+                MembershipName = reader.GetString(1),
+                MembershipDescription = reader.GetString(2),
+                MonthlyPrice = reader.GetDecimal(3),
+            };
+
+            memberships.Add(membership);
+        }
+
+        return memberships;
+    }
+        public string GetMembershipName(int membershipId)
+        {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
-            string selectSql = "SELECT * FROM Membership WHERE MembershipID = @MembershipID";
+            string selectSql = $"SELECT MembershipName FROM Membership WHERE MembershipID = @MembershipId";
 
-
-            using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
-            using SqlDataReader reader = selectCmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
             {
-                MembershipModel membership = new MembershipModel
-                {
-                    MembershipId = reader.GetInt32(0),
-                    MembershipName = reader.GetString(1),
-                    MembershipDescription = reader.GetString(2),
-                    MonthlyPrice = reader.GetDecimal(3),
-                };
+                selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
 
-                memberships.Add(membership);
+                var membershipName = selectCmd.ExecuteScalar(); 
+                return membershipName != null ? membershipName.ToString() : "Ukendt";
             }
-
-            return memberships;
         }
+
     
         public int CreateMembershipRepo(MembershipModel membership)
 
