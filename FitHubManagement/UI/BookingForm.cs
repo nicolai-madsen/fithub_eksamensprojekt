@@ -24,11 +24,11 @@ namespace FitHubManagement.UI.BookingUI
             panel2.Visible = true;
             panel1.BringToFront();
 
-            // (Valgfrit men smart) Fyld comboBox1 når formen åbner
+            // Fyld comboBox1 når formen åbner
             Load += BookingForm_Load;
         }
 
-        // Fylder holdtype-combobox med navne (begynder-venligt)
+        // Fylder holdtype-combobox med navne 
         private void BookingForm_Load(object sender, EventArgs e)
         {
             try
@@ -53,6 +53,18 @@ namespace FitHubManagement.UI.BookingUI
         }
 
         // ---------------- Panel1 ----------------
+
+       
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox_Search_TextChanged(sender, e);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            textBox_Search_TextChanged(sender, e);
+        }
 
         // Panel1 Fortsæt knap
         private void button3_Click(object sender, EventArgs e)
@@ -153,8 +165,7 @@ namespace FitHubManagement.UI.BookingUI
             listBox1.ClearSelected();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) => textBox_Search_TextChanged(sender, e);
-        private void textBox2_TextChanged(object sender, EventArgs e) => textBox_Search_TextChanged(sender, e);
+      
 
         // Nulstil knap Panel1
         public void button4_Click(object sender, EventArgs e)
@@ -238,11 +249,6 @@ namespace FitHubManagement.UI.BookingUI
 
                 int spots = BookingDAL.GetAvailableSpots(selectedActivityId);
 
-                MessageBox.Show(
-                    $"Du har valgt: {a.ActivityTypeName}\n" +
-                    $"Dato: {a.ActivityDate:dd-MM-yyyy} Kl: {a.StartTime:HH\\:mm}\n" +
-                    $"Ledige pladser: {spots}"
-                );
             }
         }
 
@@ -344,14 +350,27 @@ namespace FitHubManagement.UI.BookingUI
         {
             public CustomerModel Customer { get; }
 
-            public CustomerNameItem(CustomerModel customer) => Customer = customer;
+
+            //LENA
+            public CustomerNameItem(CustomerModel customer)
+            {
+                Customer = customer;
+            }
 
             public override string ToString()
             {
                 string status = Customer.Inactive ? " (Inaktiv)" : "";
+
+                // Hvis der er tastet noget i telefon-søgning → vis telefon
+                if (!string.IsNullOrWhiteSpace(Customer.Phone))
+                {
+                    return $"{Customer.FirstName} {Customer.LastName} – {Customer.Phone}{status}";
+                }
+
                 return $"{Customer.FirstName} {Customer.LastName}{status}";
             }
         }
+        
 
         private class CustomerDetailItem
         {
@@ -379,7 +398,7 @@ namespace FitHubManagement.UI.BookingUI
 
         private void label7_Click(object sender, EventArgs e)
         {
-           //Bruges ikke som klik.
+            //Bruges ikke som klik.
         }
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -389,8 +408,8 @@ namespace FitHubManagement.UI.BookingUI
 
         private void btnRydP2_Click(object sender, EventArgs e) //Ryd knap Panel2
         {
-           //Ryd kun Panel2
-           listBox2.DataSource = null; // fjern datakilde, hvis der er en
+            //Ryd kun Panel2
+            listBox2.DataSource = null; // fjern datakilde, hvis der er en
             listBox2.Items.Clear(); // ryd alle items
             comboBox1.SelectedIndex = -1; // nulstil combobox valg
             selectedActivityId = -1; // nulstil valgt ActivityId
@@ -398,5 +417,7 @@ namespace FitHubManagement.UI.BookingUI
 
             comboBox1.Focus();
         }
+
+       
     }
 }
