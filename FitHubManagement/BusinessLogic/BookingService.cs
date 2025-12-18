@@ -18,15 +18,9 @@ namespace FitHubManagement.BusinessLogic
 
         public int CreateBooking(int activityId, int customerId, string note)
         {
-            int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
-            if (availableSpots <= 0)
-                throw new Exception("Der er ikke flere ledige pladser på holdet.");
-            
-            DateTime activityDate = _activityDAL.GetActivityDate(activityId);
-            if (!CanCustomerBook(customerId, activityDate))
-            {
-                throw new Exception("Medlem kan bookes på maks 2 hold i ugen");
-            }
+
+
+
 
             BookingModel newBooking = new BookingModel
             {
@@ -35,15 +29,7 @@ namespace FitHubManagement.BusinessLogic
                 PersonalNote = note,
             };
 
-            try
-            {
-                _bookingDAL.CreateBooking(newBooking);
-                int participants = _bookingDAL.GetAllBookings(activityId);
-            }
-            catch (SqlException)
-            {
-                throw new Exception("Medlemmet er allerede tilmeldt holdet.");
-            }
+
 
             
         }
@@ -118,6 +104,18 @@ namespace FitHubManagement.BusinessLogic
                 _ => date.Date
             };
         }
+        public List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            return _bookingDAL.GetCustomerBooking(customerId);
+        }
 
+        private readonly BookingDAL b_bookingDAL = new BookingDAL();
+
+       
+        public List<BookingModel> GetBookingsByActivityID(int activityId) //Bruges i CreateInstrictorForm som et led til at vise holdtilmeldinger
+        {
+            return BookingDAL.GetBookingsByActivityID(activityId);
+        }
     }
 }
+
