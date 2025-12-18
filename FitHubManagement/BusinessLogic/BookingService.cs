@@ -60,7 +60,7 @@ namespace FitHubManagement.BusinessLogic
         public bool CanCustomerBook(int customerId, DateTime activityDate)
         {
             // Hent medlem via DAL
-            CustomerModel customer = _customerDAL.GetIndividualCustomer();
+            CustomerModel customer = _customerDAL.GetIndividualCustomer(customerId);
 
             // Hvis medlem er inaktiv, kan de ikke bookes på hold
             if (customer.Inactive) return false;

@@ -41,7 +41,7 @@ namespace FitHubManagement.DataAccess
         #endregion
 
         #region READ 1 CUSTOMER
-        public CustomerModel GetIndividualCustomer()
+        public CustomerModel GetIndividualCustomer(int customerId)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -52,7 +52,7 @@ namespace FitHubManagement.DataAccess
                        " FROM Customer WHERE CustomerID = @CustomerId";
             using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
             {
-
+                selectCmd.Parameters.AddWithValue("@CustomerId", customerId);
                 using (SqlDataReader reader = selectCmd.ExecuteReader())
                 {
                     if (reader.Read())
