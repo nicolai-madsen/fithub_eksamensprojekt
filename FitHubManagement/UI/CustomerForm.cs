@@ -1,17 +1,18 @@
 ﻿using FitHubManagement.BusinessLogic;
 using FitHubManagement.DataAccess;
+using FitHubManagement.Models;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FitHubManagement.Models;
-using System.Linq.Expressions;
-using Microsoft.Identity.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FitHubManagement.UI.CustomerUI
 {
@@ -136,34 +137,34 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Fejl med indtasting af medlem, husket at fylde alle nødvendige felter?");
             }
         }
-      /*  private void InfoBtn_Click(object sender, EventArgs e)
-        {
-            SearchPanel.Hide();
-            BookingPanel.Show();
-            ListPanel.Hide();
-            string IdCustomer = IDinfo.Text;
-            CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
-            if (customer != null)
-            {
-                int customerId = int.Parse(IDinfo.Text);
-                List<BookingModel> bookings = _bookingService.GetCustomerBooking(customerId);
+        /*  private void InfoBtn_Click(object sender, EventArgs e)
+          {
+              SearchPanel.Hide();
+              BookingPanel.Show();
+              ListPanel.Hide();
+              string IdCustomer = IDinfo.Text;
+              CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
+              if (customer != null)
+              {
+                  int customerId = int.Parse(IDinfo.Text);
+                  List<BookingModel> bookings = _bookingService.GetCustomerBooking(customerId);
 
-                foreach (BookingModel booking in bookings)
-                {
-                    {
-                        string infoLine = $"Booking ID: {booking.BookingId} Hold: {booking.ActivityId} Notat: {booking.PersonalNote}";
+                  foreach (BookingModel booking in bookings)
+                  {
+                      {
+                          string infoLine = $"Booking ID: {booking.BookingId} Hold: {booking.ActivityId} Notat: {booking.PersonalNote}";
 
-                        activityInfoList.Items.Add(infoLine);
+                          activityInfoList.Items.Add(infoLine);
 
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Indtast gyldig ID");
-            }
+                      }
+                  }
+              }
+              else
+              {
+                  MessageBox.Show("Indtast gyldig ID");
+              }
 
-        }*/
+          }*/
 
         private void button3_Click(object sender, EventArgs e) //Indlaster relevant information til redigering side fra kunde
         {
@@ -245,7 +246,7 @@ namespace FitHubManagement.UI.CustomerUI
                     customer.MembershipId = int.Parse(EditType.Text);
                 }
                 _customerService.UpdateCustomer(customer);
-  
+
                 MessageBox.Show("Medlem redigerert");
             }
             catch (Exception)
@@ -320,7 +321,38 @@ namespace FitHubManagement.UI.CustomerUI
             count.Text = totalCustomer.ToString();
         }
         #endregion
+
+
+        private void SearchBox_TextChanged(object sender, EventArgs e)
+        {
+          
+            string name = SearchBox.Text.Trim();
+
+
+            List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
+
+            CustomerListBox.DataSource = null;
+            CustomerListBox.Items.Clear();
+
+            foreach (CustomerModel customer in customers)
+            {
+                bool matchName =
+                    name == "" ||
+                    (customer.FirstName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase) ||
+                    (customer.LastName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase);
+                if (matchName)
+                {
+                    CustomerListBox.Items.Add(customer);
+                }
+
+            }
+            CustomerListBox.ClearSelected();
+        }
+
+
+
     }
 }
+
 
 
