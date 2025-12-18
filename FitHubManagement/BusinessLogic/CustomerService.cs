@@ -29,8 +29,9 @@ namespace FitHubManagement.BusinessLogic
 
                 throw new Exception();
 
-            if (customer.Phone.Length != 11) 
+            if(!customer.Email.Contains("@"))
                 throw new Exception ();
+
 
 
             if (customer.Birthday.Date == DateTime.Now.Date)
@@ -74,8 +75,9 @@ namespace FitHubManagement.BusinessLogic
 
                 throw new Exception();
 
-            if (customer.Phone.Length != 11)
+            if (!customer.Email.Contains("@"))
                 throw new Exception();
+
 
             repo.UpdateCustomer(customer);        
         }

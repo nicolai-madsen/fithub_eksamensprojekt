@@ -113,9 +113,7 @@ namespace FitHubManagement.DataAccess
         }
         #endregion
 
-        #region READ METHODS
-
-        #region         
+        #region READ METHODS     
 
               public void ChangeCustomerActiveStatus(int customerId, bool Inactive)
               {

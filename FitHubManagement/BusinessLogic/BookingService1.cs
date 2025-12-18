@@ -11,9 +11,6 @@ namespace FitHubManagement.BusinessLogic
     internal class BookingService1
     {
         
-        public List<BookingModel> GetBookingsByActivityID(int activityId) //Bruges i CreateInstrictorForm som et led til at vise holdtilmeldinger
-        {
-            return BookingDAL.GetBookingsByActivityID(activityId);
-        }
+
     }
 }
