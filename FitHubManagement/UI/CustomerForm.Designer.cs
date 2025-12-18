@@ -48,7 +48,6 @@
             activityInfoList = new ListBox();
             label2 = new Label();
             NewCustomerPanel = new Panel();
-            label10 = new Label();
             label27 = new Label();
             label23 = new Label();
             label28 = new Label();
@@ -74,7 +73,6 @@
             label4 = new Label();
             NewCustomerTitle = new Label();
             EditCustomerPanel = new Panel();
-            label18 = new Label();
             textBox1 = new TextBox();
             label13 = new Label();
             MarkInactive = new Button();
@@ -133,15 +131,15 @@
             SearchPanel.Controls.Add(button3);
             SearchPanel.Controls.Add(InfoBtn);
             SearchPanel.Controls.Add(label30);
-            SearchPanel.Location = new Point(124, 146);
+            SearchPanel.Location = new Point(55, 212);
             SearchPanel.Margin = new Padding(3, 2, 3, 2);
             SearchPanel.Name = "SearchPanel";
-            SearchPanel.Size = new Size(219, 94);
+            SearchPanel.Size = new Size(382, 94);
             SearchPanel.TabIndex = 50;
             // 
             // IDinfo
             // 
-            IDinfo.Location = new Point(59, 32);
+            IDinfo.Location = new Point(123, 26);
             IDinfo.Margin = new Padding(3, 2, 3, 2);
             IDinfo.Name = "IDinfo";
             IDinfo.Size = new Size(110, 23);
@@ -149,7 +147,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(126, 67);
+            button3.Location = new Point(190, 61);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
             button3.Size = new Size(82, 22);
@@ -160,7 +158,7 @@
             // 
             // InfoBtn
             // 
-            InfoBtn.Location = new Point(11, 67);
+            InfoBtn.Location = new Point(75, 61);
             InfoBtn.Margin = new Padding(3, 2, 3, 2);
             InfoBtn.Name = "InfoBtn";
             InfoBtn.Size = new Size(102, 22);
@@ -172,7 +170,7 @@
             // label30
             // 
             label30.AutoSize = true;
-            label30.Location = new Point(48, 6);
+            label30.Location = new Point(124, 8);
             label30.Name = "label30";
             label30.Size = new Size(109, 15);
             label30.TabIndex = 0;
@@ -266,7 +264,7 @@
             BookingPanel.Controls.Add(label1);
             BookingPanel.Controls.Add(activityInfoList);
             BookingPanel.Controls.Add(label2);
-            BookingPanel.Location = new Point(9, 11);
+            BookingPanel.Location = new Point(9, 18);
             BookingPanel.Name = "BookingPanel";
             BookingPanel.Size = new Size(534, 328);
             BookingPanel.TabIndex = 17;
@@ -311,7 +309,6 @@
             // 
             // NewCustomerPanel
             // 
-            NewCustomerPanel.Controls.Add(label10);
             NewCustomerPanel.Controls.Add(label27);
             NewCustomerPanel.Controls.Add(label23);
             NewCustomerPanel.Controls.Add(label28);
@@ -341,15 +338,6 @@
             NewCustomerPanel.Name = "NewCustomerPanel";
             NewCustomerPanel.Size = new Size(536, 351);
             NewCustomerPanel.TabIndex = 9;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(293, 169);
-            label10.Name = "label10";
-            label10.Size = new Size(74, 15);
-            label10.TabIndex = 49;
-            label10.Text = "\"00 00 00 00\"";
             // 
             // label27
             // 
@@ -582,7 +570,6 @@
             // 
             // EditCustomerPanel
             // 
-            EditCustomerPanel.Controls.Add(label18);
             EditCustomerPanel.Controls.Add(textBox1);
             EditCustomerPanel.Controls.Add(label13);
             EditCustomerPanel.Controls.Add(MarkInactive);
@@ -612,15 +599,6 @@
             EditCustomerPanel.Name = "EditCustomerPanel";
             EditCustomerPanel.Size = new Size(536, 338);
             EditCustomerPanel.TabIndex = 12;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(429, 201);
-            label18.Name = "label18";
-            label18.Size = new Size(74, 15);
-            label18.TabIndex = 56;
-            label18.Text = "\"00 00 00 00\"";
             // 
             // textBox1
             // 
@@ -879,7 +857,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(665, 370);
+            ClientSize = new Size(641, 370);
             Controls.Add(BookingPanel);
             Controls.Add(ListPanel);
             Controls.Add(NewCustomerPanel);
@@ -977,7 +955,5 @@
         private Panel BookingPanel;
         private Label label3;
         private Label label1;
-        private Label label10;
-        private Label label18;
     }
 }

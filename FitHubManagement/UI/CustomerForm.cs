@@ -245,6 +245,7 @@ namespace FitHubManagement.UI.CustomerUI
                     customer.MembershipId = int.Parse(EditType.Text);
                 }
                 _customerService.UpdateCustomer(customer);
+  
                 MessageBox.Show("Medlem redigerert");
             }
             catch (Exception)
