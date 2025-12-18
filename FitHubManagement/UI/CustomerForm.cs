@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FitHubManagement.UI.CustomerUI
 {
@@ -357,7 +358,6 @@ namespace FitHubManagement.UI.CustomerUI
             {
                 CustomerModel customer = (CustomerModel)CustomerListBox.Items[index];
 
-                // Opdater med værdier fra tekstbokse
                 EditFirst.Text = customer.FirstName;
                 EditLast.Text = customer.LastName;
                 EditMail.Text = customer.Email;
@@ -365,17 +365,13 @@ namespace FitHubManagement.UI.CustomerUI
                 EditNote.Text = customer.PersonalNote;
                 CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
                 EditType.Text = customer.MembershipId.ToString();
-                EditCustomerID.Text = customer.CustomerId.ToString();
 
-                // Kald BLL
-                _customerService.UpdateCustomer(customer);
+                // Hent aktivitetstype via BLL
 
-                MessageBox.Show("Instruktør opdateret!");
-               // LoadInstructors();
             }
             else
             {
-                MessageBox.Show("Ingen instruktør valgt.");
+                MessageBox.Show("Vælg en instruktør først.");
             }
         }
     }
