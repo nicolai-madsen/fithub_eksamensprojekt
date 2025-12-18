@@ -41,7 +41,7 @@ namespace FitHubManagement.DataAccess
         #endregion
 
         #region READ 1 CUSTOMER
-        public CustomerModel GetIndividualCustomer(int customerId)
+        public CustomerModel GetIndividualCustomer()
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -52,7 +52,6 @@ namespace FitHubManagement.DataAccess
                        " FROM Customer WHERE CustomerID = @CustomerId";
             using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
             {
-                selectCmd.Parameters.AddWithValue("@CustomerId", customerId);
 
                 using (SqlDataReader reader = selectCmd.ExecuteReader())
                 {
@@ -249,7 +248,7 @@ namespace FitHubManagement.DataAccess
             }
         }
             
-        public CustomerModel GetSingleCustomer(string IdCustomer) //For filtrering, slik at kunde kan finnes via telefon
+        public CustomerModel GetSingleCustomer() //For filtrering, slik at kunde kan finnes via telefon
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -257,7 +256,6 @@ namespace FitHubManagement.DataAccess
             string query = $"SELECT CustomerID, MembershipID, FirstName, LastName, Email, Phone, Birthday, PersonalNote,Inactive FROM Customer WHERE CustomerID = @customerId";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@customerId", IdCustomer);
                 using (SqlDataReader reader = command.ExecuteReader())  
                 {
                     if (reader.Read())

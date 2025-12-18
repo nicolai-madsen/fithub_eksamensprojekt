@@ -27,7 +27,6 @@ namespace FitHubManagement.UI.CustomerUI
         public CustomerForm()
         {
             InitializeComponent();
-            SearchPanel.Hide();
             BookingPanel.Hide();
             EditCustomerPanel.Hide();
             NewCustomerPanel.Hide();
@@ -135,66 +134,10 @@ namespace FitHubManagement.UI.CustomerUI
                 MessageBox.Show("Fejl med indtasting af medlem, husket at fylde alle nødvendige felter?");
             }
         }
-        /*  private void InfoBtn_Click(object sender, EventArgs e)
-          {
-              SearchPanel.Hide();
-              BookingPanel.Show();
-              ListPanel.Hide();
-              string IdCustomer = IDinfo.Text;
-              CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
-              if (customer != null)
-              {
-                  int customerId = int.Parse(IDinfo.Text);
-                  List<BookingModel> bookings = _bookingService.GetCustomerBooking(customerId);
-
-                  foreach (BookingModel booking in bookings)
-                  {
-                      {
-                          string infoLine = $"Booking ID: {booking.BookingId} Hold: {booking.ActivityId} Notat: {booking.PersonalNote}";
-
-                          activityInfoList.Items.Add(infoLine);
-
-                      }
-                  }
-              }
-              else
-              {
-                  MessageBox.Show("Indtast gyldig ID");
-              }
-
-          }*/
-
-        private void button3_Click(object sender, EventArgs e) //Indlaster relevant information til redigering side fra kunde
-        {
-            SearchPanel.Hide();
-            EditCustomerPanel.Show();
-            ListPanel.Hide();
-            string IdCustomer = IDinfo.Text;
-            CustomerModel customer = _customerService.GetIndividualCustomer(IdCustomer);
-            if (customer != null)
-            {
-                //clear om det er nødvendig
-                //kode for panel
-                EditFirst.Text = customer.FirstName;
-                EditLast.Text = customer.LastName;
-                EditMail.Text = customer.Email;
-                EditPhone.Text = customer.Phone;
-                EditNote.Text = customer.PersonalNote;
-                CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
-                EditType.Text = customer.MembershipId.ToString();
-                EditCustomerID.Text = customer.CustomerId.ToString();
-
-            }
-            else
-            {
-                MessageBox.Show("Indtast gyldig ID");
-            }
-        }
 
         private void EditCustomerCancelBtn_Click(object sender, EventArgs e)
         {
-            string idCustomer = IDinfo.Text;
-            CustomerModel customer = _customerService.GetIndividualCustomer(idCustomer);
+            CustomerModel customer = _customerService.GetIndividualCustomer();
             EditFirst.Text = customer.FirstName;
             EditLast.Text = customer.LastName;
             EditMail.Text = customer.Email;
@@ -230,25 +173,48 @@ namespace FitHubManagement.UI.CustomerUI
         }
         private void EditCustomerConfirmBtn_Click_1(object sender, EventArgs e)
         {
+            // Sørg for at der er valgt en kunde
+            if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
+            {
+                MessageBox.Show("Vælg et medlem først.");
+                return;
+            }
+
+            // Valider MembershipId
+            if (!int.TryParse(EditType.Text, out int membershipId))
+            {
+                MessageBox.Show("Fejl: Medlemstype skal være et gyldigt tal.");
+                return;
+            }
+
+            // Valider at de vigtigste felter ikke er tomme
+            if (string.IsNullOrWhiteSpace(EditFirst.Text) ||
+                string.IsNullOrWhiteSpace(EditLast.Text))
+            {
+                MessageBox.Show("Fejl: Fornavn og Efternavn skal udfyldes.");
+                return;
+            }
+
             try
             {
+                // Opret CustomerModel med eksisterende ID fra den valgte kunde
                 CustomerModel customer = new CustomerModel()
                 {
-                    CustomerId = int.Parse(EditCustomerID.Text),
+                    CustomerId = selectedCustomer.CustomerId, // behold ID fra databasen
                     FirstName = EditFirst.Text,
                     LastName = EditLast.Text,
                     Email = EditMail.Text,
                     Phone = EditPhone.Text,
                     PersonalNote = EditNote.Text,
-                    MembershipId = int.Parse(EditType.Text)
+                    MembershipId = membershipId
                 };
-                _customerService.UpdateCustomer(customer);
 
-                MessageBox.Show("Medlem redigerert");
+                _customerService.UpdateCustomer(customer);
+                MessageBox.Show("Medlem redigeret");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Fejl med redigering af medlem");
+                MessageBox.Show("Fejl med redigering af medlem: " + ex.Message);
             }
         }
         private void MarkActive_Click(object sender, EventArgs e)
@@ -280,7 +246,6 @@ namespace FitHubManagement.UI.CustomerUI
         }
         private void ShowListBtn_Click(object sender, EventArgs e)
         {
-            SearchPanel.Hide();
             BookingPanel.Hide();
             EditCustomerPanel.Hide();
             NewCustomerPanel.Hide();
@@ -289,7 +254,6 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void NewCustomerBtn_Click(object sender, EventArgs e)
         {
-            SearchPanel.Hide();
             BookingPanel.Hide();
             EditCustomerPanel.Hide();
             NewCustomerPanel.Show();
@@ -298,7 +262,6 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void CustomerInfoBtn_Click(object sender, EventArgs e)
         {
-            SearchPanel.Show();
             BookingPanel.Hide();
             EditCustomerPanel.Hide();
             NewCustomerPanel.Hide();
