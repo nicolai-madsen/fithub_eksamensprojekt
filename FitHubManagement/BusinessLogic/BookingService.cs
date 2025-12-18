@@ -18,21 +18,20 @@ namespace FitHubManagement.BusinessLogic
 
         public int CreateBooking(int activityId, int customerId, string note)
         {
-            // 1. Tjek om der er plads på holdet
+            // Validering til "plads på holdet"
             int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
             if (availableSpots <= 0)
             {
                 throw new Exception("Der er ikke flere ledige pladser på holdet.");
             }
 
-            // 2. Tjek uge-begrænsning (max 2 hold)
+            // Validering til ugenlige booking begrænsninger for "Standard" medlemmer
             DateTime activityDate = _activityDAL.GetActivityDate(activityId);
             if (!CanCustomerBook(customerId, activityDate))
             {
                 throw new Exception("Medlemmet er allerede tilmeldt 2 hold i denne uge.");
             }
 
-            // 3. Opret booking-objektet
             BookingModel newBooking = new BookingModel
             {
                 ActivityId = activityId,
@@ -42,11 +41,10 @@ namespace FitHubManagement.BusinessLogic
 
             try
             {
-                // 4. Gem i databasen
+                // Kald DAL og gem i databasen
                 _bookingDAL.CreateBooking(newBooking);
 
-                // 5. Tæl deltagere (Quick fix: Hent alle og tæl i C# som vi aftalte)
-                // Husk parenteser efter GetAllBookings()
+                // Tæl deltagere
                 int participantsCount = _bookingDAL.GetAllBookings()
                                                    .Count(b => b.ActivityId == activityId);
 
@@ -54,7 +52,7 @@ namespace FitHubManagement.BusinessLogic
             }
             catch (SqlException)
             {
-                // Hvis databasen afviser pga. Unique Constraint (allerede tilmeldt)
+                // Fanges hvis der er dobbeltbookinger på et hold
                 throw new Exception("Medlemmet er allerede tilmeldt dette hold.");
             }
         }
@@ -64,16 +62,16 @@ namespace FitHubManagement.BusinessLogic
             // Hent medlem via DAL
             CustomerModel customer = _customerDAL.GetIndividualCustomer();
 
-            // Hvis medlem er inaktiv, kan de ikke booke hold
+            // Hvis medlem er inaktiv, kan de ikke bookes på hold
             if (customer.Inactive) return false;
 
             // Hvis medlem har MembershipId = "1" (Standard)
             if (customer.MembershipId == 1)
             {
-                // Find mandag i den uge hvor holdet ligger
+                // Find mandag i den uge hvor holdet ligger. Bruger "Helper Method" til beregning
                 DateTime weekStart = GetStartOfWeek(activityDate).Date;
 
-                // Hent antallet af bookinger fra for medlem. Kald DAL via BLL instans _bookingRepo
+                // Hent antallet af bookinger fra for medlem. Kald DAL via BLL instans: _bookingRepo
                 int bookingCount = _bookingDAL.GetBookingCountForCustomer(customerId, weekStart);
 
                 if (bookingCount >= 2)
@@ -87,15 +85,14 @@ namespace FitHubManagement.BusinessLogic
 
         public int GetParticipantCount(int activityId)
         {
-            // Her kalder du din DAL/Repository. 
-            // Det er meget bedre at lade databasen tælle rækkerne end at hente dem alle op i hukommelsen.
+            // Kald DAL
             return _bookingDAL.GetAllBookings()
                                      .Where(b => b.ActivityId == activityId)
                                      .Count();
         }
 
 
-        public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
+        public List<ActivityFilterModel> GetFilteredActivities(DateOnly? date, string? activityTypeName)
         {
             // BLL opbygger filter-model
             ActivityFilterModel filter = new ActivityFilterModel

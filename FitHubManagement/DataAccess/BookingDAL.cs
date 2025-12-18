@@ -58,45 +58,35 @@ namespace FitHubManagement.DataAccess
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
-            string query = "SELECT BookingID, ActivityID, CustomerID, PersonalNote FROM Booking"; //Redigeret af LENA
-
+            string query = "SELECT BookingID, ActivityID, CustomerID, PersonalNote FROM Booking";
 
             using SqlCommand command = new SqlCommand(query, connection);
-
-            // Læser resultatet af SQL SELECT
             using SqlDataReader reader = command.ExecuteReader();
             {
                 // Går gennem hver række i resultatet
                 while (reader.Read())
                 {
                     // 
-                    string personalNote = null; //Vi laver variabel her for feltet kan være Null i databasen.
+                    string personalNote = null; // Variabel laves her for feltet kan være null i databasen
 
                     if (!reader.IsDBNull(reader.GetOrdinal("PersonalNote")))
                     {
                         personalNote = reader.GetString(reader.GetOrdinal("PersonalNote"));
                     }
 
-                    // Opretter et Booking-objekt baseret på værdierne i rækken
+                    // Opret et Booking-objekt baseret på værdierne i rækken
                     BookingModel bookingList = new BookingModel
                     {
                         BookingId = reader.GetInt32(reader.GetOrdinal("BookingID")),
                         ActivityId = reader.GetInt32(reader.GetOrdinal("ActivityID")),
                         CustomerId = reader.GetInt32(reader.GetOrdinal("CustomerID")),
-                        PersonalNote = personalNote //Sætter personalNote til objektet, da det kan være null
+                        PersonalNote = personalNote //Sæt personalNote til objektet, da det kan være null
 
                     };
-
-                    // Tilføjer booking-objektet til listen
                     bookings.Add(bookingList);
                 }
             }
-
-
-            // Skriver i konsollen hvor mange bookinger blev hentet
-            Console.WriteLine($"Loaded {bookings.Count} bookings from database.");
-
-            // Returnerer listen med bookings
+            // Returnerer listen med bookings fra SQL query
             return bookings;
         }
 
