@@ -42,4 +42,13 @@ namespace FitHubManagement.BusinessLogic
         }
 
     }
+    public class LoadInstructor
+    {
+        private InstructorDAL _dal = new InstructorDAL();
+
+        public List<InstructorModel> Instructors()
+        {
+            return _dal.ReadAllInstructors();
+        }
+    }
 }

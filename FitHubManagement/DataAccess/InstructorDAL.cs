@@ -114,7 +114,7 @@ namespace FitHubManagement.DataAccess
                 cmd.Parameters.AddWithValue("@LastName", instructor.LastName);
                 cmd.Parameters.AddWithValue("@Email", instructor.Email);
                 cmd.Parameters.AddWithValue("@Phone", instructor.PhoneNumber);
-                cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorID);
+                cmd.Parameters.AddWithValue("@InstructorID", instructor.InstructorId);
 
                 cmd.ExecuteNonQuery();
             }
@@ -157,7 +157,7 @@ namespace FitHubManagement.DataAccess
                     {
                         InstructorModel ins = new InstructorModel
                         {
-                            InstructorID = reader.GetInt32(0),
+                            InstructorId = reader.GetInt32(0),
                             FirstName = reader.GetString(1),
                             LastName = reader.GetString(2),
                             Email = reader.GetString(3),
@@ -177,7 +177,7 @@ namespace FitHubManagement.DataAccess
             }
         }
 
-        public static List<InstructorModel> ReadAllInstructors()
+        public List<InstructorModel> ReadAllInstructors()
         {
             List<InstructorModel> instructors = new List<InstructorModel>();
 
@@ -193,7 +193,7 @@ namespace FitHubManagement.DataAccess
             {
                 InstructorModel ins = new InstructorModel
                 {
-                    InstructorID = reader.GetInt32(0),
+                    InstructorId = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),

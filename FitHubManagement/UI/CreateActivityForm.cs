@@ -42,9 +42,8 @@ namespace FitHubManagement.UI.Activity
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
-            InstructorDAL instructorDAL = new InstructorDAL();
-
-            List<InstructorModel> instructors = instructorDAL.GetAllInstructors();
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
 
             cmbHoldTypeInstruktor.DataSource = instructors;
             cmbHoldTypeInstruktor.DisplayMember = "FullName";   // eller Name
@@ -283,9 +282,39 @@ namespace FitHubManagement.UI.Activity
                 return; // STOP – gem ikke
             }
 
-            // ✅ Hvis vi kommer hertil, er navnet udfyldt
-            // Her gemmer du data
+            // Hent valgt instruktør fra ComboBox
+            if (cmbHoldTypeInstruktor.SelectedItem is not InstructorModel selectedInstructor)
+            {
+                MessageBox.Show("Du skal vælge en instruktør", "Valideringsfejl",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Opret model med data fra UI
+            ActivityTypeModel model = new ActivityTypeModel
+            {
+                InstructorId = selectedInstructor.InstructorId,
+                ActivityTypeName = txtHoldTypeName.Text,
+                ActivityTypeDescription = txtHoldTypeBeskrivelse.Text
+            };
+
+            // Kald BLL for at gemme
+            ActivityTypeBLL1 bll = new ActivityTypeBLL1();
+            try
+            {
+                bll.CreateActivityType(model);
+                MessageBox.Show("Holdtype gemt!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Ryd felter efter gemning
+                txtHoldTypeName.Text = "";
+                txtHoldTypeBeskrivelse.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fejl under gemning: {ex.Message}", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
         {

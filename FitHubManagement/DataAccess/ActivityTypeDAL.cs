@@ -14,7 +14,24 @@ namespace FitHubManagement.DataAccess
 
     //CREATE ACTIVITY____________________________________________________________________________________________
     {
-        public int CreateActivityType(ActivityTypeModel activityType)
+        public void CreateActivityType(ActivityTypeModel activityType)
+        {
+            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+            connection.Open();
+
+            string insertSql = @"INSERT INTO ActivityType (InstructorID, ActivityTypeName, ActivityTypeDescription)
+                         VALUES (@InstructorID, @ActivityTypeName, @ActivityTypeDescription)";
+
+            using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
+            {
+                insertCmd.Parameters.AddWithValue("@InstructorID", activityType.InstructorId);
+                insertCmd.Parameters.AddWithValue("@ActivityTypeName", activityType.ActivityTypeName);
+                insertCmd.Parameters.AddWithValue("@ActivityTypeDescription", activityType.ActivityTypeDescription);
+
+                insertCmd.ExecuteNonQuery(); // udfør indsættelsen
+            }
+        }
+        /*public int CreateActivityType(ActivityTypeModel activityType)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
@@ -36,7 +53,7 @@ namespace FitHubManagement.DataAccess
                 return id; // return id 
             }
 
-        }
+        }*/
         //________________________________________________________________________________________________________
 
         // Metode der henter alle aktiviteter fra databasen

@@ -74,7 +74,8 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructors()
         {
-            List<InstructorModel> instructors = InstructorDAL.ReadAllInstructors();
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
 
             lstbxGetAllIns.DataSource = instructors;
             lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
@@ -113,7 +114,7 @@ namespace FitHubManagement.UI.Instructor
 
                 // Hent aktivitetstype via BLL
                 ActivityTypeBLL activityBLL = new ActivityTypeBLL();
-                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorID);
+                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorId);
 
                 if (activity != null)
                 {
