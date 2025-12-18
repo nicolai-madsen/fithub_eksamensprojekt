@@ -9,7 +9,7 @@ namespace FitHubManagement.Models
 {
     public class InstructorModel  //Her skal det være public, så får vi adgang til andre klasser.
     {
-        public int InstructorID { get; set; }
+        public int InstructorId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";

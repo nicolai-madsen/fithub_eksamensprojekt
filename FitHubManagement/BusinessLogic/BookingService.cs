@@ -1,25 +1,38 @@
 ﻿using FitHubManagement.Models;
 using FitHubManagement.DataAccess;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic
 {
-    internal class BookingService
+    public class BookingService
     {
         private readonly BookingDAL _bookingDAL = new BookingDAL();
         private readonly CustomerDAL _customerDAL = new CustomerDAL();
         private readonly ActivityDAL _activityDAL = new ActivityDAL();
 
-        public void CreateBooking(int activityId, int customerId, string note)
+        public int CreateBooking(int activityId, int customerId, string note)
         {
+            // 1. Tjek om der er plads på holdet
+            int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
+            if (availableSpots <= 0)
+            {
+                throw new Exception("Der er ikke flere ledige pladser på holdet.");
+            }
 
+            // 2. Tjek uge-begrænsning (max 2 hold)
+            DateTime activityDate = _activityDAL.GetActivityDate(activityId);
+            if (!CanCustomerBook(customerId, activityDate))
+            {
+                throw new Exception("Medlemmet er allerede tilmeldt 2 hold i denne uge.");
+            }
 
-
-
+            // 3. Opret booking-objektet
             BookingModel newBooking = new BookingModel
             {
                 ActivityId = activityId,
@@ -27,9 +40,23 @@ namespace FitHubManagement.BusinessLogic
                 PersonalNote = note,
             };
 
+            try
+            {
+                // 4. Gem i databasen
+                _bookingDAL.CreateBooking(newBooking);
 
+                // 5. Tæl deltagere (Quick fix: Hent alle og tæl i C# som vi aftalte)
+                // Husk parenteser efter GetAllBookings()
+                int participantsCount = _bookingDAL.GetAllBookings()
+                                                   .Count(b => b.ActivityId == activityId);
 
-            _bookingDAL.CreateBooking(newBooking);
+                return participantsCount;
+            }
+            catch (SqlException)
+            {
+                // Hvis databasen afviser pga. Unique Constraint (allerede tilmeldt)
+                throw new Exception("Medlemmet er allerede tilmeldt dette hold.");
+            }
         }
 
         public bool CanCustomerBook(int customerId, DateTime activityDate)
@@ -58,6 +85,30 @@ namespace FitHubManagement.BusinessLogic
             return true;
         }
 
+        public int GetParticipantCount(int activityId)
+        {
+            // Her kalder du din DAL/Repository. 
+            // Det er meget bedre at lade databasen tælle rækkerne end at hente dem alle op i hukommelsen.
+            return _bookingDAL.GetAllBookings()
+                                     .Where(b => b.ActivityId == activityId)
+                                     .Count();
+        }
+
+
+        public List<ActivityFilterModel> GetFilteredActivities(DateOnly date, string activityTypeName)
+        {
+            // BLL opbygger filter-model
+            ActivityFilterModel filter = new ActivityFilterModel
+            {
+                ActivityDate = date,
+                ActivityTypeName = activityTypeName
+            };
+
+            // BLL kalder DAL
+            return _activityDAL.GetFilteredActivities(filter);
+        }
+
+
         public int GetAvailableSpots(int activityId)
         {
             return _bookingDAL.GetAvailableSpots(activityId);
@@ -78,6 +129,14 @@ namespace FitHubManagement.BusinessLogic
                 _ => date.Date
             };
         }
+        public List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            return _bookingDAL.GetCustomerBooking(customerId);
+        }
+
+        private readonly BookingDAL b_bookingDAL = new BookingDAL();
+
+       
         public List<BookingModel> GetBookingsByActivityID(int activityId) //Bruges i CreateInstrictorForm som et led til at vise holdtilmeldinger
         {
             return BookingDAL.GetBookingsByActivityID(activityId);

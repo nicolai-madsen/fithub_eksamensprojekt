@@ -1,19 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic; //Importerer/reference til BLL
-using FitHubManagement.BusinessLogic.ActivityBL;
 using FitHubManagement.Models;
-using FitHubManagement.Models.FilterModels;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335; // ????
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FitHubManagement.UI.Activity
 {
@@ -26,7 +12,7 @@ namespace FitHubManagement.UI.Activity
         {
             InitializeComponent();
             panel1.Visible = true;
-            pnlSearchActivity.Visible = false;
+            LoadInstructors();
 
         }
 
@@ -37,6 +23,26 @@ namespace FitHubManagement.UI.Activity
         private List<ActivityTypeModel> activityType;
 
         private List<string> duration;
+
+        private void LoadActivityTypes()
+        {
+            activityType = activityService.GetAllActivityTypes();
+            comboBox2.DataSource = null;
+            comboBox2.DisplayMember = "ActivityTypeName";
+            comboBox2.ValueMember = "ActivityTypeId";
+            comboBox2.DataSource = activityType;
+            comboBox2.SelectedIndex = -1;
+        }
+        private void LoadInstructors()
+        {
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
+
+            cmbHoldTypeInstruktor.DataSource = instructors;
+            cmbHoldTypeInstruktor.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
+            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+        }
+
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
 
         {
@@ -45,22 +51,8 @@ namespace FitHubManagement.UI.Activity
             cmbLocationActivity.DataSource = locations;
             cmbLocationActivity.SelectedIndex = -1;
 
-            cmbSearchLocation.DataSource = locations;
-            cmbSearchLocation.SelectedIndex = -1;
+            LoadActivityTypes();
 
-            activityType = activityService.GetAllActivityTypes();
-
-
-            cmbSearchActivity.DataSource = activityType;
-            cmbSearchActivity.SelectedIndex = -1;
-
-            List<ActivityTypeModel> activityTypes =
-                activityTypeService.GetAllActivityTypes();
-
-            comboBox2.DisplayMember = "ActivityTypeName";
-            comboBox2.ValueMember = "ActivityTypeID";
-            comboBox2.DataSource = activityTypes;
-            comboBox2.SelectedIndex = -1;
 
             label10.Text = "";
 
@@ -81,9 +73,6 @@ namespace FitHubManagement.UI.Activity
             return true;
         }
 
-
-
-
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -92,41 +81,11 @@ namespace FitHubManagement.UI.Activity
         private void button2_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
-            pnlSearchActivity.Visible = false;
-        }
-
-        private void pnlSearcActivity_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) //Holdtype i panel med createActivity
-        {
-
-        }
-
-        private void btnSearchActivity_Click(object sender, EventArgs e)
-        {
-            pnlSearchActivity.Visible = true;
-            panel1.Visible = false;
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            pnlSearchActivity.Visible=false;
+            LoadActivityTypes();
             panel1.Visible = true;
 
         }
@@ -146,8 +105,6 @@ namespace FitHubManagement.UI.Activity
         {
 
         }
-
-       
 
         private void btnCreateActivityPanel_Click(object sender, EventArgs e)
         {
@@ -185,41 +142,6 @@ namespace FitHubManagement.UI.Activity
         }
         // Monas stuff goes here 
 
-
-
-        //Panel søgning
-        private void btnSearchGet_Click(object sender, EventArgs e)
-        {
-            // Model som indeholder filter kriterier, bruges i BL. BL Kalder DAL, som returnerer en liste af resultater, der vises i lstbxSearchGet
-            var filterModel = new ActivityFilterModel
-            {
-                ActivityTypeName = cmbSearchActivity.SelectedItem?.ToString(),
-                ActivityLocation = cmbSearchLocation.SelectedItem?.ToString()
-            };
-
-            if (chkFilterByDate.Checked) // Hvis filter by date checkboxen er "checked", så tilføjer den datoen i dtp.Value 
-            {
-                filterModel.ActivityDate = DateOnly.FromDateTime(dTPSearchDate.Value);
-            }
-            else
-            {
-                filterModel.ActivityDate = null;
-            }
-
-            var service = new ActivityFilterService();
-            var activities = service.GetFilteredActivities(filterModel);
-
-            lstbxSearchGet.DataSource = activities;
-            MessageBox.Show($"Found {activities.Count} activities");
-
-            // Sletter input fra combo boxes, når brugeren trykker på knappen (filter reset)
-            cmbLocationActivity.SelectedItem = null;
-            cmbLocationActivity.Text = "";
-
-            cmbSearchLocation.SelectedItem = null;
-            cmbSearchActivity.Text = "";
-        }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
@@ -241,25 +163,82 @@ namespace FitHubManagement.UI.Activity
         {
 
         }
-        private void cmbInstructorCreateActivity_SelectedIndexChanged(object sender, EventArgs e) // Sorryyy
-        {
-
-        }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             // Lad den være tom for nu, så fejlen forsvinder
         }
 
-        private void lstbxSearchGet_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnSaveActivityType_Click(object sender, EventArgs e)
+        {
+            // Validering: navn må ikke være tomt
+            if (string.IsNullOrWhiteSpace(txtHoldTypeName.Text))
+            {
+                MessageBox.Show(
+                    "Navn må ikke være tomt",
+                    "Valideringsfejl",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtHoldTypeName.Focus(); // markér feltet
+                return; // STOP – gem ikke
+            }
+
+            // Hent valgt instruktør fra ComboBox
+            if (cmbHoldTypeInstruktor.SelectedItem is not InstructorModel selectedInstructor)
+            {
+                MessageBox.Show("Du skal vælge en instruktør", "Valideringsfejl",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Opret model med data fra UI
+            ActivityTypeModel model = new ActivityTypeModel
+            {
+                InstructorId = selectedInstructor.InstructorId,
+                ActivityTypeName = txtHoldTypeName.Text,
+                ActivityTypeDescription = txtHoldTypeBeskrivelse.Text
+            };
+
+            // Kald BLL for at gemme
+            ActivityTypeBLL1 bll = new ActivityTypeBLL1();
+            try
+            {
+                bll.CreateActivityType(model);
+                MessageBox.Show("Holdtype gemt!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Ryd felter efter gemning
+                txtHoldTypeName.Text = "";
+                txtHoldTypeBeskrivelse.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fejl under gemning: {ex.Message}", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CreateActivityType_Click(object sender, EventArgs e)
+        {
+            LoadInstructor bll = new LoadInstructor();
+            List<InstructorModel> instructors = bll.Instructors();
+
+            cmbHoldTypeInstruktor.DataSource = instructors;
+            cmbHoldTypeInstruktor.DisplayMember = "FullName";
+            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+
+            pnlHoldType.Visible = true;
+        }
+
+        private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnCancelActivityType_Click(object sender, EventArgs e)
         {
-
+            txtHoldTypeName.Clear();
+            txtHoldTypeBeskrivelse.Clear();
+            pnlHoldType.Visible = false;
         }
-
-      
     }
 }

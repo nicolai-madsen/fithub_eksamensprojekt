@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             ListPanel = new Panel();
+            SearchBox = new TextBox();
+            ShowActiveBtn = new Button();
+            label29 = new Label();
+            count = new TextBox();
+            ShowInactiveBtn = new Button();
+            ShowAllBtn = new Button();
+            ChooseCustomerTitle = new Label();
+            CustomerListBox = new ListBox();
             SearchPanel = new Panel();
             IDinfo = new TextBox();
             button3 = new Button();
             InfoBtn = new Button();
             label30 = new Label();
-            ShowActiveBtn = new Button();
-            label29 = new Label();
-            count = new TextBox();
             CustomerInfoBtn = new Button();
-            ShowInactiveBtn = new Button();
-            ShowAllBtn = new Button();
-            ChooseCustomerTitle = new Label();
-            CustomerListBox = new ListBox();
             BookingPanel = new Panel();
             label3 = new Label();
             label1 = new Label();
@@ -109,20 +110,98 @@
             // 
             // ListPanel
             // 
-            ListPanel.Controls.Add(SearchPanel);
+            ListPanel.Controls.Add(SearchBox);
             ListPanel.Controls.Add(ShowActiveBtn);
             ListPanel.Controls.Add(label29);
             ListPanel.Controls.Add(count);
-            ListPanel.Controls.Add(CustomerInfoBtn);
             ListPanel.Controls.Add(ShowInactiveBtn);
             ListPanel.Controls.Add(ShowAllBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
-            ListPanel.Location = new Point(10, 11);
+            ListPanel.Location = new Point(640, 344);
             ListPanel.Margin = new Padding(3, 2, 3, 2);
             ListPanel.Name = "ListPanel";
             ListPanel.Size = new Size(536, 494);
             ListPanel.TabIndex = 8;
+            // 
+            // SearchBox
+            // 
+            SearchBox.Location = new Point(108, 87);
+            SearchBox.Name = "SearchBox";
+            SearchBox.Size = new Size(117, 23);
+            SearchBox.TabIndex = 52;
+            SearchBox.TextChanged += SearchBox_TextChanged;
+            // 
+            // ShowActiveBtn
+            // 
+            ShowActiveBtn.Location = new Point(55, 336);
+            ShowActiveBtn.Margin = new Padding(3, 2, 3, 2);
+            ShowActiveBtn.Name = "ShowActiveBtn";
+            ShowActiveBtn.Size = new Size(82, 22);
+            ShowActiveBtn.TabIndex = 51;
+            ShowActiveBtn.Text = "Vis aktiv";
+            ShowActiveBtn.UseVisualStyleBackColor = true;
+            ShowActiveBtn.Click += ShowActiveBtn_Click_1;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(326, 90);
+            label29.Name = "label29";
+            label29.Size = new Size(75, 15);
+            label29.TabIndex = 49;
+            label29.Text = "Medlemmer:";
+            // 
+            // count
+            // 
+            count.Location = new Point(408, 88);
+            count.Margin = new Padding(3, 2, 3, 2);
+            count.Name = "count";
+            count.ReadOnly = true;
+            count.Size = new Size(29, 23);
+            count.TabIndex = 21;
+            // 
+            // ShowInactiveBtn
+            // 
+            ShowInactiveBtn.Location = new Point(153, 336);
+            ShowInactiveBtn.Margin = new Padding(3, 2, 3, 2);
+            ShowInactiveBtn.Name = "ShowInactiveBtn";
+            ShowInactiveBtn.Size = new Size(82, 22);
+            ShowInactiveBtn.TabIndex = 18;
+            ShowInactiveBtn.Text = "Vis inaktiv";
+            ShowInactiveBtn.UseVisualStyleBackColor = true;
+            ShowInactiveBtn.Click += ShowInactiveBtn_Click;
+            // 
+            // ShowAllBtn
+            // 
+            ShowAllBtn.Location = new Point(231, 87);
+            ShowAllBtn.Margin = new Padding(3, 2, 3, 2);
+            ShowAllBtn.Name = "ShowAllBtn";
+            ShowAllBtn.Size = new Size(82, 22);
+            ShowAllBtn.TabIndex = 17;
+            ShowAllBtn.Text = "Vis alle";
+            ShowAllBtn.UseVisualStyleBackColor = true;
+            ShowAllBtn.Click += ShowBtn_Click;
+            // 
+            // ChooseCustomerTitle
+            // 
+            ChooseCustomerTitle.AutoSize = true;
+            ChooseCustomerTitle.Font = new Font("Segoe UI", 12F);
+            ChooseCustomerTitle.Location = new Point(55, 26);
+            ChooseCustomerTitle.Name = "ChooseCustomerTitle";
+            ChooseCustomerTitle.Size = new Size(110, 21);
+            ChooseCustomerTitle.TabIndex = 11;
+            ChooseCustomerTitle.Text = "Kundeoversigt";
+            // 
+            // CustomerListBox
+            // 
+            CustomerListBox.FormattingEnabled = true;
+            CustomerListBox.ItemHeight = 15;
+            CustomerListBox.Location = new Point(55, 118);
+            CustomerListBox.Margin = new Padding(3, 2, 3, 2);
+            CustomerListBox.Name = "CustomerListBox";
+            CustomerListBox.Size = new Size(382, 214);
+            CustomerListBox.TabIndex = 8;
             // 
             // SearchPanel
             // 
@@ -131,10 +210,10 @@
             SearchPanel.Controls.Add(button3);
             SearchPanel.Controls.Add(InfoBtn);
             SearchPanel.Controls.Add(label30);
-            SearchPanel.Location = new Point(55, 212);
+            SearchPanel.Location = new Point(205, 296);
             SearchPanel.Margin = new Padding(3, 2, 3, 2);
             SearchPanel.Name = "SearchPanel";
-            SearchPanel.Size = new Size(382, 94);
+            SearchPanel.Size = new Size(382, 106);
             SearchPanel.TabIndex = 50;
             // 
             // IDinfo
@@ -175,38 +254,9 @@
             label30.TabIndex = 0;
             label30.Text = "Indtast medlems ID";
             // 
-            // ShowActiveBtn
-            // 
-            ShowActiveBtn.Location = new Point(151, 62);
-            ShowActiveBtn.Margin = new Padding(3, 2, 3, 2);
-            ShowActiveBtn.Name = "ShowActiveBtn";
-            ShowActiveBtn.Size = new Size(82, 22);
-            ShowActiveBtn.TabIndex = 51;
-            ShowActiveBtn.Text = "Vis aktiv";
-            ShowActiveBtn.UseVisualStyleBackColor = true;
-            ShowActiveBtn.Click += ShowActiveBtn_Click_1;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Location = new Point(326, 64);
-            label29.Name = "label29";
-            label29.Size = new Size(75, 15);
-            label29.TabIndex = 49;
-            label29.Text = "Medlemmer:";
-            // 
-            // count
-            // 
-            count.Location = new Point(408, 62);
-            count.Margin = new Padding(3, 2, 3, 2);
-            count.Name = "count";
-            count.ReadOnly = true;
-            count.Size = new Size(29, 23);
-            count.TabIndex = 21;
-            // 
             // CustomerInfoBtn
             // 
-            CustomerInfoBtn.Location = new Point(55, 317);
+            CustomerInfoBtn.Location = new Point(268, 722);
             CustomerInfoBtn.Margin = new Padding(3, 2, 3, 2);
             CustomerInfoBtn.Name = "CustomerInfoBtn";
             CustomerInfoBtn.Size = new Size(150, 22);
@@ -215,55 +265,13 @@
             CustomerInfoBtn.UseVisualStyleBackColor = true;
             CustomerInfoBtn.Click += CustomerInfoBtn_Click;
             // 
-            // ShowInactiveBtn
-            // 
-            ShowInactiveBtn.Location = new Point(239, 62);
-            ShowInactiveBtn.Margin = new Padding(3, 2, 3, 2);
-            ShowInactiveBtn.Name = "ShowInactiveBtn";
-            ShowInactiveBtn.Size = new Size(82, 22);
-            ShowInactiveBtn.TabIndex = 18;
-            ShowInactiveBtn.Text = "Vis inaktiv";
-            ShowInactiveBtn.UseVisualStyleBackColor = true;
-            ShowInactiveBtn.Click += ShowInactiveBtn_Click;
-            // 
-            // ShowAllBtn
-            // 
-            ShowAllBtn.Location = new Point(55, 62);
-            ShowAllBtn.Margin = new Padding(3, 2, 3, 2);
-            ShowAllBtn.Name = "ShowAllBtn";
-            ShowAllBtn.Size = new Size(82, 22);
-            ShowAllBtn.TabIndex = 17;
-            ShowAllBtn.Text = "Vis alle";
-            ShowAllBtn.UseVisualStyleBackColor = true;
-            ShowAllBtn.Click += ShowBtn_Click;
-            // 
-            // ChooseCustomerTitle
-            // 
-            ChooseCustomerTitle.AutoSize = true;
-            ChooseCustomerTitle.Font = new Font("Segoe UI", 12F);
-            ChooseCustomerTitle.Location = new Point(55, 19);
-            ChooseCustomerTitle.Name = "ChooseCustomerTitle";
-            ChooseCustomerTitle.Size = new Size(110, 21);
-            ChooseCustomerTitle.TabIndex = 11;
-            ChooseCustomerTitle.Text = "Kundeoversigt";
-            // 
-            // CustomerListBox
-            // 
-            CustomerListBox.FormattingEnabled = true;
-            CustomerListBox.ItemHeight = 15;
-            CustomerListBox.Location = new Point(55, 92);
-            CustomerListBox.Margin = new Padding(3, 2, 3, 2);
-            CustomerListBox.Name = "CustomerListBox";
-            CustomerListBox.Size = new Size(382, 214);
-            CustomerListBox.TabIndex = 8;
-            // 
             // BookingPanel
             // 
             BookingPanel.Controls.Add(label3);
             BookingPanel.Controls.Add(label1);
             BookingPanel.Controls.Add(activityInfoList);
             BookingPanel.Controls.Add(label2);
-            BookingPanel.Location = new Point(9, 18);
+            BookingPanel.Location = new Point(640, 11);
             BookingPanel.Name = "BookingPanel";
             BookingPanel.Size = new Size(534, 328);
             BookingPanel.TabIndex = 17;
@@ -332,7 +340,7 @@
             NewCustomerPanel.Controls.Add(label5);
             NewCustomerPanel.Controls.Add(label4);
             NewCustomerPanel.Controls.Add(NewCustomerTitle);
-            NewCustomerPanel.Location = new Point(10, 13);
+            NewCustomerPanel.Location = new Point(12, 353);
             NewCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             NewCustomerPanel.Name = "NewCustomerPanel";
             NewCustomerPanel.Size = new Size(536, 351);
@@ -569,6 +577,7 @@
             // 
             // EditCustomerPanel
             // 
+            EditCustomerPanel.Controls.Add(SearchPanel);
             EditCustomerPanel.Controls.Add(textBox1);
             EditCustomerPanel.Controls.Add(label13);
             EditCustomerPanel.Controls.Add(MarkInactive);
@@ -856,11 +865,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(641, 370);
+            ClientSize = new Size(1210, 755);
             Controls.Add(BookingPanel);
             Controls.Add(ListPanel);
             Controls.Add(NewCustomerPanel);
             Controls.Add(BackBtn);
+            Controls.Add(CustomerInfoBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(EditCustomerPanel);
             Controls.Add(ShowListBtn);
@@ -954,5 +964,6 @@
         private Panel BookingPanel;
         private Label label3;
         private Label label1;
+        private TextBox SearchBox;
     }
 }

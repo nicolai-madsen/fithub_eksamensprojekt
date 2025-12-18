@@ -14,28 +14,22 @@ namespace FitHubManagement.DataAccess
 
     //CREATE ACTIVITY____________________________________________________________________________________________
     {
-        public int CreateActivityType(ActivityTypeModel activityType)
+        public void CreateActivityType(ActivityTypeModel activityType)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
+            string insertSql = @"INSERT INTO ActivityType (InstructorID, ActivityTypeName, ActivityTypeDescription)
+                         VALUES (@InstructorID, @ActivityTypeName, @ActivityTypeDescription)";
 
-            string insertSql = $"INSERT INTO ActivityType (ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription) VALUES (@ActivityTypeID, @InstructorID, @ActivityTypeName, @ActivityTypeDescription)";
-            Console.WriteLine($"SQL Command: {insertSql}");
             using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
             {
-                insertCmd.Parameters.AddWithValue("@ActivityTypeID", activityType.ActivityTypeId);
                 insertCmd.Parameters.AddWithValue("@InstructorID", activityType.InstructorId);
-                insertCmd.Parameters.AddWithValue("@InstructorID", activityType.ActivityTypeName);
-                insertCmd.Parameters.AddWithValue("@PersonalNote", activityType.ActivityTypeDescription);
+                insertCmd.Parameters.AddWithValue("@ActivityTypeName", activityType.ActivityTypeName);
+                insertCmd.Parameters.AddWithValue("@ActivityTypeDescription", activityType.ActivityTypeDescription);
 
-                int rowsChanged = insertCmd.ExecuteNonQuery();
-                Console.WriteLine($"{rowsChanged} rækker ændret.");
-
-                int id = (int)insertCmd.ExecuteScalar(); // henter det auto generede ID fra databasen
-                return id; // return id 
+                insertCmd.ExecuteNonQuery(); // udfør indsættelsen
             }
-
         }
         //________________________________________________________________________________________________________
 

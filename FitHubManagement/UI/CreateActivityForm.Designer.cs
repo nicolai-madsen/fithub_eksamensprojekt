@@ -135,18 +135,6 @@
             components = new System.ComponentModel.Container();
             toolTip1 = new ToolTip(components);
             LblDuration = new Label();
-            pnlSearchActivity = new Panel();
-            label2 = new Label();
-            cmbSearchLocation = new ComboBox();
-            btnSearchGet = new Button();
-            chkFilterByDate = new CheckBox();
-            dTPSearchDate = new DateTimePicker();
-            lstbxSearchGet = new ListBox();
-            cmbSearchActivity = new ComboBox();
-            lblSearchLocation = new Label();
-            lblSearchDate = new Label();
-            lblSearchActivity = new Label();
-            lblSearchCriteria = new Label();
             panel1 = new Panel();
             label11 = new Label();
             label10 = new Label();
@@ -165,12 +153,22 @@
             btnCreateActivityPanel = new Button();
             btnActivityCreate = new Button();
             label3 = new Label();
-            btnSearchActivity = new Button();
             button4 = new Button();
             button1 = new Button();
-            pnlSearchActivity.SuspendLayout();
+            pnlHoldType = new Panel();
+            btnCancelActivityType = new Button();
+            btnSaveActivityType = new Button();
+            label6 = new Label();
+            lblHoldTypeTitle = new Label();
+            cmbHoldTypeInstruktor = new ComboBox();
+            txtHoldTypeBeskrivelse = new TextBox();
+            lblHoldTypeDescription = new Label();
+            txtHoldTypeName = new TextBox();
+            lblHoldTypeNavn = new Label();
+            CreateActivityType = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).BeginInit();
+            pnlHoldType.SuspendLayout();
             SuspendLayout();
             // 
             // LblDuration
@@ -183,137 +181,6 @@
             LblDuration.TabIndex = 8;
             LblDuration.Text = "Varighed:";
             toolTip1.SetToolTip(LblDuration, "t = time og min = minutter. Skriv f.eks. 1 t eller 45 min");
-            // 
-            // pnlSearchActivity
-            // 
-            pnlSearchActivity.Controls.Add(label2);
-            pnlSearchActivity.Controls.Add(cmbSearchLocation);
-            pnlSearchActivity.Controls.Add(btnSearchGet);
-            pnlSearchActivity.Controls.Add(chkFilterByDate);
-            pnlSearchActivity.Controls.Add(dTPSearchDate);
-            pnlSearchActivity.Controls.Add(lstbxSearchGet);
-            pnlSearchActivity.Controls.Add(cmbSearchActivity);
-            pnlSearchActivity.Controls.Add(lblSearchLocation);
-            pnlSearchActivity.Controls.Add(lblSearchDate);
-            pnlSearchActivity.Controls.Add(lblSearchActivity);
-            pnlSearchActivity.Controls.Add(lblSearchCriteria);
-            pnlSearchActivity.Location = new Point(15, 41);
-            pnlSearchActivity.Margin = new Padding(1);
-            pnlSearchActivity.Name = "pnlSearchActivity";
-            pnlSearchActivity.Size = new Size(509, 443);
-            pnlSearchActivity.TabIndex = 20;
-            pnlSearchActivity.Paint += pnlSearcActivity_Paint;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(1, 82);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Instruktør";
-            // 
-            // cmbSearchLocation
-            // 
-            cmbSearchLocation.FormattingEnabled = true;
-            cmbSearchLocation.Location = new Point(59, 123);
-            cmbSearchLocation.Margin = new Padding(1);
-            cmbSearchLocation.Name = "cmbSearchLocation";
-            cmbSearchLocation.Size = new Size(166, 23);
-            cmbSearchLocation.TabIndex = 14;
-            cmbSearchLocation.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
-            // 
-            // btnSearchGet
-            // 
-            btnSearchGet.Location = new Point(380, 124);
-            btnSearchGet.Margin = new Padding(2, 3, 2, 3);
-            btnSearchGet.Name = "btnSearchGet";
-            btnSearchGet.Size = new Size(120, 30);
-            btnSearchGet.TabIndex = 19;
-            btnSearchGet.Text = "Vis søgeresultater";
-            btnSearchGet.UseVisualStyleBackColor = true;
-            btnSearchGet.Click += btnSearchGet_Click;
-            // 
-            // chkFilterByDate
-            // 
-            chkFilterByDate.AutoSize = true;
-            chkFilterByDate.Location = new Point(300, 84);
-            chkFilterByDate.Name = "chkFilterByDate";
-            chkFilterByDate.Size = new Size(79, 19);
-            chkFilterByDate.TabIndex = 20;
-            chkFilterByDate.Text = "Brug Dato";
-            chkFilterByDate.UseVisualStyleBackColor = true;
-            // 
-            // dTPSearchDate
-            // 
-            dTPSearchDate.Location = new Point(300, 55);
-            dTPSearchDate.Margin = new Padding(2, 3, 2, 3);
-            dTPSearchDate.Name = "dTPSearchDate";
-            dTPSearchDate.Size = new Size(166, 23);
-            dTPSearchDate.TabIndex = 6;
-            // 
-            // lstbxSearchGet
-            // 
-            lstbxSearchGet.FormattingEnabled = true;
-            lstbxSearchGet.ItemHeight = 15;
-            lstbxSearchGet.Location = new Point(0, 156);
-            lstbxSearchGet.Margin = new Padding(1);
-            lstbxSearchGet.Name = "lstbxSearchGet";
-            lstbxSearchGet.Size = new Size(500, 139);
-            lstbxSearchGet.TabIndex = 4;
-            lstbxSearchGet.SelectedIndexChanged += lstbxSearchGet_SelectedIndexChanged;
-            // 
-            // cmbSearchActivity
-            // 
-            cmbSearchActivity.FormattingEnabled = true;
-            cmbSearchActivity.Location = new Point(59, 55);
-            cmbSearchActivity.Margin = new Padding(1);
-            cmbSearchActivity.Name = "cmbSearchActivity";
-            cmbSearchActivity.Size = new Size(166, 23);
-            cmbSearchActivity.TabIndex = 5;
-            // 
-            // lblSearchLocation
-            // 
-            lblSearchLocation.AutoSize = true;
-            lblSearchLocation.Location = new Point(1, 126);
-            lblSearchLocation.Margin = new Padding(1, 0, 1, 0);
-            lblSearchLocation.Name = "lblSearchLocation";
-            lblSearchLocation.Size = new Size(53, 15);
-            lblSearchLocation.TabIndex = 3;
-            lblSearchLocation.Text = "Lokation";
-            lblSearchLocation.Click += label9_Click;
-            // 
-            // lblSearchDate
-            // 
-            lblSearchDate.AutoSize = true;
-            lblSearchDate.Location = new Point(265, 59);
-            lblSearchDate.Margin = new Padding(1, 0, 1, 0);
-            lblSearchDate.Name = "lblSearchDate";
-            lblSearchDate.Size = new Size(32, 15);
-            lblSearchDate.TabIndex = 2;
-            lblSearchDate.Text = "Dato";
-            lblSearchDate.Click += label8_Click;
-            // 
-            // lblSearchActivity
-            // 
-            lblSearchActivity.AutoSize = true;
-            lblSearchActivity.Location = new Point(1, 59);
-            lblSearchActivity.Margin = new Padding(1, 0, 1, 0);
-            lblSearchActivity.Name = "lblSearchActivity";
-            lblSearchActivity.Size = new Size(56, 15);
-            lblSearchActivity.TabIndex = 1;
-            lblSearchActivity.Text = "Holdtype";
-            // 
-            // lblSearchCriteria
-            // 
-            lblSearchCriteria.AutoSize = true;
-            lblSearchCriteria.Font = new Font("Segoe UI", 9.900001F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSearchCriteria.Location = new Point(156, 14);
-            lblSearchCriteria.Margin = new Padding(1, 0, 1, 0);
-            lblSearchCriteria.Name = "lblSearchCriteria";
-            lblSearchCriteria.Size = new Size(177, 19);
-            lblSearchCriteria.TabIndex = 0;
-            lblSearchCriteria.Text = "Søg på ét eller flere kriterier";
             // 
             // panel1
             // 
@@ -512,17 +379,6 @@
             label3.TabIndex = 17;
             label3.Text = "Holdadministration";
             // 
-            // btnSearchActivity
-            // 
-            btnSearchActivity.Location = new Point(602, 141);
-            btnSearchActivity.Margin = new Padding(2, 3, 2, 3);
-            btnSearchActivity.Name = "btnSearchActivity";
-            btnSearchActivity.Size = new Size(75, 23);
-            btnSearchActivity.TabIndex = 18;
-            btnSearchActivity.Text = "Søgning";
-            btnSearchActivity.UseVisualStyleBackColor = true;
-            btnSearchActivity.Click += this.btnSearchActivity_Click;
-            // 
             // button4
             // 
             button4.Location = new Point(602, 336);
@@ -545,28 +401,143 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // pnlHoldType
+            // 
+            pnlHoldType.BackColor = Color.White;
+            pnlHoldType.BorderStyle = BorderStyle.FixedSingle;
+            pnlHoldType.Controls.Add(btnCancelActivityType);
+            pnlHoldType.Controls.Add(btnSaveActivityType);
+            pnlHoldType.Controls.Add(label6);
+            pnlHoldType.Controls.Add(lblHoldTypeTitle);
+            pnlHoldType.Controls.Add(cmbHoldTypeInstruktor);
+            pnlHoldType.Controls.Add(txtHoldTypeBeskrivelse);
+            pnlHoldType.Controls.Add(lblHoldTypeDescription);
+            pnlHoldType.Controls.Add(txtHoldTypeName);
+            pnlHoldType.Controls.Add(lblHoldTypeNavn);
+            pnlHoldType.Location = new Point(692, 41);
+            pnlHoldType.Margin = new Padding(3, 2, 3, 2);
+            pnlHoldType.Name = "pnlHoldType";
+            pnlHoldType.Size = new Size(343, 332);
+            pnlHoldType.TabIndex = 23;
+            pnlHoldType.Visible = false;
+            // 
+            // btnCancelActivityType
+            // 
+            btnCancelActivityType.Location = new Point(70, 246);
+            btnCancelActivityType.Name = "btnCancelActivityType";
+            btnCancelActivityType.Size = new Size(81, 26);
+            btnCancelActivityType.TabIndex = 14;
+            btnCancelActivityType.Text = "Annuller";
+            btnCancelActivityType.UseVisualStyleBackColor = true;
+            btnCancelActivityType.Click += btnCancelActivityType_Click;
+            // 
+            // btnSaveActivityType
+            // 
+            btnSaveActivityType.Location = new Point(194, 246);
+            btnSaveActivityType.Name = "btnSaveActivityType";
+            btnSaveActivityType.Size = new Size(81, 26);
+            btnSaveActivityType.TabIndex = 13;
+            btnSaveActivityType.Text = "Gem";
+            btnSaveActivityType.UseVisualStyleBackColor = true;
+            btnSaveActivityType.Click += btnSaveActivityType_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(44, 174);
+            label6.Name = "label6";
+            label6.Size = new Size(58, 15);
+            label6.TabIndex = 11;
+            label6.Text = "Instruktør";
+            // 
+            // lblHoldTypeTitle
+            // 
+            lblHoldTypeTitle.AutoSize = true;
+            lblHoldTypeTitle.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHoldTypeTitle.Location = new Point(112, 14);
+            lblHoldTypeTitle.Name = "lblHoldTypeTitle";
+            lblHoldTypeTitle.Size = new Size(104, 25);
+            lblHoldTypeTitle.TabIndex = 10;
+            lblHoldTypeTitle.Text = "HOLDTYPE";
+            // 
+            // cmbHoldTypeInstruktor
+            // 
+            cmbHoldTypeInstruktor.FormattingEnabled = true;
+            cmbHoldTypeInstruktor.Location = new Point(152, 166);
+            cmbHoldTypeInstruktor.Margin = new Padding(3, 2, 3, 2);
+            cmbHoldTypeInstruktor.Name = "cmbHoldTypeInstruktor";
+            cmbHoldTypeInstruktor.Size = new Size(176, 23);
+            cmbHoldTypeInstruktor.TabIndex = 8;
+            cmbHoldTypeInstruktor.SelectedIndexChanged += cmbHoldTypeInstruktor_SelectedIndexChanged;
+            // 
+            // txtHoldTypeBeskrivelse
+            // 
+            txtHoldTypeBeskrivelse.Location = new Point(152, 87);
+            txtHoldTypeBeskrivelse.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeBeskrivelse.Multiline = true;
+            txtHoldTypeBeskrivelse.Name = "txtHoldTypeBeskrivelse";
+            txtHoldTypeBeskrivelse.ScrollBars = ScrollBars.Vertical;
+            txtHoldTypeBeskrivelse.Size = new Size(176, 61);
+            txtHoldTypeBeskrivelse.TabIndex = 3;
+            // 
+            // lblHoldTypeDescription
+            // 
+            lblHoldTypeDescription.AutoSize = true;
+            lblHoldTypeDescription.Location = new Point(44, 80);
+            lblHoldTypeDescription.Name = "lblHoldTypeDescription";
+            lblHoldTypeDescription.Size = new Size(64, 15);
+            lblHoldTypeDescription.TabIndex = 2;
+            lblHoldTypeDescription.Text = "Beskrivelse";
+            // 
+            // txtHoldTypeName
+            // 
+            txtHoldTypeName.Location = new Point(165, 47);
+            txtHoldTypeName.Margin = new Padding(3, 2, 3, 2);
+            txtHoldTypeName.Name = "txtHoldTypeName";
+            txtHoldTypeName.Size = new Size(110, 23);
+            txtHoldTypeName.TabIndex = 1;
+            // 
+            // lblHoldTypeNavn
+            // 
+            lblHoldTypeNavn.AutoSize = true;
+            lblHoldTypeNavn.Location = new Point(52, 52);
+            lblHoldTypeNavn.Name = "lblHoldTypeNavn";
+            lblHoldTypeNavn.Size = new Size(35, 15);
+            lblHoldTypeNavn.TabIndex = 0;
+            lblHoldTypeNavn.Text = "Navn";
+            // 
+            // CreateActivityType
+            // 
+            CreateActivityType.Location = new Point(554, 230);
+            CreateActivityType.Name = "CreateActivityType";
+            CreateActivityType.Size = new Size(123, 50);
+            CreateActivityType.TabIndex = 24;
+            CreateActivityType.Text = "Opret Holdtype";
+            CreateActivityType.UseVisualStyleBackColor = true;
+            CreateActivityType.Click += CreateActivityType_Click;
+            // 
             // CreateActivityForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(863, 502);
+            ClientSize = new Size(1057, 502);
+            Controls.Add(CreateActivityType);
+            Controls.Add(pnlHoldType);
             Controls.Add(button1);
             Controls.Add(btnActivityCreate);
             Controls.Add(button4);
             Controls.Add(label3);
-            Controls.Add(btnSearchActivity);
             Controls.Add(panel1);
-            Controls.Add(pnlSearchActivity);
             Margin = new Padding(2, 3, 2, 3);
             MinimumSize = new Size(790, 373);
             Name = "CreateActivityForm";
             Text = "CreateActivityForm";
             Load += CreateActivityForm_Load;
-            pnlSearchActivity.ResumeLayout(false);
-            pnlSearchActivity.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrUpDwnMaxPartisipant).EndInit();
+            pnlHoldType.ResumeLayout(false);
+            pnlHoldType.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -574,13 +545,10 @@
         #endregion
         private ToolTip toolTip1;
         private Label label3;
-        private Button btnSearchActivity;
         private Button btnActivityCreate;
         private Button button4;
-        private Panel pnlSearchActivity;
         private DateTimePicker dateTimePicker3;
         private ComboBox comboBox3;
-        private Label label2;
         private ComboBox cmbInstructorCreateActivity;
         private ListBox lstboxSearchGet;
         private Label label9;
@@ -588,17 +556,7 @@
         private Label label7;
         private Label label6;
         private ComboBox comboBox4;
-        private Button button5;
-        private Button btnSearchGet;
-        private ComboBox cmbSearchLocation;
-        private DateTimePicker dTPSearchDate;
-        private ComboBox cmbSearchActivity;
-        private ListBox lstbxSearchGet;
-        private Label lblSearchLocation;
-        private Label lblSearchDate;
-        private Label lblSearchActivity;
-        private Label lblSearchCriteria;
-        private CheckBox chkFilterByDate;
+        private Button btnSaveActivityType;
         private Panel panel1;
         private ComboBox comboBox1;
         private Button button3;
@@ -617,6 +575,15 @@
         private Label label11;
         private Label label10;
         private Button button1;
+        private Panel pnlHoldType;
+        private Label lblHoldTypeTitle;
+        private ComboBox cmbHoldTypeInstruktor;
+        private TextBox txtHoldTypeBeskrivelse;
+        private Label lblHoldTypeDescription;
+        private TextBox txtHoldTypeName;
+        private Label lblHoldTypeNavn;
+        private Button btnCancelActivityType;
+        private Button CreateActivityType;
 
         //Disse tre var problemet. Jeg tror ikke, at vi har haft fat i de samme og jeg har renamet dem? Hvis det ER de samme, burde den "bare" lave error og vi kan slette dem uden reference
 
