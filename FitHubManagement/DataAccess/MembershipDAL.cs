@@ -16,154 +16,206 @@ namespace FitHubManagement.DataAccess
         //CREATE
         public int CreateMembership(MembershipModel membership)
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
+           try
+           {
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-            string insertSql = @"INSERT INTO Membership (MembershipName, MembershipDescription, MonthlyPrice)
+                string insertSql = @"INSERT INTO Membership (MembershipName, MembershipDescription, MonthlyPrice)
                                 VALUES (@MembershipName, @MembershipDescription, @MonthlyPrice)
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);"; // Identity auto increments, we have no idea what ID is before row is created.
 
-            using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
-            {
-                insertCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
-                insertCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
-                insertCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
+                using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
+                {
+                    insertCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
+                    insertCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
+                    insertCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
 
-                int id = (int)insertCmd.ExecuteScalar(); // ExecuteScalar returns ID from newly created row from "insertSql"
-                return id; // send to BL to use for confirmation
-            }
+                    int id = (int)insertCmd.ExecuteScalar(); // ExecuteScalar returns ID from newly created row from "insertSql"
+                    return id; // send to BL to use for confirmation
+                }
+           }
+           catch (SqlException ex)
+           {
+               // Log fejlen her hvis nødvendigt
+               throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+           }
         }
 
         //DELETE
         public int DeleteMembership(int membershipId) // non static, so method can be called on instances of objects
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string deleteSql = $"DELETE FROM membership WHERE MembershipId = @membershipId"; // Send query til databasen
-            using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
+            try
             {
-                deleteCmd.Parameters.AddWithValue("@MembershipId", membershipId);
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-                int deleted = deleteCmd.ExecuteNonQuery();
-                return deleted; // Return rows changed for confirmation in UI
+                string deleteSql = $"DELETE FROM membership WHERE MembershipId = @membershipId"; // Send query til databasen
+                using (SqlCommand deleteCmd = new SqlCommand(deleteSql, connection))
+                {
+                    deleteCmd.Parameters.AddWithValue("@MembershipId", membershipId);
+
+                    int deleted = deleteCmd.ExecuteNonQuery();
+                    return deleted; // Return rows changed for confirmation in UI
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Kunne ikke oprette forbindelse til databasen.", ex);
             }
         }
 
         //READ
         public MembershipModel GetMembership(int membershipId)
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string selectSql = $"SELECT MembershipID, MembershipName FROM Membership WHERE MembershipID = @MembershipId";
-
-            using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
+           try
             {
-                selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-                using (SqlDataReader reader = selectCmd.ExecuteReader())
+                string selectSql = $"SELECT MembershipID, MembershipName FROM Membership WHERE MembershipID = @MembershipId";
+
+                using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
                 {
-                    MembershipModel membership = new MembershipModel();
-                    if (reader.Read())
-                    {
-                        membership.MembershipId = reader.GetInt32(0);
-                        membership.MembershipName = reader.GetString(1);
+                    selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
 
+                    using (SqlDataReader reader = selectCmd.ExecuteReader())
+                    {
+                        MembershipModel membership = new MembershipModel();
+                        if (reader.Read())
+                        {
+                            membership.MembershipId = reader.GetInt32(0);
+                            membership.MembershipName = reader.GetString(1);
+
+                        }
+                        ;
+                        return membership;
                     }
-                    ;
-                    return membership;
                 }
-            }
+           }
+           catch (SqlException ex)
+            {
+               // Log fejlen her hvis nødvendigt
+               throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+           }
         }
         public List<MembershipModel> GetAllMembership()
         {
-        List<MembershipModel> memberships = new List<MembershipModel>();
-
-        using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-        connection.Open();
-
-        string selectSql = "SELECT * FROM Membership WHERE MembershipID = @MembershipID";
-
-
-        using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
-        using SqlDataReader reader = selectCmd.ExecuteReader();
-
-        while (reader.Read())
-        {
-            MembershipModel membership = new MembershipModel
+            try
             {
-                MembershipId = reader.GetInt32(0),
-                MembershipName = reader.GetString(1),
-                MembershipDescription = reader.GetString(2),
-                MonthlyPrice = reader.GetDecimal(3),
-            };
+                List<MembershipModel> memberships = new List<MembershipModel>();
 
-            memberships.Add(membership);
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
+
+                string selectSql = "SELECT * FROM Membership WHERE MembershipID = @MembershipID";
+
+
+                using SqlCommand selectCmd = new SqlCommand(selectSql, connection);
+                using SqlDataReader reader = selectCmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    MembershipModel membership = new MembershipModel
+                    {
+                        MembershipId = reader.GetInt32(0),
+                        MembershipName = reader.GetString(1),
+                        MembershipDescription = reader.GetString(2),
+                        MonthlyPrice = reader.GetDecimal(3),
+                    };
+
+                    memberships.Add(membership);
+                }
+
+                return memberships;
+            }
+            catch (SqlException ex)
+            {
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+            }
         }
-
-        return memberships;
-    }
         public string GetMembershipName(int membershipId)
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string selectSql = $"SELECT MembershipName FROM Membership WHERE MembershipID = @MembershipId";
-
-            using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
+           try
             {
-                selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-                var membershipName = selectCmd.ExecuteScalar(); 
-                return membershipName != null ? membershipName.ToString() : "Ukendt";
+                string selectSql = $"SELECT MembershipName FROM Membership WHERE MembershipID = @MembershipId";
+
+                using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
+                {
+                    selectCmd.Parameters.AddWithValue("@MembershipId", membershipId);
+
+                    var membershipName = selectCmd.ExecuteScalar();
+                    return membershipName != null ? membershipName.ToString() : "Ukendt";
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
             }
         }
 
     
         public int CreateMembershipRepo(MembershipModel membership)
-
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
+            try
+            {
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-
-
-            string insertSql = @"INSERT INTO Membership (MembershipName, MembershipDescription, MonthlyPrice)
+                string insertSql = @"INSERT INTO Membership (MembershipName, MembershipDescription, MonthlyPrice)
                                 VALUES (@MembershipName, @MembershipDescription, @MonthlyPrice)
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);"; // Identity auto increments, we have no idea what ID is before row is created.
 
-            using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
-            {
-                insertCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
-                insertCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
-                insertCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
+                using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
+                {
+                    insertCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
+                    insertCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
+                    insertCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
 
-                int id = (int)insertCmd.ExecuteScalar(); // ExecuteScalar returns ID from newly created row from "insertSql"
-                return id; // send to BL to use for confirmation
+                    int id = (int)insertCmd.ExecuteScalar(); // ExecuteScalar returns ID from newly created row from "insertSql"
+                    return id; // send to BL to use for confirmation
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
             }
         }
 
         //UPDATE
         public int UpdateMembership(MembershipModel membership) // This method might fuck. 
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
+           try
+            {
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-            string sql = @"
+                string sql = @"
                 UPDATE Membership
                 SET MembershipName = @MembershipName,
                     MembershipDescription = @MembershipDescription,
                     MonthlyPrice = @MonthlyPrice
                 WHERE MembershipId = @MembershipId;";
 
-            using SqlCommand UpdateCmd = new SqlCommand(sql, connection);
-            UpdateCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
-            UpdateCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
-            UpdateCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
+                using SqlCommand UpdateCmd = new SqlCommand(sql, connection);
+                UpdateCmd.Parameters.AddWithValue("@MembershipName", membership.MembershipName);
+                UpdateCmd.Parameters.AddWithValue("@MembershipDescription", membership.MembershipDescription);
+                UpdateCmd.Parameters.AddWithValue("@MonthlyPrice", membership.MonthlyPrice);
 
-            int updatedRows = UpdateCmd.ExecuteNonQuery();
-            return updatedRows; // Return rows changed for confirmation in UI
+                int updatedRows = UpdateCmd.ExecuteNonQuery();
+                return updatedRows; // Return rows changed for confirmation in UI
+           }
+           catch (SqlException ex)
+           {
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+           }
         }
 
         public int UpdateMembershipName(int membershipId, string newValue)
