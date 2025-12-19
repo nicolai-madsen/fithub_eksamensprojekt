@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
-    public class ActivityTypeService // Hvorfor må denne ikke være public?
+    // THEVANAYAKI
+    public class ActivityTypeService 
     {
         /// <summary>
         /// 1. Skifter string parametere ud med et helt ActivityTypeModel objekt i stedet. 
@@ -17,33 +18,6 @@ namespace FitHubManagement.BusinessLogic
         /// 4. 
         /// </summary>
         private readonly ActivityTypeDAL _activityTypeDAL = new ActivityTypeDAL();
-
-        /*
-         * Denne del slettes da vi ikke behøver en instans af CreateActivityTypeDL
-        public ActivityTypeService(string connectionString)
-        {
-            _createDL = new CreateActivityTypeDL(connectionString);
-        }
-        */
-
-        /*public ActivityTypeModel CreateActivityType(int ActivityTypeId, int InstructorId, string name, string description)
-        {
-            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException("Holdtypenavn må ikke være tomt.");
-            // Ved ikke om der er flere ting der skal valideres her. Nok noget med Instructors. 
-
-            var type = new ActivityTypeModel
-            {
-                ActivityTypeId = ActivityTypeId,
-                InstructorId = InstructorId,
-                ActivityTypeName = name,
-                ActivityTypeDescription = description,
-            };
-
-            ActivityTypeDAL dal = new ActivityTypeDAL();
-            int id = dal.CreateActivityType(type);
-            type.ActivityTypeId = id;
-            return type;
-        }*/
 
         public List<ActivityTypeModel> GetAllActivityTypes()
         {

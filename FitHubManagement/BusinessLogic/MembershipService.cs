@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // NICOLAI - Hele filen
     public class MembershipService
     {
 

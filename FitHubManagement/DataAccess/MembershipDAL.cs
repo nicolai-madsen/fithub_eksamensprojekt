@@ -1,15 +1,10 @@
 ﻿using FitHubManagement.Models;
-using System.Configuration;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
+    // NICOLAI KODE - HELE FILEN, MembershipDAL.cs
     public class MembershipDAL
     {
 

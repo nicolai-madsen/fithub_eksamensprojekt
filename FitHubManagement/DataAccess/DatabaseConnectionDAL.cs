@@ -8,6 +8,7 @@ using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
+    // PHILLIP
     internal class DatabaseConnectionDAL
     {
         public static class DatabaseConfig

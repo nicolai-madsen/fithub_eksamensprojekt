@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Models
 {
+    // PHILLIP KODE
     public class InstructorModel  //Her skal det være public, så får vi adgang til andre klasser.
     {
         public int InstructorId { get; set; }

@@ -12,7 +12,7 @@ namespace FitHubManagement.DataAccess
 {
     internal class ActivityTypeDAL
 
-    //CREATE ACTIVITY____________________________________________________________________________________________
+    //____________________________________THEVANAYAKI KODE - HELE FILEN________________________________________
     {
         public void CreateActivityType(ActivityTypeModel activityType)
         {
@@ -36,60 +36,68 @@ namespace FitHubManagement.DataAccess
         // Metode der henter alle aktiviteter fra databasen
         public List<ActivityTypeModel> GetAllActivityTypes()
         {
-            // Liste til at gemme alle Activity-objekter
-            List<ActivityTypeModel> activityTypeList = new List<ActivityTypeModel>();
-
-
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-
-            string query =
-                "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription FROM ActivityType";
-
-
-            using SqlCommand command = new SqlCommand(query, connection);
-
-            // Udfører SELECT og får en SqlDataReader
-            using SqlDataReader reader = command.ExecuteReader();
+            try
             {
-                // Går igennem hver række i resultatet
-                while (reader.Read())
+                // Liste til at gemme alle Activity-objekter
+                List<ActivityTypeModel> activityTypeList = new List<ActivityTypeModel>();
+
+
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
+
+
+                string query =
+                    "SELECT ActivityTypeID, InstructorID, ActivityTypeName, ActivityTypeDescription FROM ActivityType";
+
+
+                using SqlCommand command = new SqlCommand(query, connection);
+
+                // Udfører SELECT og får en SqlDataReader
+                using SqlDataReader reader = command.ExecuteReader();
                 {
-                    // Håndterer nullable Description (kan være NULL i databasen)
-                    int descriptionIndex = reader.GetOrdinal("ActivityTypeDescription");
-                    string description = null;
+                    // Går igennem hver række i resultatet
+                    while (reader.Read())
+                    {
+                        // Håndterer nullable Description (kan være NULL i databasen)
+                        int descriptionIndex = reader.GetOrdinal("ActivityTypeDescription");
+                        string description = null;
                         if (!reader.IsDBNull(descriptionIndex))
                         {
                             description = reader.GetString(descriptionIndex);
                         }
 
-                    // Opretter et ActivityType-objekt og mapper kolonnerne til properties
-                    ActivityTypeModel a = new ActivityTypeModel
-                    {
-                        ActivityTypeId = reader.GetInt32(reader.GetOrdinal("ActivityTypeID")),
-                        InstructorId = reader.GetInt32(reader.GetOrdinal("InstructorID")),
-                        ActivityTypeName = reader.GetString(reader.GetOrdinal("ActivityTypeName")),
-                        ActivityTypeDescription = description
-                    };
+                        // Opretter et ActivityType-objekt og mapper kolonnerne til properties
+                        ActivityTypeModel a = new ActivityTypeModel
+                        {
+                            ActivityTypeId = reader.GetInt32(reader.GetOrdinal("ActivityTypeID")),
+                            InstructorId = reader.GetInt32(reader.GetOrdinal("InstructorID")),
+                            ActivityTypeName = reader.GetString(reader.GetOrdinal("ActivityTypeName")),
+                            ActivityTypeDescription = description
+                        };
 
-                    // Lægger Activity-objektet i listen
-                    activityTypeList.Add(a);
+                        // Lægger Activity-objektet i listen
+                        activityTypeList.Add(a);
+                    }
                 }
+
+                // Returnerer listen med alle aktiviteter
+                return activityTypeList;
             }
-
-            // Returnerer listen med alle aktiviteter
-            return activityTypeList;
+            catch (SqlException ex)
+            {
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+            }
         }
-            //________________________________________________________________________________________________________
 
 
-            // Metode der henter en aktivitet baseret på InstructorID
-            public ActivityTypeModel ReadActivityByInstructorID(int instructorID)
+        // Metode der henter en aktivitet baseret på InstructorID
+        public ActivityTypeModel ReadActivityByInstructorID(int instructorID)
+        {
+            try
             {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-            {
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
+                {
                     string query = @"SELECT ActivityTypeId, ActivityTypeName, InstructorID
                                  FROM ActivityType
                                  WHERE InstructorID = @InstructorID";
@@ -111,27 +119,41 @@ namespace FitHubManagement.DataAccess
                     return null;
                 }
             }
+            catch (SqlException ex)
+            {
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
+            }
+        }
 
         //________________________________________________________________________________________________________
         public string GetCertifiedInstructor(int activityTypeId) //Henter certificeret instruktør til relatede holdtype
         {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
+           try
+            {
+                using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
+                connection.Open();
 
-            // query henter First -og LastName fra Instructor via Instructor FK i ActivityType (JOIN)
-            string selectSql = @"
+                // query henter First -og LastName fra Instructor via Instructor FK i ActivityType (JOIN)
+                string selectSql = @"
                 SELECT i.FirstName + ' ' + i.LastName AS CertifiedInstructorName 
                 FROM ActivityType at 
                 INNER JOIN Instructor i ON at.InstructorID = i.InstructorID
                 WHERE at.ActivityTypeID = @ActivityTypeID
-            ";
+                ";
 
-            using (SqlCommand cmd = new SqlCommand(selectSql, connection))
+                using (SqlCommand cmd = new SqlCommand(selectSql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ActivityTypeID", activityTypeId);
+
+                    var result = cmd.ExecuteScalar();
+                    return result.ToString();
+                }
+            }
+            catch (SqlException ex)
             {
-                cmd.Parameters.AddWithValue("@ActivityTypeID", activityTypeId);
-
-                var result = cmd.ExecuteScalar();
-                return result.ToString();
+                // Log fejlen her hvis nødvendigt
+                throw new Exception("Kunne ikke oprette forbindelse til databasen. Kontroller din netværksforbindelse.", ex);
             }
         }
 

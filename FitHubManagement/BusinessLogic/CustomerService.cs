@@ -8,7 +8,7 @@ using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.BusinessLogic
 {
- 
+    // Sofia kode
     public class CustomerService
     {
         private readonly CustomerDAL repo = new(); //Repo refererer til DAL

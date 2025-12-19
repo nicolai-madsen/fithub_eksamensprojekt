@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // Phillip kode - Hele filen 
     public class InstructorService
     {
         private InstructorDAL _dal;
