@@ -31,8 +31,7 @@ namespace FitHubManagement.UI.CustomerUI
                 List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
 
                 CustomerListBox.Items.Clear();
-                CustomerListBox.Items.Add("Alle kunder");
-                CustomerListBox.Items.Add("------------------------------------------------------------------");
+
 
 
 
@@ -54,9 +53,7 @@ namespace FitHubManagement.UI.CustomerUI
             {
                 List<CustomerModel> customers = _customerService.GetInactiveCustomerBLL();
 
-                CustomerListBox.Items.Clear();
-                CustomerListBox.Items.Add("Inaktive kunder");
-                CustomerListBox.Items.Add("-------------------------------------------------------------------");
+                CustomerListBox.Items.Clear(); 
 
 
                 foreach (CustomerModel customer in customers)
@@ -130,9 +127,7 @@ namespace FitHubManagement.UI.CustomerUI
                 List<CustomerModel> customers = _customerService.GetActiveCustomer();
 
                 CustomerListBox.Items.Clear();
-                CustomerListBox.Items.Add("Aktive kunder");
-                CustomerListBox.Items.Add("------------------------------------------------------------------");
-
+              
 
                 foreach (CustomerModel customer in customers)
                 {
