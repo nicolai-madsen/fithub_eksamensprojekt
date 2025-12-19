@@ -1,5 +1,6 @@
 ﻿namespace FitHubManagement.Models
 {
+    // MONA
     public class ActivityModel
     {
         public int ActivityId { get; set; }

@@ -8,6 +8,7 @@ using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic.ActivityBL
 {
+    // NICOLAI
     internal class ActivityFilterService
     {
         private readonly ActivityDAL _filterDL;

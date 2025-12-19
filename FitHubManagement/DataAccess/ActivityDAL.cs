@@ -6,11 +6,12 @@ using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
+    // Opdelt, Mona og Nicolai kode
     public class ActivityDAL
     {
         #region FILTER METHODS
         //Activity filter
-
+        // NICOLAI KODE - FILTER METHOD
         public List<ActivityFilterModel> GetFilteredActivities(ActivityFilterModel filterModel)
         {
            try
@@ -110,7 +111,7 @@ namespace FitHubManagement.DataAccess
         #endregion
 
         #region CREATE METHOD
-        //Create activity
+        // MONAS KODE - HELE CREATE
 
         public int CreateActivity(ActivityModel activity) // Metoden der laver en Activity tager et helt Activity objekt, som har properties med vores data
 
@@ -181,7 +182,7 @@ namespace FitHubManagement.DataAccess
         #region GET METHODS
         //READ
 
-
+        // MONAS KODE - GET/READ METODER
         // Metode der henter alle aktiviteter fra databasen
         public List<ActivityModel> GetAllActivities()
         {
@@ -378,6 +379,7 @@ namespace FitHubManagement.DataAccess
 
         #region UPDATE METHODS
         //UPDATE
+        // NICOLAI KODE - UPDATE METHODS
         public void UpdateActivityType(int activityId, int newValue)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);

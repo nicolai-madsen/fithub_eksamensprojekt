@@ -3,6 +3,7 @@ using FitHubManagement.Models;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // NICOLAI - Hele filen
     public class MembershipService
     {
 

@@ -98,12 +98,20 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructors()
         {
-            LoadInstructor bll = new LoadInstructor();
-            List<InstructorModel> instructors = bll.Instructors();
+            try
+            {
+                LoadInstructor bll = new LoadInstructor();
+                List<InstructorModel> instructors = bll.Instructors();
 
-            lstbxGetAllIns.DataSource = instructors;
-            lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
-            lstbxGetAllIns.ValueMember = "InstructorID";
+                lstbxGetAllIns.DataSource = instructors;
+                lstbxGetAllIns.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
+                lstbxGetAllIns.ValueMember = "InstructorID";
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
         }
         private void lstbxGetAllIns_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -119,54 +127,70 @@ namespace FitHubManagement.UI.Instructor
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            int index = lstbxGetAllIns.SelectedIndex;
-
-            if (index >= 0)
+            try
             {
-                InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
+                int index = lstbxGetAllIns.SelectedIndex;
 
-                panel1.Visible = true;
-                GetAll.Visible = false;
+                if (index >= 0)
+                {
+                    InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
 
-                txtFirstName.Text = selectedInstructor.FirstName;
-                txtLastName.Text = selectedInstructor.LastName;
-                txtEmail.Text = selectedInstructor.Email;
-                txtPhone.Text = selectedInstructor.PhoneNumber;
+                    panel1.Visible = true;
+                    GetAll.Visible = false;
 
-                // Hent aktivitetstype via BLL
-                ActivityTypeBLL activityBLL = new ActivityTypeBLL();
-                ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorId);
+                    txtFirstName.Text = selectedInstructor.FirstName;
+                    txtLastName.Text = selectedInstructor.LastName;
+                    txtEmail.Text = selectedInstructor.Email;
+                    txtPhone.Text = selectedInstructor.PhoneNumber;
+
+                    // Hent aktivitetstype via BLL
+                    ActivityTypeBLL activityBLL = new ActivityTypeBLL();
+                    ActivityTypeModel activity = activityBLL.GetActivityByInstructorID(selectedInstructor.InstructorId);
+                }
+                else
+                {
+                    MessageBox.Show("Vælg en instruktør først.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vælg en instruktør først.");
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}", "Systemfejl");
             }
         }
 
         private void btnSaveIns_Click(object sender, EventArgs e)
         {
-            int index = lstbxGetAllIns.SelectedIndex;
-
-            if (index >= 0)
+            try
             {
-                InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
+                int index = lstbxGetAllIns.SelectedIndex;
 
-                // Opdater med værdier fra tekstbokse
-                selectedInstructor.FirstName = txtFirstName.Text;
-                selectedInstructor.LastName = txtLastName.Text;
-                selectedInstructor.Email = txtEmail.Text;
-                selectedInstructor.PhoneNumber = txtPhone.Text;
+                if (index >= 0)
+                {
+                    InstructorModel selectedInstructor = (InstructorModel)lstbxGetAllIns.Items[index];
 
-                // Kald BLL
-                InstructorService instructorBLL = new InstructorService();
-                instructorBLL.SaveInstructor(selectedInstructor);
+                    // Opdater med værdier fra tekstbokse
+                    selectedInstructor.FirstName = txtFirstName.Text;
+                    selectedInstructor.LastName = txtLastName.Text;
+                    selectedInstructor.Email = txtEmail.Text;
+                    selectedInstructor.PhoneNumber = txtPhone.Text;
 
-                MessageBox.Show("Instruktør opdateret!");
-                LoadInstructors();
+                    // Kald BLL
+                    InstructorService instructorBLL = new InstructorService();
+                    instructorBLL.SaveInstructor(selectedInstructor);
+
+                    MessageBox.Show("Instruktør opdateret!");
+                    LoadInstructors();
+                }
+                else
+                {
+                    MessageBox.Show("Ingen instruktør valgt.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Ingen instruktør valgt.");
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
         }
 
@@ -185,27 +209,35 @@ namespace FitHubManagement.UI.Instructor
 
         private void LoadInstructorsComboBox() //Laver en metode til at fylde en combobox
         {
-            LoadInstructor bll = new LoadInstructor();
-            List<InstructorModel> instructors = bll.Instructors();
-
-            // Opret en tom instruktør som placeholder
-            InstructorModel emptyInstructor = new InstructorModel //"Tom" instruktør, altså en tom plads i comboboxen
+            try
             {
-                InstructorId = -1,
-                FirstName = "-- Alle instruktører --",
-                LastName = ""
-            };
+                LoadInstructor bll = new LoadInstructor();
+                List<InstructorModel> instructors = bll.Instructors();
 
-            instructors.Insert(0, emptyInstructor); //Indsætter det tomme felt øverst i comboboxen
-            cmbShowInstructors.DataSource = instructors;
-            cmbShowInstructors.DisplayMember = "FullName";
-            cmbShowInstructors.ValueMember = "InstructorID";
-            cmbShowInstructors.SelectedIndex = -1; //Gør at comboboxen er tom fra start
-            cmbShowInstructors.SelectedIndex = 0; // Standard = Alle instruktører
+                // Opret en tom instruktør som placeholder
+                InstructorModel emptyInstructor = new InstructorModel //"Tom" instruktør, altså en tom plads i comboboxen
+                {
+                    InstructorId = -1,
+                    FirstName = "-- Alle instruktører --",
+                    LastName = ""
+                };
+
+                instructors.Insert(0, emptyInstructor); //Indsætter det tomme felt øverst i comboboxen
+                cmbShowInstructors.DataSource = instructors;
+                cmbShowInstructors.DisplayMember = "FullName";
+                cmbShowInstructors.ValueMember = "InstructorID";
+                cmbShowInstructors.SelectedIndex = -1; //Gør at comboboxen er tom fra start
+                cmbShowInstructors.SelectedIndex = 0; // Standard = Alle instruktører
 
 
-            dTPSearchDate.Enabled = false; // Sæt DateTimePicker til inaktiv som standard
-            chkFilterByDate.Checked = false;
+                dTPSearchDate.Enabled = false; // Sæt DateTimePicker til inaktiv som standard
+                chkFilterByDate.Checked = false;
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
         }
 
         private void CreateInstructorForm_Load(object sender, EventArgs e) //Formload, der fylder comboboxes
@@ -223,37 +255,43 @@ namespace FitHubManagement.UI.Instructor
 
         private void btnSearchGet_Click(object sender, EventArgs e)
         {
-
-
-            int? instructorID = null; //Da det er en filtrering må begge parametre gerne være nullable
-            DateOnly? activityDate = null;
-
-
-            if (cmbShowInstructors.SelectedIndex > 0) // Tjek om der er valgt en instruktør
+            try
             {
-                InstructorModel selectedInstructor = (InstructorModel)cmbShowInstructors.SelectedItem;
-                if (selectedInstructor.InstructorId != -1)
+                int? instructorID = null; //Da det er en filtrering må begge parametre gerne være nullable
+                DateOnly? activityDate = null;
+
+
+                if (cmbShowInstructors.SelectedIndex > 0) // Tjek om der er valgt en instruktør
                 {
-                    instructorID = selectedInstructor.InstructorId;
+                    InstructorModel selectedInstructor = (InstructorModel)cmbShowInstructors.SelectedItem;
+                    if (selectedInstructor.InstructorId != -1)
+                    {
+                        instructorID = selectedInstructor.InstructorId;
+                    }
                 }
-            }
 
-            // Tjek om dato-filter er aktiveret
-            if (chkFilterByDate.Checked)
+                // Tjek om dato-filter er aktiveret
+                if (chkFilterByDate.Checked)
+                {
+                    activityDate = DateOnly.FromDateTime(dTPSearchDate.Value);
+                }
+                // Linje 266 i din form:
+                InstructorService instructorService = new InstructorService();
+                List<ActivityFilterModel> activities = instructorService.GetFilteredActivities(instructorID, activityDate);
+
+                // Clear listBox1 og vis hold
+                listBox1.DataSource = activities;
+                listBox1.DisplayMember = "DisplayInfo";
+
+                // Nulstil label når vi viser hold igen
+                lblBookingCount.Text = $"Antal hold: {activities.Count}";
+
+            }
+            catch (Exception ex)
             {
-                activityDate = DateOnly.FromDateTime(dTPSearchDate.Value);
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
-            // Linje 266 i din form:
-            InstructorService instructorService = new InstructorService();
-            List<ActivityFilterModel> activities = instructorService.GetFilteredActivities(instructorID, activityDate);
-
-            // Clear listBox1 og vis hold
-            listBox1.DataSource = activities;
-            listBox1.DisplayMember = "DisplayInfo";
-
-            // Nulstil label når vi viser hold igen
-            lblBookingCount.Text = $"Antal hold: {activities.Count}";
-
         }
 
 
@@ -271,26 +309,34 @@ namespace FitHubManagement.UI.Instructor
 
         {
 
-            if (listBox1.SelectedItem == null) // Tjek om der er valgt/markeret et hold i listboxen
+            try
             {
-                MessageBox.Show("Vælg venligst et hold først.");
-                return;
+                if (listBox1.SelectedItem == null) // Tjek om der er valgt/markeret et hold i listboxen
+                {
+                    MessageBox.Show("Vælg venligst et hold først.");
+                    return;
+                }
+
+
+
+                if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
+                {
+                    // Hent bookinger for aktivitet
+                    BookingService bookingService = new BookingService();
+                    var bookings = bookingService.GetBookingsByActivityID(selectedActivity.ActivityId);
+                    listBox1.DataSource = bookings;
+                    listBox1.DisplayMember = "DisplayInfo";
+                    lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
+                }
+                else
+                {
+                    MessageBox.Show("Vælg venligst et hold først.");
+                }
             }
-
-
-
-            if (listBox1.SelectedItem is ActivityFilterModel selectedActivity)
+            catch (Exception ex)
             {
-                // Hent bookinger for aktivitet
-                BookingService bookingService = new BookingService();
-                var bookings = bookingService.GetBookingsByActivityID(selectedActivity.ActivityId);
-                listBox1.DataSource = bookings;
-                listBox1.DisplayMember = "DisplayInfo";
-                lblBookingCount.Text = $"Antal tilmeldinger: {bookings.Count}";
-            }
-            else
-            {
-                MessageBox.Show("Vælg venligst et hold først.");
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
         }
 
@@ -312,7 +358,7 @@ namespace FitHubManagement.UI.Instructor
             txtLastName.Text = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
-            
+
 
         }
         private void btnCancelCreateIns_Click(object sender, EventArgs e)
