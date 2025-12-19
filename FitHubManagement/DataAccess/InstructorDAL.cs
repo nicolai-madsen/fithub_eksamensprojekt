@@ -1,103 +1,13 @@
 ﻿using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
     internal class InstructorDAL
     {
-        public static void CreateInstructor(string firstName, string lastName, string email, string phone, string Certifications) //Metoden
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string insertSql = "INSERT INTO Instructor (FirstName, LastName, Email, Phone, Certifications) VALUES (@FirstName, @LastName, @Email, @Phone, @Certifications)"; //
-            using (SqlCommand insertCmd = new SqlCommand(insertSql, connection))
-            {
-                insertCmd.Parameters.AddWithValue("@FirstName", firstName); //Sæt værdien firstname ind i SQL-parameteren.
-                insertCmd.Parameters.AddWithValue("@LastName", lastName);
-                insertCmd.Parameters.AddWithValue("@Email", email);
-                insertCmd.Parameters.AddWithValue("@Phone", phone);
-                insertCmd.Parameters.AddWithValue("@Certifications", Certifications);
-
-                int changed = insertCmd.ExecuteNonQuery();
-
-            }
-        }
-
-        public static void UpdateFirstName(int instructorId, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string updateSql = "UPDATE Instructor SET FirstName = @newValue WHERE InstructorID = @instructorId";
-            using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-            {
-                updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                updateCmd.Parameters.AddWithValue("@instructorId", instructorId);
-
-                int updated = updateCmd.ExecuteNonQuery();
-                Console.WriteLine($"{updated} rows updated.");
-            }
-        }
-
-        public static void UpdateLastName(int instructorId, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-
-            string updateSql = "UPDATE Instructor SET LastName = @newValue WHERE InstructorID = @instructorId";
-            using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-            {
-                updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                updateCmd.Parameters.AddWithValue("@instructorId", instructorId);
-
-                int updated = updateCmd.ExecuteNonQuery();
-                Console.WriteLine($"{updated} rows updated.");
-            }
-        }
-
-        public static void UpdateEmail(int instructorId, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-            string updateSql = "UPDATE Instructor SET Email = @newValue WHERE InstructorID = @instructorId";
-            using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-            {
-                updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                updateCmd.Parameters.AddWithValue("@instructorId", instructorId);
-
-                int updated = updateCmd.ExecuteNonQuery();
-                Console.WriteLine($"{updated} rows updated.");
-            }
-        }
-
-        public static void UpdatePhone(int instructorId, string newValue)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-
-            string updateSql = "UPDATE Instructor SET Phone = @newValue WHERE InstructorID = @instructorId";
-            using (SqlCommand updateCmd = new SqlCommand(updateSql, connection))
-            {
-                updateCmd.Parameters.AddWithValue("@newValue", newValue);
-                updateCmd.Parameters.AddWithValue("@instructorId", instructorId);
-
-                int updated = updateCmd.ExecuteNonQuery();
-                Console.WriteLine($"{updated} rows updated.");
-            }
-        }
         public void UpdateInstructor(InstructorModel instructor)
         {
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
@@ -139,45 +49,6 @@ namespace FitHubManagement.DataAccess
             }
         }
 
-        public static InstructorModel ReadInstructor(int instructorId)
-        {
-            using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
-            connection.Open();
-
-
-            // Read instructor from database
-            string selectSql = "SELECT InstructorID, FirstName, LastName, Email, Phone, Certifications " +
-                       "FROM Instructor WHERE InstructorID = @instructorId";
-            using (SqlCommand selectCmd = new SqlCommand(selectSql, connection))
-            {
-                selectCmd.Parameters.AddWithValue("@instructorId", instructorId);
-
-                using (SqlDataReader reader = selectCmd.ExecuteReader())
-                {
-
-                    if (reader.Read())
-                    {
-                        InstructorModel ins = new InstructorModel
-                        {
-                            InstructorId = reader.GetInt32(0),
-                            FirstName = reader.GetString(1),
-                            LastName = reader.GetString(2),
-                            Email = reader.GetString(3),
-                            PhoneNumber = reader.GetString(4),
-                            Certifications = reader.IsDBNull(5) ? "" : reader.GetString(5)
-                        };
-
-                        Console.WriteLine("Instructor found.");
-                        return ins;
-                    }
-                    else
-                    {
-                        Console.WriteLine("No instructor found.");
-                        return null;
-                    }
-                }
-            }
-        }
 
         public List<InstructorModel> ReadAllInstructors()
         {

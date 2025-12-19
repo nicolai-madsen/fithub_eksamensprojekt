@@ -2,10 +2,6 @@
 using FitHubManagement.Models;
 using FitHubManagement.Models.FilterModels;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Windows.Forms;
 
 namespace FitHubManagement.UI.BookingUI
 {

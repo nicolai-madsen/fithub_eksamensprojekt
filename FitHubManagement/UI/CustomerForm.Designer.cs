@@ -219,6 +219,7 @@
             CustomerListBox.Name = "CustomerListBox";
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
+            CustomerListBox.SelectedIndexChanged += CustomerListBox_SelectedIndexChanged;
             // 
             // BookingPanel
             // 
@@ -695,10 +696,10 @@
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
-            Controls.Add(NewCustomerPanel);
-            Controls.Add(EditCustomerPanel);
             Controls.Add(ListPanel);
             Controls.Add(BookingPanel);
+            Controls.Add(NewCustomerPanel);
+            Controls.Add(EditCustomerPanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
