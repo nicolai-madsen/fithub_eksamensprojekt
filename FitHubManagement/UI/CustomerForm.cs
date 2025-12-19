@@ -3,6 +3,7 @@ using FitHubManagement.Models;
 
 namespace FitHubManagement.UI.CustomerUI
 {
+    // SOFIAS KODE - CustomerForm.cs
     public partial class CustomerForm : Form
     {
 
@@ -325,7 +326,10 @@ namespace FitHubManagement.UI.CustomerUI
         }
         #endregion
 
+        private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
 
     }
 

@@ -4,6 +4,7 @@ using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
 
 namespace FitHubManagement.DataAccess
 {
+    // SOFIA KODE - HELE FILEN
     public class CustomerDAL
     {
         #region CREATE METHOD

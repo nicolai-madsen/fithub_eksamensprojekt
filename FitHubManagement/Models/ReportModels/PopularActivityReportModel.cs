@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Models.ReportModels
 {
-    // NICOLAI MADSEN - Hele filen
+    // NICOLAI MADSEN - "Hele filen"
     internal class PopularActivityReportModel
     {
         public string ActivityName { get; set; }

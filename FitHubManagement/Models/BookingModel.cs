@@ -1,5 +1,6 @@
 ﻿namespace FitHubManagement.Models
 {
+    // LENAS KODE
     public class BookingModel
     {
         public int BookingId { get; set; }

@@ -5,6 +5,7 @@ using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // LENAS KODE
     public class BookingService
     {
         private readonly BookingDAL _bookingDAL = new BookingDAL();

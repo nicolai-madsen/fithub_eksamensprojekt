@@ -36,32 +36,48 @@ namespace FitHubManagement.UI.Activity
         }
         private void LoadInstructors()
         {
-            LoadInstructor bll = new LoadInstructor();
-            List<InstructorModel> instructors = bll.Instructors();
+            try
+            {
 
-            cmbHoldTypeInstruktor.DataSource = instructors;
-            cmbHoldTypeInstruktor.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
-            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+                LoadInstructor bll = new LoadInstructor();
+                List<InstructorModel> instructors = bll.Instructors();
+
+                cmbHoldTypeInstruktor.DataSource = instructors;
+                cmbHoldTypeInstruktor.DisplayMember = "FullName";  // Eller fx $"{FirstName} {LastName}" via en property
+                cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
         }
 
         private void CreateActivityForm_Load(object sender, EventArgs e) //Man bruger et load-event fordi UI skal hente data før brugeren har interageret
-
         {
-            locations = activityService.GetAllLocations();
+           try
+           {
+                locations = activityService.GetAllLocations();
 
-            cmbLocationActivity.DataSource = locations;
-            cmbLocationActivity.SelectedIndex = -1;
+                cmbLocationActivity.DataSource = locations;
+                cmbLocationActivity.SelectedIndex = -1;
 
-            LoadActivityTypes();
-
-
-            label10.Text = "";
+                LoadActivityTypes();
 
 
-            duration = activityService.GetAllDuration();
+                label10.Text = "";
 
-            comboBox1.DataSource = duration;
-            comboBox1.SelectedIndex = -1;
+
+                duration = activityService.GetAllDuration();
+
+                comboBox1.DataSource = duration;
+                comboBox1.SelectedIndex = -1;
+           }
+           catch (Exception ex)
+           {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+           }
         }
 
         private bool ValidateComboBox(ComboBox cmb)
@@ -140,17 +156,25 @@ namespace FitHubManagement.UI.Activity
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Vi tjekker, om der faktisk er valgt noget (index er ikke -1)
-            // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
-            if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
+            try
             {
-                // 1. Kald metoden i din Service (som kalder DAL)
-                // Her antager jeg, du har lavet metoden i Service-laget også:
-                string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
+                // Vi tjekker, om der er valgt noget (index er ikke -1)
+                // Og vi tjekker om SelectedValue er en int (for at undgå fejl ved opstart)
+                if (comboBox2.SelectedIndex != -1 && comboBox2.SelectedValue is int selectedTypeId)
+                {
+                    // Kald metoden i din Service (som kalder DAL)
+                    // Her antager jeg, du har lavet metoden i Service-laget også:
+                    string instructorName = activityTypeService.GetCertifiedInstructor(selectedTypeId);
 
-                // 2. Vis navnet i labelen
-                // Vi tjekker for null, hvis nu databasen ikke fandt nogen
-                label10.Text = instructorName ?? "Ingen instruktør fundet"; //Men hvorfor, da en holdtype SKAL have tilknyttet en instruktør?
+                    // Vis navnet i label
+                    // Vi tjekker for null, hvis nu databasen ikke fandt nogen
+                    label10.Text = instructorName ?? "Ingen instruktør fundet";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
         }
 
@@ -215,15 +239,23 @@ namespace FitHubManagement.UI.Activity
 
         private void CreateActivityType_Click(object sender, EventArgs e)
         {
-            LoadInstructor bll = new LoadInstructor();
-            List<InstructorModel> instructors = bll.Instructors();
+            try
+            {
+                LoadInstructor bll = new LoadInstructor();
+                List<InstructorModel> instructors = bll.Instructors();
 
-            cmbHoldTypeInstruktor.DataSource = instructors;
-            cmbHoldTypeInstruktor.DisplayMember = "FullName";
-            cmbHoldTypeInstruktor.ValueMember = "InstructorId";
+                cmbHoldTypeInstruktor.DataSource = instructors;
+                cmbHoldTypeInstruktor.DisplayMember = "FullName";
+                cmbHoldTypeInstruktor.ValueMember = "InstructorId";
 
-            pnlHoldType.Visible = true;
-            panel1.Visible = false;
+                pnlHoldType.Visible = true;
+                panel1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
         }
 
         private void cmbHoldTypeInstruktor_SelectedIndexChanged(object sender, EventArgs e)
