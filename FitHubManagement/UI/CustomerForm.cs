@@ -326,7 +326,10 @@ namespace FitHubManagement.UI.CustomerUI
         }
         #endregion
 
+        private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
 
     }
 
