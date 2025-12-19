@@ -343,12 +343,7 @@ namespace FitHubManagement.UI.CustomerUI
             }
         }
 
-        private void EditFirst_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EditCustomerID_TextChanged(object sender, EventArgs e)
+        private void InfoCustomerBtn_Click(object sender, EventArgs e)
         {
 
         }
