@@ -1,5 +1,6 @@
 ﻿namespace FitHubManagement.Models
 {
+    // NICOLAI KODE
     public class MembershipModel
     {
         public int MembershipId { get; set; }

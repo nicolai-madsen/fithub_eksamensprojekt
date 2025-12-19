@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Models.FilterModels
 {
+    // NICOLAI 
     public class ActivityFilterModel
     {
         public int ActivityId { get; set; }

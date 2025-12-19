@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 
 namespace FitHubManagement.UI.BookingUI
 {
+    // LENAS KODE - BookingForm.cs
     public partial class BookingForm : Form
     {
         // Business Logic-klasse instanser
@@ -74,29 +75,36 @@ namespace FitHubManagement.UI.BookingUI
         // Panel1 Fortsæt knap
         private void button3_Click(object sender, EventArgs e)
         {
-            CustomerModel customer = GetSelectedCustomer();
-
-            if (customer == null)
+            try
             {
-                MessageBox.Show("Vælg et medlem først.");
-                return;
-            }
+                CustomerModel customer = GetSelectedCustomer();
 
-            if (customer.Inactive)
+                if (customer == null)
+                {
+                    MessageBox.Show("Vælg et medlem først.");
+                    return;
+                }
+
+                if (customer.Inactive)
+                {
+                    MessageBox.Show("Du kan ikke vælge et inaktivt medlem.");
+                    return;
+                }
+
+                // GEM den valgte medlem til brug i Panel2
+                selectedCustomer = customer;
+
+                panel1.Visible = false;
+                panel2.Visible = true;
+
+                // Vis den valgte medlem i Panel2 
+                lbl_MedlemsNavn.Text = $"Valgt medlem: {selectedCustomer.FirstName} {selectedCustomer.LastName}"; //label navn
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Du kan ikke vælge et inaktivt medlem.");
-                return;
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
-
-            // GEM den valgte medlem til brug i Panel2
-            selectedCustomer = customer;
-
-            panel1.Visible = false;
-            panel2.Visible = true;
-
-            // Vis den valgte medlem i Panel2 
-            lbl_MedlemsNavn.Text = $"Valgt medlem: {selectedCustomer.FirstName} {selectedCustomer.LastName}"; //label navn
-
         }
 
         // Henter valgt medlem (virker for både navn-item og detail-item)
@@ -117,22 +125,30 @@ namespace FitHubManagement.UI.BookingUI
         // Panel1 Vis knap: vis detaljer for den valgte person
         private void button2_Click(object sender, EventArgs e)
         {
-            CustomerModel selected = GetSelectedCustomer();
-
-            if (selected == null)
+           try
             {
-                MessageBox.Show("Vælg et medlem først.");
-                return;
+                CustomerModel selected = GetSelectedCustomer();
+
+                if (selected == null)
+                {
+                    MessageBox.Show("Vælg et medlem først.");
+                    return;
+                }
+
+                string membershipName = _membershipService.GetMembershipName(selected.MembershipId);
+
+                listBox1.DataSource = null;
+                listBox1.Items.Clear();
+
+                listBox1.Items.Add(new CustomerDetailItem(selected, membershipName));
+                listBox1.ClearSelected();
             }
-
-            string membershipName = _membershipService.GetMembershipName(selected.MembershipId);
-
-            listBox1.DataSource = null;
-            listBox1.Items.Clear();
-
-            listBox1.Items.Add(new CustomerDetailItem(selected, membershipName));
-            listBox1.ClearSelected();
-        }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
+        }   
 
         // Tilbage knap (lukker formen)
         private void button1_Click(object sender, EventArgs e)
@@ -144,33 +160,41 @@ namespace FitHubManagement.UI.BookingUI
         // Søgning (forslag) - viser kun NAVNE mens du skriver
         private void textBox_Search_TextChanged(object sender, EventArgs e)
         {
-            string name = textBox1.Text.Trim();
-            string phone = textBox2.Text.Trim().Replace(" ", "");
-
-
-            List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
-
-            listBox1.DataSource = null;
-            listBox1.Items.Clear();
-
-            foreach (CustomerModel customer in customers)
+            try
             {
-                bool matchName =
-                    name == "" ||
-                    (customer.FirstName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase) ||
-                    (customer.LastName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase);
+                string name = textBox1.Text.Trim();
+                string phone = textBox2.Text.Trim().Replace(" ", "");
 
-                bool matchPhone =
-                    phone == "" ||
-                    (customer.Phone ?? "").Replace(" ", "").Contains(phone);
 
-                if (matchName && matchPhone)
+                List<CustomerModel> customers = _customerService.GetAllCustomerBLL();
+
+                listBox1.DataSource = null;
+                listBox1.Items.Clear();
+
+                foreach (CustomerModel customer in customers)
                 {
-                    listBox1.Items.Add(new CustomerNameItem(customer));
-                }
-            }
+                    bool matchName =
+                        name == "" ||
+                        (customer.FirstName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase) ||
+                        (customer.LastName ?? "").StartsWith(name, StringComparison.OrdinalIgnoreCase);
 
-            listBox1.ClearSelected();
+                    bool matchPhone =
+                        phone == "" ||
+                        (customer.Phone ?? "").Replace(" ", "").Contains(phone);
+
+                    if (matchName && matchPhone)
+                    {
+                        listBox1.Items.Add(new CustomerNameItem(customer));
+                    }
+                }
+
+                listBox1.ClearSelected();
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
+            }
         }
 
 
@@ -246,14 +270,22 @@ namespace FitHubManagement.UI.BookingUI
         // Når man vælger et hold i listBox2, gemmer vi ActivityId
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedActivityId = -1;
-
-            if (listBox2.SelectedItem is ActivityFilterModel a)
+            try
             {
-                selectedActivityId = a.ActivityId;
+                selectedActivityId = -1;
 
-                int spots = _bookingService.GetAvailableSpots(selectedActivityId);
+                if (listBox2.SelectedItem is ActivityFilterModel a)
+                {
+                    selectedActivityId = a.ActivityId;
 
+                    int spots = _bookingService.GetAvailableSpots(selectedActivityId);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Fang databasefejl og andre uforudsete fejl
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
         }
 
@@ -265,35 +297,35 @@ namespace FitHubManagement.UI.BookingUI
                 MessageBox.Show("Vælg venligst både et medlem og et hold.");
                 return;
             }
-
-            // Tjek ledige pladser via BLL metode
-            int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
-            if (availableSpots <= 0)
-            {
-                MessageBox.Show("Holdet er fyldt. Der er ikke flere ledige pladser.");
-                return;
-            }
-
-            // Max 2 bookinger pr uge for standard validering
-            DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
-            if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
-            {
-                MessageBox.Show("Medlemmet har nået grænsen på 2 hold om ugen.", "Begrænsning nået", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Brugerbekræftelse
-            DialogResult answer = MessageBox.Show(
-                $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
-                "Bekræft booking",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (answer != DialogResult.Yes) return;
-
             try
             {
+                // Tjek ledige pladser via BLL metode
+                    int availableSpots = _bookingService.GetAvailableSpots(selectedActivityId);
+                if (availableSpots <= 0)
+                {
+                    MessageBox.Show("Holdet er fyldt. Der er ikke flere ledige pladser.");
+                    return;
+                }
+
+                // Max 2 bookinger pr uge for standard validering
+                DateTime activityDate = _activityService.GetActivityDate(selectedActivityId);
+                if (!_bookingService.CanCustomerBook(selectedCustomer.CustomerId, activityDate))
+                {
+                    MessageBox.Show("Medlemmet har nået grænsen på 2 hold om ugen.", "Begrænsning nået", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Brugerbekræftelse
+                DialogResult answer = MessageBox.Show(
+                    $"Der er {availableSpots} ledige pladser.\nVil du tilmelde medlemmet?",
+                    "Bekræft booking",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (answer != DialogResult.Yes) return;
+
+            
                 // Vi opretter bookingen. 
                 _bookingService.CreateBooking(selectedActivityId, selectedCustomer.CustomerId, "");
 
@@ -302,9 +334,9 @@ namespace FitHubManagement.UI.BookingUI
 
                 MessageBox.Show($"Tilmelding gennemført ✅\nDeltagere på holdet nu: {currentParticipants}");
             }
-            catch (SqlException)
+            catch (Exception ex)
             {
-                MessageBox.Show("Medlemmet er allerede tilmeldt dette hold.");
+                MessageBox.Show($"Der opstod en fejl: {ex.Message}");
             }
         }
 

@@ -4,6 +4,7 @@ using FitHubManagement.Models.FilterModels;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // Phillip kode - Hele filen 
     public class InstructorService
     {
         private InstructorDAL _dal;

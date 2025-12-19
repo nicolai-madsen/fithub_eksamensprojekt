@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitHubManagement.Models
 {
+    // LENA
     public class ViewBookingModel
     {
             public int BookingId { get; set; }

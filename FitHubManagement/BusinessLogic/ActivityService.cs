@@ -3,12 +3,13 @@ using FitHubManagement.Models;
 
 namespace FitHubManagement.BusinessLogic
 {
+    // MONA ActivityService.cs
     public class ActivityService
     {
         private readonly ActivityDAL _activityDAL = new ActivityDAL();
         private readonly ActivityTypeDAL _activityTypeDAL = new ActivityTypeDAL();
 
-        public ActivityModel CreateActivity(
+        public ActivityModel CreateActivity( 
             int activityTypeId,
             int instructorId,
             DateTime startDateTime,
@@ -74,7 +75,7 @@ namespace FitHubManagement.BusinessLogic
             return _activityDAL.GetAllDuration();
         }
 
-        public List<string> GetAllActivityTypeNames()
+        public List<string> GetAllActivityTypeNames() 
         {
             return _activityDAL.GetAllActivityTypeNames();
         }

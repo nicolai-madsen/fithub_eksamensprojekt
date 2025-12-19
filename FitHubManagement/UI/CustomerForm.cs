@@ -3,6 +3,7 @@ using FitHubManagement.Models;
 
 namespace FitHubManagement.UI.CustomerUI
 {
+    // SOFIAS KODE - CustomerForm.cs
     public partial class CustomerForm : Form
     {
 
