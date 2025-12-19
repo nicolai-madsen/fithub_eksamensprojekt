@@ -33,13 +33,6 @@ namespace FitHubManagement.UI.CustomerUI
             ListPanel.Show();
             NewCustomerPanel.SendToBack();
 
-
-
-
-            //Legger til selection i CreateCustomer
-            memberType.Items.Add("1");
-            memberType.Items.Add("2");
-            memberType.Items.Add("3");
             ListPanel.Visible = true;
             NewCustomerPanel.Visible = true;
             EditCustomerPanel.Visible = true;
@@ -106,7 +99,6 @@ namespace FitHubManagement.UI.CustomerUI
             Notes.Clear();
         }
 
-        //Information fra textbox gemmes
         private void NewCustomerConfirmBtn_Click(object sender, EventArgs e)
         {
             CustomerModel customer = new CustomerModel();
@@ -148,6 +140,8 @@ namespace FitHubManagement.UI.CustomerUI
             ListPanel.Show();
         }
 
+
+
         private void ShowActiveBtn_Click_1(object sender, EventArgs e)
         {
             try
@@ -173,7 +167,6 @@ namespace FitHubManagement.UI.CustomerUI
         }
         private void EditCustomerConfirmBtn_Click_1(object sender, EventArgs e)
         {
-            // Sørg for at der er valgt en kunde
             if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
             {
                 MessageBox.Show("Vælg et medlem først.");
@@ -184,14 +177,6 @@ namespace FitHubManagement.UI.CustomerUI
             if (!int.TryParse(EditType.Text, out int membershipId))
             {
                 MessageBox.Show("Fejl: Medlemstype skal være et gyldigt tal.");
-                return;
-            }
-
-            // Valider at de vigtigste felter ikke er tomme
-            if (string.IsNullOrWhiteSpace(EditFirst.Text) ||
-                string.IsNullOrWhiteSpace(EditLast.Text))
-            {
-                MessageBox.Show("Fejl: Fornavn og Efternavn skal udfyldes.");
                 return;
             }
 
@@ -280,15 +265,6 @@ namespace FitHubManagement.UI.CustomerUI
             this.Close();
         }
 
-        #region
-        public void customerCounter()
-        {
-            int totalItems = CustomerListBox.Items.Count;
-            int totalCustomer = totalItems - 2;
-            count.Text = totalCustomer.ToString();
-        }
-        #endregion
-
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
@@ -318,8 +294,7 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void EditCustomertxt_Click(object sender, EventArgs e)
         {
-            ListPanel.Hide();
-            EditCustomerPanel.Show();
+
             int index = CustomerListBox.SelectedIndex;
 
             if (index >= 0)
@@ -334,23 +309,17 @@ namespace FitHubManagement.UI.CustomerUI
                 CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
                 EditType.Text = customer.MembershipId.ToString();
 
-                // Hent aktivitetstype via BLL
-
+                ListPanel.Hide();
+                EditCustomerPanel.Show();
             }
             else
             {
-                MessageBox.Show("Vælg en instruktør først.");
+                MessageBox.Show("Vælg en medlem først.");
             }
         }
 
         private void InfoCustomerBtn_Click(object sender, EventArgs e)
         {
-            BookingPanel.Show();
-            EditCustomerPanel.Hide();
-            NewCustomerPanel.Hide();
-            ListPanel.Hide();
-
-
             int index = CustomerListBox.SelectedIndex;
 
             if (index >= 0)
@@ -363,9 +332,26 @@ namespace FitHubManagement.UI.CustomerUI
                     activityInfoList.Items.Add(viewBooking.DisplayInfo);
                 }
 
+                ListPanel.Hide();
+                EditCustomerPanel.Show();
             }
-
+            else
+            {
+                MessageBox.Show("Vælg medlem");
+            }
         }
+
+        #region
+        public void customerCounter()
+        {
+            int totalItems = CustomerListBox.Items.Count;
+            int totalCustomer = totalItems - 2;
+            count.Text = totalCustomer.ToString();
+        }
+        #endregion
+
+
+     
     }
 
 }

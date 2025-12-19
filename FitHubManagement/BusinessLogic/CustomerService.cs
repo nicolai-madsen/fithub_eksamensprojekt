@@ -33,7 +33,6 @@ namespace FitHubManagement.BusinessLogic
                 throw new Exception ();
 
 
-
             if (customer.Birthday.Date == DateTime.Now.Date)
 
                 throw new Exception ();
