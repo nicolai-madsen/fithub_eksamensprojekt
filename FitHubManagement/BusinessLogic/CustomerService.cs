@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FitHubManagement.Models;
+﻿using FitHubManagement.Models;
 using FitHubManagement.DataAccess;
 
 namespace FitHubManagement.BusinessLogic
@@ -31,7 +26,6 @@ namespace FitHubManagement.BusinessLogic
 
             if(!customer.Email.Contains("@"))
                 throw new Exception ();
-
 
 
             if (customer.Birthday.Date == DateTime.Now.Date)

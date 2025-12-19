@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             ListPanel = new Panel();
             InfoCustomerBtn = new Button();
             EditCustomertxt = new Button();
@@ -45,7 +46,6 @@
             label2 = new Label();
             NewCustomerPanel = new Panel();
             label26 = new Label();
-            memberType = new ComboBox();
             BirthdayValue = new DateTimePicker();
             label25 = new Label();
             NewCustomerCancelBtn = new Button();
@@ -62,6 +62,7 @@
             label5 = new Label();
             label4 = new Label();
             NewCustomerTitle = new Label();
+            memberType = new ComboBox();
             EditCustomerPanel = new Panel();
             MarkInactive = new Button();
             CurrentStatus = new TextBox();
@@ -86,6 +87,7 @@
             ShowListBtn = new Button();
             NewCustomerBtn = new Button();
             BackBtn = new Button();
+            toolTip1 = new ToolTip(components);
             ListPanel.SuspendLayout();
             BookingPanel.SuspendLayout();
             NewCustomerPanel.SuspendLayout();
@@ -219,6 +221,7 @@
             CustomerListBox.Name = "CustomerListBox";
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
+            CustomerListBox.SelectedIndexChanged += CustomerListBox_SelectedIndexChanged;
             // 
             // BookingPanel
             // 
@@ -254,7 +257,6 @@
             // 
             NewCustomerPanel.BackColor = Color.DarkSeaGreen;
             NewCustomerPanel.Controls.Add(label26);
-            NewCustomerPanel.Controls.Add(memberType);
             NewCustomerPanel.Controls.Add(BirthdayValue);
             NewCustomerPanel.Controls.Add(label25);
             NewCustomerPanel.Controls.Add(NewCustomerCancelBtn);
@@ -271,6 +273,7 @@
             NewCustomerPanel.Controls.Add(label5);
             NewCustomerPanel.Controls.Add(label4);
             NewCustomerPanel.Controls.Add(NewCustomerTitle);
+            NewCustomerPanel.Controls.Add(memberType);
             NewCustomerPanel.Location = new Point(7, 13);
             NewCustomerPanel.Margin = new Padding(3, 2, 3, 2);
             NewCustomerPanel.Name = "NewCustomerPanel";
@@ -285,17 +288,6 @@
             label26.Size = new Size(76, 45);
             label26.TabIndex = 44;
             label26.Text = "1 = Basic\r\n2 = Premium\r\n3 = VIP";
-            // 
-            // memberType
-            // 
-            memberType.DropDownStyle = ComboBoxStyle.DropDownList;
-            memberType.FormattingEnabled = true;
-            memberType.Items.AddRange(new object[] { "1", "2", "3" });
-            memberType.Location = new Point(394, 64);
-            memberType.Margin = new Padding(3, 2, 3, 2);
-            memberType.Name = "memberType";
-            memberType.Size = new Size(110, 23);
-            memberType.TabIndex = 43;
             // 
             // BirthdayValue
             // 
@@ -321,7 +313,7 @@
             NewCustomerCancelBtn.Name = "NewCustomerCancelBtn";
             NewCustomerCancelBtn.Size = new Size(82, 22);
             NewCustomerCancelBtn.TabIndex = 35;
-            NewCustomerCancelBtn.Text = "Annullér";
+            NewCustomerCancelBtn.Text = "Clear";
             NewCustomerCancelBtn.UseVisualStyleBackColor = true;
             NewCustomerCancelBtn.Click += NewCustomerCancelBtn_Click;
             // 
@@ -360,6 +352,7 @@
             Email.Name = "Email";
             Email.Size = new Size(110, 23);
             Email.TabIndex = 13;
+            toolTip1.SetToolTip(Email, "Husk @");
             // 
             // LastName
             // 
@@ -441,6 +434,17 @@
             NewCustomerTitle.TabIndex = 0;
             NewCustomerTitle.Text = "Opret ny medlem\r\nVenligst fyld ind information\r\n";
             // 
+            // memberType
+            // 
+            memberType.DropDownStyle = ComboBoxStyle.DropDownList;
+            memberType.FormattingEnabled = true;
+            memberType.Items.AddRange(new object[] { "1", "2", "3" });
+            memberType.Location = new Point(394, 64);
+            memberType.Margin = new Padding(3, 2, 3, 2);
+            memberType.Name = "memberType";
+            memberType.Size = new Size(110, 23);
+            memberType.TabIndex = 43;
+            // 
             // EditCustomerPanel
             // 
             EditCustomerPanel.BackColor = Color.DarkSeaGreen;
@@ -515,6 +519,7 @@
             EditType.Name = "EditType";
             EditType.Size = new Size(110, 23);
             EditType.TabIndex = 40;
+            toolTip1.SetToolTip(EditType, "1 = Standard\r\n2 = Premium\r\n3 = VIP\r\n");
             // 
             // MarkActive
             // 
@@ -582,6 +587,7 @@
             EditMail.Name = "EditMail";
             EditMail.Size = new Size(110, 23);
             EditMail.TabIndex = 26;
+            toolTip1.SetToolTip(EditMail, "Husk @");
             // 
             // EditLast
             // 
@@ -695,10 +701,10 @@
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
+            Controls.Add(BookingPanel);
             Controls.Add(NewCustomerPanel);
             Controls.Add(EditCustomerPanel);
             Controls.Add(ListPanel);
-            Controls.Add(BookingPanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
@@ -773,5 +779,6 @@
         private Label label10;
         private Button EditCustomertxt;
         private Button InfoCustomerBtn;
+        private ToolTip toolTip1;
     }
 }

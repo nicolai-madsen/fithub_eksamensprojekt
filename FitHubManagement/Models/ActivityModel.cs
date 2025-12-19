@@ -1,11 +1,4 @@
-﻿using FitHubManagement.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FitHubManagement.Models
+﻿namespace FitHubManagement.Models
 {
     // MONA
     public class ActivityModel

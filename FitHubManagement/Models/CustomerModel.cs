@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FitHubManagement.Models
+﻿namespace FitHubManagement.Models
 {
     // SOFIA KODE
     public class CustomerModel
@@ -21,11 +15,14 @@ namespace FitHubManagement.Models
         public DateTime CreatedDate { get; set; }
         public bool Inactive { get; set; } //true = medlem er inaktiv, false = medlem er aktiv
         // Ændret fra Active til Inactive - svarer til databasen
-
+        public string AktivStatus()
+        {
+            return Inactive ? "Inaktiv" : "Aktiv";
+        }
 
         public override string ToString()
         {
-            return $"ID: {CustomerId} Navn: {FirstName} {LastName} Telefon: {Phone}";
+            return $"ID: {CustomerId} Navn: {FirstName} {LastName} Telefon: {Phone} - {(AktivStatus())}";
         }
         //Denne har en "reference"!! i BookingForm  ----------- Den ovenover burde også have en i CustomerForm?
         public string DisplayText => $"{FullName} - {Phone}";

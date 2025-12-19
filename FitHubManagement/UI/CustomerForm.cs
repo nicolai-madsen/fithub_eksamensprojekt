@@ -1,19 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FitHubManagement.UI.CustomerUI
 {
@@ -24,7 +10,6 @@ namespace FitHubManagement.UI.CustomerUI
         private readonly CustomerService _customerService = new(); //Businesslogic lag til customer'
         private readonly BookingService _bookingService = new();
 
-
         public CustomerForm()
         {
             InitializeComponent();
@@ -34,19 +19,11 @@ namespace FitHubManagement.UI.CustomerUI
             ListPanel.Show();
             NewCustomerPanel.SendToBack();
 
-
-
-
-            //Legger til selection i CreateCustomer
-            memberType.Items.Add("1");
-            memberType.Items.Add("2");
-            memberType.Items.Add("3");
             ListPanel.Visible = true;
             NewCustomerPanel.Visible = true;
             EditCustomerPanel.Visible = true;
             ListPanel.BringToFront();
         }
-
 
         private void ShowBtn_Click(object sender, EventArgs e)
         {
@@ -62,18 +39,15 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    CustomerListBox.Items.Add(customer); // tilføj hele objektet
+                    CustomerListBox.Items.Add(customer); 
                     customerCounter();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Fejl med tilkobling af database");
+                MessageBox.Show("Fejl med tilkobling af database, medlemmer ikke hentet.");
             }
         }
-
-
-
 
         private void ShowInactiveBtn_Click(object sender, EventArgs e)
         {
@@ -88,13 +62,13 @@ namespace FitHubManagement.UI.CustomerUI
 
                 foreach (CustomerModel customer in customers)
                 {
-                    CustomerListBox.Items.Add(customer); // tilføj hele objektet
+                    CustomerListBox.Items.Add(customer);
                     customerCounter();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Fejl med tilkobling af database");
+                MessageBox.Show("Fejl med tilkobling af database, medlemmer ikke hentet.");
             }
         }
 
@@ -107,7 +81,6 @@ namespace FitHubManagement.UI.CustomerUI
             Notes.Clear();
         }
 
-        //Information fra textbox gemmes
         private void NewCustomerConfirmBtn_Click(object sender, EventArgs e)
         {
             CustomerModel customer = new CustomerModel();
@@ -149,6 +122,8 @@ namespace FitHubManagement.UI.CustomerUI
             ListPanel.Show();
         }
 
+
+
         private void ShowActiveBtn_Click_1(object sender, EventArgs e)
         {
             try
@@ -169,39 +144,28 @@ namespace FitHubManagement.UI.CustomerUI
             }
             catch (Exception)
             {
-                MessageBox.Show("Fejl med tilkobling af database");
+                MessageBox.Show("Fejl med tilkobling af database, medlemmer ikke hentet.");
             }
         }
         private void EditCustomerConfirmBtn_Click_1(object sender, EventArgs e)
         {
-            // Sørg for at der er valgt en kunde
             if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
             {
                 MessageBox.Show("Vælg et medlem først.");
                 return;
             }
 
-            // Valider MembershipId
             if (!int.TryParse(EditType.Text, out int membershipId))
             {
-                MessageBox.Show("Fejl: Medlemstype skal være et gyldigt tal.");
-                return;
-            }
-
-            // Valider at de vigtigste felter ikke er tomme
-            if (string.IsNullOrWhiteSpace(EditFirst.Text) ||
-                string.IsNullOrWhiteSpace(EditLast.Text))
-            {
-                MessageBox.Show("Fejl: Fornavn og Efternavn skal udfyldes.");
+                MessageBox.Show("Medlemstype skal være et gyldigt tal.");
                 return;
             }
 
             try
             {
-                // Opret CustomerModel med eksisterende ID fra den valgte kunde
                 CustomerModel customer = new CustomerModel()
                 {
-                    CustomerId = selectedCustomer.CustomerId, // behold ID fra databasen
+                    CustomerId = selectedCustomer.CustomerId, 
                     FirstName = EditFirst.Text,
                     LastName = EditLast.Text,
                     Email = EditMail.Text,
@@ -215,12 +179,11 @@ namespace FitHubManagement.UI.CustomerUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl med redigering af medlem: " + ex.Message);
+                MessageBox.Show("Fejl med redigering af medlem.");
             }
         }
         private void MarkActive_Click(object sender, EventArgs e)
         {
-            // Tjek at en kunde er valgt
             if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
             {
                 MessageBox.Show("Vælg et medlem først.");
@@ -229,19 +192,17 @@ namespace FitHubManagement.UI.CustomerUI
 
             try
             {
-                // Brug ID fra den valgte kunde
                 _customerService.ChangeCustomerActiveStatus(selectedCustomer.CustomerId, false);
-                MessageBox.Show("Medlem er nu markeret som aktiv.");
+                MessageBox.Show("Medlem markeret aktiv.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl med statusændring: " + ex.Message);
+                MessageBox.Show("Fejl med statusændring.");
             }
         }
 
         private void MarkInactive_Click(object sender, EventArgs e)
         {
-            // Tjek at en kunde er valgt
             if (CustomerListBox.SelectedItem is not CustomerModel selectedCustomer)
             {
                 MessageBox.Show("Vælg et medlem først.");
@@ -250,13 +211,12 @@ namespace FitHubManagement.UI.CustomerUI
 
             try
             {
-                // Brug ID fra den valgte kunde
                 _customerService.ChangeCustomerActiveStatus(selectedCustomer.CustomerId, true);
-                MessageBox.Show("Medlem er nu markeret som inaktiv.");
+                MessageBox.Show("Medlem markeret aktiv");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl med statusændring: " + ex.Message);
+                MessageBox.Show("Fejl med statusændring");
             }
         }
         private void ShowListBtn_Click(object sender, EventArgs e)
@@ -280,15 +240,6 @@ namespace FitHubManagement.UI.CustomerUI
             this.Owner.Show();
             this.Close();
         }
-
-        #region
-        public void customerCounter()
-        {
-            int totalItems = CustomerListBox.Items.Count;
-            int totalCustomer = totalItems - 2;
-            count.Text = totalCustomer.ToString();
-        }
-        #endregion
 
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
@@ -319,8 +270,7 @@ namespace FitHubManagement.UI.CustomerUI
 
         private void EditCustomertxt_Click(object sender, EventArgs e)
         {
-            ListPanel.Hide();
-            EditCustomerPanel.Show();
+
             int index = CustomerListBox.SelectedIndex;
 
             if (index >= 0)
@@ -335,23 +285,17 @@ namespace FitHubManagement.UI.CustomerUI
                 CurrentStatus.Text = customer.Inactive ? "Inactive" : "Active";
                 EditType.Text = customer.MembershipId.ToString();
 
-                // Hent aktivitetstype via BLL
-
+                ListPanel.Hide();
+                EditCustomerPanel.Show();
             }
             else
             {
-                MessageBox.Show("Vælg en instruktør først.");
+                MessageBox.Show("Vælg en medlem");
             }
         }
 
         private void InfoCustomerBtn_Click(object sender, EventArgs e)
         {
-            BookingPanel.Show();
-            EditCustomerPanel.Hide();
-            NewCustomerPanel.Hide();
-            ListPanel.Hide();
-
-
             int index = CustomerListBox.SelectedIndex;
 
             if (index >= 0)
@@ -364,9 +308,26 @@ namespace FitHubManagement.UI.CustomerUI
                     activityInfoList.Items.Add(viewBooking.DisplayInfo);
                 }
 
+                ListPanel.Hide();
+                BookingPanel.Show();
             }
-
+            else
+            {
+                MessageBox.Show("Vælg medlem");
+            }
         }
+
+        #region
+        public void customerCounter()
+        {
+            int totalItems = CustomerListBox.Items.Count;
+            int totalCustomer = totalItems - 2;
+            count.Text = totalCustomer.ToString();
+        }
+        #endregion
+
+
+
     }
 
 }

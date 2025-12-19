@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FitHubManagement.Reports
+﻿namespace FitHubManagement.Reports
 {
     // NICOLAI MADSEN - Hele filen
     internal class ReportWriter
