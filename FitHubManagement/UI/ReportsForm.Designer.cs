@@ -83,9 +83,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(12, 391);
             label3.Name = "label3";
-            label3.Size = new Size(285, 15);
+            label3.Size = new Size(333, 15);
             label3.TabIndex = 4;
-            label3.Text = "* Rapporter bliver udskrevet til mappen: Dokumenter";
+            label3.Text = "* Rapporter bliver udskrevet mappen: Rapporter i Dokumenter";
             // 
             // button1
             // 
