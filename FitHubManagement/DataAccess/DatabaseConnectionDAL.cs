@@ -1,12 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static FitHubManagement.DataAccess.DatabaseConnectionDAL;
-
-namespace FitHubManagement.DataAccess
+﻿namespace FitHubManagement.DataAccess
 {
     internal class DatabaseConnectionDAL
     {
