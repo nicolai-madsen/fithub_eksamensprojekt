@@ -268,11 +268,15 @@ namespace FitHubManagement.DataAccess
 
 
 
-        public List<ViewBookingModel> ViewCustomerBookings(int customerId)
+        public List<ViewBookingModel> GetCustomerBookings(int customerId)
         {
+            // Liste hvor vi samler alle booking-objekter
             List<ViewBookingModel> bookings = new List<ViewBookingModel>();
+
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
+
+
             string query = "SELECT Customer.CustomerID,  Activity.StartDateTime,  Booking.BookingID, " +
                            "NAME = Instructor.FirstName + Instructor.LastName, ActivityType.ActivityTypeName " +
                            "FROM ((((Booking INNER JOIN Customer ON Booking.CustomerID = Customer.CustomerID) " +
@@ -283,23 +287,34 @@ namespace FitHubManagement.DataAccess
 
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@customerId", customerId);
+
+            // Læser resultatet af SQL SELECT
             using SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
             {
-                ViewBookingModel customerBookings = new ViewBookingModel();
-                
-                    customerBookings = Convert.ToInt32(reader["CustomerID"]);
-                    customerBookings.StartDateTime = Convert.ToDateTime(reader["StartDateTime"]);
-                    customerBookings.BookingId = Convert.ToInt32(reader["BookingID"]);
-                    customerBookings.Name = Convert.ToString(reader["NAME"]);
-                    customerBookings.ActivityTypeName = Convert.ToString(reader["ActivityTypeName"]);
-                
-                bookings.Add(customerBookings);
+
+                // Går gennem hver række i resultatet
+                while (reader.Read())
+                {
+
+                    ViewBookingModel customerBookings = new ViewBookingModel();
+                    {
+                        customerBookings.CustomerId = Convert.ToInt32(reader["CustomerID"]);
+                        customerBookings.StartDateTime = Convert.ToDateTime(reader["StartDateTime"]);
+                        customerBookings.BookingId = Convert.ToInt32(reader["BookingID"]);
+                        customerBookings.Name = Convert.ToString(reader["NAME"]);
+                        customerBookings.ActivityTypeName = Convert.ToString(reader["ActivityTypeName"]);
+                    }
+
+                    // Tilføjer booking-objektet til listen
+                    bookings.Add(customerBookings);
+                }
+                return bookings;
             }
-            return bookings;
+
+
         }
 
-           
+
         //LENA
         // Denne metode finder ud af, hvor mange ledige pladser der er på et hold
         // Den bruges til acceptkriterium 1: tjek om der er ledige pladser
