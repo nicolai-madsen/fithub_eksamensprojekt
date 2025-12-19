@@ -518,6 +518,7 @@
             EditType.Name = "EditType";
             EditType.Size = new Size(110, 23);
             EditType.TabIndex = 40;
+            toolTip1.SetToolTip(EditType, "1 = Standard\r\n2 = Premium\r\n3 = VIP\r\n");
             // 
             // MarkActive
             // 
@@ -585,6 +586,7 @@
             EditMail.Name = "EditMail";
             EditMail.Size = new Size(110, 23);
             EditMail.TabIndex = 26;
+            toolTip1.SetToolTip(EditMail, "Husk @");
             // 
             // EditLast
             // 
@@ -698,10 +700,10 @@
             Controls.Add(BackBtn);
             Controls.Add(NewCustomerBtn);
             Controls.Add(ShowListBtn);
-            Controls.Add(EditCustomerPanel);
-            Controls.Add(ListPanel);
             Controls.Add(BookingPanel);
             Controls.Add(NewCustomerPanel);
+            Controls.Add(EditCustomerPanel);
+            Controls.Add(ListPanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerForm";
             Text = "CustomerForm";
