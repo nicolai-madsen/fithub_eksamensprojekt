@@ -159,7 +159,6 @@ namespace FitHubManagement.DataAccess
             string activityName,
             string activityDescription)
         {
-            Console.WriteLine("Det her er Monas kode, GET IN THERE");
             using SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString);
             connection.Open();
 
