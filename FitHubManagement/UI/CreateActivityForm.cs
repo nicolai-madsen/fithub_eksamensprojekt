@@ -1,5 +1,6 @@
 ﻿using FitHubManagement.BusinessLogic; //Importerer/reference til BLL
 using FitHubManagement.Models;
+using Microsoft.Data.SqlClient;
 
 namespace FitHubManagement.UI.Activity
 {
@@ -133,10 +134,9 @@ namespace FitHubManagement.UI.Activity
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fejl: " + ex.Message);
+                HandleException(ex); // Bruger error handling metode
             }
         }
-        // Monas stuff goes here 
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -237,6 +237,22 @@ namespace FitHubManagement.UI.Activity
             txtHoldTypeBeskrivelse.Clear();
             pnlHoldType.Visible = false;
             panel1.Visible = true;
+        }
+
+        private void HandleException(Exception ex)
+        {
+            if (ex is ArgumentException)
+            {
+                MessageBox.Show(ex.Message, "Valideringsfejl", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (ex is SqlException || ex.InnerException is SqlException)
+            {
+                MessageBox.Show("Kunne ikke få kontakt til databasen. Prøv igen senere.", "Forbindelsesfejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Der opstod en uventet fejl: " + ex.Message, "Systemfejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

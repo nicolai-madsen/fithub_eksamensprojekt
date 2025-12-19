@@ -39,7 +39,6 @@ namespace FitHubManagement.UI.ReportsUI
             catch (Exception ex)
             {
                 MessageBox.Show($"Fejl: {ex.Message}", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Debug.WriteLine(ex.StackTrace);
             }
         }
 
@@ -61,7 +60,6 @@ namespace FitHubManagement.UI.ReportsUI
             catch (Exception ex)
             {
                 MessageBox.Show($"Fejl: {ex.Message}", "Fejl", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Debug.WriteLine(ex.StackTrace);
             }
         }
 
