@@ -268,7 +268,7 @@ namespace FitHubManagement.DataAccess
 
 
 
-        public List<ViewBookingModel> GetCustomerBookings(int customerId)
+        public List<ViewBookingModel> GetSpecificCustomerBookings(int customerId)
         {
             // Liste hvor vi samler alle booking-objekter
             List<ViewBookingModel> bookings = new List<ViewBookingModel>();
