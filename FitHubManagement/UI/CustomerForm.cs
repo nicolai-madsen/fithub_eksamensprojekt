@@ -343,13 +343,27 @@ namespace FitHubManagement.UI.CustomerUI
             }
         }
 
-        private void EditFirst_TextChanged(object sender, EventArgs e)
+        private void InfoCustomerBtn_Click(object sender, EventArgs e)
         {
+            BookingPanel.Show();
+            EditCustomerPanel.Hide();
+            NewCustomerPanel.Hide();
+            ListPanel.Hide();
 
-        }
 
-        private void EditCustomerID_TextChanged(object sender, EventArgs e)
-        {
+            int index = CustomerListBox.SelectedIndex;
+
+            if (index >= 0)
+            {
+                CustomerModel customer = (CustomerModel)CustomerListBox.Items[index];
+
+                List<ViewBookingModel> viewBookings = _bookingService.GetSpecificCustomerBookings(customer.CustomerId);
+                foreach (ViewBookingModel viewBooking in viewBookings)
+                {
+                    activityInfoList.Items.Add(viewBooking.DisplayInfo);
+                }
+
+            }
 
         }
     }

@@ -41,8 +41,6 @@
             ChooseCustomerTitle = new Label();
             CustomerListBox = new ListBox();
             BookingPanel = new Panel();
-            label3 = new Label();
-            label1 = new Label();
             activityInfoList = new ListBox();
             label2 = new Label();
             NewCustomerPanel = new Panel();
@@ -122,6 +120,7 @@
             InfoCustomerBtn.TabIndex = 55;
             InfoCustomerBtn.Text = "Information";
             InfoCustomerBtn.UseVisualStyleBackColor = true;
+            InfoCustomerBtn.Click += InfoCustomerBtn_Click;
             // 
             // EditCustomertxt
             // 
@@ -207,9 +206,9 @@
             ChooseCustomerTitle.Font = new Font("Segoe UI", 12F);
             ChooseCustomerTitle.Location = new Point(55, 26);
             ChooseCustomerTitle.Name = "ChooseCustomerTitle";
-            ChooseCustomerTitle.Size = new Size(110, 21);
+            ChooseCustomerTitle.Size = new Size(130, 21);
             ChooseCustomerTitle.TabIndex = 11;
-            ChooseCustomerTitle.Text = "Kundeoversigt";
+            ChooseCustomerTitle.Text = "Medlemsoversigt";
             // 
             // CustomerListBox
             // 
@@ -224,8 +223,6 @@
             // BookingPanel
             // 
             BookingPanel.BackColor = Color.DarkSeaGreen;
-            BookingPanel.Controls.Add(label3);
-            BookingPanel.Controls.Add(label1);
             BookingPanel.Controls.Add(activityInfoList);
             BookingPanel.Controls.Add(label2);
             BookingPanel.Location = new Point(7, 5);
@@ -233,39 +230,21 @@
             BookingPanel.Size = new Size(534, 500);
             BookingPanel.TabIndex = 17;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(231, 69);
-            label3.Name = "label3";
-            label3.Size = new Size(175, 45);
-            label3.TabIndex = 41;
-            label3.Text = "Hold 6: Forest Dance Flow\r\nHold 7: Eco-Wellness Workshop\r\nHold 8: Hiit \r\n";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(19, 69);
-            label1.Name = "label1";
-            label1.Size = new Size(192, 75);
-            label1.TabIndex = 40;
-            label1.Text = "Hold 1: Forest Yoga\r\nHold 2: Outdoor Pilates\r\nHold 3: Mindful Hiking\r\nHold 4: Meditation and Breathwork\r\nHold 5: Community Circle Training\r\n";
-            // 
             // activityInfoList
             // 
             activityInfoList.FormattingEnabled = true;
             activityInfoList.ItemHeight = 15;
-            activityInfoList.Location = new Point(19, 209);
+            activityInfoList.Location = new Point(19, 119);
             activityInfoList.Margin = new Padding(3, 2, 3, 2);
             activityInfoList.Name = "activityInfoList";
-            activityInfoList.Size = new Size(469, 79);
+            activityInfoList.Size = new Size(469, 304);
             activityInfoList.TabIndex = 39;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(16, 14);
+            label2.Location = new Point(21, 40);
             label2.Name = "label2";
             label2.Size = new Size(105, 21);
             label2.TabIndex = 38;
@@ -311,6 +290,7 @@
             // 
             memberType.DropDownStyle = ComboBoxStyle.DropDownList;
             memberType.FormattingEnabled = true;
+            memberType.Items.AddRange(new object[] { "1", "2", "3" });
             memberType.Location = new Point(394, 64);
             memberType.Margin = new Padding(3, 2, 3, 2);
             memberType.Name = "memberType";
@@ -563,7 +543,7 @@
             EditCustomerCancelBtn.Name = "EditCustomerCancelBtn";
             EditCustomerCancelBtn.Size = new Size(82, 22);
             EditCustomerCancelBtn.TabIndex = 36;
-            EditCustomerCancelBtn.Text = "Annuler";
+            EditCustomerCancelBtn.Text = "Annullér";
             EditCustomerCancelBtn.UseVisualStyleBackColor = true;
             EditCustomerCancelBtn.Click += EditCustomerCancelBtn_Click;
             // 
@@ -627,7 +607,6 @@
             EditFirst.Name = "EditFirst";
             EditFirst.Size = new Size(110, 23);
             EditFirst.TabIndex = 22;
-            EditFirst.TextChanged += EditFirst_TextChanged;
             // 
             // label12
             // 
@@ -671,9 +650,9 @@
             EditCustomerTitle.Font = new Font("Segoe UI", 12F);
             EditCustomerTitle.Location = new Point(66, 20);
             EditCustomerTitle.Name = "EditCustomerTitle";
-            EditCustomerTitle.Size = new Size(111, 21);
+            EditCustomerTitle.Size = new Size(125, 21);
             EditCustomerTitle.TabIndex = 13;
-            EditCustomerTitle.Text = "Rediger kunde";
+            EditCustomerTitle.Text = "Rediger medlem";
             // 
             // ShowListBtn
             // 
@@ -790,8 +769,6 @@
         private Button ShowActiveBtn;
         private Button MarkInactive;
         private Panel BookingPanel;
-        private Label label3;
-        private Label label1;
         private TextBox SearchBox;
         private Label label10;
         private Button EditCustomertxt;
