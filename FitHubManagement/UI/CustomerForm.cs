@@ -1,19 +1,5 @@
 ﻿using FitHubManagement.BusinessLogic;
-using FitHubManagement.DataAccess;
 using FitHubManagement.Models;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FitHubManagement.UI.CustomerUI
 {

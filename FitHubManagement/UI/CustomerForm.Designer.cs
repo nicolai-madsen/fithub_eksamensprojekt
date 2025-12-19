@@ -221,6 +221,7 @@
             CustomerListBox.Name = "CustomerListBox";
             CustomerListBox.Size = new Size(382, 214);
             CustomerListBox.TabIndex = 8;
+            CustomerListBox.SelectedIndexChanged += CustomerListBox_SelectedIndexChanged;
             // 
             // BookingPanel
             // 
