@@ -12,7 +12,7 @@ namespace FitHubManagement.BusinessLogic
         private readonly CustomerDAL _customerDAL = new CustomerDAL();
         private readonly ActivityDAL _activityDAL = new ActivityDAL();
 
-        public int CreateBooking(int activityId, int customerId, string note)
+        public void CreateBooking(int activityId, int customerId, string note)
         {
             // Validering til "plads på holdet"
             int availableSpots = _bookingDAL.GetAvailableSpots(activityId);
@@ -85,6 +85,12 @@ namespace FitHubManagement.BusinessLogic
             return _bookingDAL.GetAllBookings()
                                      .Where(b => b.ActivityId == activityId)
                                      .Count();
+        }
+
+        public List<BookingModel> GetCustomerBooking(int customerId)
+        {
+            return _bookingDAL.GetCustomerBooking(customerId);
+            
         }
 
 
