@@ -126,12 +126,6 @@ namespace FitHubManagement.DataAccess
                   }
               }
 
-        #endregion
-
-
-        //READ
-
-        #region 
         public List<CustomerModel> GetAllCustomer()
         {
             List<CustomerModel> customerList = new List<CustomerModel>();

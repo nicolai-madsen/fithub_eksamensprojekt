@@ -33,9 +33,6 @@ namespace FitHubManagement.UI.CustomerUI
 
                 CustomerListBox.Items.Clear();
 
-
-
-
                 foreach (CustomerModel customer in customers)
                 {
                     CustomerListBox.Items.Add(customer); 
@@ -316,7 +313,7 @@ namespace FitHubManagement.UI.CustomerUI
         public void customerCounter()
         {
             int totalItems = CustomerListBox.Items.Count;
-            int totalCustomer = totalItems - 2;
+            int totalCustomer = totalItems;
             count.Text = totalCustomer.ToString();
         }
         #endregion
@@ -329,7 +326,3 @@ namespace FitHubManagement.UI.CustomerUI
     }
 
 }
-   
-
-
-
