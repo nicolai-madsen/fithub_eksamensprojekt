@@ -146,7 +146,8 @@
             // 
             // btnSaveIns
             // 
-            btnSaveIns.Location = new Point(8, 326);
+            btnSaveIns.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnSaveIns.Location = new Point(8, 311);
             btnSaveIns.Margin = new Padding(2);
             btnSaveIns.Name = "btnSaveIns";
             btnSaveIns.Size = new Size(210, 34);
@@ -157,7 +158,8 @@
             // 
             // btnCancelCreateIns
             // 
-            btnCancelCreateIns.Location = new Point(226, 326);
+            btnCancelCreateIns.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelCreateIns.Location = new Point(236, 311);
             btnCancelCreateIns.Margin = new Padding(2);
             btnCancelCreateIns.Name = "btnCancelCreateIns";
             btnCancelCreateIns.Size = new Size(226, 34);
@@ -181,17 +183,17 @@
             panel1.Controls.Add(txtFirstName);
             panel1.Location = new Point(10, 25);
             panel1.Name = "panel1";
-            panel1.Size = new Size(483, 584);
+            panel1.Size = new Size(493, 575);
             panel1.TabIndex = 16;
             panel1.Paint += panel1_Paint;
             // 
             // GetAll
             // 
             GetAll.Controls.Add(lstbxGetAllIns);
-            GetAll.Location = new Point(10, 4);
+            GetAll.Location = new Point(10, 25);
             GetAll.Margin = new Padding(1);
             GetAll.Name = "GetAll";
-            GetAll.Size = new Size(478, 512);
+            GetAll.Size = new Size(478, 502);
             GetAll.TabIndex = 21;
             // 
             // lstbxGetAllIns
@@ -206,7 +208,8 @@
             // 
             // btnCreateIns
             // 
-            btnCreateIns.Location = new Point(544, 70);
+            btnCreateIns.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCreateIns.Location = new Point(572, 70);
             btnCreateIns.Name = "btnCreateIns";
             btnCreateIns.Size = new Size(127, 29);
             btnCreateIns.TabIndex = 17;
@@ -216,7 +219,8 @@
             // 
             // btnGetAllIns
             // 
-            btnGetAllIns.Location = new Point(544, 139);
+            btnGetAllIns.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGetAllIns.Location = new Point(572, 139);
             btnGetAllIns.Name = "btnGetAllIns";
             btnGetAllIns.Size = new Size(127, 29);
             btnGetAllIns.TabIndex = 18;
@@ -226,7 +230,8 @@
             // 
             // btnBackToFront
             // 
-            btnBackToFront.Location = new Point(861, 461);
+            btnBackToFront.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnBackToFront.Location = new Point(820, 353);
             btnBackToFront.Margin = new Padding(1);
             btnBackToFront.Name = "btnBackToFront";
             btnBackToFront.Size = new Size(88, 28);
@@ -237,9 +242,10 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(366, 4);
+            label1.Location = new Point(380, 4);
             label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
             label1.Size = new Size(336, 41);
@@ -249,7 +255,8 @@
             // 
             // button1
             // 
-            button1.Location = new Point(544, 207);
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Location = new Point(572, 207);
             button1.Name = "button1";
             button1.Size = new Size(127, 29);
             button1.TabIndex = 23;
@@ -261,7 +268,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(905, 515);
+            ClientSize = new Size(1065, 626);
             Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(button1);

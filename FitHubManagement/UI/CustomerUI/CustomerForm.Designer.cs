@@ -107,14 +107,15 @@
             ListPanel.Controls.Add(EditBtn);
             ListPanel.Controls.Add(ChooseCustomerTitle);
             ListPanel.Controls.Add(CustomerListBox);
-            ListPanel.Location = new Point(772, 12);
+            ListPanel.Location = new Point(745, 21);
             ListPanel.Name = "ListPanel";
-            ListPanel.Size = new Size(578, 564);
+            ListPanel.Size = new Size(564, 559);
             ListPanel.TabIndex = 8;
             // 
             // CustomerInfoBtn
             // 
-            CustomerInfoBtn.Location = new Point(63, 423);
+            CustomerInfoBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CustomerInfoBtn.Location = new Point(63, 418);
             CustomerInfoBtn.Name = "CustomerInfoBtn";
             CustomerInfoBtn.Size = new Size(116, 29);
             CustomerInfoBtn.TabIndex = 20;
@@ -123,7 +124,8 @@
             // 
             // ShowActiveBtn
             // 
-            ShowActiveBtn.Location = new Point(195, 82);
+            ShowActiveBtn.Anchor = AnchorStyles.Top;
+            ShowActiveBtn.Location = new Point(188, 82);
             ShowActiveBtn.Name = "ShowActiveBtn";
             ShowActiveBtn.Size = new Size(94, 29);
             ShowActiveBtn.TabIndex = 19;
@@ -133,7 +135,8 @@
             // 
             // ShowInactiveBtn
             // 
-            ShowInactiveBtn.Location = new Point(320, 82);
+            ShowInactiveBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ShowInactiveBtn.Location = new Point(306, 82);
             ShowInactiveBtn.Name = "ShowInactiveBtn";
             ShowInactiveBtn.Size = new Size(94, 29);
             ShowInactiveBtn.TabIndex = 18;
@@ -153,7 +156,8 @@
             // 
             // EditBtn
             // 
-            EditBtn.Location = new Point(405, 423);
+            EditBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            EditBtn.Location = new Point(391, 418);
             EditBtn.Name = "EditBtn";
             EditBtn.Size = new Size(94, 29);
             EditBtn.TabIndex = 15;
@@ -172,8 +176,9 @@
             // 
             // CustomerListBox
             // 
+            CustomerListBox.Anchor = AnchorStyles.None;
             CustomerListBox.FormattingEnabled = true;
-            CustomerListBox.Location = new Point(63, 122);
+            CustomerListBox.Location = new Point(56, 119);
             CustomerListBox.Name = "CustomerListBox";
             CustomerListBox.Size = new Size(436, 284);
             CustomerListBox.TabIndex = 8;
@@ -197,13 +202,14 @@
             EditCustomerPanel.Controls.Add(label15);
             EditCustomerPanel.Controls.Add(label16);
             EditCustomerPanel.Controls.Add(EditCustomerTitle);
-            EditCustomerPanel.Location = new Point(12, 462);
+            EditCustomerPanel.Location = new Point(12, 467);
             EditCustomerPanel.Name = "EditCustomerPanel";
             EditCustomerPanel.Size = new Size(613, 451);
             EditCustomerPanel.TabIndex = 12;
             // 
             // EditCustomerCancelBtn
             // 
+            EditCustomerCancelBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             EditCustomerCancelBtn.Location = new Point(373, 377);
             EditCustomerCancelBtn.Name = "EditCustomerCancelBtn";
             EditCustomerCancelBtn.Size = new Size(94, 29);
@@ -213,6 +219,7 @@
             // 
             // EditCustomerConfirmBtn
             // 
+            EditCustomerConfirmBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             EditCustomerConfirmBtn.Location = new Point(481, 377);
             EditCustomerConfirmBtn.Name = "EditCustomerConfirmBtn";
             EditCustomerConfirmBtn.Size = new Size(94, 29);
@@ -222,6 +229,7 @@
             // 
             // label17
             // 
+            label17.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label17.AutoSize = true;
             label17.Location = new Point(373, 97);
             label17.Name = "label17";
@@ -231,6 +239,7 @@
             // 
             // comboBox2
             // 
+            comboBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Aktiv", "Inaktiv" });
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
@@ -242,6 +251,7 @@
             // 
             // NotesEdit
             // 
+            NotesEdit.Anchor = AnchorStyles.Bottom;
             NotesEdit.Location = new Point(198, 309);
             NotesEdit.Multiline = true;
             NotesEdit.Name = "NotesEdit";
@@ -250,6 +260,7 @@
             // 
             // BirthdayEdit
             // 
+            BirthdayEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             BirthdayEdit.Location = new Point(198, 266);
             BirthdayEdit.Name = "BirthdayEdit";
             BirthdayEdit.Size = new Size(125, 27);
@@ -278,6 +289,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label11.AutoSize = true;
             label11.Location = new Point(60, 309);
             label11.Name = "label11";
@@ -303,6 +315,7 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label13.AutoSize = true;
             label13.Location = new Point(60, 266);
             label13.Name = "label13";
@@ -366,12 +379,13 @@
             NewCustomerPanel.Controls.Add(NewCustomerTitle);
             NewCustomerPanel.Location = new Point(12, 12);
             NewCustomerPanel.Name = "NewCustomerPanel";
-            NewCustomerPanel.Size = new Size(584, 426);
+            NewCustomerPanel.Size = new Size(584, 430);
             NewCustomerPanel.TabIndex = 9;
             // 
             // NewCustomerCancelBtn
             // 
-            NewCustomerCancelBtn.Location = new Point(369, 374);
+            NewCustomerCancelBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            NewCustomerCancelBtn.Location = new Point(369, 378);
             NewCustomerCancelBtn.Name = "NewCustomerCancelBtn";
             NewCustomerCancelBtn.Size = new Size(94, 29);
             NewCustomerCancelBtn.TabIndex = 35;
@@ -380,7 +394,8 @@
             // 
             // NewCustomerConfirmBtn
             // 
-            NewCustomerConfirmBtn.Location = new Point(469, 374);
+            NewCustomerConfirmBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            NewCustomerConfirmBtn.Location = new Point(469, 378);
             NewCustomerConfirmBtn.Name = "NewCustomerConfirmBtn";
             NewCustomerConfirmBtn.Size = new Size(94, 29);
             NewCustomerConfirmBtn.TabIndex = 34;
@@ -389,7 +404,8 @@
             // 
             // Notes
             // 
-            Notes.Location = new Point(198, 303);
+            Notes.Anchor = AnchorStyles.Bottom;
+            Notes.Location = new Point(198, 307);
             Notes.Multiline = true;
             Notes.Name = "Notes";
             Notes.Size = new Size(365, 57);
@@ -397,7 +413,8 @@
             // 
             // Birthday
             // 
-            Birthday.Location = new Point(198, 260);
+            Birthday.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Birthday.Location = new Point(198, 264);
             Birthday.Name = "Birthday";
             Birthday.Size = new Size(125, 27);
             Birthday.TabIndex = 15;
@@ -425,8 +442,9 @@
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label9.AutoSize = true;
-            label9.Location = new Point(60, 303);
+            label9.Location = new Point(60, 307);
             label9.Name = "label9";
             label9.Size = new Size(47, 20);
             label9.TabIndex = 7;
@@ -450,8 +468,9 @@
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(60, 260);
+            label7.Location = new Point(60, 264);
             label7.Name = "label7";
             label7.Size = new Size(84, 20);
             label7.TabIndex = 4;
@@ -496,7 +515,8 @@
             // 
             // ShowListBtn
             // 
-            ShowListBtn.Location = new Point(631, 134);
+            ShowListBtn.Anchor = AnchorStyles.Top;
+            ShowListBtn.Location = new Point(631, 90);
             ShowListBtn.Name = "ShowListBtn";
             ShowListBtn.Size = new Size(94, 29);
             ShowListBtn.TabIndex = 13;
@@ -506,7 +526,8 @@
             // 
             // NewCustomerBtn
             // 
-            NewCustomerBtn.Location = new Point(631, 252);
+            NewCustomerBtn.Anchor = AnchorStyles.Top;
+            NewCustomerBtn.Location = new Point(631, 193);
             NewCustomerBtn.Name = "NewCustomerBtn";
             NewCustomerBtn.Size = new Size(94, 29);
             NewCustomerBtn.TabIndex = 14;
@@ -515,7 +536,8 @@
             // 
             // BackBtn
             // 
-            BackBtn.Location = new Point(631, 386);
+            BackBtn.Anchor = AnchorStyles.Top;
+            BackBtn.Location = new Point(631, 319);
             BackBtn.Name = "BackBtn";
             BackBtn.Size = new Size(94, 29);
             BackBtn.TabIndex = 16;
@@ -544,11 +566,12 @@
             panel1.Controls.Add(Kundeinformation);
             panel1.Location = new Point(711, 496);
             panel1.Name = "panel1";
-            panel1.Size = new Size(613, 451);
+            panel1.Size = new Size(613, 461);
             panel1.TabIndex = 37;
             // 
             // textBox7
             // 
+            textBox7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBox7.Location = new Point(428, 94);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(125, 27);
@@ -556,6 +579,7 @@
             // 
             // listBox1
             // 
+            listBox1.Anchor = AnchorStyles.Top;
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(373, 182);
             listBox1.Name = "listBox1";
@@ -564,6 +588,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(373, 153);
             label2.Name = "label2";
@@ -573,7 +598,8 @@
             // 
             // InfoBackBtn
             // 
-            InfoBackBtn.Location = new Point(481, 377);
+            InfoBackBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            InfoBackBtn.Location = new Point(481, 387);
             InfoBackBtn.Name = "InfoBackBtn";
             InfoBackBtn.Size = new Size(94, 29);
             InfoBackBtn.TabIndex = 36;
@@ -582,6 +608,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Location = new Point(373, 97);
             label1.Name = "label1";
@@ -591,7 +618,8 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(198, 309);
+            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBox1.Location = new Point(198, 319);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(368, 53);
@@ -627,8 +655,9 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(60, 309);
+            label3.Location = new Point(60, 319);
             label3.Name = "label3";
             label3.Size = new Size(47, 20);
             label3.TabIndex = 23;
